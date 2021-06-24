@@ -1,0 +1,7 @@
+Amped is a Safari Extension that redirects AMP pages in Google and Bing search results and links opened from other apps.
+
+It does not collect, share, or sell any of your personal data, including what you search or any pages you open.
+
+The extension can be configured from within Safari to allow specific sites of your choosing to still use AMP, or to only redirect the AMP versions of specific websites.
+
+AMP pages redirected from search results don't appear in your history and going back or forward will never load the AMP page.

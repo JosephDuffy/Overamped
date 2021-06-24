@@ -1,0 +1,82 @@
+default_platform :ios
+
+platform :ios do
+  desc "Submit a new iOS build to TestFlight"
+  lane :submit_beta do
+    setup_app_store_connect_api_key
+
+    whats_new = File.read("./metadata/testflight-whats-new.txt")
+
+    download_certs
+
+    gym
+
+    pilot(
+      distribute_external: true,
+      groups: [],
+      beta_app_review_info: {
+        contact_email: "josephduffy@me.com",
+        contact_first_name: "Joseph",
+        contact_last_name: "Duffy",
+        contact_phone: "+447706600541",
+        demo_account_name: "",
+        demo_account_password: "",
+        notes: ""
+      },
+      localized_app_info: {
+        "default": {
+          feedback_email: "joseph@yetii.net",
+          marketing_url: "https://amped.app",
+          privacy_policy_url: "https://amped.app/privacy",
+          description: "",
+        },
+      },
+      localized_build_info: {
+        "default": {
+          whats_new: whats_new,
+        }
+      }
+    )
+  end
+
+  desc "Submit a new build to the App Store"
+  lane :submit_app_store do
+    setup_app_store_connect_api_key
+    download_certs
+    gym
+    deliver(platform: "ios")
+  end
+
+  desc "Upload metadata the App Store"
+  lane :upload_metadata do
+    setup_app_store_connect_api_key
+    deliver(platform: "ios", skip_binary_upload: true)
+  end
+
+  desc "Generate and frame App Store screenshots"
+  lane :generate_screenshots do
+    capture_screenshots
+    frame_screenshots
+  end
+
+  desc "Download iOS certificates (read only)"
+  lane :download_certs do
+    setup_app_store_connect_api_key
+    match()
+  end
+
+  desc "Force recreation of iOS certificates"
+  lane :generate_certs do
+    setup_app_store_connect_api_key
+    match(
+      readonly: false,
+      force: true
+    )
+  end
+end
+
+private_lane :setup_app_store_connect_api_key do
+  # This action looks for specific environment variables, which allows for both local and CI use.
+  # See `fastlane action app_store_connect_api_key` for expected environment variable names.
+  app_store_connect_api_key(in_house: false)
+end

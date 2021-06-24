@@ -8,3 +8,12 @@ xcuserdata/
 
 # macOS
 .DS_Store
+
+# fastlane generated
+/fastlane/Preview.html
+/fastlane/report.xml
+/fastlane/screenshots/*
+!/fastlane/screenshots/Framefile.json
+!/fastlane/screenshots/background.jpg
+!/fastlane/screenshots/Camera Placeholder.jpg
+!/fastlane/screenshots/fonts/

@@ -1,0 +1,69 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    "title": {
+      "font": "fonts/SF-Pro-Rounded-Medium.otf",
+      "font_size": 128,
+      "color": "#000033"
+    },
+    "background": "./background.jpg",
+    "padding": 50,
+    "stack_title": true
+  },
+  "data": [
+    {
+      "filter": "0 Scans Tab",
+      "title": {
+        "text": "Automatically Detects Scanned Objects"
+      }
+    },
+    {
+      "filter": "1 Location Scan Result",
+      "title": {
+        "text": "View Rich Information About Scanned Objects"
+      }
+    },
+    {
+      "filter": "2 Scan Tab",
+      "title": {
+        "text": "Scan With Your Camera"
+      }
+    },
+    {
+      "filter": "3 Safari Share Sheet",
+      "title": {
+        "text": "Scan Codes From Websites"
+      }
+    },
+    {
+      "filter": "4 Generated Codes",
+      "title": {
+        "text": "Generate and Share Images"
+      }
+    },
+    {
+      "filter": "5 View Scan Text",
+      "title": {
+        "text": "View Text Exactly As Scanned"
+      }
+    },
+    {
+      "filter": "6 Light Interface",
+      "title": {
+        "text": "Supports Dark and Light UI"
+      }
+    },
+    {
+      "filter": "7 Event Scan Result",
+      "title": {
+        "text": "Add Events to Your Calendar"
+      }
+    },
+    {
+      "filter": "8 Contact Scan Result",
+      "title": {
+        "text": "Add New Contact Cards"
+      }
+    }
+  ]
+}

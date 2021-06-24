@@ -1,0 +1,7 @@
+app_identifier "net.yetii.amped"
+languages ["en-GB"]
+submit_for_review false
+overwrite_screenshots true
+force true # Skip HTML file check
+precheck_include_in_app_purchases false # Disabled due to use of App Store Connect API
+team_id "96178896"

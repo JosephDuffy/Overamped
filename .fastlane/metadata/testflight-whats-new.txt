@@ -1,0 +1,1 @@
+Amped will automatically redirect AMP pages in Google search results and links opened from other apps.
