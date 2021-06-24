@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "checkTypes": "tsc --noEmit",
+    "build-google-amp-content": "esbuild google-amp-content.ts --outfile=google-amp-content.js --target=safari15",
     "build-google-search-content": "esbuild google-search-content.ts --outfile=google-search-content.js --target=safari15",
     "pack": "npm run build-content -- --minify",
     "lint": "eslint . --ext .ts",

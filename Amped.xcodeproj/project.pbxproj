@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D993C5662684B052002A84E6 /* google-amp-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5622684B04F002A84E6 /* google-amp-content.js */; };
 		D993C5672684B052002A84E6 /* google-search-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5632684B04F002A84E6 /* google-search-content.js */; };
 		D9FF5B6D268142B30027BD81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B6C268142B30027BD81 /* AppDelegate.swift */; };
 		D9FF5B71268142B30027BD81 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B6F268142B30027BD81 /* Main.html */; };
@@ -49,8 +50,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D993C5622684B04F002A84E6 /* google-amp-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-amp-content.js"; sourceTree = "<group>"; };
 		D993C5632684B04F002A84E6 /* google-search-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-search-content.js"; sourceTree = "<group>"; };
 		D993C5642684B04F002A84E6 /* google-search-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-search-content.ts"; sourceTree = "<group>"; };
+		D993C5652684B04F002A84E6 /* google-amp-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-amp-content.ts"; sourceTree = "<group>"; };
 		D9FF5B69268142B30027BD81 /* Amped.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amped.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FF5B6C268142B30027BD81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9FF5B70268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				D9FF5B8E268142B90027BD81 /* _locales */,
 				D9FF5B90268142B90027BD81 /* images */,
 				D9FF5B92268142B90027BD81 /* manifest.json */,
+				D993C5622684B04F002A84E6 /* google-amp-content.js */,
+				D993C5652684B04F002A84E6 /* google-amp-content.ts */,
 				D993C5632684B04F002A84E6 /* google-search-content.js */,
 				D993C5642684B04F002A84E6 /* google-search-content.ts */,
 			);
@@ -187,6 +192,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Amped Extension" */;
 			buildPhases = (
+				D993C5612684AFDE002A84E6 /* Build google-amp-content.js */,
 				D993C55F26849E3F002A84E6 /* Build google-search-content.js */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
@@ -256,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D993C5662684B052002A84E6 /* google-amp-content.js in Resources */,
 				D993C5672684B052002A84E6 /* google-search-content.js in Resources */,
 				D9FF5B91268142B90027BD81 /* images in Resources */,
 				D9FF5B93268142B90027BD81 /* manifest.json in Resources */,
@@ -285,6 +292,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "eval \"$(nodenv init -)\"\ncd \"Amped Extension/Resources\"\nnpm run build-google-search-content\n";
+		};
+		D993C5612684AFDE002A84E6 /* Build google-amp-content.js */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Amped Extension/Resources/google-amp-content.ts",
+			);
+			name = "Build google-amp-content.js";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Amped Extension/Resources/google-amp-content.js",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "eval \"$(nodenv init -)\"\ncd \"Amped Extension/Resources\"\nnpm run build-google-amp-content\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
