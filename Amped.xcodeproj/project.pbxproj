@@ -87,6 +87,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D993C5602684A216002A84E6 /* Build Scripts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Build Scripts";
+			sourceTree = "<group>";
+		};
 		D9FF5B60268142B30027BD81 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +140,7 @@
 		D9FF5B8A268142B90027BD81 /* Amped Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D993C5602684A216002A84E6 /* Build Scripts */,
 				D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */,
 				D9FF5B9E268142B90027BD81 /* Info.plist */,
 				D9FF5B8D268142B90027BD81 /* Resources */,
@@ -177,6 +185,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Amped Extension" */;
 			buildPhases = (
+				D993C55F26849E3F002A84E6 /* Build content.js */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
 				D9FF5B84268142B90027BD81 /* Resources */,
@@ -253,6 +262,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D993C55F26849E3F002A84E6 /* Build content.js */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Amped Extension/Resources/content.ts",
+			);
+			name = "Build content.js";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Amped Extension/Resources/content.js",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#source ~/.zshrc\n#echo $(pwd)\neval \"$(nodenv init -)\"\ncd \"Amped Extension/Resources\"\nnpm run build-content\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D9FF5B65268142B30027BD81 /* Sources */ = {
