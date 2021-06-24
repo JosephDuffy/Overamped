@@ -18,7 +18,7 @@
 
   "content_scripts": [
     {
-      "js": ["content.js"],
+      "js": ["google-search-content.js"],
       "run_at": "document_end",
       "matches": [
         "*://*.google.com/*",

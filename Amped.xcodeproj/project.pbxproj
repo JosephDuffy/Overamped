@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D993C5672684B052002A84E6 /* google-search-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5632684B04F002A84E6 /* google-search-content.js */; };
 		D9FF5B6D268142B30027BD81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B6C268142B30027BD81 /* AppDelegate.swift */; };
 		D9FF5B71268142B30027BD81 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B6F268142B30027BD81 /* Main.html */; };
 		D9FF5B73268142B30027BD81 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B72268142B30027BD81 /* Icon.png */; };
@@ -20,7 +21,6 @@
 		D9FF5B8F268142B90027BD81 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B8E268142B90027BD81 /* _locales */; };
 		D9FF5B91268142B90027BD81 /* images in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B90268142B90027BD81 /* images */; };
 		D9FF5B93268142B90027BD81 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B92268142B90027BD81 /* manifest.json */; };
-		D9FF5B97268142B90027BD81 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B96268142B90027BD81 /* content.js */; };
 		D9FF5B9F268142B90027BD81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B80268142B90027BD81 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +49,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D993C5632684B04F002A84E6 /* google-search-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-search-content.js"; sourceTree = "<group>"; };
+		D993C5642684B04F002A84E6 /* google-search-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-search-content.ts"; sourceTree = "<group>"; };
 		D9FF5B69268142B30027BD81 /* Amped.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amped.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FF5B6C268142B30027BD81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9FF5B70268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
@@ -65,7 +67,6 @@
 		D9FF5B8E268142B90027BD81 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
 		D9FF5B90268142B90027BD81 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		D9FF5B92268142B90027BD81 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
-		D9FF5B96268142B90027BD81 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
 		D9FF5B9E268142B90027BD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,7 +155,8 @@
 				D9FF5B8E268142B90027BD81 /* _locales */,
 				D9FF5B90268142B90027BD81 /* images */,
 				D9FF5B92268142B90027BD81 /* manifest.json */,
-				D9FF5B96268142B90027BD81 /* content.js */,
+				D993C5632684B04F002A84E6 /* google-search-content.js */,
+				D993C5642684B04F002A84E6 /* google-search-content.ts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -185,7 +187,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Amped Extension" */;
 			buildPhases = (
-				D993C55F26849E3F002A84E6 /* Build content.js */,
+				D993C55F26849E3F002A84E6 /* Build google-search-content.js */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
 				D9FF5B84268142B90027BD81 /* Resources */,
@@ -254,17 +256,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D993C5672684B052002A84E6 /* google-search-content.js in Resources */,
 				D9FF5B91268142B90027BD81 /* images in Resources */,
 				D9FF5B93268142B90027BD81 /* manifest.json in Resources */,
 				D9FF5B8F268142B90027BD81 /* _locales in Resources */,
-				D9FF5B97268142B90027BD81 /* content.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D993C55F26849E3F002A84E6 /* Build content.js */ = {
+		D993C55F26849E3F002A84E6 /* Build google-search-content.js */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,17 +274,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Amped Extension/Resources/content.ts",
+				"$(SRCROOT)/Amped Extension/Resources/google-search-content.ts",
 			);
-			name = "Build content.js";
+			name = "Build google-search-content.js";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Amped Extension/Resources/content.js",
+				"$(SRCROOT)/Amped Extension/Resources/google-search-content.js",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#source ~/.zshrc\n#echo $(pwd)\neval \"$(nodenv init -)\"\ncd \"Amped Extension/Resources\"\nnpm run build-content\n";
+			shellScript = "eval \"$(nodenv init -)\"\ncd \"Amped Extension/Resources\"\nnpm run build-google-search-content\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
