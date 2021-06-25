@@ -2,6 +2,7 @@ Overamped will automatically redirect AMP pages in Google search results and lin
 
 Upcoming features:
 
+- Replace AMP pages after loading more search results
 - Support for Bing
 - A revised icon
 - Allow specific sites to use AMP
