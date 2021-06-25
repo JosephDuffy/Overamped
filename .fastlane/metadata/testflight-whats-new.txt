@@ -1,1 +1,7 @@
-Amped will automatically redirect AMP pages in Google search results and links opened from other apps.
+Overamped will automatically redirect AMP pages in Google search results and links opened from other apps.
+
+Upcoming features:
+
+- Support for Bing
+- A revised icon
+- Allow specific sites to use AMP

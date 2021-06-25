@@ -16,7 +16,7 @@ languages([
   "en-US",
 ])
 
-scheme("Amped Screenshots")
+scheme("Overamped Screenshots")
 clear_previous_screenshots(true)
 override_status_bar(true)
 reinstall_app(true)

@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "Overamped",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Redirect AMP pages in Google search results an external links",
+    "description": "Description of what the extension does."
+  }
+}

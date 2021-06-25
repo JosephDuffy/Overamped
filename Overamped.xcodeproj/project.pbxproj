@@ -17,7 +17,7 @@
 		D9FF5B79268142B30027BD81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B78268142B30027BD81 /* ViewController.swift */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
 		D9FF5B7F268142B30027BD81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7D268142B30027BD81 /* Main.storyboard */; };
-		D9FF5B87268142B90027BD81 /* Amped Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Amped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
 		D9FF5B8F268142B90027BD81 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B8E268142B90027BD81 /* _locales */; };
 		D9FF5B91268142B90027BD81 /* images in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B90268142B90027BD81 /* images */; };
@@ -31,7 +31,7 @@
 			containerPortal = D9FF5B61268142B30027BD81 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D9FF5B85268142B90027BD81;
-			remoteInfo = "Amped Extension";
+			remoteInfo = "Overamped Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -42,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D9FF5B87268142B90027BD81 /* Amped Extension.appex in Embed App Extensions */,
+				D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,7 +55,7 @@
 		D993C5632684B04F002A84E6 /* google-search-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-search-content.js"; sourceTree = "<group>"; };
 		D993C5642684B04F002A84E6 /* google-search-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-search-content.ts"; sourceTree = "<group>"; };
 		D993C5652684B04F002A84E6 /* google-amp-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-amp-content.ts"; sourceTree = "<group>"; };
-		D9FF5B69268142B30027BD81 /* Amped.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amped.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9FF5B69268142B30027BD81 /* Overamped.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overamped.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FF5B6C268142B30027BD81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9FF5B70268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
 		D9FF5B74268142B30027BD81 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		D9FF5B7E268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D9FF5B80268142B90027BD81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9FF5B81268142B90027BD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9FF5B86268142B90027BD81 /* Amped Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Amped Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9FF5B86268142B90027BD81 /* Overamped Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Overamped Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		D9FF5B8E268142B90027BD81 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
 		D9FF5B90268142B90027BD81 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
@@ -101,8 +101,8 @@
 		D9FF5B60268142B30027BD81 = {
 			isa = PBXGroup;
 			children = (
-				D9FF5B6B268142B30027BD81 /* Amped */,
-				D9FF5B8A268142B90027BD81 /* Amped Extension */,
+				D9FF5B6B268142B30027BD81 /* Overamped */,
+				D9FF5B8A268142B90027BD81 /* Overamped Extension */,
 				D9FF5B6A268142B30027BD81 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,13 +110,13 @@
 		D9FF5B6A268142B30027BD81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9FF5B69268142B30027BD81 /* Amped.app */,
-				D9FF5B86268142B90027BD81 /* Amped Extension.appex */,
+				D9FF5B69268142B30027BD81 /* Overamped.app */,
+				D9FF5B86268142B90027BD81 /* Overamped Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D9FF5B6B268142B30027BD81 /* Amped */ = {
+		D9FF5B6B268142B30027BD81 /* Overamped */ = {
 			isa = PBXGroup;
 			children = (
 				D9FF5B6C268142B30027BD81 /* AppDelegate.swift */,
@@ -128,7 +128,7 @@
 				D9FF5B81268142B90027BD81 /* Info.plist */,
 				D9FF5B6E268142B30027BD81 /* Resources */,
 			);
-			path = Amped;
+			path = Overamped;
 			sourceTree = "<group>";
 		};
 		D9FF5B6E268142B30027BD81 /* Resources */ = {
@@ -141,7 +141,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		D9FF5B8A268142B90027BD81 /* Amped Extension */ = {
+		D9FF5B8A268142B90027BD81 /* Overamped Extension */ = {
 			isa = PBXGroup;
 			children = (
 				D993C5602684A216002A84E6 /* Build Scripts */,
@@ -149,7 +149,7 @@
 				D9FF5B9E268142B90027BD81 /* Info.plist */,
 				D9FF5B8D268142B90027BD81 /* Resources */,
 			);
-			path = "Amped Extension";
+			path = "Overamped Extension";
 			sourceTree = "<group>";
 		};
 		D9FF5B8D268142B90027BD81 /* Resources */ = {
@@ -169,9 +169,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D9FF5B68268142B30027BD81 /* Amped */ = {
+		D9FF5B68268142B30027BD81 /* Overamped */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D9FF5BA6268142B90027BD81 /* Build configuration list for PBXNativeTarget "Amped" */;
+			buildConfigurationList = D9FF5BA6268142B90027BD81 /* Build configuration list for PBXNativeTarget "Overamped" */;
 			buildPhases = (
 				D9FF5B65268142B30027BD81 /* Sources */,
 				D9FF5B66268142B30027BD81 /* Frameworks */,
@@ -183,14 +183,14 @@
 			dependencies = (
 				D9FF5B89268142B90027BD81 /* PBXTargetDependency */,
 			);
-			name = Amped;
-			productName = Amped;
-			productReference = D9FF5B69268142B30027BD81 /* Amped.app */;
+			name = Overamped;
+			productName = Overamped;
+			productReference = D9FF5B69268142B30027BD81 /* Overamped.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D9FF5B85268142B90027BD81 /* Amped Extension */ = {
+		D9FF5B85268142B90027BD81 /* Overamped Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Amped Extension" */;
+			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Overamped Extension" */;
 			buildPhases = (
 				D993C5612684AFDE002A84E6 /* Build google-amp-content.js */,
 				D993C55F26849E3F002A84E6 /* Build google-search-content.js */,
@@ -202,9 +202,9 @@
 			);
 			dependencies = (
 			);
-			name = "Amped Extension";
-			productName = "Amped Extension";
-			productReference = D9FF5B86268142B90027BD81 /* Amped Extension.appex */;
+			name = "Overamped Extension";
+			productName = "Overamped Extension";
+			productReference = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -225,7 +225,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D9FF5B64268142B30027BD81 /* Build configuration list for PBXProject "Amped" */;
+			buildConfigurationList = D9FF5B64268142B30027BD81 /* Build configuration list for PBXProject "Overamped" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,8 +238,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D9FF5B68268142B30027BD81 /* Amped */,
-				D9FF5B85268142B90027BD81 /* Amped Extension */,
+				D9FF5B68268142B30027BD81 /* Overamped */,
+				D9FF5B85268142B90027BD81 /* Overamped Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -281,17 +281,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Amped Extension/Resources/google-search-content.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/google-search-content.ts",
 			);
 			name = "Build google-search-content.js";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/Amped Extension/Resources/google-search-content.js",
+				"$(SRCROOT)/Overamped Extension/Resources/google-search-content.js",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "eval \"$(nodenv init -)\"\ncd \"Amped Extension/Resources\"\nnpm run build-google-search-content\n";
+			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-search-content\n";
 		};
 		D993C5612684AFDE002A84E6 /* Build google-amp-content.js */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -301,17 +301,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Amped Extension/Resources/google-amp-content.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/google-amp-content.ts",
 			);
 			name = "Build google-amp-content.js";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/Amped Extension/Resources/google-amp-content.js",
+				"$(SRCROOT)/Overamped Extension/Resources/google-amp-content.js",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "eval \"$(nodenv init -)\"\ncd \"Amped Extension/Resources\"\nnpm run build-google-amp-content\n";
+			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-amp-content\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -339,7 +339,7 @@
 /* Begin PBXTargetDependency section */
 		D9FF5B89268142B90027BD81 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D9FF5B85268142B90027BD81 /* Amped Extension */;
+			target = D9FF5B85268142B90027BD81 /* Overamped Extension */;
 			targetProxy = D9FF5B88268142B90027BD81 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -495,7 +495,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Amped Extension/Info.plist";
+				INFOPLIST_FILE = "Overamped Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Amped Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -505,7 +505,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Amped.Extension;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Overamped.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -522,8 +522,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Amped Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Amped Extension";
+				INFOPLIST_FILE = "Overamped Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Overamped Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -532,9 +532,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Amped.Extension;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Overamped.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.yetii.Amped.Extension";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.yetii.Overamped.Extension";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -552,8 +552,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Amped/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Amped;
+				INFOPLIST_FILE = Overamped/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Overamped;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -569,7 +569,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Amped;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Overamped;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -588,8 +588,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Amped/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Amped;
+				INFOPLIST_FILE = Overamped/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Overamped;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -605,9 +605,9 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Amped;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Overamped;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.yetii.Amped";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.yetii.Overamped";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -617,7 +617,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D9FF5B64268142B30027BD81 /* Build configuration list for PBXProject "Amped" */ = {
+		D9FF5B64268142B30027BD81 /* Build configuration list for PBXProject "Overamped" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9FF5BA0268142B90027BD81 /* Debug */,
@@ -626,7 +626,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Amped Extension" */ = {
+		D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Overamped Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9FF5BA3268142B90027BD81 /* Debug */,
@@ -635,7 +635,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D9FF5BA6268142B90027BD81 /* Build configuration list for PBXNativeTarget "Amped" */ = {
+		D9FF5BA6268142B90027BD81 /* Build configuration list for PBXNativeTarget "Overamped" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9FF5BA7268142B90027BD81 /* Debug */,

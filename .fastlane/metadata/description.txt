@@ -1,4 +1,4 @@
-Amped is a Safari Extension that redirects AMP pages in Google and Bing search results and links opened from other apps.
+Overamped is a Safari Extension that redirects AMP pages in Google and Bing search results and links opened from other apps.
 
 It does not collect, share, or sell any of your personal data, including what you search or any pages you open.
 

@@ -1,5 +1,5 @@
 {
-  "name": "amped",
+  "name": "overamped",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -16,13 +16,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JosephDuffy/Amped.git"
+    "url": "git+https://github.com/JosephDuffy/Overamped.git"
   },
   "author": "Joseph Duffy",
   "bugs": {
-    "url": "https://github.com/JosephDuffy/Amped/issues"
+    "url": "https://github.com/JosephDuffy/Overamped/issues"
   },
-  "homepage": "https://github.com/JosephDuffy/Amped#readme",
+  "homepage": "https://github.com/JosephDuffy/Overamped#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",

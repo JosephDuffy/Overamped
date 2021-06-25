@@ -1,15 +1,7 @@
-//
-//  SafariWebExtensionHandler.swift
-//  Amped Extension
-//
-//  Created by Joseph Duffy on 21/06/2021.
-//
-
 import SafariServices
 import os.log
 
-class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
-
+final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
     func beginRequest(with context: NSExtensionContext) {
         let item = context.inputItems[0] as! NSExtensionItem
         let message = item.userInfo?[SFExtensionMessageKey]
@@ -20,5 +12,4 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         context.completeRequest(returningItems: [response], completionHandler: nil)
     }
-
 }

@@ -26,8 +26,8 @@ platform :ios do
       localized_app_info: {
         "default": {
           feedback_email: "joseph@yetii.net",
-          marketing_url: "https://amped.app",
-          privacy_policy_url: "https://amped.app/privacy",
+          marketing_url: "https://overamped.app",
+          privacy_policy_url: "https://overamped.app/privacy",
           description: "",
         },
       },

@@ -1,15 +1,7 @@
-//
-//  ViewController.swift
-//  Amped
-//
-//  Created by Joseph Duffy on 21/06/2021.
-//
-
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
-
+final class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     @IBOutlet var webView: WKWebView!
 
     override func viewDidLoad() {

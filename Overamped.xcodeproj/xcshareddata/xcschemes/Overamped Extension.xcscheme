@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1300"
-   version = "1.3">
+   wasCreatedForAppExtension = "YES"
+   version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,10 +15,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D9FF5B85268142B90027BD81"
+               BuildableName = "Overamped Extension.appex"
+               BlueprintName = "Overamped Extension"
+               ReferencedContainer = "container:Overamped.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "D9FF5B68268142B30027BD81"
-               BuildableName = "Amped.app"
-               BlueprintName = "Amped"
-               ReferencedContainer = "container:Amped.xcodeproj">
+               BuildableName = "Overamped.app"
+               BlueprintName = "Overamped"
+               ReferencedContainer = "container:Overamped.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,39 +47,46 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "2">
+      <RemoteRunnable
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "com.apple.mobilesafari"
+         RemotePath = "/Applications/Xcode_13.0-beta1.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/Applications/MobileSafari.app">
+      </RemoteRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D9FF5B68268142B30027BD81"
-            BuildableName = "Amped.app"
-            BlueprintName = "Amped"
-            ReferencedContainer = "container:Amped.xcodeproj">
+            BuildableName = "Overamped.app"
+            BlueprintName = "Overamped"
+            ReferencedContainer = "container:Overamped.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
+      debugDocumentVersioning = "YES"
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D9FF5B68268142B30027BD81"
-            BuildableName = "Amped.app"
-            BlueprintName = "Amped"
-            ReferencedContainer = "container:Amped.xcodeproj">
+            BuildableName = "Overamped.app"
+            BlueprintName = "Overamped"
+            ReferencedContainer = "container:Overamped.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
