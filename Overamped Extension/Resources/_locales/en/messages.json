@@ -4,7 +4,7 @@
     "description": "The display name for the extension."
   },
   "extension_description": {
-    "message": "Redirect AMP pages in Google search results an external links",
+    "message": "Redirect AMP pages in Google search results and external links",
     "description": "Description of what the extension does."
   }
 }
