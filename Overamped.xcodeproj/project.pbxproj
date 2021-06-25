@@ -91,13 +91,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D993C5602684A216002A84E6 /* Build Scripts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Build Scripts";
-			sourceTree = "<group>";
-		};
 		D9FF5B60268142B30027BD81 = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +137,6 @@
 		D9FF5B8A268142B90027BD81 /* Overamped Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D993C5602684A216002A84E6 /* Build Scripts */,
 				D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */,
 				D9FF5B9E268142B90027BD81 /* Info.plist */,
 				D9FF5B8D268142B90027BD81 /* Resources */,
