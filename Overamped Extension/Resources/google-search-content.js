@@ -1,7 +1,20 @@
 console.log("Searching for AMP anchors");
 document.body.querySelectorAll("a[data-amp-cur]").forEach((element) => {
   const anchor = element;
-  const finalURL = anchor.dataset.ampCur;
+  const finalURL = (() => {
+    const ampCur = anchor.dataset.ampCur;
+    if (ampCur.length > 0) {
+      return ampCur;
+    }
+    console.debug("ampCur was empty; possibly a news link");
+    const ampURL = anchor.dataset.cur ?? anchor.href;
+    console.info("AMP URL", ampURL);
+    if (ampURL.endsWith("/amp/")) {
+      return ampURL.substring(0, ampURL.length - "amp/".length);
+    } else {
+      return ampURL;
+    }
+  })();
   anchor.href = finalURL;
   console.debug("Adding onclick handler to AMP anchor", anchor);
   anchor.onclick = (event) => {
