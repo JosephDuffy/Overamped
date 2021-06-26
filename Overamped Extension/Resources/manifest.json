@@ -27,7 +27,7 @@
   "content_scripts": [
     {
       "js": ["google-amp-content.js"],
-      "run_at": "document_end",
+      "run_at": "document_start",
       "matches": [
         "*://*.google.com/amp/s/*",
         "*://*.google.ad/amp/s/*",
