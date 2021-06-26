@@ -5,8 +5,14 @@
   font-family: system-ui;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 10px;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
 }
 
 button {
