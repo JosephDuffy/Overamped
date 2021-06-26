@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const pageURLElement = document.getElementById("currentPage")! // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const toggleAllowListButton = document.getElementById(
   "toggleAllowListButton",
 )! as HTMLButtonElement
@@ -13,7 +12,12 @@ Promise.all([settingsPromise, currentTabPromise]).then(
   ([settings, currentTab]) => {
     console.debug("Loaded initial settings", settings)
 
-    configurePage(settings, currentTab)
+    configurePage(
+      Array.isArray(settings["ignoredHostnames"])
+        ? (settings["ignoredHostnames"] as string[])
+        : [],
+      currentTab,
+    )
 
     browser.storage.onChanged.addListener((changes) => {
       if (changes["ignoredHostnames"] && changes["ignoredHostnames"].newValue) {
@@ -21,26 +25,30 @@ Promise.all([settingsPromise, currentTabPromise]).then(
           "Ignored hostnames setting changed",
           changes["ignoredHostnames"],
         )
-        configurePage(changes["ignoredHostnames"].newValue, currentTab)
+        configurePage(
+          Array.isArray(changes["ignoredHostnames"].newValue)
+            ? changes["ignoredHostnames"].newValue
+            : [],
+          currentTab,
+        )
       }
     })
   },
 )
 
 function configurePage(
-  settings: browser.storage.StorageObject,
+  ignoredHostnames: string[],
   currentTab: browser.tabs.Tab,
 ) {
   if (!currentTab.url) {
-    pageURLElement.innerText = "Failed to load URL"
+    currentPageDomainSpan.innerText = "Failed to load URL"
     return
   }
 
-  const ignoredHostnames = settings["ignoredHostnames"] as string[] | undefined
   const currentURL = new URL(currentTab.url)
   currentPageDomainSpan.innerText = currentURL.hostname
 
-  if (ignoredHostnames?.includes(currentURL.hostname)) {
+  if (ignoredHostnames.includes(currentURL.hostname)) {
     toggleAllowListButton.innerText = `Disable AMP on ${currentURL.hostname}`
 
     toggleAllowListButton.onclick = () => {
@@ -70,9 +78,8 @@ function configurePage(
 
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true
-      const newIgnoredHostnames = {
-        ignoredHostnames: [...(ignoredHostnames ?? []), currentURL.hostname],
-      }
+
+      const newIgnoredHostnames = [...ignoredHostnames, currentURL.hostname]
       browser.storage.local
         .set({
           ignoredHostnames: newIgnoredHostnames,
@@ -88,11 +95,5 @@ function configurePage(
         })
       return false
     }
-  }
-
-  if (currentTab.url) {
-    pageURLElement.innerText = currentTab.url
-  } else {
-    pageURLElement.innerText = "Failed to load URL"
   }
 }
