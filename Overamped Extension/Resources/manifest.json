@@ -14,7 +14,7 @@
     "512": "images/icon-rounded-512.png"
   },
 
-  "permissions": ["webNavigation", "nativeMessaging", "activeTab"],
+  "permissions": ["webNavigation", "nativeMessaging", "activeTab", "storage"],
 
   "browser_action": {
       "default_icon": {
