@@ -1,8 +1,14 @@
 Overamped will automatically redirect AMP pages in Google search results and links opened from other apps.
 
+New in beta 2:
+
+- Enable allowing AMP for specific websites
+- Support overriding AMP links for news articles
+- Better detection of original non-AMP URL
+- Loading more search results will redetect AMP links
+
 Upcoming features:
 
-- Replace AMP pages after loading more search results
 - Support for Bing
 - A revised icon
-- Allow specific sites to use AMP
+- A form to submit issues from within the extension
