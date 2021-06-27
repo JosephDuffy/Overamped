@@ -2,14 +2,20 @@
 const toggleAllowListButton = document.getElementById(
   "toggleAllowListButton",
 )! as HTMLButtonElement
+
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const currentPageDomainSpan = document.getElementById("currentPageDomain")!
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const toggleAllowListButtonExplanation = document.getElementById(
+  "toggleAllowListButtonExplanation",
+)!
 
 const settingsPromise = browser.storage.local.get("ignoredHostnames")
 const currentTabPromise = browser.tabs.getCurrent()
 
-Promise.all([settingsPromise, currentTabPromise]).then(
-  ([settings, currentTab]) => {
+Promise.all([settingsPromise, currentTabPromise])
+  .then(([settings, currentTab]) => {
     console.debug("Loaded initial settings", settings)
 
     configurePage(
@@ -33,17 +39,23 @@ Promise.all([settingsPromise, currentTabPromise]).then(
         )
       }
     })
-  },
-)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
 
 function configurePage(
   ignoredHostnames: string[],
   currentTab: browser.tabs.Tab,
 ) {
   if (!currentTab.url) {
-    currentPageDomainSpan.innerText = "Failed to load URL"
+    toggleAllowListButtonExplanation.innerText =
+      "Overamped is not available for the current page."
+    toggleAllowListButton.hidden = true
     return
   }
+
+  toggleAllowListButton.hidden = false
 
   const currentURL = new URL(currentTab.url)
   currentPageDomainSpan.innerText = currentURL.hostname

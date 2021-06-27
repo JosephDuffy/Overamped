@@ -1,5 +1,6 @@
 const toggleAllowListButton = document.getElementById("toggleAllowListButton");
 const currentPageDomainSpan = document.getElementById("currentPageDomain");
+const toggleAllowListButtonExplanation = document.getElementById("toggleAllowListButtonExplanation");
 const settingsPromise = browser.storage.local.get("ignoredHostnames");
 const currentTabPromise = browser.tabs.getCurrent();
 Promise.all([settingsPromise, currentTabPromise]).then(([settings, currentTab]) => {
@@ -11,12 +12,16 @@ Promise.all([settingsPromise, currentTabPromise]).then(([settings, currentTab]) 
       configurePage(Array.isArray(changes["ignoredHostnames"].newValue) ? changes["ignoredHostnames"].newValue : [], currentTab);
     }
   });
+}).catch((error) => {
+  console.error(error);
 });
 function configurePage(ignoredHostnames, currentTab) {
   if (!currentTab.url) {
-    currentPageDomainSpan.innerText = "Failed to load URL";
+    toggleAllowListButtonExplanation.innerText = "Overamped is not available for the current page.";
+    toggleAllowListButton.hidden = true;
     return;
   }
+  toggleAllowListButton.hidden = false;
   const currentURL = new URL(currentTab.url);
   currentPageDomainSpan.innerText = currentURL.hostname;
   if (ignoredHostnames.includes(currentURL.hostname)) {

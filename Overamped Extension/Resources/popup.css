@@ -1,7 +1,6 @@
 :root {
   color-scheme: light dark;
   font: -apple-system-body;
-  word-wrap: break-word;
   font-family: system-ui;
 }
 
@@ -10,7 +9,7 @@
 }
 
 body {
-  width: 100%;
+  width: 100vw;
   padding: 10px;
   margin: 0;
 }
