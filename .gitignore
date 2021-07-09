@@ -10,6 +10,7 @@ xcuserdata/
 .DS_Store
 
 # fastlane generated
+/.fastlane/README.md
 /.fastlane/Preview.html
 /.fastlane/report.xml
 /.fastlane/screenshots/*
