@@ -1,23 +1,42 @@
 const anchorOnclickListeners = {};
+function findAMPLogoRelativeToAnchor(anchor) {
+  const childLogo = anchor.querySelector("span[aria-label='AMP logo']");
+  if (childLogo) {
+    return childLogo;
+  }
+  if (anchor.dataset.ampHlt) {
+    console.debug(`Anchor is from a "Featured Snippet"; searching parent for container`);
+    let parent = anchor.parentElement;
+    while (parent && !parent.classList.contains("card-section")) {
+      parent = parent.parentElement;
+    }
+    if (parent) {
+      console.debug("Found card section parent", parent);
+      return parent.querySelector("span[aria-label='AMP logo']");
+    }
+  }
+  return null;
+}
 function replaceAMPLinks(ignoredHostnames) {
-  const ampAnchor = document.body.querySelectorAll("a[data-amp-cur]");
+  const ampAnchor = document.body.querySelectorAll("a[data-ved]");
   console.debug(`Found ${ampAnchor.length} AMP links`);
   ampAnchor.forEach((element) => {
     const anchor = element;
     console.debug("Checking AMP anchor", anchor);
     const ved = anchor.dataset.ved;
-    if (!ved) {
-      console.debug(anchor, "Does not have data-ved attribute");
-      return;
-    }
-    const ampIcon = anchor.querySelector("span[aria-label='AMP logo']");
-    const finalURL = new URL((() => {
+    const ampIcon = findAMPLogoRelativeToAnchor(anchor);
+    const anchorURLString = (() => {
       const ampCur = anchor.dataset.ampCur;
-      if (ampCur.length > 0) {
+      if (ampCur && ampCur.length > 0) {
         return ampCur;
       }
       return anchor.dataset.cur ?? anchor.href;
-    })());
+    })();
+    if (!anchorURLString) {
+      console.debug(`Failed to get final URL from anchor`, anchor);
+      return;
+    }
+    const finalURL = new URL(anchorURLString);
     console.debug(`URL from attribute: ${finalURL.toString()}`);
     let modifiedAnchor = anchorOnclickListeners[ved];
     if (ignoredHostnames.includes(finalURL.hostname)) {
@@ -49,7 +68,7 @@ function replaceAMPLinks(ignoredHostnames) {
       finalURL.pathname = finalURL.pathname.substring(4);
     } else if (finalURL.pathname.endsWith("/amp/")) {
       console.debug("Removing amp/ postfix");
-      finalURL.pathname = finalURL.pathname.substring(finalURL.pathname.length - "amp/".length);
+      finalURL.pathname = finalURL.pathname.substring(0, finalURL.pathname.length - "amp/".length);
     }
     const finalURLString = finalURL.toString();
     console.info(`De-AMPed URL: ${finalURLString}`);

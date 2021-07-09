@@ -7,8 +7,39 @@ const anchorOnclickListeners: {
   [ved: string]: OverriddenAnchor
 } = {}
 
+function findAMPLogoRelativeToAnchor(
+  anchor: HTMLAnchorElement,
+): HTMLSpanElement | null {
+  const childLogo = anchor.querySelector("span[aria-label='AMP logo']")
+
+  if (childLogo) {
+    return childLogo as HTMLSpanElement
+  }
+
+  if (anchor.dataset.ampHlt) {
+    console.debug(
+      `Anchor is from a "Featured Snippet"; searching parent for container`,
+    )
+    // The "Featured Snippet" puts the logo outside of the anchor
+    let parent = anchor.parentElement
+
+    while (parent && !parent.classList.contains("card-section")) {
+      parent = parent.parentElement
+    }
+
+    if (parent) {
+      console.debug("Found card section parent", parent)
+      return parent.querySelector(
+        "span[aria-label='AMP logo']",
+      ) as HTMLSpanElement | null
+    }
+  }
+
+  return null
+}
+
 function replaceAMPLinks(ignoredHostnames: string[]) {
-  const ampAnchor = document.body.querySelectorAll("a[data-amp-cur]")
+  const ampAnchor = document.body.querySelectorAll("a[data-ved]")
   console.debug(`Found ${ampAnchor.length} AMP links`)
 
   ampAnchor.forEach((element) => {
@@ -16,29 +47,27 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
 
     console.debug("Checking AMP anchor", anchor)
 
-    const ved = anchor.dataset.ved
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const ved = anchor.dataset.ved!
 
-    if (!ved) {
-      console.debug(anchor, "Does not have data-ved attribute")
+    const ampIcon: HTMLSpanElement | null = findAMPLogoRelativeToAnchor(anchor)
+
+    const anchorURLString = (() => {
+      const ampCur = anchor.dataset.ampCur
+
+      if (ampCur && ampCur.length > 0) {
+        return ampCur
+      }
+
+      return anchor.dataset.cur ?? (anchor.href as string | undefined)
+    })()
+
+    if (!anchorURLString) {
+      console.debug(`Failed to get final URL from anchor`, anchor)
       return
     }
 
-    const ampIcon = anchor.querySelector(
-      "span[aria-label='AMP logo']",
-    ) as HTMLSpanElement | null
-
-    const finalURL = new URL(
-      (() => {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const ampCur = anchor.dataset.ampCur!
-
-        if (ampCur.length > 0) {
-          return ampCur
-        }
-
-        return anchor.dataset.cur ?? anchor.href
-      })(),
-    )
+    const finalURL = new URL(anchorURLString)
 
     console.debug(`URL from attribute: ${finalURL.toString()}`)
 
@@ -86,6 +115,7 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
     } else if (finalURL.pathname.endsWith("/amp/")) {
       console.debug("Removing amp/ postfix")
       finalURL.pathname = finalURL.pathname.substring(
+        0,
         finalURL.pathname.length - "amp/".length,
       )
     }
