@@ -2,6 +2,8 @@
 
 ## Build generated
 build/
+*.app.dsym.zip
+*.ipa
 
 ## User settings
 xcuserdata/
