@@ -7,11 +7,11 @@
   "version": "1.0",
 
   "icons": {
-    "48": "images/icon-rounded-48.png",
-    "96": "images/icon-rounded-96.png",
-    "128": "images/icon-rounded-128.png",
-    "256": "images/icon-rounded-256.png",
-    "512": "images/icon-rounded-512.png"
+    "48": "images/App-Icon-Rounded-Inset-48.png",
+    "96": "images/App-Icon-Rounded-Inset-96.png",
+    "128": "images/App-Icon-Rounded-Inset-128.png",
+    "256": "images/App-Icon-Rounded-Inset-256.png",
+    "512": "images/App-Icon-Rounded-Inset-512.png"
   },
 
   "permissions": ["nativeMessaging", "activeTab", "storage"],
