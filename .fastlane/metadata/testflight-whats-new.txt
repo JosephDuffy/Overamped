@@ -1,4 +1,12 @@
-Overamped will automatically redirect AMP pages in Google search results and links opened from other apps.
+Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it!
+
+For the next update I am working on supporting more websites (Google News, Google Images, Bing, etc.), but there's more to come (see the bottom).
+
+New in beta 4:
+
+- Updated icon
+- Redirect AMP pages from other apps (e.g. Messages)
+- Reduce permissions required to function
 
 New in beta 3:
 
@@ -13,6 +21,8 @@ New in beta 2:
 
 Upcoming features:
 
+- Support for Google News
+- Support for Google Images
 - Support for Bing
-- A revised icon
-- A form to submit issues from within the extension
+- Improved installation steps
+- More information and shortcuts within the extension
