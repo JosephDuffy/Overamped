@@ -13,7 +13,15 @@ platform :ios do
 
     pilot(
       distribute_external: true,
-      groups: [],
+      groups: [
+        "Aiport",
+        "Cold Emails",
+        "MacRumors",
+        "Marketing Website",
+        "Personal Website",
+        "Relay FM Discord",
+        "Twitter",
+      ],
       beta_app_review_info: {
         contact_email: "josephduffy@me.com",
         contact_first_name: "Joseph",
