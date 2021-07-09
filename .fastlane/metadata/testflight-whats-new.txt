@@ -1,11 +1,14 @@
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it!
 
-For the next update I am working on supporting more websites (Google News, Google Images, Bing, etc.), but there's more to come (see the bottom).
+For the next update I am working on supporting more websites (Google News, Bing, etc.), but there's more to come (see the bottom).
 
 New in beta 4:
 
+- Support for AMP links in more contexts, e.g. the Images tab, featured articles, more recipes
+- Improve logic for removing AMP from final URL, e.g. striping "/amp/" from the final URL
+- Redirect AMP pages linked from other apps (e.g. Messages) and any website
+  - This means that if someone links directly to an AMP URL it will still be redirected, but due to security restrictions the page has to load at least a small amount before the redirection can occur
 - Updated icon
-- Redirect AMP pages from other apps (e.g. Messages)
 - Reduce permissions required to function
 
 New in beta 3:
