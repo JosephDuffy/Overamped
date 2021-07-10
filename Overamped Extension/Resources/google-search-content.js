@@ -24,7 +24,6 @@ function replaceAMPLinks(ignoredHostnames) {
     const anchor = element;
     console.debug("Checking AMP anchor", anchor);
     const ved = anchor.dataset.ved;
-    const ampIcon = findAMPLogoRelativeToAnchor(anchor);
     const anchorURLString = (() => {
       const ampCur = anchor.dataset.ampCur;
       if (ampCur && ampCur.length > 0) {
@@ -38,6 +37,7 @@ function replaceAMPLinks(ignoredHostnames) {
     }
     const finalURL = new URL(anchorURLString);
     console.debug(`URL from attribute: ${finalURL.toString()}`);
+    const ampIcon = findAMPLogoRelativeToAnchor(anchor);
     let modifiedAnchor = anchorOnclickListeners[ved];
     if (ignoredHostnames.includes(finalURL.hostname)) {
       console.debug(`Not modifying anchor; ${finalURL.hostname} is in ignore list`, anchorOnclickListeners);

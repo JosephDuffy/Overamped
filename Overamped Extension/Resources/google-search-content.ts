@@ -50,8 +50,6 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const ved = anchor.dataset.ved!
 
-    const ampIcon: HTMLSpanElement | null = findAMPLogoRelativeToAnchor(anchor)
-
     const anchorURLString = (() => {
       const ampCur = anchor.dataset.ampCur
 
@@ -71,6 +69,7 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
 
     console.debug(`URL from attribute: ${finalURL.toString()}`)
 
+    const ampIcon = findAMPLogoRelativeToAnchor(anchor)
     let modifiedAnchor = anchorOnclickListeners[ved]
 
     if (ignoredHostnames.includes(finalURL.hostname)) {
