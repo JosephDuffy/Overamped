@@ -1,5 +1,5 @@
 const toggleAllowListButton = document.getElementById("toggleAllowListButton");
-const currentPageDomainSpan = document.getElementById("currentPageDomain");
+const currentPageDomainSpans = document.getElementsByClassName("currentPageDomain");
 const toggleAllowListButtonExplanation = document.getElementById("toggleAllowListButtonExplanation");
 const settingsPromise = browser.storage.local.get("ignoredHostnames");
 const currentTabPromise = browser.tabs.getCurrent();
@@ -23,9 +23,11 @@ function configurePage(ignoredHostnames, currentTab) {
   }
   toggleAllowListButton.hidden = false;
   const currentURL = new URL(currentTab.url);
-  currentPageDomainSpan.innerText = currentURL.hostname;
+  Array.from(currentPageDomainSpans).forEach((span) => {
+    span.innerText = currentURL.hostname;
+  });
   if (ignoredHostnames.includes(currentURL.hostname)) {
-    toggleAllowListButton.innerText = `Disable AMP on ${currentURL.hostname}`;
+    toggleAllowListButton.innerText = `Enable Overamped on ${currentURL.hostname}`;
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true;
       const newIgnoredHostnames = ignoredHostnames.filter((ignoredHostname) => {
@@ -43,7 +45,7 @@ function configurePage(ignoredHostnames, currentTab) {
       return false;
     };
   } else {
-    toggleAllowListButton.innerText = `Enable AMP on ${currentURL.hostname}`;
+    toggleAllowListButton.innerText = `Disable Overamped on ${currentURL.hostname}`;
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true;
       const newIgnoredHostnames = [...ignoredHostnames, currentURL.hostname];

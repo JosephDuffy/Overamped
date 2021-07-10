@@ -4,7 +4,9 @@ const toggleAllowListButton = document.getElementById(
 )! as HTMLButtonElement
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const currentPageDomainSpan = document.getElementById("currentPageDomain")!
+const currentPageDomainSpans = document.getElementsByClassName(
+  "currentPageDomain",
+)! as unknown as HTMLSpanElement[]
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const toggleAllowListButtonExplanation = document.getElementById(
@@ -58,10 +60,12 @@ function configurePage(
   toggleAllowListButton.hidden = false
 
   const currentURL = new URL(currentTab.url)
-  currentPageDomainSpan.innerText = currentURL.hostname
+  Array.from(currentPageDomainSpans).forEach((span) => {
+    span.innerText = currentURL.hostname
+  })
 
   if (ignoredHostnames.includes(currentURL.hostname)) {
-    toggleAllowListButton.innerText = `Disable AMP on ${currentURL.hostname}`
+    toggleAllowListButton.innerText = `Enable Overamped on ${currentURL.hostname}`
 
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true
@@ -86,7 +90,7 @@ function configurePage(
       return false
     }
   } else {
-    toggleAllowListButton.innerText = `Enable AMP on ${currentURL.hostname}`
+    toggleAllowListButton.innerText = `Disable Overamped on ${currentURL.hostname}`
 
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true
