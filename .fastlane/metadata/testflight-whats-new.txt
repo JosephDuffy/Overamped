@@ -1,6 +1,11 @@
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it!
 
-For the next update I am working on supporting more websites (Google News, Bing, etc.), but there's more to come (see the bottom).
+Please note that Google will serve slightly different versions to different people, so getting this to work every time for everyone is tricky. This is why I'm so thankful for everyone reporting issues! When possible, please provide the full URL of the Google search and a screenshot showing this issue. I will be providing a better feedback form in a future version.
+
+New in beta 6:
+
+- Fix some links not being de-AMPed after loading more results
+- Improve wording of disable/enable Overamped button
 
 New in beta 5:
 
@@ -29,8 +34,7 @@ New in beta 2:
 
 Upcoming features:
 
-- Support for Google News
-- Support for Google Images
+- Improvements to the UI shown within Safari
 - Support for Bing
 - Improved installation steps
 - More information and shortcuts within the extension
