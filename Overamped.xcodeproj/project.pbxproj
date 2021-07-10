@@ -639,7 +639,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Overamped Extension/Info.plist";
@@ -669,7 +668,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Overamped Extension/Info.plist";
@@ -702,7 +700,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Overamped/Info.plist;
@@ -741,7 +738,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Overamped/Info.plist;
