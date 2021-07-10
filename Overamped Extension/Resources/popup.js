@@ -60,3 +60,9 @@ function configurePage(ignoredHostnames, currentTab) {
     };
   }
 }
+Array.from(document.querySelectorAll("a")).forEach((anchor) => {
+  anchor.onclick = () => {
+    browser.tabs.create({ url: anchor.href });
+    return false;
+  };
+});
