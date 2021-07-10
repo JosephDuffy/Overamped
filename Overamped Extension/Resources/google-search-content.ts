@@ -1,3 +1,6 @@
+import deampURL from "./deampURL"
+import ExtensionApplier from "./ExtensionApplier"
+
 interface OverriddenAnchor {
   listener: (event: MouseEvent) => boolean
   originalHREF: string
@@ -67,9 +70,11 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
       return
     }
 
-    const finalURL = new URL(anchorURLString)
+    const anchorURL = new URL(anchorURLString)
 
-    console.debug(`URL from attribute: ${finalURL.toString()}`)
+    console.debug(`URL from attribute: ${anchorURL.toString()}`)
+
+    const finalURL = deampURL(anchorURL)
 
     const ampIcon = findAMPLogoRelativeToAnchor(anchor)
     let modifiedAnchor = anchorOnclickListeners[ved]
@@ -96,29 +101,6 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
     } else if (modifiedAnchor) {
       // Link has already been overridden.
       return
-    }
-
-    const finalSearchParams = new URLSearchParams()
-
-    finalURL.searchParams.forEach((value, key) => {
-      if (value != "amp" && key != "amp") {
-        finalSearchParams.append(key, value)
-      } else {
-        console.debug(`Removing ${key}=${value} from final URL`)
-      }
-    })
-
-    finalURL.search = finalSearchParams.toString()
-
-    if (finalURL.pathname.startsWith("/amp/")) {
-      console.debug("Removing amp/ prefix")
-      finalURL.pathname = finalURL.pathname.substring(4)
-    } else if (finalURL.pathname.endsWith("/amp/")) {
-      console.debug("Removing amp/ postfix")
-      finalURL.pathname = finalURL.pathname.substring(
-        0,
-        finalURL.pathname.length - "amp/".length,
-      )
     }
 
     const finalURLString = finalURL.toString()
@@ -154,67 +136,4 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
   })
 }
 
-let replaceAMPLinksWithStoredIgnoredList: () => void = () => {
-  replaceAMPLinks([])
-}
-
-let readyStateChangeListener: (() => void) | undefined
-
-function applyIgnoredList(ignoredHostnames: string[]) {
-  if (document.readyState == "loading") {
-    console.debug(
-      "Ignore list has been loaded but the webpage is still loading",
-    )
-
-    if (readyStateChangeListener) {
-      document.removeEventListener("readystatechange", readyStateChangeListener)
-    }
-    readyStateChangeListener = () => {
-      applyIgnoredList(ignoredHostnames)
-    }
-    document.addEventListener("readystatechange", readyStateChangeListener)
-    return
-  }
-  document.removeEventListener(
-    "DOMNodeInserted",
-    replaceAMPLinksWithStoredIgnoredList,
-  )
-
-  replaceAMPLinksWithStoredIgnoredList = () => {
-    replaceAMPLinks(ignoredHostnames)
-  }
-
-  replaceAMPLinksWithStoredIgnoredList()
-
-  // Support "More Results"
-  document.addEventListener(
-    "DOMNodeInserted",
-    replaceAMPLinksWithStoredIgnoredList,
-  )
-}
-
-browser.storage.local
-  .get("ignoredHostnames")
-  .then((storage) => {
-    const ignoredHostnames =
-      (storage["ignoredHostnames"] as string[] | undefined) ?? []
-
-    console.debug("Loaded ignored hostnames list", ignoredHostnames)
-
-    applyIgnoredList(ignoredHostnames)
-  })
-  .catch((error) => {
-    console.error("Failed to load ignoredHostnames setting", error)
-  })
-
-browser.storage.onChanged.addListener((changes) => {
-  if (changes["ignoredHostnames"] && changes["ignoredHostnames"].newValue) {
-    console.debug(
-      "Ignored hostnames setting changed",
-      changes["ignoredHostnames"],
-    )
-    const ignoredHostnames = changes["ignoredHostnames"].newValue
-
-    applyIgnoredList(ignoredHostnames)
-  }
-})
+new ExtensionApplier(document, replaceAMPLinks)
