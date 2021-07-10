@@ -155,6 +155,7 @@
       }
       anchorOnclickListeners[ved] = modifiedAnchor;
     });
+    document.body.dataset.overampedReplacedLinksCount = `${Object.keys(anchorOnclickListeners).length}`;
   }
   new ExtensionApplier(document, replaceAMPLinks);
 })();

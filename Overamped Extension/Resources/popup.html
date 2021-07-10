@@ -6,7 +6,12 @@
     <script type="module" src="popup.js"></script>
 </head>
 <body>
-    <button id="toggleAllowListButton"></button>
-    <p id="toggleAllowListButtonExplanation">If Overamped is disabled for <span class="currentPageDomain"></span> it will not modify AMP links that point to <span class="currentPageDomain"></span>.</p>
+    <div id="googleContent">
+        <p>Overamped has replaced <span class="replacedLinksCount"></span> links on this page.</p>
+    </div>
+    <div id="nonGoogleContent">
+        <button id="toggleAllowListButton"></button>
+        <p id="toggleAllowListButtonExplanation">If Overamped is disabled for <span class="currentPageDomain"></span> it will not modify AMP links that point to <span class="currentPageDomain"></span>.</p>
+    </div>
 </body>
 </html>

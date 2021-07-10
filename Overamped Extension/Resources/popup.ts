@@ -4,9 +4,24 @@ const toggleAllowListButton = document.getElementById(
 )! as HTMLButtonElement
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const googleContentContainer = document.getElementById(
+  "googleContent",
+)! as HTMLDivElement
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const nonGoogleContentContainer = document.getElementById(
+  "nonGoogleContent",
+)! as HTMLDivElement
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const currentPageDomainSpans = document.getElementsByClassName(
   "currentPageDomain",
-)! as unknown as HTMLSpanElement[]
+)! as HTMLCollectionOf<HTMLLinkElement>
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const replacedLinksCountSpans = document.getElementsByClassName(
+  "replacedLinksCount",
+)! as HTMLCollectionOf<HTMLLinkElement>
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const toggleAllowListButtonExplanation = document.getElementById(
@@ -50,16 +65,53 @@ function configurePage(
   ignoredHostnames: string[],
   currentTab: browser.tabs.Tab,
 ) {
-  if (!currentTab.url) {
+  const currentTabURL = currentTab.url
+  if (!currentTabURL) {
     toggleAllowListButtonExplanation.innerText =
       "Overamped is not available for the current page."
     toggleAllowListButton.hidden = true
+    googleContentContainer.hidden = true
     return
   }
 
-  toggleAllowListButton.hidden = false
+  if (currentTab.id) {
+    browser.tabs
+      .executeScript(currentTab.id, {
+        code: `document.body.dataset.overampedReplacedLinksCount`,
+      })
+      .then((result) => {
+        console.log("result", result)
+        if ((result.length === 1, typeof result[0] === "string")) {
+          const replacedLinksCount = parseInt(result[0])
 
-  const currentURL = new URL(currentTab.url)
+          showGoogleUI(replacedLinksCount)
+        } else {
+          showNonGoogleUI(ignoredHostnames, currentTabURL)
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to execute script", error)
+      })
+  } else {
+    showNonGoogleUI(ignoredHostnames, currentTabURL)
+  }
+}
+
+function showGoogleUI(replacedLinksCount: number) {
+  googleContentContainer.hidden = false
+  nonGoogleContentContainer.hidden = true
+
+  Array.from(replacedLinksCountSpans).forEach((span) => {
+    span.innerText = `${replacedLinksCount}`
+  })
+}
+
+function showNonGoogleUI(ignoredHostnames: string[], currentTabURL: string) {
+  toggleAllowListButton.hidden = false
+  googleContentContainer.hidden = true
+  nonGoogleContentContainer.hidden = false
+
+  const currentURL = new URL(currentTabURL)
   Array.from(currentPageDomainSpans).forEach((span) => {
     span.innerText = currentURL.hostname
   })

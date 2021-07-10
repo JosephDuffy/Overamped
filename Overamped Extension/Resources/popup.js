@@ -1,5 +1,8 @@
 const toggleAllowListButton = document.getElementById("toggleAllowListButton");
+const googleContentContainer = document.getElementById("googleContent");
+const nonGoogleContentContainer = document.getElementById("nonGoogleContent");
 const currentPageDomainSpans = document.getElementsByClassName("currentPageDomain");
+const replacedLinksCountSpans = document.getElementsByClassName("replacedLinksCount");
 const toggleAllowListButtonExplanation = document.getElementById("toggleAllowListButtonExplanation");
 const settingsPromise = browser.storage.local.get("ignoredHostnames");
 const currentTabPromise = browser.tabs.getCurrent();
@@ -16,13 +19,43 @@ Promise.all([settingsPromise, currentTabPromise]).then(([settings, currentTab]) 
   console.error(error);
 });
 function configurePage(ignoredHostnames, currentTab) {
-  if (!currentTab.url) {
+  const currentTabURL = currentTab.url;
+  if (!currentTabURL) {
     toggleAllowListButtonExplanation.innerText = "Overamped is not available for the current page.";
     toggleAllowListButton.hidden = true;
+    googleContentContainer.hidden = true;
     return;
   }
+  if (currentTab.id) {
+    browser.tabs.executeScript(currentTab.id, {
+      code: `document.body.dataset.overampedReplacedLinksCount`
+    }).then((result) => {
+      console.log("result", result);
+      if (result.length === 1, typeof result[0] === "string") {
+        const replacedLinksCount = parseInt(result[0]);
+        showGoogleUI(replacedLinksCount);
+      } else {
+        showNonGoogleUI(ignoredHostnames, currentTabURL);
+      }
+    }).catch((error) => {
+      console.error("Failed to execute script", error);
+    });
+  } else {
+    showNonGoogleUI(ignoredHostnames, currentTabURL);
+  }
+}
+function showGoogleUI(replacedLinksCount) {
+  googleContentContainer.hidden = false;
+  nonGoogleContentContainer.hidden = true;
+  Array.from(replacedLinksCountSpans).forEach((span) => {
+    span.innerText = `${replacedLinksCount}`;
+  });
+}
+function showNonGoogleUI(ignoredHostnames, currentTabURL) {
   toggleAllowListButton.hidden = false;
-  const currentURL = new URL(currentTab.url);
+  googleContentContainer.hidden = true;
+  nonGoogleContentContainer.hidden = false;
+  const currentURL = new URL(currentTabURL);
   Array.from(currentPageDomainSpans).forEach((span) => {
     span.innerText = currentURL.hostname;
   });
