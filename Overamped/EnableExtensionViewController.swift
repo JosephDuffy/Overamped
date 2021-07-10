@@ -1,5 +1,4 @@
 import UIKit
-import WebKit
 
 final class EnableExtensionViewController: UIViewController {
     @IBOutlet private var extensionsRow: UIView!
