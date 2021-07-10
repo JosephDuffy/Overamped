@@ -7,26 +7,24 @@ browser.storage.local
 
     console.debug("Loaded ignored hostnames list", ignoredHostnames)
 
-    const canonicalElement = document.head.querySelector(
-      "link[rel~='canonical'][href]",
-    )
+    const canonicalElement: HTMLLinkElement | null =
+      document.head.querySelector("link[rel~='canonical'][href]")
 
     if (!canonicalElement) {
       console.debug("Couldn't find canonical URL to redirect to")
       return
     }
 
-    const canonicalLink = canonicalElement as HTMLLinkElement
     const canonicalURL = new URL(canonicalElement.href)
 
     if (ignoredHostnames.includes(canonicalURL.hostname)) {
       console.info(
-        `Not redirecting because ${canonicalElement.href.hostname} is in the ignored hostnames`,
+        `Not redirecting because ${canonicalURL.hostname} is in the ignored hostnames`,
       )
     } else {
-      console.log(`Redirecting AMP page to ${canonicalLink.href}`)
+      console.log(`Redirecting AMP page to ${canonicalElement.href}`)
 
-      window.location.replace(canonicalLink.href)
+      window.location.replace(canonicalElement.href)
     }
   })
   .catch((error) => {
