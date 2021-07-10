@@ -2,6 +2,11 @@ Thank you to everyone that's been using Overamped, especially those that have pr
 
 For the next update I am working on supporting more websites (Google News, Bing, etc.), but there's more to come (see the bottom).
 
+New in beta 5:
+
+- Support for Google News
+  - Due to how Google News uses AMP it is not currently possible to support for allow list
+
 New in beta 4:
 
 - Support for AMP links in more contexts, e.g. the Images tab, featured articles, more recipes

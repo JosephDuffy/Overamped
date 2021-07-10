@@ -6,6 +6,7 @@
   "scripts": {
     "checkTypes": "tsc --noEmit",
     "build-google-amp-content": "esbuild google-amp-content.ts --bundle --outfile=google-amp-content.js --target=safari15",
+    "build-google-news-article": "esbuild google-news-article.ts --bundle --outfile=google-news-article.js --target=safari15",
     "build-google-search-content": "esbuild google-search-content.ts --bundle --outfile=google-search-content.js --target=safari15",
     "build-popup": "esbuild popup.ts --outfile=popup.js --target=safari15",
     "pack": "npm run build-content -- --minify",

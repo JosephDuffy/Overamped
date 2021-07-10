@@ -12,6 +12,7 @@
 		D967DAD92687627500B328C6 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD62686484100B328C6 /* popup.html */; };
 		D993C5662684B052002A84E6 /* google-amp-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5622684B04F002A84E6 /* google-amp-content.js */; };
 		D993C5672684B052002A84E6 /* google-search-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5632684B04F002A84E6 /* google-search-content.js */; };
+		D9A2D74E269A020C00BED34A /* google-news-article.js in Resources */ = {isa = PBXBuildFile; fileRef = D9A2D74C269A020600BED34A /* google-news-article.js */; };
 		D9B9D5912698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */; };
 		D9B9D5982699445200F7D361 /* Locale+googleBaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9D5972699445100F7D361 /* Locale+googleBaseURL.swift */; };
 		D9FF5B6D268142B30027BD81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B6C268142B30027BD81 /* AppDelegate.swift */; };
@@ -67,6 +68,8 @@
 		D993C5632684B04F002A84E6 /* google-search-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-search-content.js"; sourceTree = "<group>"; };
 		D993C5642684B04F002A84E6 /* google-search-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-search-content.ts"; sourceTree = "<group>"; };
 		D993C5652684B04F002A84E6 /* google-amp-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-amp-content.ts"; sourceTree = "<group>"; };
+		D9A2D74C269A020600BED34A /* google-news-article.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-news-article.js"; sourceTree = "<group>"; };
+		D9A2D74D269A020600BED34A /* google-news-article.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "google-news-article.ts"; sourceTree = "<group>"; };
 		D9B9D58E2698B1F500F7D361 /* Overamped Extension UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Extension UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Extension_UI_Tests.swift; sourceTree = "<group>"; };
 		D9B9D5972699445100F7D361 /* Locale+googleBaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+googleBaseURL.swift"; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				D967DADB268799B400B328C6 /* popup.ts */,
 				D993C5622684B04F002A84E6 /* google-amp-content.js */,
 				D993C5652684B04F002A84E6 /* google-amp-content.ts */,
+				D9A2D74C269A020600BED34A /* google-news-article.js */,
+				D9A2D74D269A020600BED34A /* google-news-article.ts */,
 				D993C5632684B04F002A84E6 /* google-search-content.js */,
 				D993C5642684B04F002A84E6 /* google-search-content.ts */,
 			);
@@ -228,6 +233,7 @@
 			buildPhases = (
 				D993C5612684AFDE002A84E6 /* Build google-amp-content.js */,
 				D993C55F26849E3F002A84E6 /* Build google-search-content.js */,
+				D9A2D74B269A013200BED34A /* Build google-news-article.js */,
 				D967DADA2687991100B328C6 /* Build popup.js */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
@@ -311,6 +317,7 @@
 				D967DAD82687627500B328C6 /* popup.css in Resources */,
 				D967DAD72686484100B328C6 /* popup.js in Resources */,
 				D993C5672684B052002A84E6 /* google-search-content.js in Resources */,
+				D9A2D74E269A020C00BED34A /* google-news-article.js in Resources */,
 				D9FF5B91268142B90027BD81 /* images in Resources */,
 				D9FF5B93268142B90027BD81 /* manifest.json in Resources */,
 				D9FF5B8F268142B90027BD81 /* _locales in Resources */,
@@ -379,6 +386,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-amp-content\n";
+		};
+		D9A2D74B269A013200BED34A /* Build google-news-article.js */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Overamped Extension/Resources/google-news-article.ts",
+			);
+			name = "Build google-news-article.js";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Overamped Extension/Resources/google-news-article.js",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-news-article\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
