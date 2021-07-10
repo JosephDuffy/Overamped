@@ -42,13 +42,13 @@ export default class ExtensionApplier {
 
     this.#document.removeEventListener(
       "DOMNodeInserted",
-      this.handleDOMNodeInserted,
+      this.handleDOMNodeInserted.bind(this),
     )
 
     // Support "More Results"
     this.#document.addEventListener(
       "DOMNodeInserted",
-      this.handleDOMNodeInserted,
+      this.handleDOMNodeInserted.bind(this),
     )
 
     this.#thunk(ignoredHostnames)

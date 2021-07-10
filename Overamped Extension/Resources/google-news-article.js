@@ -23,8 +23,8 @@
         this.#document.addEventListener("readystatechange", this.#readyStateChangeListener);
         return;
       }
-      this.#document.removeEventListener("DOMNodeInserted", this.handleDOMNodeInserted);
-      this.#document.addEventListener("DOMNodeInserted", this.handleDOMNodeInserted);
+      this.#document.removeEventListener("DOMNodeInserted", this.handleDOMNodeInserted.bind(this));
+      this.#document.addEventListener("DOMNodeInserted", this.handleDOMNodeInserted.bind(this));
       this.#thunk(ignoredHostnames);
     }
     handleDOMNodeInserted() {
