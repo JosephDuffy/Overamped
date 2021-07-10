@@ -35,6 +35,8 @@ function findAMPLogoRelativeToAnchor(
     }
   }
 
+  console.debug("Failed to find corresponding AMP logo <span> for", anchor)
+
   return null
 }
 

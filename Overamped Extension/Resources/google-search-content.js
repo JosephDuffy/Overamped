@@ -15,6 +15,7 @@ function findAMPLogoRelativeToAnchor(anchor) {
       return parent.querySelector("span[aria-label='AMP logo']");
     }
   }
+  console.debug("Failed to find corresponding AMP logo <span> for", anchor);
   return null;
 }
 function replaceAMPLinks(ignoredHostnames) {
