@@ -13,13 +13,13 @@
 		D993C5662684B052002A84E6 /* google-amp-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5622684B04F002A84E6 /* google-amp-content.js */; };
 		D993C5672684B052002A84E6 /* google-search-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5632684B04F002A84E6 /* google-search-content.js */; };
 		D9A2D74E269A020C00BED34A /* google-news-article.js in Resources */ = {isa = PBXBuildFile; fileRef = D9A2D74C269A020600BED34A /* google-news-article.js */; };
+		D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */; };
+		D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C04269A62D800D225F8 /* OverampedApp.swift */; };
+		D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */; };
+		D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C08269A895500D225F8 /* OverampedTabs.swift */; };
 		D9B9D5912698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */; };
 		D9B9D5982699445200F7D361 /* Locale+googleBaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9D5972699445100F7D361 /* Locale+googleBaseURL.swift */; };
-		D9FF5B6D268142B30027BD81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B6C268142B30027BD81 /* AppDelegate.swift */; };
-		D9FF5B77268142B30027BD81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B76268142B30027BD81 /* SceneDelegate.swift */; };
-		D9FF5B79268142B30027BD81 /* EnableExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B78268142B30027BD81 /* EnableExtensionViewController.swift */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
-		D9FF5B7F268142B30027BD81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7D268142B30027BD81 /* Main.storyboard */; };
 		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
 		D9FF5B8F268142B90027BD81 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B8E268142B90027BD81 /* _locales */; };
@@ -70,15 +70,15 @@
 		D993C5652684B04F002A84E6 /* google-amp-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-amp-content.ts"; sourceTree = "<group>"; };
 		D9A2D74C269A020600BED34A /* google-news-article.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-news-article.js"; sourceTree = "<group>"; };
 		D9A2D74D269A020600BED34A /* google-news-article.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "google-news-article.ts"; sourceTree = "<group>"; };
+		D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackForm.swift; sourceTree = "<group>"; };
+		D9AB8C04269A62D800D225F8 /* OverampedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverampedApp.swift; sourceTree = "<group>"; };
+		D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationInstructionsView.swift; sourceTree = "<group>"; };
+		D9AB8C08269A895500D225F8 /* OverampedTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverampedTabs.swift; sourceTree = "<group>"; };
 		D9B9D58E2698B1F500F7D361 /* Overamped Extension UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Extension UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Extension_UI_Tests.swift; sourceTree = "<group>"; };
 		D9B9D5972699445100F7D361 /* Locale+googleBaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+googleBaseURL.swift"; sourceTree = "<group>"; };
 		D9FF5B69268142B30027BD81 /* Overamped.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overamped.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9FF5B6C268142B30027BD81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D9FF5B76268142B30027BD81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D9FF5B78268142B30027BD81 /* EnableExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableExtensionViewController.swift; sourceTree = "<group>"; };
 		D9FF5B7B268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D9FF5B7E268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D9FF5B80268142B90027BD81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9FF5B81268142B90027BD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9FF5B86268142B90027BD81 /* Overamped Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Overamped Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,12 +145,12 @@
 		D9FF5B6B268142B30027BD81 /* Overamped */ = {
 			isa = PBXGroup;
 			children = (
-				D9FF5B6C268142B30027BD81 /* AppDelegate.swift */,
-				D9FF5B76268142B30027BD81 /* SceneDelegate.swift */,
-				D9FF5B78268142B30027BD81 /* EnableExtensionViewController.swift */,
+				D9AB8C04269A62D800D225F8 /* OverampedApp.swift */,
+				D9AB8C08269A895500D225F8 /* OverampedTabs.swift */,
+				D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */,
+				D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */,
 				D9B9D5972699445100F7D361 /* Locale+googleBaseURL.swift */,
 				D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */,
-				D9FF5B7D268142B30027BD81 /* Main.storyboard */,
 				D9FF5B80268142B90027BD81 /* Assets.xcassets */,
 				D9FF5B81268142B90027BD81 /* Info.plist */,
 			);
@@ -302,7 +302,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9FF5B7F268142B30027BD81 /* Main.storyboard in Resources */,
 				D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */,
 				D9FF5B9F268142B90027BD81 /* Assets.xcassets in Resources */,
 			);
@@ -422,10 +421,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9FF5B79268142B30027BD81 /* EnableExtensionViewController.swift in Sources */,
-				D9FF5B6D268142B30027BD81 /* AppDelegate.swift in Sources */,
-				D9FF5B77268142B30027BD81 /* SceneDelegate.swift in Sources */,
+				D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */,
+				D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */,
 				D9B9D5982699445200F7D361 /* Locale+googleBaseURL.swift in Sources */,
+				D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */,
+				D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,14 +459,6 @@
 				D9FF5B7B268142B30027BD81 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		D9FF5B7D268142B30027BD81 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D9FF5B7E268142B30027BD81 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -706,9 +698,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Overamped;
 				INFOPLIST_KEY_CFBundleExecutable = Overamped;
 				INFOPLIST_KEY_CFBundleName = Overamped;
+				INFOPLIST_KEY_CFBundleVersion = 7;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -744,9 +737,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Overamped;
 				INFOPLIST_KEY_CFBundleExecutable = Overamped;
 				INFOPLIST_KEY_CFBundleName = Overamped;
+				INFOPLIST_KEY_CFBundleVersion = 7;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

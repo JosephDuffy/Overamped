@@ -28,6 +28,11 @@ const toggleAllowListButtonExplanation = document.getElementById(
   "toggleAllowListButtonExplanation",
 )!
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const submitFeedbackButton = document.getElementById(
+  "submitFeedback",
+)! as HTMLButtonElement
+
 const settingsPromise = browser.storage.local.get("ignoredHostnames")
 const currentTabPromise = browser.tabs.getCurrent()
 
@@ -74,6 +79,11 @@ function configurePage(
     return
   }
 
+  submitFeedbackButton.onclick = () => {
+    openSubmitFeedbackPage(currentTabURL)
+    return false
+  }
+
   if (currentTab.id) {
     browser.tabs
       .executeScript(currentTab.id, {
@@ -95,6 +105,16 @@ function configurePage(
   } else {
     showNonGoogleUI(ignoredHostnames, currentTabURL)
   }
+}
+
+function openSubmitFeedbackPage(currentTabURL?: string) {
+  const feedbackURL = new URL("overamped://feedback")
+
+  if (currentTabURL) {
+    feedbackURL.searchParams.append("url", currentTabURL)
+  }
+
+  browser.tabs.create({ url: feedbackURL.toString() })
 }
 
 function showGoogleUI(replacedLinksCount: number) {

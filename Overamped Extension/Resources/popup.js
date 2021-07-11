@@ -4,6 +4,7 @@ const nonGoogleContentContainer = document.getElementById("nonGoogleContent");
 const currentPageDomainSpans = document.getElementsByClassName("currentPageDomain");
 const replacedLinksCountSpans = document.getElementsByClassName("replacedLinksCount");
 const toggleAllowListButtonExplanation = document.getElementById("toggleAllowListButtonExplanation");
+const submitFeedbackButton = document.getElementById("submitFeedback");
 const settingsPromise = browser.storage.local.get("ignoredHostnames");
 const currentTabPromise = browser.tabs.getCurrent();
 Promise.all([settingsPromise, currentTabPromise]).then(([settings, currentTab]) => {
@@ -26,6 +27,10 @@ function configurePage(ignoredHostnames, currentTab) {
     googleContentContainer.hidden = true;
     return;
   }
+  submitFeedbackButton.onclick = () => {
+    openSubmitFeedbackPage(currentTabURL);
+    return false;
+  };
   if (currentTab.id) {
     browser.tabs.executeScript(currentTab.id, {
       code: `document.body.dataset.overampedReplacedLinksCount`
@@ -43,6 +48,13 @@ function configurePage(ignoredHostnames, currentTab) {
   } else {
     showNonGoogleUI(ignoredHostnames, currentTabURL);
   }
+}
+function openSubmitFeedbackPage(currentTabURL) {
+  const feedbackURL = new URL("overamped://feedback");
+  if (currentTabURL) {
+    feedbackURL.searchParams.append("url", currentTabURL);
+  }
+  browser.tabs.create({ url: feedbackURL.toString() });
 }
 function showGoogleUI(replacedLinksCount) {
   googleContentContainer.hidden = false;
