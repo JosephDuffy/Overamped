@@ -1,4 +1,5 @@
 import SwiftUI
+import os.log
 
 struct OverampedTabs: View {
     enum Tab: String {
@@ -29,21 +30,15 @@ struct OverampedTabs: View {
             }
         }
         .onOpenURL(perform: { url in
-            print("Tabs open url", url)
-            guard url.scheme == "overamped" else { return }
+            Logger(subsystem: "net.yetii.Overamped", category: "URL Handler")
+                .log("Opened via URL \(url.absoluteString)")
 
-            switch url.host {
-            case "feedback":
-                if
-                    let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-                    let feedbackURL = components.queryItems?.first(where: { $0.name == "url" })?.value
-                {
-                    self.feedbackURL = feedbackURL
-                }
+            guard let deepLink = DeepLink(url: url) else { return }
 
+            switch deepLink {
+            case .feedback(let feedbackURL):
+                self.feedbackURL = feedbackURL
                 selectedTab = .feedback
-            default:
-                break
             }
         })
     }
