@@ -75,6 +75,7 @@
 		D9AB8C04269A62D800D225F8 /* OverampedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverampedApp.swift; sourceTree = "<group>"; };
 		D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationInstructionsView.swift; sourceTree = "<group>"; };
 		D9AB8C08269A895500D225F8 /* OverampedTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverampedTabs.swift; sourceTree = "<group>"; };
+		D9AB8C0A269A8A7C00D225F8 /* Overamped.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Overamped.entitlements; sourceTree = "<group>"; };
 		D9AB8C0B269A90F400D225F8 /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		D9B9D58E2698B1F500F7D361 /* Overamped Extension UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Extension UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Extension_UI_Tests.swift; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 				D9AB8C0B269A90F400D225F8 /* DeepLink.swift */,
 				D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */,
 				D9FF5B80268142B90027BD81 /* Assets.xcassets */,
+				D9AB8C0A269A8A7C00D225F8 /* Overamped.entitlements */,
 				D9FF5B81268142B90027BD81 /* Info.plist */,
 			);
 			path = Overamped;
@@ -694,6 +696,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
@@ -733,6 +736,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
