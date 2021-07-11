@@ -108,7 +108,7 @@ function configurePage(
 }
 
 function openSubmitFeedbackPage(currentTabURL?: string) {
-  const feedbackURL = new URL("overamped://feedback")
+  const feedbackURL = new URL("overamped:feedback")
 
   if (currentTabURL) {
     feedbackURL.searchParams.append("url", currentTabURL)

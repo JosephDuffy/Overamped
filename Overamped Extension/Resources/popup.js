@@ -50,7 +50,7 @@ function configurePage(ignoredHostnames, currentTab) {
   }
 }
 function openSubmitFeedbackPage(currentTabURL) {
-  const feedbackURL = new URL("overamped://feedback");
+  const feedbackURL = new URL("overamped:feedback");
   if (currentTabURL) {
     feedbackURL.searchParams.append("url", currentTabURL);
   }
