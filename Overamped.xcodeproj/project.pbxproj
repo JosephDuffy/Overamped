@@ -705,7 +705,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Overamped;
 				INFOPLIST_KEY_CFBundleExecutable = Overamped;
 				INFOPLIST_KEY_CFBundleName = Overamped;
-				INFOPLIST_KEY_CFBundleVersion = 7;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
@@ -745,7 +744,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Overamped;
 				INFOPLIST_KEY_CFBundleExecutable = Overamped;
 				INFOPLIST_KEY_CFBundleName = Overamped;
-				INFOPLIST_KEY_CFBundleVersion = 7;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
