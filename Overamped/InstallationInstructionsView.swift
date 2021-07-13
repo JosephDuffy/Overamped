@@ -37,13 +37,15 @@ struct InstallationInstructionsView: View {
                         .cornerRadius(12)
                 )
 
-                Text("""
-    Turn "Overamped" on and tap "Done".
+                Text(
+                    """
+                    Turn "Overamped" on and tap "Done".
 
-    Tap "Overamed" to provide access to Google.
+                    Tap "Overamped" to provide access to Google.
 
-    Any AMP links on the current page or any other Google searches will be updated to the non-AMP version.
-    """)
+                    Any AMP links on the current page or any other Google searches will be updated to the non-AMP version.
+                    """
+                )
             }
             .padding()
         }
