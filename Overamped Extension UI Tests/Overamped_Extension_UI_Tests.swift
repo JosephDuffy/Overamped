@@ -17,10 +17,10 @@ final class Overamped_Extension_UI_Tests: XCTestCase {
             safari.coordinate(withNormalizedOffset: CGVector(dx: UIScreen.main.bounds.width / 2, dy: UIScreen.main.bounds.width - 5)).tap()
         }
 
-        tapBottomBar()
+        // Used to be necessary in iOS 15 beta 2 but Safari now opens with the bottom bar expanded in beta 3
+//        tapBottomBar()
 
         // Create a new tab
-        _ = safari.buttons["TabOverviewButton"].waitForExistence(timeout: 1)
         safari.buttons["TabOverviewButton"].tap()
         safari.buttons["AddTabButton"].tap()
 
