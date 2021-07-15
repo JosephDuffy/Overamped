@@ -6,6 +6,7 @@ struct OverampedTabs: View {
         case install
         case feedback
         case support
+        case about
     }
 
     @SceneStorage("OverampedApp.selectedTab")
@@ -39,6 +40,17 @@ struct OverampedTabs: View {
                 VStack {
                     Image(systemName: "heart.fill")
                     Text("Support")
+                }
+            }
+
+            NavigationView {
+                AboutView()
+            }
+            .tag(Tab.about)
+            .tabItem {
+                VStack {
+                    Image(systemName: "info.circle.fill")
+                    Text("About")
                 }
             }
             #endif
