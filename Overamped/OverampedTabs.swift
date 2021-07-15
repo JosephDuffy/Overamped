@@ -5,6 +5,7 @@ struct OverampedTabs: View {
     enum Tab: String {
         case install
         case feedback
+        case support
     }
 
     @SceneStorage("OverampedApp.selectedTab")
@@ -28,6 +29,19 @@ struct OverampedTabs: View {
                     Text("Feedback")
                 }
             }
+
+            #if DEBUG
+            NavigationView {
+                SupportView()
+            }
+            .tag(Tab.support)
+            .tabItem {
+                VStack {
+                    Image(systemName: "heart.fill")
+                    Text("Support")
+                }
+            }
+            #endif
         }
         .onOpenURL(perform: { url in
             Logger(subsystem: "net.yetii.Overamped", category: "URL Handler")
