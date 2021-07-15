@@ -333,7 +333,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		D967DADA2687991100B328C6 /* Build popup.js */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -349,11 +349,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-popup\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-popup\n";
 		};
 		D993C55F26849E3F002A84E6 /* Build google-search-content.js */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -369,11 +369,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-search-content\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-search-content\n";
 		};
 		D993C5612684AFDE002A84E6 /* Build google-amp-content.js */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -389,11 +389,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-amp-content\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-amp-content\n";
 		};
 		D9A2D74B269A013200BED34A /* Build google-news-article.js */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -409,7 +409,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "eval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-news-article\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-news-article\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
