@@ -41,7 +41,7 @@ final class Overamped_Extension_UI_Tests: XCTestCase {
         safari.buttons["Done"].tap()
         safari.buttons["Reload"].tap()
 
-        XCTAssertFalse(safari.links.allElementsBoundByIndex.filter { $0.label == "AMP logo" }.isEmpty)
+        XCTAssertTrue(safari.links.element(matching: NSPredicate(format: "label == \"AMP logo\"")).waitForExistence(timeout: 5))
 
         // Enable extension
         tapBottomBar()
@@ -53,6 +53,7 @@ final class Overamped_Extension_UI_Tests: XCTestCase {
         // Close partial sheet
         safari.buttons["Close"].tap()
 
-        XCTAssertTrue(safari.links.allElementsBoundByIndex.filter { $0.label == "AMP logo" }.isEmpty)
+        XCTAssertTrue(safari.links.element(matching: NSPredicate(format: "label == \"Images\"")).waitForExistence(timeout: 5))
+        XCTAssertFalse(safari.links.element(matching: NSPredicate(format: "label == \"AMP logo\"")).exists)
     }
 }
