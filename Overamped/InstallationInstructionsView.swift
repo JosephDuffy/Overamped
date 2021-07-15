@@ -17,9 +17,11 @@ struct InstallationInstructionsView: View {
                     Spacer()
                 }
 
-                Text("The Overamped extension can be enabled from within Safari.")
+                Text("""
+                    The Overamped extension can be enabled from within Safari.
 
-                Text("Start by opening Safari and performing a Google search. Tap the bar at the bottom, then tap the \"More\" button:")
+                    Start by opening Safari and performing a Google search. Tap the bar at the bottom, then tap the \"More\" button:
+                    """)
 
                 Image(systemName: "ellipsis.circle")
                     .foregroundColor(.accentColor)
