@@ -5,6 +5,7 @@ struct OverampedTabs: View {
     enum Tab: String {
         case install
         case feedback
+        case statistics
         case support
         case about
     }
@@ -32,6 +33,17 @@ struct OverampedTabs: View {
             }
 
             #if DEBUG
+            NavigationView {
+                StatisticsView()
+            }
+            .tag(Tab.statistics)
+            .tabItem {
+                VStack {
+                    Image(systemName: "chart.xyaxis.line")
+                    Text("Statistics")
+                }
+            }
+
             NavigationView {
                 SupportView()
             }
