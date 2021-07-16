@@ -10,6 +10,9 @@ struct StatisticsView: View {
     @State
     private var showLinksRedirectedHelp = false
 
+    @State
+    private var showShareUI = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -74,6 +77,16 @@ struct StatisticsView: View {
             .padding()
         }
         .navigationTitle("Statistics")
+        .toolbar {
+            Button(
+                action: {
+                    showShareUI = true
+                },
+                label: {
+                    Image(systemName: "square.and.arrow.up")
+                }
+            )
+        }
     }
 }
 
