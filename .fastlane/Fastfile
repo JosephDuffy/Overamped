@@ -14,7 +14,7 @@ platform :ios do
     pilot(
       distribute_external: true,
       groups: [
-        "Aiport",
+        "Airport",
         "Cold Emails",
         "MacRumors",
         "Marketing Website",
