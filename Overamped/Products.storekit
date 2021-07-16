@@ -77,7 +77,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "subscription.regular.monthly",
+          "productID" : "subscription.regulartip.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Regular Tip",
           "subscriptionGroupID" : "ECF96700",
@@ -99,7 +99,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "subscription.large.monthly",
+          "productID" : "subscription.largetip.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Large Tip",
           "subscriptionGroupID" : "ECF96700",
@@ -121,7 +121,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "subscription.huge.monthly",
+          "productID" : "subscription.hugetip.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Huge Tip",
           "subscriptionGroupID" : "ECF96700",
