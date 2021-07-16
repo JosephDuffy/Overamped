@@ -72,6 +72,7 @@
 		D993C5632684B04F002A84E6 /* google-search-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-search-content.js"; sourceTree = "<group>"; };
 		D993C5642684B04F002A84E6 /* google-search-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-search-content.ts"; sourceTree = "<group>"; };
 		D993C5652684B04F002A84E6 /* google-amp-content.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = "google-amp-content.ts"; sourceTree = "<group>"; };
+		D994C63926A143F8000649AA /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		D9A2D74C269A020600BED34A /* google-news-article.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-news-article.js"; sourceTree = "<group>"; };
 		D9A2D74D269A020600BED34A /* google-news-article.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "google-news-article.ts"; sourceTree = "<group>"; };
 		D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackForm.swift; sourceTree = "<group>"; };
@@ -163,6 +164,7 @@
 				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
 				D9B9D5972699445100F7D361 /* Locale+googleBaseURL.swift */,
 				D9AB8C0B269A90F400D225F8 /* DeepLink.swift */,
+				D994C63926A143F8000649AA /* Products.storekit */,
 				D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */,
 				D9FF5B80268142B90027BD81 /* Assets.xcassets */,
 				D9AB8C0A269A8A7C00D225F8 /* Overamped.entitlements */,

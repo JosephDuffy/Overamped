@@ -1,0 +1,137 @@
+{
+  "identifier" : "1388B00D",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "DE3708C1",
+      "localizations" : [
+        {
+          "description" : "A one-off regular tip",
+          "displayName" : "Regular Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "consumable.regulartip",
+      "referenceName" : "Regular Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "ED4F1F18",
+      "localizations" : [
+        {
+          "description" : "A one-off large tip",
+          "displayName" : "Large Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "consumable.largetip",
+      "referenceName" : "Large Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "41B67B09",
+      "localizations" : [
+        {
+          "description" : "A one-off huge tip",
+          "displayName" : "Huge Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "consumable.hugetip",
+      "referenceName" : "Huge Tip",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "ECF96700",
+      "localizations" : [
+
+      ],
+      "name" : "Tip Jar",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "D2587D1F",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "A monthly regular tip",
+              "displayName" : "Regular Tip",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "subscription.regular.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Regular Tip",
+          "subscriptionGroupID" : "ECF96700",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "2.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "DBEFE283",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "A monthly large tip",
+              "displayName" : "Large Tip",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "subscription.large.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Large Tip",
+          "subscriptionGroupID" : "ECF96700",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "F7AC373C",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "A monthly huge tip",
+              "displayName" : "Huge Tip",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "subscription.huge.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Huge Tip",
+          "subscriptionGroupID" : "ECF96700",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}
