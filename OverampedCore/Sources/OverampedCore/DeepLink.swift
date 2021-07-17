@@ -1,9 +1,12 @@
 import Foundation
 
-enum DeepLink {
+public enum DeepLink: Hashable {
     case feedback(String?)
+    case statistics
+    case support
+    case about
 
-    init?(url: URL) {
+    public init?(url: URL) {
         if url.scheme == "overamped" {
             self.init(appSchemeURL: url)
         } else if url.host == "overamped.app" {
@@ -16,13 +19,27 @@ enum DeepLink {
     private init?(appSchemeURL url: URL) {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
 
-        switch components.path {
+        let path: String
+
+        if let host = url.host {
+            path = host
+        } else {
+            path = components.path
+        }
+
+        switch path {
         case "feedback":
             if let feedbackURL = components.queryItems?.first(where: { $0.name == "url" })?.value {
                 self = .feedback(feedbackURL)
             } else {
                 self = .feedback(nil)
             }
+        case "statistics":
+            self = .statistics
+        case "support":
+            self = .support
+        case "about":
+            self = .about
         default:
             return nil
         }
@@ -30,7 +47,7 @@ enum DeepLink {
 
     private init?(websiteURL url: URL) {
         switch url.path {
-        case "feedback":
+        case "/feedback":
             if
                 let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                 let feedbackURL = components.queryItems?.first(where: { $0.name == "url" })?.value
