@@ -18,6 +18,7 @@ struct SupportView: View {
                 Button("\(Image(systemName: "square.and.arrow.up")) Share Overamped") {
                     showShareSheet = true
                 }
+                .buttonStyle(BorderedButtonStyle())
 
                 TipJarView()
             }
