@@ -16,6 +16,15 @@ struct OverampedTabs: View {
     @State
     private var feedbackURL: String?
 
+    @State
+    private var showStatisticsTab: Bool = DistributionMethod.current == .debug
+
+    @State
+    private var showSupportTab: Bool = DistributionMethod.current == .debug
+
+    @State
+    private var showAboutTab: Bool = DistributionMethod.current == .debug
+
     var body: some View {
         TabView(selection: $selectedTab) {
             InstallationInstructionsView()
@@ -32,40 +41,44 @@ struct OverampedTabs: View {
                 }
             }
 
-            #if DEBUG
-            NavigationView {
-                StatisticsView()
-            }
-            .tag(Tab.statistics)
-            .tabItem {
-                VStack {
-                    Image(systemName: "chart.xyaxis.line")
-                    Text("Statistics")
+            if showStatisticsTab {
+                NavigationView {
+                    StatisticsView()
+                }
+                .tag(Tab.statistics)
+                .tabItem {
+                    VStack {
+                        Image(systemName: "chart.xyaxis.line")
+                        Text("Statistics")
+                    }
                 }
             }
 
-            NavigationView {
-                SupportView()
-            }
-            .tag(Tab.support)
-            .tabItem {
-                VStack {
-                    Image(systemName: "heart.fill")
-                    Text("Support")
+            if showSupportTab {
+                NavigationView {
+                    SupportView()
+                }
+                .tag(Tab.support)
+                .tabItem {
+                    VStack {
+                        Image(systemName: "heart.fill")
+                        Text("Support")
+                    }
                 }
             }
 
-            NavigationView {
-                AboutView()
-            }
-            .tag(Tab.about)
-            .tabItem {
-                VStack {
-                    Image(systemName: "info.circle.fill")
-                    Text("About")
+            if showAboutTab {
+                NavigationView {
+                    AboutView()
+                }
+                .tag(Tab.about)
+                .tabItem {
+                    VStack {
+                        Image(systemName: "info.circle.fill")
+                        Text("About")
+                    }
                 }
             }
-            #endif
         }
         .onOpenURL(perform: { url in
             Logger(subsystem: "net.yetii.Overamped", category: "URL Handler")
@@ -77,6 +90,15 @@ struct OverampedTabs: View {
             case .feedback(let feedbackURL):
                 self.feedbackURL = feedbackURL
                 selectedTab = .feedback
+            case .statistics:
+                showStatisticsTab = true
+                selectedTab = .statistics
+            case .support:
+                showSupportTab = true
+                selectedTab = .support
+            case .about:
+                showAboutTab = true
+                selectedTab = .about
             }
         })
     }
