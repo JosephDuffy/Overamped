@@ -14,7 +14,13 @@ struct OverampedTabs: View {
     private var selectedTab: Tab = .install
 
     @State
-    private var feedbackURL: String?
+    private var searchURL: String = ""
+
+    @State
+    private var websiteURL: String = ""
+
+    @State
+    private var ignoredHostnames: [String]?
 
     @State
     private var showStatisticsTab: Bool = DistributionMethod.current == .debug
@@ -31,7 +37,11 @@ struct OverampedTabs: View {
                 .tag(Tab.install)
 
             NavigationView {
-                FeedbackForm(openURL: $feedbackURL)
+                FeedbackForm(
+                    ignoredHostnames: $ignoredHostnames,
+                    searchURL: $searchURL,
+                    websiteURL: $websiteURL
+                )
             }
             .tag(Tab.feedback)
             .tabItem {
@@ -87,8 +97,10 @@ struct OverampedTabs: View {
             guard let deepLink = DeepLink(url: url) else { return }
 
             switch deepLink {
-            case .feedback(let feedbackURL):
-                self.feedbackURL = feedbackURL
+            case .feedback(let searchURL, let websiteURL, let ignoredHostnames):
+                self.searchURL = searchURL ?? ""
+                self.websiteURL = websiteURL ?? ""
+                self.ignoredHostnames = ignoredHostnames
                 selectedTab = .feedback
             case .statistics:
                 showStatisticsTab = true

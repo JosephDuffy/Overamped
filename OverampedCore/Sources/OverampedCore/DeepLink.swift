@@ -1,7 +1,7 @@
 import Foundation
 
 public enum DeepLink: Hashable {
-    case feedback(String?)
+    case feedback(searchURL: String?, websiteURL: String?, ignoredHostnames: [String])
     case statistics
     case support
     case about
@@ -29,11 +29,7 @@ public enum DeepLink: Hashable {
 
         switch path {
         case "feedback":
-            if let feedbackURL = components.queryItems?.first(where: { $0.name == "url" })?.value {
-                self = .feedback(feedbackURL)
-            } else {
-                self = .feedback(nil)
-            }
+            self.init(feedbackComponents: components)
         case "statistics":
             self = .statistics
         case "support":
@@ -48,16 +44,28 @@ public enum DeepLink: Hashable {
     private init?(websiteURL url: URL) {
         switch url.path {
         case "/feedback":
-            if
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-                let feedbackURL = components.queryItems?.first(where: { $0.name == "url" })?.value
-            {
-                self = .feedback(feedbackURL)
-            } else {
-                self = .feedback(nil)
-            }
+            guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
+            self.init(feedbackComponents: components)
         default:
             return nil
+        }
+    }
+
+    private init(feedbackComponents components: URLComponents) {
+        let openURL: URL? = (components.queryItems?.first(where: { $0.name == "url" })?.value).flatMap { URL(string: $0) }
+        let ignoredHostnames: [String]
+
+        if let ignoredHostnamesString = components.queryItems?.first(where: { $0.name == "ignoredHostnames" })?.value {
+            let jsonDecoder = JSONDecoder()
+            ignoredHostnames = (try? jsonDecoder.decode([String].self, from: Data(ignoredHostnamesString.utf8))) ?? []
+        } else {
+            ignoredHostnames = []
+        }
+
+        if openURL?.host?.contains("google.") == true, openURL?.path.hasPrefix("/search") == true {
+            self = .feedback(searchURL: openURL?.absoluteString, websiteURL: nil, ignoredHostnames: ignoredHostnames)
+        } else {
+            self = .feedback(searchURL: nil, websiteURL: openURL?.absoluteString, ignoredHostnames: ignoredHostnames)
         }
     }
 }

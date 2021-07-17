@@ -28,7 +28,7 @@ function configurePage(ignoredHostnames, currentTab) {
     return;
   }
   submitFeedbackButton.onclick = () => {
-    openSubmitFeedbackPage(currentTabURL);
+    openSubmitFeedbackPage(ignoredHostnames, currentTabURL);
     return false;
   };
   if (currentTab.id) {
@@ -49,11 +49,12 @@ function configurePage(ignoredHostnames, currentTab) {
     showNonGoogleUI(ignoredHostnames, currentTabURL);
   }
 }
-function openSubmitFeedbackPage(currentTabURL) {
+function openSubmitFeedbackPage(ignoredHostnames, currentTabURL) {
   const feedbackURL = new URL("overamped:feedback");
   if (currentTabURL) {
     feedbackURL.searchParams.append("url", currentTabURL);
   }
+  feedbackURL.searchParams.append("ignoredHostnames", JSON.stringify(ignoredHostnames));
   browser.tabs.create({ url: feedbackURL.toString() });
 }
 function showGoogleUI(replacedLinksCount) {

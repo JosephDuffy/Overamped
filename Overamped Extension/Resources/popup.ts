@@ -80,7 +80,7 @@ function configurePage(
   }
 
   submitFeedbackButton.onclick = () => {
-    openSubmitFeedbackPage(currentTabURL)
+    openSubmitFeedbackPage(ignoredHostnames, currentTabURL)
     return false
   }
 
@@ -107,12 +107,20 @@ function configurePage(
   }
 }
 
-function openSubmitFeedbackPage(currentTabURL?: string) {
+function openSubmitFeedbackPage(
+  ignoredHostnames: string[],
+  currentTabURL?: string,
+) {
   const feedbackURL = new URL("overamped:feedback")
 
   if (currentTabURL) {
     feedbackURL.searchParams.append("url", currentTabURL)
   }
+
+  feedbackURL.searchParams.append(
+    "ignoredHostnames",
+    JSON.stringify(ignoredHostnames),
+  )
 
   browser.tabs.create({ url: feedbackURL.toString() })
 }

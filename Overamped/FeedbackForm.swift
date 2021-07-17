@@ -17,22 +17,10 @@ enum FeedbackReason: Hashable, CaseIterable {
             return ""
         }
     }
-
-    var footer: String? {
-        switch self {
-        case .websiteLoadedAMPVersion:
-            return "Please describe the issue and – where possible – provide the URL of the Google search and the URL of the AMP page that loaded."
-        case .other, .initial:
-            return ""
-        }
-    }
 }
 
 struct FeedbackForm: View {
-    @ObservedObject private var formAPI: FormAPI = FormAPI()
-
-    @Binding
-    private var openURL: String?
+    @ObservedObject private var formAPI: FormAPI
 
     var body: some View {
         VStack(spacing: 0) {
@@ -61,6 +49,24 @@ struct FeedbackForm: View {
                     .frame(maxWidth: .infinity)
                     .background(Color(.systemFill))
                 }
+
+                if
+                    case .websiteLoadedAMPVersion = formAPI.formData.contactReason,
+                    let ignoredHostname = formAPI.formData.ignoredHostnames?.first(where: { formAPI.formData.websiteURL.contains($0) })
+                {
+                    Divider()
+
+                    HStack {
+                        Spacer()
+                        Text("\(ignoredHostname) is currently ignored. Try opening the website and enabling Overamped.")
+                            .foregroundColor(Color(.systemRed))
+                            .padding()
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.systemFill))
+                }
+
                 Form {
                     Section(
                         footer: Text("Submit this form to send me feedback about Overamped. I am a solo indie app developer so please allow a couple of days before your message is addressed.")
@@ -82,9 +88,7 @@ struct FeedbackForm: View {
                             .keyboardType(.emailAddress)
                     }
 
-                    Section(
-                        footer: contactReasonFooter
-                    ) {
+                    Section() {
                         Picker(
                             selection: $formAPI.formData.contactReason,
                             label: Text("Contact Reason")
@@ -98,24 +102,33 @@ struct FeedbackForm: View {
                         }
                     }
 
-                    Section(header: Text("Message")) {
-                        ZStack(alignment: .topLeading) {
-                            if formAPI.formData.message.isEmpty {
-                                Text("Message")
-                                    .foregroundColor(Color(.placeholderText))
-                                    .padding(.top, 8)
-                            }
-                            TextEditor(text: $formAPI.formData.message).padding(.leading, -3)
+                    switch formAPI.formData.contactReason {
+                    case .websiteLoadedAMPVersion:
+                        Section(
+                            header: Text("Problem Links")
+                        ) {
+                            TextField("Search URL", text: $formAPI.formData.searchURL)
+                                .textContentType(.URL)
+                                .keyboardType(.URL)
+                            TextField("Website URL", text: $formAPI.formData.websiteURL)
+                                .textContentType(.URL)
+                                .keyboardType(.URL)
+                        }
+                    case .other, .initial:
+                        EmptyView()
+                    }
+
+                    messageSection
+
+                    Section(
+                        header: Text("Debug Data")
+                    ) {
+                        if formAPI.formData.ignoredHostnames != nil {
+                            Toggle("Send ignored websites", isOn: $formAPI.formData.includeIgnoredHostnames)
                         }
 
-                        if let openURL = openURL {
-                            Button("Append Open URL") {
-                                formAPI.formData.message += openURL
-                            }
-                            Button("Copy Open URL") {
-                                UIPasteboard.general.string = openURL
-                            }
-                        }
+                        let debugDataString = (try? formAPI.formData.debugDataJSONString) ?? "Failed to encode"
+                        Text(debugDataString)
                     }
                 }
                 .navigationBarItems(
@@ -128,9 +141,18 @@ struct FeedbackForm: View {
     }
 
     @ViewBuilder
-    private var contactReasonFooter: some View {
-        if let text = formAPI.formData.contactReason.footer {
-            Text(text)
+    private var messageSection: some View {
+        let isOptional = formAPI.formData.contactReason == .websiteLoadedAMPVersion
+
+        Section(header: Text("Message")) {
+            ZStack(alignment: .topLeading) {
+                if formAPI.formData.message.isEmpty {
+                    Text("Message\(isOptional ? " (optional)" : "")")
+                        .foregroundColor(Color(.placeholderText))
+                        .padding(.top, 8)
+                }
+                TextEditor(text: $formAPI.formData.message).padding(.leading, -3)
+            }
         }
     }
 
@@ -148,14 +170,22 @@ struct FeedbackForm: View {
         }
     }
 
-    init(openURL: Binding<String?> = .constant(nil)) {
-        _openURL = openURL
+    init(
+        ignoredHostnames: Binding<[String]?>,
+        searchURL: Binding<String>,
+        websiteURL: Binding<String>
+    ) {
+        formAPI = FormAPI(ignoredHostnames: ignoredHostnames, searchURL: searchURL, websiteURL: websiteURL)
     }
 }
 
 struct FeedbackForm_Previews: PreviewProvider {
     static var previews: some View {
-        FeedbackForm()
+        FeedbackForm(
+            ignoredHostnames: .constant(nil),
+            searchURL: .constant(""),
+            websiteURL: .constant("")
+        )
     }
 }
 
@@ -167,7 +197,7 @@ private final class FormAPI: ObservableObject {
         case success
     }
 
-    @ObservedObject var formData: FormData = FormData()
+    @ObservedObject var formData: FormData
 
     @Published private(set) var formState: FormState = .idle
 
@@ -175,7 +205,12 @@ private final class FormAPI: ObservableObject {
 
     private let logger = Logger(subsystem: "net.yetii.Overamped", category: "FormAPI")
 
-    init() {
+    init(
+        ignoredHostnames: Binding<[String]?>,
+        searchURL: Binding<String>,
+        websiteURL: Binding<String>
+    ) {
+        formData = FormData(ignoredHostnames: ignoredHostnames, searchURL: searchURL, websiteURL: websiteURL)
         formData.objectWillChange.sink { self.objectWillChange.send() }.store(in: &cancellables)
     }
 
@@ -243,13 +278,40 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
         case email
         case contactReason
         case message
+        case searchURL
+        case websiteURL
+        case debugData
         case source
+    }
+
+    struct DebugData: Codable {
+        let versionString: String?
+        let buildNumber: String?
+        let ignoredHostnames: [String]?
+
+        init(ignoredHostnames: [String]?, bundle: Bundle = .main) {
+            self.ignoredHostnames = ignoredHostnames
+            versionString = bundle.infoDictionary?["CFBundleShortVersionString"] as? String
+            buildNumber = bundle.infoDictionary?["CFBundleVersion"] as? String
+        }
     }
 
     @Published var name: String = ""
     @Published var email: String = ""
     @Published var contactReason: FeedbackReason = .initial
     @Published var message: String = ""
+    @Binding var searchURL: String
+    @Binding var websiteURL: String
+
+    @Published
+    var includeIgnoredHostnames: Bool = true
+
+    @Binding
+    private(set) var ignoredHostnames: [String]?
+
+    var debugData: DebugData {
+        DebugData(ignoredHostnames: includeIgnoredHostnames ? ignoredHostnames : nil)
+    }
 
     var customMirror: Mirror {
         Mirror(
@@ -259,17 +321,41 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
                 "email": email,
                 "contactReason": contactReason,
                 "message": message,
+                "searchURL": searchURL,
+                "websiteURL": websiteURL,
+                "debugData": debugData,
             ]
         )
     }
 
     var isValid: Bool {
         switch contactReason {
-        case .websiteLoadedAMPVersion, .other:
+        case .websiteLoadedAMPVersion:
+            return !websiteURL.isEmpty && !searchURL.isEmpty
+        case .other:
             return !message.isEmpty
         case .initial:
             return false
         }
+    }
+
+    var debugDataJSONString: String {
+        get throws {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            let jsonData = try encoder.encode(debugData)
+            return String(data: jsonData, encoding: .utf8) ?? "<invalid UTF8>"
+        }
+    }
+
+    init(
+        ignoredHostnames: Binding<[String]?>,
+        searchURL: Binding<String>,
+        websiteURL: Binding<String>
+    ) {
+        _ignoredHostnames = ignoredHostnames
+        _searchURL = searchURL
+        _websiteURL = websiteURL
     }
 
     func encode(to encoder: Encoder) throws {
@@ -279,7 +365,16 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
         try container.encode(email, forKey: .email)
         try container.encode(contactReason.title, forKey: .contactReason)
         try container.encode(message, forKey: .message)
+        try container.encode(debugData, forKey: .debugData)
         try container.encode("app", forKey: .source)
+
+        switch contactReason {
+        case .websiteLoadedAMPVersion:
+            try container.encode(searchURL, forKey: .searchURL)
+            try container.encode(websiteURL, forKey: .websiteURL)
+        case .other, .initial:
+            break
+        }
     }
 }
 
