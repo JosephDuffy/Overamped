@@ -3,13 +3,28 @@ import os.log
 
 final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
     func beginRequest(with context: NSExtensionContext) {
-        let item = context.inputItems[0] as! NSExtensionItem
-        let message = item.userInfo?[SFExtensionMessageKey]
-        os_log(.default, "Received message from browser.runtime.sendNativeMessage: %@", message as! CVarArg)
+        // Unpack the message from Safari Web Extension.
+        let item = context.inputItems[0] as? NSExtensionItem
+        let message = item?.userInfo?[SFExtensionMessageKey]
 
-        let response = NSExtensionItem()
-        response.userInfo = [ SFExtensionMessageKey: [ "Response to": message ] ]
+        // Update the value in UserDefaults.
+        let defaults = UserDefaults(suiteName: "group.net.yetii.overamped")
+        let messageDictionary = message as? [String: String]
+        print("messageDictionary", messageDictionary)
+        if messageDictionary?["request"] == "ignoredHostnames" {
+            let ignoredHostnames = defaults?.array(forKey: "ignoredHostnames") as? [String]
+            let response = NSExtensionItem()
+            response.userInfo = [
+                SFExtensionMessageKey: [
+                    "ignoredHostnames": ["9to5mac.com"]
+                ]
+            ]
 
-        context.completeRequest(returningItems: [response], completionHandler: nil)
+            print("Responding with", response)
+
+            context.completeRequest(returningItems: [response], completionHandler: nil)
+        } else {
+            context.completeRequest(returningItems: nil)
+        }
     }
 }

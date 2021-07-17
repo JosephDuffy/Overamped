@@ -31,19 +31,13 @@
       this.#thunk(this.#ignoredHostnames ?? []);
     }
     loadIgnoredHostnames() {
-      browser.storage.local.get("ignoredHostnames").then((storage) => {
-        const ignoredHostnames = storage["ignoredHostnames"] ?? [];
-        console.debug("Loaded ignored hostnames list", ignoredHostnames);
-        this.applyIgnoredHostnames(ignoredHostnames);
+      browser.runtime.sendMessage({
+        request: "ignoredHostnames"
+      }).then((response) => {
+        console.debug("Loaded ignored hostnames list", response);
+        this.applyIgnoredHostnames(response["ignoredHostnames"]);
       }).catch((error) => {
         console.error("Failed to load ignoredHostnames setting", error);
-      });
-      browser.storage.onChanged.addListener((changes) => {
-        if (changes["ignoredHostnames"] && changes["ignoredHostnames"].newValue) {
-          console.debug("Ignored hostnames setting changed", changes["ignoredHostnames"]);
-          const ignoredHostnames = changes["ignoredHostnames"].newValue;
-          this.applyIgnoredHostnames(ignoredHostnames);
-        }
       });
     }
   };
