@@ -5,7 +5,7 @@ struct SupportView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 12) {
                 Text("""
                     Overamped is developed by a single indie developer. If you're able to provide any extra support it is greatly appreciated.
                     """)
