@@ -15,7 +15,7 @@ struct SupportView: View {
 
                 Text("The easiest way to support Overamped is to help spread the word.")
 
-                Button("Share Overamped") {
+                Button("\(Image(systemName: "square.and.arrow.up")) Share Overamped") {
                     showShareSheet = true
                 }
 
