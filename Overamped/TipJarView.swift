@@ -34,11 +34,11 @@ public struct TipJarView: View {
             }
         }
 
-        switch store.state {
-        case .loadingProducts:
-            ProgressView("Loading Tips...")
-        case .idle, .purchasingProduct:
-            HStack(spacing: 16) {
+        HStack(spacing: 16) {
+            switch store.state {
+            case .loadingProducts:
+                ProgressView("Loading Tips...")
+            case .idle, .purchasingProduct:
                 ForEach(showRecurringSubscriptions ? store.subscriptions : store.consumables) { product in
                     Button(
                         action: {
@@ -62,8 +62,8 @@ public struct TipJarView: View {
                         .disabled(!store.canMakePurchase)
                 }
             }
-            .frame(maxWidth: .infinity)
         }
+            .frame(maxWidth: .infinity)
     }
 }
 
