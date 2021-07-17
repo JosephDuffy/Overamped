@@ -48,14 +48,6 @@ struct FeedbackForm: View {
 
                 Spacer()
             } else {
-                HStack {
-                    Spacer()
-                    Text("Submit this form to send me feedback about Overamped. I am a solo indie app developer so please allow a couple of days before your message is addressed.")
-                        .padding()
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity)
-
                 if case .error(let error) = formAPI.formState {
                     Divider()
 
@@ -70,6 +62,14 @@ struct FeedbackForm: View {
                     .background(Color(.systemFill))
                 }
                 Form {
+                    Section(
+                        footer: Text("Submit this form to send me feedback about Overamped. I am a solo indie app developer so please allow a couple of days before your message is addressed.")
+                            .font(.body)
+                            .padding(.horizontal, -16)
+                            .padding(.top, -64)
+                            .foregroundColor(Color.primary)
+                    ) {}
+
                     Section(
                         header: Text("Contact Details"),
                         footer: Text("Please provide contact details if you would like me to follow up with you, or if you're willing to provide help debug any issues you report.")
