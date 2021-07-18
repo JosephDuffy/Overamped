@@ -1,3 +1,5 @@
+import NativeAppCommunicator from "./NativeAppCommunicator"
+
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const toggleAllowListButton = document.getElementById(
   "toggleAllowListButton",
@@ -33,37 +35,20 @@ const submitFeedbackButton = document.getElementById(
   "submitFeedback",
 )! as HTMLButtonElement
 
-const settingsPromise = browser.storage.local.get("ignoredHostnames")
+const nativeAppCommunicator = new NativeAppCommunicator()
+
+const settingsPromise = nativeAppCommunicator.ignoredHostnames()
 const currentTabPromise = browser.tabs.getCurrent()
 
 Promise.all([settingsPromise, currentTabPromise])
-  .then(([settings, currentTab]) => {
-    console.debug("Loaded initial settings", settings)
+  .then(([ignoredHostnames, currentTab]) => {
+    console.debug("Loaded ignored hostnames", ignoredHostnames)
 
-    configurePage(
-      Array.isArray(settings["ignoredHostnames"])
-        ? (settings["ignoredHostnames"] as string[])
-        : [],
-      currentTab,
-    )
-
-    browser.storage.onChanged.addListener((changes) => {
-      if (changes["ignoredHostnames"] && changes["ignoredHostnames"].newValue) {
-        console.debug(
-          "Ignored hostnames setting changed",
-          changes["ignoredHostnames"],
-        )
-        configurePage(
-          Array.isArray(changes["ignoredHostnames"].newValue)
-            ? changes["ignoredHostnames"].newValue
-            : [],
-          currentTab,
-        )
-      }
-    })
+    configurePage(ignoredHostnames, currentTab)
   })
   .catch((error) => {
     console.error(error)
+    alert(error)
   })
 
 function configurePage(
@@ -149,13 +134,8 @@ function showNonGoogleUI(ignoredHostnames: string[], currentTabURL: string) {
 
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true
-      const newIgnoredHostnames = ignoredHostnames.filter((ignoredHostname) => {
-        ignoredHostname !== currentURL.hostname
-      })
-      browser.storage.local
-        .set({
-          ignoredHostnames: newIgnoredHostnames,
-        })
+      nativeAppCommunicator
+        .removeIgnoredHostname(currentURL.hostname)
         .then(() => {
           console.info(
             `${currentURL.hostname} has been removed from ignore list`,
@@ -175,11 +155,8 @@ function showNonGoogleUI(ignoredHostnames: string[], currentTabURL: string) {
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true
 
-      const newIgnoredHostnames = [...ignoredHostnames, currentURL.hostname]
-      browser.storage.local
-        .set({
-          ignoredHostnames: newIgnoredHostnames,
-        })
+      nativeAppCommunicator
+        .ignoreHostname(currentURL.hostname)
         .then(() => {
           console.info(`${currentURL.hostname} has been added to ignore list`)
         })

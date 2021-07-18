@@ -1,33 +1,30 @@
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log("Received request", request, "from", sender, sendResponse)
+browser.runtime.onMessage.addListener(
+  (
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    payload: object,
+    sender: browser.runtime.MessageSender,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    sendResponse: (response: object) => Promise<void>,
+  ) => {
+    console.log("Received request", payload, "from", sender, sendResponse)
 
-  // return new Promise((resolve, reject) => {
-  browser.runtime
-    .sendNativeMessage("net.yetii.Overamped", {
-      request: "ignoredHostnames",
-    })
-    .then((response) => {
-      console.log("Got response", response)
-      if (typeof response !== "object") {
-        console.error("Response is not an object")
-        return
-      }
+    browser.runtime
+      .sendNativeMessage("net.yetii.Overamped", payload)
+      .then((response) => {
+        console.log("Got response from app", response)
 
-      interface Response {
-        ignoredHostnames: string[]
-      }
+        if (typeof response === "object") {
+          sendResponse(response)
+        } else {
+          sendResponse({})
+        }
+      })
+      .catch((error) => {
+        console.error("Error messages native app", error)
+        sendResponse({ error: error })
+      })
 
-      const ignoredHostnames = (<Response>response)["ignoredHostnames"]
-      console.log("Loaded ignoredHostnames", ignoredHostnames)
-      sendResponse({ ignoredHostnames: ignoredHostnames })
-      // resolve({ ignoredHostnames: ignoredHostnames })
-    })
-    .catch((error) => {
-      console.error("Error messages native app", error)
-      // reject(error)
-    })
-  // })
-
-  // Tell Safari that response will be async
-  return true
-})
+    // Tell Safari that response will be async
+    return true
+  },
+)

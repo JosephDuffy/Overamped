@@ -9,22 +9,78 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         // Update the value in UserDefaults.
         let defaults = UserDefaults(suiteName: "group.net.yetii.overamped")
-        let messageDictionary = message as? [String: String]
-        print("messageDictionary", messageDictionary)
-        if messageDictionary?["request"] == "ignoredHostnames" {
-            let ignoredHostnames = defaults?.array(forKey: "ignoredHostnames") as? [String]
-            let response = NSExtensionItem()
-            response.userInfo = [
+        let messageDictionary = message as? [String: Any]
+
+        let response: NSExtensionItem?
+
+        defer {
+            if let response = response {
+                print("Responding with", response)
+                context.completeRequest(returningItems: [response])
+            } else {
+                context.completeRequest(returningItems: nil)
+            }
+        }
+
+        guard let messageDictionary = messageDictionary else {
+            response = nil
+            return
+        }
+
+        switch messageDictionary["request"] as? String {
+        case "ignoredHostnames":
+            let ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            response = NSExtensionItem()
+            response?.userInfo = [
                 SFExtensionMessageKey: [
-                    "ignoredHostnames": ["9to5mac.com"]
+                    "ignoredHostnames": ignoredHostnames
                 ]
             ]
+        case "ignoreHostname":
+            guard let payload = messageDictionary["payload"] as? [String: String] else {
+                response = nil
+                return
+            }
 
-            print("Responding with", response)
+            guard let hostname = payload["hostname"] else {
+                response = nil
+                return
+            }
 
-            context.completeRequest(returningItems: [response], completionHandler: nil)
-        } else {
-            context.completeRequest(returningItems: nil)
+            var ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            ignoredHostnames.append(hostname)
+            defaults?.set(ignoredHostnames, forKey: "ignoredHostnames")
+
+            response = nil
+        case "removeIgnoredHostname":
+            guard let payload = messageDictionary["payload"] as? [String: String] else {
+                response = nil
+                return
+            }
+
+            guard let hostname = payload["hostname"] else {
+                response = nil
+                return
+            }
+
+            var ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            ignoredHostnames.removeAll(where: { $0 == hostname })
+            defaults?.set(ignoredHostnames, forKey: "ignoredHostnames")
+
+            response = nil
+        default:
+            response = nil
         }
     }
+}
+
+struct Message<Payload: Codable>: Codable {
+    let request: Request
+    let payload: Payload
+}
+
+enum Request: String, Codable {
+    case ignoredHostnames
+    case ignoreHostname
+    case removeIgnoredHostname
 }

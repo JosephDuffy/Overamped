@@ -1,9 +1,13 @@
+import NativeAppCommunicator from "./NativeAppCommunicator"
+
 export type ExtensionApplierThunk = (ignoredHostnames: string[]) => void
 
 export default class ExtensionApplier {
   #document: HTMLDocument
 
   #thunk: ExtensionApplierThunk
+
+  #nativeAppCommunicator: NativeAppCommunicator
 
   #readyStateChangeListener?: () => void
 
@@ -12,6 +16,7 @@ export default class ExtensionApplier {
   constructor(document: HTMLDocument, thunk: ExtensionApplierThunk) {
     this.#document = document
     this.#thunk = thunk
+    this.#nativeAppCommunicator = new NativeAppCommunicator()
 
     this.loadIgnoredHostnames()
   }
@@ -59,14 +64,12 @@ export default class ExtensionApplier {
   }
 
   private loadIgnoredHostnames() {
-    browser.runtime
-      .sendMessage({
-        request: "ignoredHostnames",
-      })
-      .then((response) => {
-        console.debug("Loaded ignored hostnames list", response)
+    this.#nativeAppCommunicator
+      .ignoredHostnames()
+      .then((ignoredHostnames) => {
+        console.debug("Loaded ignored hostnames list", ignoredHostnames)
 
-        this.applyIgnoredHostnames(response["ignoredHostnames"])
+        this.applyIgnoredHostnames(ignoredHostnames)
       })
       .catch((error) => {
         console.error("Failed to load ignoredHostnames setting", error)

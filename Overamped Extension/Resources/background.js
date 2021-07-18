@@ -1,20 +1,17 @@
 (() => {
   // background.ts
-  browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("Received request", request, "from", sender, sendResponse);
-    browser.runtime.sendNativeMessage("net.yetii.Overamped", {
-      request: "ignoredHostnames"
-    }).then((response) => {
-      console.log("Got response", response);
-      if (typeof response !== "object") {
-        console.error("Response is not an object");
-        return;
+  browser.runtime.onMessage.addListener((payload, sender, sendResponse) => {
+    console.log("Received request", payload, "from", sender, sendResponse);
+    browser.runtime.sendNativeMessage("net.yetii.Overamped", payload).then((response) => {
+      console.log("Got response from app", response);
+      if (typeof response === "object") {
+        sendResponse(response);
+      } else {
+        sendResponse({});
       }
-      const ignoredHostnames = response["ignoredHostnames"];
-      console.log("Loaded ignoredHostnames", ignoredHostnames);
-      sendResponse({ ignoredHostnames });
     }).catch((error) => {
       console.error("Error messages native app", error);
+      sendResponse({ error });
     });
     return true;
   });
