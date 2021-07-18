@@ -68,6 +68,22 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
             defaults?.set(ignoredHostnames, forKey: "ignoredHostnames")
 
             response = nil
+        case "migrateIgnoredHostnames":
+            guard let payload = messageDictionary["payload"] as? [String: [String]] else {
+                response = nil
+                return
+            }
+
+            guard let ignoredHostnamesToMigrate = payload["ignoredHostnames"] else {
+                response = nil
+                return
+            }
+
+            var ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            ignoredHostnames.append(contentsOf: ignoredHostnamesToMigrate)
+            defaults?.set(ignoredHostnames, forKey: "ignoredHostnames")
+
+            response = nil
         default:
             response = nil
         }

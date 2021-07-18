@@ -19,6 +19,7 @@ export default class ExtensionApplicator {
     this.#nativeAppCommunicator = new NativeAppCommunicator()
 
     this.loadIgnoredHostnames()
+    this.migrateIgnoredHostnames()
   }
 
   private applyIgnoredHostnames(ignoredHostnames: string[]) {
@@ -74,5 +75,21 @@ export default class ExtensionApplicator {
       .catch((error) => {
         console.error("Failed to load ignoredHostnames setting", error)
       })
+  }
+
+  private migrateIgnoredHostnames() {
+    browser.storage.local.get("ignoredHostnames").then((storage) => {
+      const ignoredHostnames = storage["ignoredHostnames"] as
+        | string[]
+        | undefined
+
+      if (ignoredHostnames !== undefined) {
+        this.#nativeAppCommunicator
+          .migrateIgnoredHostnames(ignoredHostnames)
+          .then(() => {
+            browser.storage.local.remove("ignoredHostnames")
+          })
+      }
+    })
   }
 }

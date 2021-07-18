@@ -62,6 +62,30 @@ export default class NativeAppCommunicator {
         })
     })
   }
+
+  migrateIgnoredHostnames(hostnames: string[]): Promise<void> {
+    return new Promise((resolve, reject) => {
+      browser.runtime
+        .sendMessage({
+          request: "migrateIgnoredHostnames",
+          payload: {
+            ignoredHostnames: hostnames,
+          },
+        })
+        .then(() => {
+          console.debug(`Migrated ignored hostnames ${hostnames}`)
+
+          resolve()
+        })
+        .catch((error) => {
+          console.error(
+            `Failed to migrate ignored hostnames ${hostnames}`,
+            error,
+          )
+          reject(error)
+        })
+    })
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -81,6 +105,13 @@ declare namespace browser.runtime {
     request: "removeIgnoredHostname"
     payload: {
       hostname: string
+    }
+  }): Promise<void>
+
+  export function sendMessage(message: {
+    request: "migrateIgnoredHostnames"
+    payload: {
+      ignoredHostnames: string[]
     }
   }): Promise<void>
 }

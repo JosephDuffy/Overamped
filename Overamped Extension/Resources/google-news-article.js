@@ -52,7 +52,7 @@
     }
   };
 
-  // ExtensionApplier.ts
+  // ExtensionApplicator.ts
   var ExtensionApplicator = class {
     #document;
     #thunk;
