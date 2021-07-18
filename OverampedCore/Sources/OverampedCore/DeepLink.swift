@@ -1,7 +1,7 @@
 import Foundation
 
 public enum DeepLink: Hashable {
-    case feedback(searchURL: String?, websiteURL: String?, ignoredHostnames: [String])
+    case feedback(searchURL: String?, websiteURL: String?)
     case statistics
     case support
     case about
@@ -53,19 +53,11 @@ public enum DeepLink: Hashable {
 
     private init(feedbackComponents components: URLComponents) {
         let openURL: URL? = (components.queryItems?.first(where: { $0.name == "url" })?.value).flatMap { URL(string: $0) }
-        let ignoredHostnames: [String]
-
-        if let ignoredHostnamesString = components.queryItems?.first(where: { $0.name == "ignoredHostnames" })?.value {
-            let jsonDecoder = JSONDecoder()
-            ignoredHostnames = (try? jsonDecoder.decode([String].self, from: Data(ignoredHostnamesString.utf8))) ?? []
-        } else {
-            ignoredHostnames = []
-        }
 
         if openURL?.host?.contains("google.") == true, openURL?.path.hasPrefix("/search") == true {
-            self = .feedback(searchURL: openURL?.absoluteString, websiteURL: nil, ignoredHostnames: ignoredHostnames)
+            self = .feedback(searchURL: openURL?.absoluteString, websiteURL: nil)
         } else {
-            self = .feedback(searchURL: nil, websiteURL: openURL?.absoluteString, ignoredHostnames: ignoredHostnames)
+            self = .feedback(searchURL: nil, websiteURL: openURL?.absoluteString)
         }
     }
 }

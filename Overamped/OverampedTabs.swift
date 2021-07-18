@@ -20,9 +20,6 @@ struct OverampedTabs: View {
     private var websiteURL: String = ""
 
     @State
-    private var ignoredHostnames: [String]?
-
-    @State
     private var showStatisticsTab: Bool = DistributionMethod.current == .debug
 
     @State
@@ -38,7 +35,6 @@ struct OverampedTabs: View {
 
             NavigationView {
                 FeedbackForm(
-                    ignoredHostnames: $ignoredHostnames,
                     searchURL: $searchURL,
                     websiteURL: $websiteURL
                 )
@@ -97,10 +93,9 @@ struct OverampedTabs: View {
             guard let deepLink = DeepLink(url: url) else { return }
 
             switch deepLink {
-            case .feedback(let searchURL, let websiteURL, let ignoredHostnames):
+            case .feedback(let searchURL, let websiteURL):
                 self.searchURL = searchURL ?? ""
                 self.websiteURL = websiteURL ?? ""
-                self.ignoredHostnames = ignoredHostnames
                 selectedTab = .feedback
             case .statistics:
                 showStatisticsTab = true

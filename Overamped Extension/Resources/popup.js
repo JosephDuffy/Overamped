@@ -7,7 +7,11 @@
           request: "ignoredHostnames"
         }).then((response) => {
           console.debug("Loaded ignored hostnames list", response);
-          resolve(response["ignoredHostnames"]);
+          if (response["ignoredHostnames"] === null) {
+            resolve([]);
+          } else {
+            resolve(response["ignoredHostnames"]);
+          }
         }).catch((error) => {
           console.error("Failed to load ignoredHostnames setting", error);
           reject(error);
@@ -46,6 +50,22 @@
         });
       });
     }
+    migrateIgnoredHostnames(hostnames) {
+      return new Promise((resolve, reject) => {
+        browser.runtime.sendMessage({
+          request: "migrateIgnoredHostnames",
+          payload: {
+            ignoredHostnames: hostnames
+          }
+        }).then(() => {
+          console.debug(`Migrated ignored hostnames ${hostnames}`);
+          resolve();
+        }).catch((error) => {
+          console.error(`Failed to migrate ignored hostnames ${hostnames}`, error);
+          reject(error);
+        });
+      });
+    }
   };
 
   // popup.ts
@@ -75,7 +95,7 @@
       return;
     }
     submitFeedbackButton.onclick = () => {
-      openSubmitFeedbackPage(ignoredHostnames, currentTabURL);
+      openSubmitFeedbackPage(currentTabURL);
       return false;
     };
     if (currentTab.id) {
@@ -96,12 +116,11 @@
       showNonGoogleUI(ignoredHostnames, currentTabURL);
     }
   }
-  function openSubmitFeedbackPage(ignoredHostnames, currentTabURL) {
+  function openSubmitFeedbackPage(currentTabURL) {
     const feedbackURL = new URL("overamped:feedback");
     if (currentTabURL) {
       feedbackURL.searchParams.append("url", currentTabURL);
     }
-    feedbackURL.searchParams.append("ignoredHostnames", JSON.stringify(ignoredHostnames));
     browser.tabs.create({ url: feedbackURL.toString() });
   }
   function showGoogleUI(replacedLinksCount) {

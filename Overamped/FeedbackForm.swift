@@ -1,4 +1,5 @@
 import Combine
+import Persist
 import SwiftUI
 import os.log
 
@@ -171,18 +172,16 @@ struct FeedbackForm: View {
     }
 
     init(
-        ignoredHostnames: Binding<[String]?>,
         searchURL: Binding<String>,
         websiteURL: Binding<String>
     ) {
-        formAPI = FormAPI(ignoredHostnames: ignoredHostnames, searchURL: searchURL, websiteURL: websiteURL)
+        formAPI = FormAPI(searchURL: searchURL, websiteURL: websiteURL)
     }
 }
 
 struct FeedbackForm_Previews: PreviewProvider {
     static var previews: some View {
         FeedbackForm(
-            ignoredHostnames: .constant(nil),
             searchURL: .constant(""),
             websiteURL: .constant("")
         )
@@ -201,16 +200,15 @@ private final class FormAPI: ObservableObject {
 
     @Published private(set) var formState: FormState = .idle
 
-    private var cancellables: Set<AnyCancellable> = []
+    private var cancellables: Set<Combine.AnyCancellable> = []
 
     private let logger = Logger(subsystem: "net.yetii.Overamped", category: "FormAPI")
 
     init(
-        ignoredHostnames: Binding<[String]?>,
         searchURL: Binding<String>,
         websiteURL: Binding<String>
     ) {
-        formData = FormData(ignoredHostnames: ignoredHostnames, searchURL: searchURL, websiteURL: websiteURL)
+        formData = FormData(searchURL: searchURL, websiteURL: websiteURL)
         formData.objectWillChange.sink { self.objectWillChange.send() }.store(in: &cancellables)
     }
 
@@ -306,7 +304,12 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     @Published
     var includeIgnoredHostnames: Bool = true
 
-    @Binding
+    @PersistStorage(
+        persister: Persister(
+            key: "ignoredHostnames",
+            userDefaults: UserDefaults(suiteName: "group.net.yetii.overamped")!
+        )
+    )
     private(set) var ignoredHostnames: [String]?
 
     var debugData: DebugData {
@@ -349,11 +352,9 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     }
 
     init(
-        ignoredHostnames: Binding<[String]?>,
         searchURL: Binding<String>,
         websiteURL: Binding<String>
     ) {
-        _ignoredHostnames = ignoredHostnames
         _searchURL = searchURL
         _websiteURL = websiteURL
     }

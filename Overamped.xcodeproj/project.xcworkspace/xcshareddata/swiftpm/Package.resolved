@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Persist",
+        "repositoryURL": "https://github.com/JosephDuffy/Persist.git",
+        "state": {
+          "branch": "swiftui-support",
+          "revision": "b8f2832fd0ee9ae2751a3c82eb81a22a27bc595e",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
