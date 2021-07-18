@@ -1,5 +1,5 @@
 import deampURL from "./deampURL"
-import ExtensionApplier from "./ExtensionApplier"
+import ExtensionApplicator from "./ExtensionApplicator"
 
 interface OverriddenAnchor {
   listener: (event: MouseEvent) => boolean
@@ -140,4 +140,4 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
   }`
 }
 
-new ExtensionApplier(document, replaceAMPLinks)
+new ExtensionApplicator(document, replaceAMPLinks)

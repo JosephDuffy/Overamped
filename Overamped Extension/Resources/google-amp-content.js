@@ -26,15 +26,70 @@
     return finalURL;
   }
 
+  // NativeAppCommunicator.ts
+  var NativeAppCommunicator = class {
+    ignoredHostnames() {
+      return new Promise((resolve, reject) => {
+        browser.runtime.sendMessage({
+          request: "ignoredHostnames"
+        }).then((response) => {
+          console.debug("Loaded ignored hostnames list", response);
+          if (response["ignoredHostnames"] === null) {
+            resolve([]);
+          } else {
+            resolve(response["ignoredHostnames"]);
+          }
+        }).catch((error) => {
+          console.error("Failed to load ignoredHostnames setting", error);
+          reject(error);
+        });
+      });
+    }
+    ignoreHostname(hostname) {
+      return new Promise((resolve, reject) => {
+        browser.runtime.sendMessage({
+          request: "ignoreHostname",
+          payload: {
+            hostname
+          }
+        }).then(() => {
+          console.debug(`Ignored hostname ${hostname}`);
+          resolve();
+        }).catch((error) => {
+          console.error(`Failed to ignore hostname ${hostname}`, error);
+          reject(error);
+        });
+      });
+    }
+    removeIgnoredHostname(hostname) {
+      return new Promise((resolve, reject) => {
+        browser.runtime.sendMessage({
+          request: "removeIgnoredHostname",
+          payload: {
+            hostname
+          }
+        }).then(() => {
+          console.debug(`Removed ignored hostname ${hostname}`);
+          resolve();
+        }).catch((error) => {
+          console.error(`Failed to remove ignored hostname ${hostname}`, error);
+          reject(error);
+        });
+      });
+    }
+  };
+
   // ExtensionApplier.ts
-  var ExtensionApplier = class {
+  var ExtensionApplicator = class {
     #document;
     #thunk;
+    #nativeAppCommunicator;
     #readyStateChangeListener;
     #ignoredHostnames;
     constructor(document2, thunk) {
       this.#document = document2;
       this.#thunk = thunk;
+      this.#nativeAppCommunicator = new NativeAppCommunicator();
       this.loadIgnoredHostnames();
     }
     applyIgnoredHostnames(ignoredHostnames) {
@@ -58,11 +113,9 @@
       this.#thunk(this.#ignoredHostnames ?? []);
     }
     loadIgnoredHostnames() {
-      browser.runtime.sendMessage({
-        request: "ignoredHostnames"
-      }).then((response) => {
-        console.debug("Loaded ignored hostnames list", response);
-        this.applyIgnoredHostnames(response["ignoredHostnames"]);
+      this.#nativeAppCommunicator.ignoredHostnames().then((ignoredHostnames) => {
+        console.debug("Loaded ignored hostnames list", ignoredHostnames);
+        this.applyIgnoredHostnames(ignoredHostnames);
       }).catch((error) => {
         console.error("Failed to load ignoredHostnames setting", error);
       });
@@ -85,5 +138,5 @@
       window.location.replace(finalURL.toString());
     }
   }
-  new ExtensionApplier(document, redirectToCanonicalVersion);
+  new ExtensionApplicator(document, redirectToCanonicalVersion);
 })();

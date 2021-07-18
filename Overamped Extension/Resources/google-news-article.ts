@@ -1,7 +1,7 @@
-import ExtensionApplier from "./ExtensionApplier"
+import ExtensionApplicator from "./ExtensionApplicator"
 import "./Array+compactMap"
 
-new ExtensionApplier(document, overrideAMPArticles)
+new ExtensionApplicator(document, overrideAMPArticles)
 
 function overrideAMPArticles() {
   const ampArticles = Array.from(

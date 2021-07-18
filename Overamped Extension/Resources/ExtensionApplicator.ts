@@ -2,7 +2,7 @@ import NativeAppCommunicator from "./NativeAppCommunicator"
 
 export type ExtensionApplierThunk = (ignoredHostnames: string[]) => void
 
-export default class ExtensionApplier {
+export default class ExtensionApplicator {
   #document: HTMLDocument
 
   #thunk: ExtensionApplierThunk

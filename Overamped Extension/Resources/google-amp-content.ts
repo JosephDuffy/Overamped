@@ -1,5 +1,5 @@
 import deampURL from "./deampURL"
-import ExtensionApplier from "./ExtensionApplier"
+import ExtensionApplicator from "./ExtensionApplicator"
 
 function redirectToCanonicalVersion(ignoredHostnames: string[]) {
   const canonicalElement: HTMLLinkElement | null = document.head.querySelector(
@@ -25,4 +25,4 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]) {
   }
 }
 
-new ExtensionApplier(document, redirectToCanonicalVersion)
+new ExtensionApplicator(document, redirectToCanonicalVersion)
