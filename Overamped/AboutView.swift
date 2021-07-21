@@ -8,7 +8,7 @@ struct AboutView: View {
                     Overamped is developed by Joseph Duffy, an indie developer.
                     """)
 
-                Text("© Yetii Ltd. 2021")
+                Text("© Yetii Ltd. 2021. Overamped \(Bundle.main.appVersion) (\(Bundle.main.appBuild))")
             }
             .padding()
         }
