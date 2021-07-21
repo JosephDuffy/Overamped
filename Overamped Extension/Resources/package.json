@@ -13,7 +13,7 @@
     "pack": "npm run build-content -- --minify",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier \"**/*.ts\"",
+    "prettier": "prettier .",
     "format": "npm run prettier -- --write",
     "format:check": "npm run prettier -- --check",
     "test": "jest"
