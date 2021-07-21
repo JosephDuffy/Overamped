@@ -2,6 +2,11 @@ Thank you to everyone that's been using Overamped, especially those that have pr
 
 Please note that Google will serve slightly different versions to different people, so getting this to work every time for everyone is tricky. This is why I'm so thankful for everyone reporting issues! When possible, please provide the full URL of the Google search and a screenshot showing this issue. I will be providing a better feedback form in a future version.
 
+New in beta 8:
+
+- Hopefully fix Google News for everyone (please let me know)
+- Internal changes to account for future updates
+
 New in beta 7:
 
 - Opening the extension on Google will display the number of AMP links that have been replaced
