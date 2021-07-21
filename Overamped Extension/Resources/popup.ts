@@ -166,7 +166,7 @@ function showNonGoogleUI(ignoredHostnames: string[], currentTabURL: string) {
 // Open all links in a new tab
 Array.from(document.querySelectorAll("a")).forEach((anchor) => {
   anchor.onclick = () => {
-    browser.tabs.create({ url: anchor.href })
+    window.open(anchor.href)
     return false
   }
 })
