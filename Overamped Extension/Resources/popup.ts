@@ -16,6 +16,11 @@ const nonGoogleContentContainer = document.getElementById(
 )! as HTMLDivElement
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const openCanonicalLinkExplanation = document.getElementById(
+  "openCanonicalLinkExplanation",
+)! as HTMLDivElement
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const currentPageDomainSpans = document.getElementsByClassName(
   "currentPageDomain",
 )! as HTMLCollectionOf<HTMLLinkElement>
@@ -24,6 +29,11 @@ const currentPageDomainSpans = document.getElementsByClassName(
 const replacedLinksCountSpans = document.getElementsByClassName(
   "replacedLinksCount",
 )! as HTMLCollectionOf<HTMLLinkElement>
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const canonicalAnchor = document.getElementById(
+  "canonicalAnchor",
+)! as HTMLAnchorElement
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const toggleAllowListButtonExplanation = document.getElementById(
@@ -35,25 +45,29 @@ const submitFeedbackButton = document.getElementById(
   "submitFeedback",
 )! as HTMLButtonElement
 
-const nativeAppCommunicator = new NativeAppCommunicator()
+;(async () => {
+  try {
+    await applyToPage()
+  } catch (error) {
+    console.error("Failed to update page", error)
+  }
+})()
 
-const settingsPromise = nativeAppCommunicator.ignoredHostnames()
-const currentTabPromise = browser.tabs.getCurrent()
+async function applyToPage() {
+  const nativeAppCommunicator = new NativeAppCommunicator()
+  const settingsPromise = nativeAppCommunicator.ignoredHostnames()
+  const currentTabPromise = browser.tabs.getCurrent()
+  const [ignoredHostnames, currentTab] = await Promise.all([
+    settingsPromise,
+    currentTabPromise,
+  ])
+  configurePage(ignoredHostnames, currentTab, nativeAppCommunicator)
+}
 
-Promise.all([settingsPromise, currentTabPromise])
-  .then(([ignoredHostnames, currentTab]) => {
-    console.debug("Loaded ignored hostnames", ignoredHostnames)
-
-    configurePage(ignoredHostnames, currentTab)
-  })
-  .catch((error) => {
-    console.error(error)
-    alert(error)
-  })
-
-function configurePage(
+async function configurePage(
   ignoredHostnames: string[],
   currentTab: browser.tabs.Tab,
+  nativeAppCommunicator: NativeAppCommunicator,
 ) {
   const currentTabURL = currentTab.url
   if (!currentTabURL) {
@@ -70,25 +84,26 @@ function configurePage(
   }
 
   if (currentTab.id) {
-    browser.tabs
-      .executeScript(currentTab.id, {
-        code: `document.body.dataset.overampedReplacedLinksCount`,
-      })
-      .then((result) => {
-        console.log("result", result)
-        if ((result.length === 1, typeof result[0] === "string")) {
-          const replacedLinksCount = parseInt(result[0])
-
-          showGoogleUI(replacedLinksCount)
-        } else {
-          showNonGoogleUI(ignoredHostnames, currentTabURL)
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to execute script", error)
-      })
+    const replacedLinksCount = await overampedReplacedLinksCountInTab(
+      currentTab,
+    )
+    if (replacedLinksCount !== undefined) {
+      showGoogleUI(replacedLinksCount)
+    } else {
+      await showNonGoogleUI(
+        ignoredHostnames,
+        currentTabURL,
+        <browser.tabs.Tab & { url: string }>currentTab,
+        nativeAppCommunicator,
+      )
+    }
   } else {
-    showNonGoogleUI(ignoredHostnames, currentTabURL)
+    await showNonGoogleUI(
+      ignoredHostnames,
+      currentTabURL,
+      <browser.tabs.Tab & { url: string }>currentTab,
+      nativeAppCommunicator,
+    )
   }
 }
 
@@ -99,7 +114,7 @@ function openSubmitFeedbackPage(currentTabURL?: string) {
     feedbackURL.searchParams.append("url", currentTabURL)
   }
 
-  browser.tabs.create({ url: feedbackURL.toString() })
+  window.open(feedbackURL.toString())
 }
 
 function showGoogleUI(replacedLinksCount: number) {
@@ -111,7 +126,12 @@ function showGoogleUI(replacedLinksCount: number) {
   })
 }
 
-function showNonGoogleUI(ignoredHostnames: string[], currentTabURL: string) {
+async function showNonGoogleUI(
+  ignoredHostnames: string[],
+  currentTabURL: string,
+  currentTab: browser.tabs.Tab & { url: string },
+  nativeAppCommunicator: NativeAppCommunicator,
+) {
   toggleAllowListButton.hidden = false
   googleContentContainer.hidden = true
   nonGoogleContentContainer.hidden = false
@@ -160,6 +180,62 @@ function showNonGoogleUI(ignoredHostnames: string[], currentTabURL: string) {
         })
       return false
     }
+  }
+
+  const isAMPPage = await tabContainsAMPPage(currentTab)
+
+  if (!isAMPPage) {
+    openCanonicalLinkExplanation.style.display = "none"
+    return
+  }
+
+  const canonicalURL = await canonicalURLForTab(currentTab)
+
+  if (canonicalURL === undefined || currentTab.url === canonicalURL) {
+    openCanonicalLinkExplanation.style.display = "none"
+    return
+  }
+
+  canonicalAnchor.href = canonicalURL
+  openCanonicalLinkExplanation.style.removeProperty("display")
+}
+
+async function tabContainsAMPPage(tab: browser.tabs.Tab): Promise<boolean> {
+  const scriptResult = await browser.tabs.executeScript(tab.id, {
+    code: `document.documentElement.attributes.hasOwnProperty("amp") || document.documentElement.attributes.hasOwnProperty("⚡")`,
+  })
+  return (
+    scriptResult.length === 1 &&
+    typeof scriptResult[0] === "boolean" &&
+    scriptResult[0]
+  )
+}
+
+async function canonicalURLForTab(
+  tab: browser.tabs.Tab,
+): Promise<string | undefined> {
+  const scriptResult = await browser.tabs.executeScript(tab.id, {
+    code: `document.head.querySelector("link[rel~='canonical'][href]").href`,
+  })
+  if (scriptResult.length === 1 && typeof scriptResult[0] === "string") {
+    return scriptResult[0]
+  } else {
+    return undefined
+  }
+}
+
+async function overampedReplacedLinksCountInTab(
+  tab: browser.tabs.Tab,
+): Promise<number | undefined> {
+  const scriptResult = await browser.tabs.executeScript(tab.id, {
+    code: `document.body.dataset.overampedReplacedLinksCount`,
+  })
+  if (scriptResult.length === 1 && typeof scriptResult[0] === "string") {
+    const replacedLinksCount = parseInt(scriptResult[0])
+
+    return replacedLinksCount
+  } else {
+    return undefined
   }
 }
 
