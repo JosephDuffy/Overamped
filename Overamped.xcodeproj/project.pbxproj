@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C26E26A92C8700CE8AC6 /* SurveyView.swift */; };
+		D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */; };
 		D967DAD72686484100B328C6 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD42686484100B328C6 /* popup.js */; };
 		D967DAD82687627500B328C6 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD52686484100B328C6 /* popup.css */; };
 		D967DAD92687627500B328C6 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD62686484100B328C6 /* popup.html */; };
@@ -69,6 +71,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D939C26E26A92C8700CE8AC6 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
+		D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPricesProvider.swift; sourceTree = "<group>"; };
 		D967DAD42686484100B328C6 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		D967DAD52686484100B328C6 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
 		D967DAD62686484100B328C6 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */,
 				D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */,
 				D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */,
+				D939C26E26A92C8700CE8AC6 /* SurveyView.swift */,
+				D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */,
 				D994C63A26A1EF9A000649AA /* TipJarView.swift */,
 				D9CDF0AC26A0FC72006F6B99 /* SettingsView.swift */,
 				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
@@ -495,12 +501,14 @@
 			files = (
 				D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */,
 				D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */,
+				D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */,
 				D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */,
 				D994C64326A26D29000649AA /* OverampedCoreImport.swift in Sources */,
 				D984BB9B26A8F54200500856 /* IgnoredHostnamesView.swift in Sources */,
 				D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */,
 				D9CDF0AD26A0FC72006F6B99 /* SettingsView.swift in Sources */,
 				D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */,
+				D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */,
 				D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */,
 				D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */,
 				D994C63826A13682000649AA /* TipJarStore.swift in Sources */,

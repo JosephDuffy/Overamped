@@ -3,12 +3,26 @@ import SwiftUI
 struct SupportView: View {
     @State private var showShareSheet = false
 
+    @AppStorage("SupportView.isShowingSurvey")
+    private var isShowingSurvey = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 Text("""
                     Overamped is developed by a single indie developer. If you're able to provide any extra support it is greatly appreciated.
                     """)
+
+                Text("✈️ TestFlight Survey")
+                    .font(.title)
+
+                Text("A short survey is available for TestFlight users. It is 3 or less questions and will help decide the pricing model for Overamped.")
+
+                NavigationLink(isActive: $isShowingSurvey) {
+                    SurveyView()
+                } label: {
+                    Text("Complete Survey")
+                }
 
                 Text("Share")
                     .font(.title)

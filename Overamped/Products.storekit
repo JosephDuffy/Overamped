@@ -48,6 +48,51 @@
       "productID" : "consumable.hugetip",
       "referenceName" : "Huge Tip",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "A378E8F0",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pricing.tier1",
+      "referenceName" : "pricing.tier1",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "7EF22066",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pricing.tier2",
+      "referenceName" : "pricing.tier2",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "EACF6143",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pricing.tier3",
+      "referenceName" : "pricing.tier3",
+      "type" : "Consumable"
     }
   ],
   "settings" : {
