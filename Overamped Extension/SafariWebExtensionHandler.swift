@@ -9,6 +9,8 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         // Update the value in UserDefaults.
         let defaults = UserDefaults(suiteName: "group.net.yetii.overamped")
+        defaults?.set(true, forKey: "extensionHasBeenEnabled")
+
         let messageDictionary = message as? [String: Any]
 
         let response: NSExtensionItem?
