@@ -75,13 +75,13 @@ struct OverampedTabs: View {
 
             if showAboutTab {
                 NavigationView {
-                    AboutView()
+                    SettingsView()
                 }
                 .tag(Tab.about)
                 .tabItem {
                     VStack {
-                        Image(systemName: "info.circle.fill")
-                        Text("About")
+                        Image(systemName: "gear")
+                        Text("Settings")
                     }
                 }
             }
