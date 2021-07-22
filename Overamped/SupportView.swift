@@ -1,4 +1,5 @@
 import SwiftUI
+import OverampedCore
 
 struct SupportView: View {
     @State private var showShareSheet = false
@@ -34,23 +35,25 @@ struct SupportView: View {
                 }
                 .buttonStyle(BorderedButtonStyle())
 
-                Text("Write a Review")
-                    .font(.title)
+                if DistributionMethod.current == .debug {
+                    Text("Write a Review")
+                        .font(.title)
 
-                Text("Reviews are very important on the App Store, plus I love to read them.")
+                    Text("Reviews are very important on the App Store. You can also rate Overamped without writing a review.")
 
-                Link(
-                    destination: URL(string: "https://itunes.apple.com/app/id1573901090?action=write-review&mt=8")!,
-                    label: {
-                        Text("\(Image(systemName: "square.and.pencil")) Review Overamped")
-                    }
-                )
-                    .buttonStyle(BorderedButtonStyle())
+                    Link(
+                        destination: URL(string: "https://itunes.apple.com/app/id1573901090?action=write-review&mt=8")!,
+                        label: {
+                            Text("\(Image(systemName: "square.and.pencil")) Review Overamped")
+                        }
+                    )
+                        .buttonStyle(BorderedButtonStyle())
 
-                Text("Having an issue? [Submit feedback instead](overamped:feedback).")
-                    .font(.caption)
+                    Text("Having an issue? [Submit feedback instead](overamped:feedback).")
+                        .font(.caption)
 
-                TipJarView()
+                    TipJarView()
+                }
             }
             .padding()
         }
