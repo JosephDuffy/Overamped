@@ -3,15 +3,14 @@ import os.log
 
 struct OverampedTabs: View {
     enum Tab: String {
-        case install
-        case feedback
         case statistics
+        case feedback
         case support
-        case about
+        case settings
     }
 
-    @SceneStorage("OverampedApp.selectedTab")
-    private var selectedTab: Tab = .install
+    @SceneStorage("OverampedTabs.selectedTab")
+    private var selectedTab: Tab = .statistics
 
     @State
     private var searchURL: String = ""
@@ -30,23 +29,6 @@ struct OverampedTabs: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            InstallationInstructionsView()
-                .tag(Tab.install)
-
-            NavigationView {
-                FeedbackForm(
-                    searchURL: $searchURL,
-                    websiteURL: $websiteURL
-                )
-            }
-            .tag(Tab.feedback)
-            .tabItem {
-                VStack {
-                    Image(systemName: "envelope")
-                    Text("Feedback")
-                }
-            }
-
             if showStatisticsTab {
                 NavigationView {
                     StatisticsView()
@@ -73,16 +55,28 @@ struct OverampedTabs: View {
                 }
             }
 
-            if showAboutTab {
-                NavigationView {
-                    SettingsView()
+            NavigationView {
+                FeedbackForm(
+                    searchURL: $searchURL,
+                    websiteURL: $websiteURL
+                )
+            }
+            .tag(Tab.feedback)
+            .tabItem {
+                VStack {
+                    Image(systemName: "envelope")
+                    Text("Feedback")
                 }
-                .tag(Tab.about)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "gear")
-                        Text("Settings")
-                    }
+            }
+
+            NavigationView {
+                SettingsView()
+            }
+            .tag(Tab.settings)
+            .tabItem {
+                VStack {
+                    Image(systemName: "gear")
+                    Text("Settings")
                 }
             }
         }
@@ -103,9 +97,8 @@ struct OverampedTabs: View {
             case .support:
                 showSupportTab = true
                 selectedTab = .support
-            case .about:
-                showAboutTab = true
-                selectedTab = .about
+            case .settings:
+                selectedTab = .settings
             }
         })
     }

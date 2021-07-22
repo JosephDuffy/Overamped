@@ -16,13 +16,6 @@ struct SettingsView: View {
 
     var body: some View {
         List {
-            Section(
-                footer: Text("Overamped is developed by Joseph Duffy, an indie developer.")
-                    .font(.body)
-                    .padding(.horizontal, -16)
-                    .foregroundColor(Color.primary)
-            ) {}
-
             NavigationLink(destination: InstallationInstructionsView()) {
                 Text("Installation Instructions")
             }
