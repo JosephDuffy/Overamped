@@ -51,12 +51,8 @@ struct InstallationInstructionsView: View {
             }
             .padding()
         }
-        .tabItem {
-            VStack {
-                Image(systemName: "puzzlepiece")
-                Text("Install")
-            }
-        }
+        .navigationTitle("Installation Instructions")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
