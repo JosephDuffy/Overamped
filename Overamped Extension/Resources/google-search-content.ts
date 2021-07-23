@@ -72,6 +72,12 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
 
     const anchorURL = new URL(anchorURLString)
 
+    if (anchorURL.hostname === window.location.hostname) {
+      // Do not override internal links, e.g. links to `"#"` used for anchors acting as buttons
+      // `role="button"` could also be used but may exclude too many anchors
+      return
+    }
+
     console.debug(`URL from attribute: ${anchorURL.toString()}`)
 
     const finalURL = deampURL(anchorURL)
