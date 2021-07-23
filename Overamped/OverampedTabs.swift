@@ -22,9 +22,6 @@ struct OverampedTabs: View {
     private var showStatisticsTab: Bool = DistributionMethod.current == .debug
 
     @State
-    private var showSupportTab: Bool = DistributionMethod.current == .debug
-
-    @State
     private var showAboutTab: Bool = DistributionMethod.current == .debug
 
     var body: some View {
@@ -42,16 +39,14 @@ struct OverampedTabs: View {
                 }
             }
 
-            if showSupportTab {
-                NavigationView {
-                    SupportView()
-                }
-                .tag(Tab.support)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "heart.fill")
-                        Text("Support")
-                    }
+            NavigationView {
+                SupportView()
+            }
+            .tag(Tab.support)
+            .tabItem {
+                VStack {
+                    Image(systemName: "heart.fill")
+                    Text("Support")
                 }
             }
 
@@ -95,7 +90,6 @@ struct OverampedTabs: View {
                 showStatisticsTab = true
                 selectedTab = .statistics
             case .support:
-                showSupportTab = true
                 selectedTab = .support
             case .settings:
                 selectedTab = .settings
