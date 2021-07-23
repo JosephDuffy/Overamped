@@ -7,6 +7,7 @@ public final class SurveyAnswers: ObservableObject, Encodable {
     public enum CodingKeys: CodingKey {
         case wouldYouPayForOveramped
         case wouldYouContributeToATipJar
+        case source
     }
 
     public enum WouldYouPayForOveramped: Hashable, CustomStringConvertible {
@@ -54,5 +55,6 @@ public final class SurveyAnswers: ObservableObject, Encodable {
 
         try container.encode(wouldYouPayForOveramped?.description, forKey: .wouldYouPayForOveramped)
         try container.encode(wouldYouContributeToATipJar?.description, forKey: .wouldYouContributeToATipJar)
+        try container.encode("app", forKey: .source)
     }
 }
