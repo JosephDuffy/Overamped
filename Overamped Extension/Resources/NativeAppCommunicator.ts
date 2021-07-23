@@ -8,10 +8,10 @@ export default class NativeAppCommunicator {
         .then((response) => {
           console.debug("Loaded ignored hostnames list", response)
 
-          if (response["ignoredHostnames"] === null) {
-            resolve([])
-          } else {
+          if (response !== undefined && response["ignoredHostnames"] !== null) {
             resolve(response["ignoredHostnames"])
+          } else {
+            resolve([])
           }
         })
         .catch((error) => {
