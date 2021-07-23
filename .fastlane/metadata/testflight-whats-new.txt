@@ -5,7 +5,10 @@ Please note that Google will serve slightly different versions to different peop
 New in beta 8:
 
 - Hopefully fix Google News for everyone (please let me know)
-- Internal changes to account for future updates
+- Fix close button on images linking to the Google homepage
+- Rework app tabs, hide them before extension has been enabled
+- Ignored websites can be modified from the Overamped app
+  - Existing ignored hostnames will be migrated to the app when the extension is next loaded
 
 New in beta 7:
 
