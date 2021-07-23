@@ -7,6 +7,9 @@ struct SupportView: View {
     @AppStorage("SupportView.isShowingSurvey")
     private var isShowingSurvey = false
 
+    @AppStorage("HasSubmittedPricingSurvey")
+    private var hasSubmittedPricingSurvey = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
@@ -14,10 +17,14 @@ struct SupportView: View {
                     Overamped is developed by a single indie developer. If you're able to provide any extra support it is greatly appreciated.
                     """)
 
-                Text("✈️ TestFlight Survey")
+                Text("✈️ Pricing Survey")
                     .font(.title)
 
-                Text("A short survey is available for TestFlight users. It is 3 or less questions and will help decide the pricing model for Overamped.")
+                if hasSubmittedPricingSurvey {
+                    Text("Thank you for completing the pricing survey.")
+                } else {
+                    Text("A short survey is available for TestFlight users. It is 2 questions and will help decide the pricing model for Overamped.")
+                }
 
                 NavigationLink(isActive: $isShowingSurvey) {
                     SurveyView()

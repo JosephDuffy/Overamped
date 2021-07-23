@@ -267,7 +267,6 @@ private final class FormAPI: ObservableObject {
             formState = .error(error.localizedDescription)
         }
     }
-
 }
 
 private final class FormData: ObservableObject, Encodable, CustomReflectable {
