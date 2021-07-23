@@ -41,6 +41,19 @@ struct SupportView: View {
                     showShareSheet = true
                 }
                 .buttonStyle(BorderedButtonStyle())
+                .background(
+                    ActivityView(
+                        isPresented: $showShareSheet,
+                        items: {
+                            [
+                                "Download Overamped to disable AMP in Safari",
+                                URLUIActivityItemSource(
+                                    url: URL(string: "https://overamped.app")!
+                                ),
+                            ]
+                        }
+                    )
+                )
 
                 if DistributionMethod.current == .debug {
                     Text("Write a Review")
