@@ -43,76 +43,84 @@ public struct SurveyView: View {
 
     @ViewBuilder
     private var currentQuestions: some View {
-        let firstQuestion = "How much would you be willing to pay for Overamped?"
+        VStack(alignment: .leading, spacing: 16) {
+            let firstQuestion = "How much would you be willing to pay for Overamped?"
 
-        if let wouldYouPayForOveramped = surveyAPI.answers.wouldYouPayForOveramped {
-            Text("\(firstQuestion)\n**\(wouldYouPayForOveramped.description)**")
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity)
-                .padding()
+            if let wouldYouPayForOveramped = surveyAPI.answers.wouldYouPayForOveramped {
+                Text("\(firstQuestion)\n**\(wouldYouPayForOveramped.description)**")
 
-            let wouldPay = wouldYouPayForOveramped != .no
-            let secondQuestion = "Would you\(wouldPay ? " also" : "") consider contributing to a tip jar?"
+                let wouldPay = wouldYouPayForOveramped != .no
+                let secondQuestion = "Would you\(wouldPay ? " also" : "") consider contributing to a tip jar?"
 
-            if let wouldYouContributeToATipJar = surveyAPI.answers.wouldYouContributeToATipJar {
-                Text("\(secondQuestion)\n**\(wouldYouContributeToATipJar.description)**")
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity)
-                    .padding()
+                if let wouldYouContributeToATipJar = surveyAPI.answers.wouldYouContributeToATipJar {
+                    Text("\(secondQuestion)\n**\(wouldYouContributeToATipJar.description)**")
 
-                let enableSubmitButton: Bool = {
-                    if surveyAPI.answers.wouldYouContributeToATipJar == nil || surveyAPI.answers.wouldYouPayForOveramped == nil {
-                        return false
+                    let enableSubmitButton: Bool = {
+                        if surveyAPI.answers.wouldYouContributeToATipJar == nil || surveyAPI.answers.wouldYouPayForOveramped == nil {
+                            return false
+                        }
+
+                        switch surveyAPI.formState {
+                        case .idle, .error:
+                            return true
+                        case .submitting, .success:
+                            return false
+                        }
+                    }()
+
+                    VStack(spacing: 16) {
+                        Button("Submit Answers") {
+                            surveyAPI.submit()
+                        }
+                        .disabled(!enableSubmitButton)
                     }
+                } else {
+                    Text(secondQuestion)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.title)
 
-                    switch surveyAPI.formState {
-                    case .idle, .error:
-                        return true
-                    case .submitting, .success:
-                        return false
+                    VStack(spacing: 16) {
+                        ForEach(SurveyAnswers.WouldYouContributeToATipJar.allCases, id: \.self) { answer in
+                            Button(answer.description) {
+                                surveyAPI.answers.wouldYouContributeToATipJar = answer
+                            }
+                        }
                     }
-                }()
-                Button("Submit Answers") {
-                    surveyAPI.submit()
                 }
-                .disabled(!enableSubmitButton)
             } else {
-                Text(secondQuestion)
+                Text(firstQuestion)
                     .font(.title)
 
-                ForEach(SurveyAnswers.WouldYouContributeToATipJar.allCases, id: \.self) { answer in
-                    Button(answer.description) {
-                        surveyAPI.answers.wouldYouContributeToATipJar = answer
-                    }
-                }
-            }
-        } else {
-            Text(firstQuestion)
-                .font(.title)
+                switch store.state {
+                case .loadingProducts:
+                    ProgressView("Loading Options...")
+                        .frame(maxWidth: .infinity)
+                case .error(let error):
+                    Text("Failed to load options: \(error.localizedDescription)")
+                case .idle:
+                    VStack(spacing: 16) {
+                        Button("I would not pay for Overamped") {
+                            answerQuestion(SurveyAnswers.WouldYouPayForOveramped.no)
+                        }
 
-            switch store.state {
-            case .loadingProducts:
-                ProgressView("Loading Options...")
-            case .error(let error):
-                Text("Failed to load options: \(error.localizedDescription)")
-            case .idle:
-                Button("I would not pay for Overamped") {
-                    answerQuestion(SurveyAnswers.WouldYouPayForOveramped.no)
-                }
+                        ForEach(store.products) { product in
+                            Button(product.displayPrice) {
+                                answerQuestion(.yes(product))
+                            }
+                        }
 
-                ForEach(store.products) { product in
-                    Button(product.displayPrice) {
-                        answerQuestion(.yes(product))
+                        store.products.sorted(by: { $0.price < $1.price }).last.flatMap { product in
+                            Button("More than \(product.displayPrice)") {
+                                answerQuestion(.moreThan(product))
+                            }
+                        }
                     }
-                }
-
-                store.products.sorted(by: { $0.price < $1.price }).last.flatMap { product in
-                    Button("More than \(product.displayPrice)") {
-                        answerQuestion(.moreThan(product))
-                    }
+                    .frame(maxWidth: .infinity)
                 }
             }
         }
+        .padding()
+        .frame(maxWidth: .infinity)
     }
 
     private func answerQuestion(_ answer: SurveyAnswers.WouldYouPayForOveramped) {
@@ -121,6 +129,12 @@ public struct SurveyView: View {
 
     private func answerQuestion(_ answer: SurveyAnswers.WouldYouContributeToATipJar) {
         surveyAPI.answers.wouldYouContributeToATipJar = answer
+    }
+}
+
+struct SurveyView_Previews: PreviewProvider {
+    static var previews: some View {
+        SurveyView()
     }
 }
 
