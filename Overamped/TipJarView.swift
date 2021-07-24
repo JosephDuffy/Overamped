@@ -3,6 +3,10 @@ import StoreKit
 
 public struct TipJarView: View {
     @StateObject var store: TipJarStore = TipJarStore()
+
+    @State
+    private var manageSubscription = false
+
     @SceneStorage("TipJarView.showRecurringSubscriptionsToggle")
     private var showRecurringSubscriptionsToggle = false
 
@@ -32,38 +36,45 @@ public struct TipJarView: View {
                         .font(.caption)
                 }
             }
-        }
 
-        HStack(spacing: 16) {
-            switch store.state {
-            case .loadingProducts:
-                ProgressView("Loading Tips...")
-            case .idle, .purchasingProduct:
-                ForEach(showRecurringSubscriptions ? store.subscriptions : store.consumables) { product in
-                    Button(
-                        action: {
-                            Task {
-                                do {
-                                    try await store.purchase(product)
-                                } catch {
-                                    print("Purchase failed", error)
+            HStack(spacing: 16) {
+                switch store.state {
+                case .loadingProducts:
+                    ProgressView("Loading Tips...")
+                case .idle, .purchasingProduct:
+                    ForEach(showRecurringSubscriptions ? store.subscriptions : store.consumables) { product in
+                        Button(
+                            action: {
+                                Task {
+                                    do {
+                                        try await store.purchase(product)
+                                    } catch {
+                                        print("Purchase failed", error)
+                                    }
                                 }
+                            },
+                            label: {
+                                TipOptionView(
+                                    product: product,
+                                    isCurrent: product.id == store.currentSubscription?.productID,
+                                    isRecurring: $showRecurringSubscriptionsToggle
+                                )
                             }
-                        },
-                        label: {
-                            TipOptionView(
-                                product: product,
-                                isCurrent: product.id == store.currentSubscription?.productID,
-                                isRecurring: $showRecurringSubscriptionsToggle
-                            )
-                        }
-                    )
-                        .buttonStyle(PlainButtonStyle())
-                        .disabled(!store.canMakePurchase)
+                        )
+                            .buttonStyle(PlainButtonStyle())
+                            .disabled(!store.canMakePurchase)
+                    }
                 }
             }
-        }
             .frame(maxWidth: .infinity)
+        } else {
+            Text("Thank you for your support!")
+
+            Button("Manage Subscription") {
+                manageSubscription = true
+            }
+            .manageSubscriptionsSheet(isPresented: $manageSubscription)
+        }
     }
 }
 
