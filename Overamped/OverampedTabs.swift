@@ -13,12 +13,6 @@ struct OverampedTabs: View {
     private var selectedTab: Tab = .statistics
 
     @State
-    private var searchURL: String = ""
-
-    @State
-    private var websiteURL: String = ""
-
-    @State
     private var showStatisticsTab: Bool = DistributionMethod.current == .debug
 
     @State
@@ -51,10 +45,7 @@ struct OverampedTabs: View {
             }
 
             NavigationView {
-                FeedbackForm(
-                    searchURL: $searchURL,
-                    websiteURL: $websiteURL
-                )
+                FeedbackForm()
             }
             .tag(Tab.feedback)
             .tabItem {
@@ -82,9 +73,7 @@ struct OverampedTabs: View {
             guard let deepLink = DeepLink(url: url) else { return }
 
             switch deepLink {
-            case .feedback(let searchURL, let websiteURL):
-                self.searchURL = searchURL ?? ""
-                self.websiteURL = websiteURL ?? ""
+            case .feedback:
                 selectedTab = .feedback
             case .statistics:
                 showStatisticsTab = true

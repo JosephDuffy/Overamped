@@ -21,7 +21,7 @@ enum FeedbackReason: Hashable, CaseIterable {
 }
 
 struct FeedbackForm: View {
-    @ObservedObject private var formAPI: FormAPI
+    @StateObject private var formAPI: FormAPI = FormAPI()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -139,6 +139,25 @@ struct FeedbackForm: View {
         }
         .navigationBarTitle("Submit Feedback")
         .navigationBarTitleDisplayMode(.inline)
+        .onOpenURL(perform: { url in
+            Logger(subsystem: "net.yetii.Overamped", category: "Feedback Form")
+                .log("Opened via URL \(url.absoluteString)")
+
+            guard let deepLink = DeepLink(url: url) else { return }
+
+            switch deepLink {
+            case .feedback(let searchURL, let websiteURL):
+                if let searchURL = searchURL {
+                    formAPI.formData.searchURL = searchURL
+                }
+
+                if let websiteURL = websiteURL {
+                    formAPI.formData.websiteURL = websiteURL
+                }
+            default:
+                break
+            }
+        })
     }
 
     @ViewBuilder
@@ -170,21 +189,11 @@ struct FeedbackForm: View {
             Button("Submit", action: {}).disabled(true)
         }
     }
-
-    init(
-        searchURL: Binding<String>,
-        websiteURL: Binding<String>
-    ) {
-        formAPI = FormAPI(searchURL: searchURL, websiteURL: websiteURL)
-    }
 }
 
 struct FeedbackForm_Previews: PreviewProvider {
     static var previews: some View {
-        FeedbackForm(
-            searchURL: .constant(""),
-            websiteURL: .constant("")
-        )
+        FeedbackForm()
     }
 }
 
@@ -196,7 +205,7 @@ private final class FormAPI: ObservableObject {
         case success
     }
 
-    @ObservedObject var formData: FormData
+    @ObservedObject var formData: FormData = FormData()
 
     @Published private(set) var formState: FormState = .idle
 
@@ -204,11 +213,7 @@ private final class FormAPI: ObservableObject {
 
     private let logger = Logger(subsystem: "net.yetii.Overamped", category: "FormAPI")
 
-    init(
-        searchURL: Binding<String>,
-        websiteURL: Binding<String>
-    ) {
-        formData = FormData(searchURL: searchURL, websiteURL: websiteURL)
+    init() {
         formData.objectWillChange.sink { self.objectWillChange.send() }.store(in: &cancellables)
     }
 
@@ -297,8 +302,8 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     @Published var email: String = ""
     @Published var contactReason: FeedbackReason = .initial
     @Published var message: String = ""
-    @Binding var searchURL: String
-    @Binding var websiteURL: String
+    @Published var searchURL: String = ""
+    @Published var websiteURL: String = ""
 
     @Published
     var includeIgnoredHostnames: Bool = true
@@ -348,14 +353,6 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
             let jsonData = try encoder.encode(debugData)
             return String(data: jsonData, encoding: .utf8) ?? "<invalid UTF8>"
         }
-    }
-
-    init(
-        searchURL: Binding<String>,
-        websiteURL: Binding<String>
-    ) {
-        _searchURL = searchURL
-        _websiteURL = websiteURL
     }
 
     func encode(to encoder: Encoder) throws {
