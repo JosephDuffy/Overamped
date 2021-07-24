@@ -4,7 +4,7 @@ import OverampedCore
 struct SupportView: View {
     @State private var showShareSheet = false
 
-    @AppStorage("SupportView.isShowingSurvey")
+    @SceneStorage("SupportView.isShowingSurvey")
     private var isShowingSurvey = false
 
     @AppStorage("HasSubmittedPricingSurvey")

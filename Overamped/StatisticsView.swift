@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct StatisticsView: View {
-    @AppStorage("EnabledAdvancedStatistics")
+    @SceneStorage("EnabledAdvancedStatistics")
     private var enabledAdvancedStatistics = false
 
     @State

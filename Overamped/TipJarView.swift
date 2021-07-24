@@ -3,7 +3,7 @@ import StoreKit
 
 public struct TipJarView: View {
     @StateObject var store: TipJarStore = TipJarStore()
-    @AppStorage("TipJarView.showRecurringSubscriptionsToggle")
+    @SceneStorage("TipJarView.showRecurringSubscriptionsToggle")
     private var showRecurringSubscriptionsToggle = false
 
     private var showRecurringSubscriptions: Bool {

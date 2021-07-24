@@ -2,7 +2,7 @@ import Persist
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("SettingsView.isShowingIgnoredHostnames")
+    @SceneStorage("SettingsView.isShowingIgnoredHostnames")
     private var isShowingIgnoredHostnames = false
 
     @PersistStorage(

@@ -40,7 +40,6 @@ struct OverampedApp: App {
                             Divider()
                         }
                         OverampedTabs()
-                            .defaultAppStorage(UserDefaults(suiteName: "group.net.yetii.overamped")!)
                         // TODO: Pass `didRecentlyInstallExtension` via environment
                             .onChange(of: scenePhase) { scenePhase in
                                 switch scenePhase {
