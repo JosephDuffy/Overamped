@@ -35,7 +35,11 @@ struct SettingsView: View {
                 }
             }
 
-            Section(footer: Text("© Yetii Ltd. 2021. Overamped \(Bundle.main.appVersion) (\(Bundle.main.appBuild))")) {}
+            Section(
+                footer: Text("© Yetii Ltd. 2021. Overamped \(Bundle.main.appVersion) (\(Bundle.main.appBuild))")
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+            ) {}
         }
         .navigationTitle("Settings")
     }
