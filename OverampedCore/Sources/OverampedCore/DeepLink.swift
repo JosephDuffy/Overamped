@@ -54,7 +54,7 @@ public enum DeepLink: Hashable {
     private init(feedbackComponents components: URLComponents) {
         let openURL: URL? = (components.queryItems?.first(where: { $0.name == "url" })?.value).flatMap { URL(string: $0) }
 
-        if openURL?.host?.contains("google.") == true, openURL?.path.hasPrefix("/search") == true {
+        if openURL?.host?.contains("google.") == true, openURL?.path.hasPrefix("/search") == true || openURL?.host?.hasPrefix("news.google.") == true {
             self = .feedback(searchURL: openURL?.absoluteString, websiteURL: nil)
         } else {
             self = .feedback(searchURL: nil, websiteURL: openURL?.absoluteString)
