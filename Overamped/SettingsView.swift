@@ -20,18 +20,19 @@ struct SettingsView: View {
                 Text("Installation Instructions")
             }
 
-            Section(footer: Text("Overamped will not redirect the AMP version of websites that have been ignored.")) {
-            NavigationLink(
-                isActive: $isShowingIgnoredHostnames
-            ) {
-                IgnoredHostnamesView()
-            } label: {
-                HStack {
-                    Text("Ignored Websites")
-                    Spacer()
-                    Text(ignoredHostnames.count.formatted())
+            Section(footer: Text("Overamped will not redirect to the canonical version of websites it has been disabled on.")) {
+                NavigationLink(
+                    isActive: $isShowingIgnoredHostnames
+                ) {
+                    IgnoredHostnamesView()
+                } label: {
+                    HStack {
+                        Text("Disabled Websites")
+                        Spacer()
+                        Text(ignoredHostnames.count.formatted())
+                            .foregroundColor(Color(.placeholderText))
+                    }
                 }
-            }
             }
 
             Section(footer: Text("© Yetii Ltd. 2021. Overamped \(Bundle.main.appVersion) (\(Bundle.main.appBuild))")) {}

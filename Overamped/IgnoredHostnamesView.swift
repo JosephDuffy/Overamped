@@ -14,7 +14,7 @@ struct IgnoredHostnamesView: View {
     var body: some View {
         Group {
             if ignoredHostnames.isEmpty {
-                Text("No hostnames have been ignored")
+                Text("Overamped has not been disabled on any websites")
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
@@ -28,7 +28,7 @@ struct IgnoredHostnamesView: View {
                 }
             }
         }
-        .navigationTitle("Ignored Hostnames")
+        .navigationTitle("Disabled Websites")
     }
 
     private func deleteIgnoredHostnames(atOffsets offsets: IndexSet) {
