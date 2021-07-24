@@ -53,7 +53,7 @@ struct FeedbackForm: View {
 
                 if
                     case .websiteLoadedAMPVersion = formAPI.formData.contactReason,
-                    let ignoredHostname = formAPI.formData.ignoredHostnames?.first(where: { formAPI.formData.websiteURL.contains($0) })
+                    let ignoredHostname = formAPI.formData.ignoredHostnames.first(where: { formAPI.formData.websiteURL.contains($0) })
                 {
                     Divider()
 
@@ -124,7 +124,7 @@ struct FeedbackForm: View {
                     Section(
                         header: Text("Debug Data")
                     ) {
-                        if formAPI.formData.ignoredHostnames != nil {
+                        if !formAPI.formData.ignoredHostnames.isEmpty {
                             Toggle("Send ignored websites", isOn: $formAPI.formData.includeIgnoredHostnames)
                         }
 
@@ -139,6 +139,14 @@ struct FeedbackForm: View {
         }
         .navigationBarTitle("Submit Feedback")
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            switch formAPI.formState {
+            case .success:
+                formAPI.reset()
+            case .idle, .error, .submitting:
+                break
+            }
+        }
         .onOpenURL(perform: { url in
             Logger(subsystem: "net.yetii.Overamped", category: "Feedback Form")
                 .log("Opened via URL \(url.absoluteString)")
@@ -272,6 +280,11 @@ private final class FormAPI: ObservableObject {
             formState = .error(error.localizedDescription)
         }
     }
+
+    func reset() {
+        formData = FormData()
+        formState = .idle
+    }
 }
 
 private final class FormData: ObservableObject, Encodable, CustomReflectable {
@@ -311,10 +324,11 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     @PersistStorage(
         persister: Persister(
             key: "ignoredHostnames",
-            userDefaults: UserDefaults(suiteName: "group.net.yetii.overamped")!
+            userDefaults: UserDefaults(suiteName: "group.net.yetii.overamped")!,
+            defaultValue: []
         )
     )
-    private(set) var ignoredHostnames: [String]?
+    private(set) var ignoredHostnames: [String]
 
     var debugData: DebugData {
         DebugData(ignoredHostnames: includeIgnoredHostnames ? ignoredHostnames : nil)
@@ -353,6 +367,12 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
             let jsonData = try encoder.encode(debugData)
             return String(data: jsonData, encoding: .utf8) ?? "<invalid UTF8>"
         }
+    }
+
+    private var cancellables: Set<Combine.AnyCancellable> = []
+
+    init() {
+        _ignoredHostnames.persister.publisher.sink { _ in self.objectWillChange.send() }.store(in: &cancellables)
     }
 
     func encode(to encoder: Encoder) throws {
