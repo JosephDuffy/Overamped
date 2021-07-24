@@ -31,6 +31,7 @@ struct SupportView: View {
                 } label: {
                     Text("Complete Survey")
                 }
+                .buttonStyle(BorderedButtonStyle())
 
                 Text("Share")
                     .font(.title)
