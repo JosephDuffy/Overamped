@@ -1,13 +1,13 @@
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it!
 
-Please note that Google will serve slightly different versions to different people, so getting this to work every time for everyone is tricky. This is why I'm so thankful for everyone reporting issues! When possible, please provide the full URL of the Google search and a screenshot showing this issue. I will be providing a better feedback form in a future version.
+Please note that Google will serve slightly different versions to different people, so getting this to work every time for everyone is tricky. This is why I'm so thankful for everyone reporting issues!
 
 New in beta 8:
 
 - Hopefully fix Google News for everyone (please let me know)
 - Fix close button on images linking to the Google homepage
 - Rework app tabs, hide them before extension has been enabled
-- Ignored websites can be modified from the Overamped app
+- Ignored websites can be deleted from the Overamped app
   - Existing ignored hostnames will be migrated to the app when the extension is next loaded
 
 New in beta 7:
