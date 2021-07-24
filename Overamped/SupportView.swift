@@ -24,14 +24,14 @@ struct SupportView: View {
                     Text("Thank you for completing the pricing survey.")
                 } else {
                     Text("A short survey is available for TestFlight users. It is 2 questions and will help decide the pricing model for Overamped.")
-                }
 
-                NavigationLink(isActive: $isShowingSurvey) {
-                    SurveyView()
-                } label: {
-                    Text("Complete Survey")
+                    NavigationLink(isActive: $isShowingSurvey) {
+                        SurveyView()
+                    } label: {
+                        Text("Complete Survey")
+                    }
+                    .buttonStyle(BorderedButtonStyle())
                 }
-                .buttonStyle(BorderedButtonStyle())
 
                 Text("Share")
                     .font(.title)
