@@ -21,46 +21,70 @@ export default class NativeAppCommunicator {
     })
   }
 
-  ignoreHostname(hostname: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      browser.runtime
-        .sendMessage({
-          request: "ignoreHostname",
-          payload: {
-            hostname: hostname,
-          },
-        })
-        .then(() => {
-          console.debug(`Ignored hostname ${hostname}`)
+  /**
+   * Adds the provided hostname to ignored hostnames list.
+   *
+   * @param hostname The hostname to add to the ignored list.
+   * @returns The new array of ignored hostnames.
+   */
+  async ignoreHostname(hostname: string): Promise<string[]> {
+    try {
+      const response = await browser.runtime.sendMessage({
+        request: "ignoreHostname",
+        payload: {
+          hostname: hostname,
+        },
+      })
 
-          resolve()
-        })
-        .catch((error) => {
-          console.error(`Failed to ignore hostname ${hostname}`, error)
-          reject(error)
-        })
-    })
+      if (response !== undefined && response["ignoredHostnames"] !== null) {
+        console.log(
+          "Hostname has been ignored. New list:",
+          response["ignoredHostnames"],
+        )
+
+        return response["ignoredHostnames"]
+      } else {
+        const error = new Error(
+          "Response to ignoreHostname did not contain ignored hostnames list",
+        )
+        console.error(error, response)
+
+        throw error
+      }
+    } catch (error) {
+      console.error(`Failed to ignore hostname ${hostname}`, error)
+      throw error
+    }
   }
 
-  removeIgnoredHostname(hostname: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      browser.runtime
-        .sendMessage({
-          request: "removeIgnoredHostname",
-          payload: {
-            hostname: hostname,
-          },
-        })
-        .then(() => {
-          console.debug(`Removed ignored hostname ${hostname}`)
+  async removeIgnoredHostname(hostname: string): Promise<string[]> {
+    try {
+      const response = await browser.runtime.sendMessage({
+        request: "removeIgnoredHostname",
+        payload: {
+          hostname: hostname,
+        },
+      })
 
-          resolve()
-        })
-        .catch((error) => {
-          console.error(`Failed to remove ignored hostname ${hostname}`, error)
-          reject(error)
-        })
-    })
+      if (response !== undefined && response["ignoredHostnames"] !== null) {
+        console.log(
+          "Ignored hostname has been removed. New list:",
+          response["ignoredHostnames"],
+        )
+
+        return response["ignoredHostnames"]
+      } else {
+        const error = new Error(
+          "Response to removeIgnoredHostname did not contain ignored hostnames list",
+        )
+        console.error(error, response)
+
+        throw error
+      }
+    } catch (error) {
+      console.error(`Failed to remove ignored hostname ${hostname}`, error)
+      throw error
+    }
   }
 
   migrateIgnoredHostnames(hostnames: string[]): Promise<void> {
@@ -89,29 +113,29 @@ export default class NativeAppCommunicator {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace browser.runtime {
-  export function sendMessage(message: {
-    request: "ignoredHostnames"
-  }): Promise<{ ignoredHostnames: string[] }>
+// declare namespace browser.runtime {
+//   export function sendMessage(message: {
+//     request: "ignoredHostnames"
+//   }): Promise<{ ignoredHostnames: string[] }>
 
-  export function sendMessage(message: {
-    request: "ignoreHostname"
-    payload: {
-      hostname: string
-    }
-  }): Promise<void>
+//   export function sendMessage(message: {
+//     request: "ignoreHostname"
+//     payload: {
+//       hostname: string
+//     }
+//   }): Promise<void>
 
-  export function sendMessage(message: {
-    request: "removeIgnoredHostname"
-    payload: {
-      hostname: string
-    }
-  }): Promise<void>
+//   export function sendMessage(message: {
+//     request: "removeIgnoredHostname"
+//     payload: {
+//       hostname: string
+//     }
+//   }): Promise<void>
 
-  export function sendMessage(message: {
-    request: "migrateIgnoredHostnames"
-    payload: {
-      ignoredHostnames: string[]
-    }
-  }): Promise<void>
-}
+//   export function sendMessage(message: {
+//     request: "migrateIgnoredHostnames"
+//     payload: {
+//       ignoredHostnames: string[]
+//     }
+//   }): Promise<void>
+// }

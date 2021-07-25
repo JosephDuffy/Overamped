@@ -25,4 +25,4 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]) {
   }
 }
 
-new ExtensionApplicator(document, redirectToCanonicalVersion)
+new ExtensionApplicator(document, redirectToCanonicalVersion, false)

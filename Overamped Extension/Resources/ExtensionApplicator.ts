@@ -13,13 +13,73 @@ export default class ExtensionApplicator {
 
   #ignoredHostnames?: string[]
 
-  constructor(document: HTMLDocument, thunk: ExtensionApplierThunk) {
+  constructor(
+    document: HTMLDocument,
+    thunk: ExtensionApplierThunk,
+    listedForDOMNodeInserted: boolean,
+  ) {
     this.#document = document
     this.#thunk = thunk
     this.#nativeAppCommunicator = new NativeAppCommunicator()
 
     this.loadIgnoredHostnames()
     this.migrateIgnoredHostnames()
+
+    if (listedForDOMNodeInserted) {
+      // Support "More Results"
+      this.#document.addEventListener(
+        "DOMNodeInserted",
+        this.handleDOMNodeInserted.bind(this),
+      )
+    }
+  }
+
+  public async ignoreHostname(hostname: string): Promise<void> {
+    try {
+      const ignoredHostnames = await this.#nativeAppCommunicator.ignoreHostname(
+        hostname,
+      )
+      console.log("Hostname has been ignored. New list:", ignoredHostnames)
+      this.applyIgnoredHostnames(ignoredHostnames)
+
+      browser.storage.local
+        .set({
+          cachedIgnoredHostnames: ignoredHostnames,
+        })
+        .then(() => {
+          console.log("New ignored hostnames have been cached")
+        })
+        .catch((error) => {
+          console.error("Failed to cache ignored hostnames", error)
+        })
+    } catch (error) {
+      console.error(`Failed to ignore hostname ${hostname}`, error)
+    }
+  }
+
+  public async removeIgnoredHostname(hostname: string): Promise<void> {
+    try {
+      const ignoredHostnames =
+        await this.#nativeAppCommunicator.removeIgnoredHostname(hostname)
+      console.log(
+        "Ignored hostname has been removed. New list:",
+        ignoredHostnames,
+      )
+      this.applyIgnoredHostnames(ignoredHostnames)
+
+      browser.storage.local
+        .set({
+          cachedIgnoredHostnames: ignoredHostnames,
+        })
+        .then(() => {
+          console.log("New ignored hostnames have been cached")
+        })
+        .catch((error) => {
+          console.error("Failed to cache ignored hostnames", error)
+        })
+    } catch (error) {
+      console.error(`Failed to ignore hostname ${hostname}`, error)
+    }
   }
 
   private applyIgnoredHostnames(ignoredHostnames: string[]) {
@@ -46,17 +106,6 @@ export default class ExtensionApplicator {
       return
     }
 
-    this.#document.removeEventListener(
-      "DOMNodeInserted",
-      this.handleDOMNodeInserted.bind(this),
-    )
-
-    // Support "More Results"
-    this.#document.addEventListener(
-      "DOMNodeInserted",
-      this.handleDOMNodeInserted.bind(this),
-    )
-
     this.#thunk(ignoredHostnames)
   }
 
@@ -75,21 +124,48 @@ export default class ExtensionApplicator {
       .catch((error) => {
         console.error("Failed to load ignoredHostnames setting", error)
       })
+
+    browser.storage.onChanged.addListener(this.localStorageChanged.bind(this))
+  }
+
+  private localStorageChanged(
+    changes: browser.storage.ChangeDict,
+    areaName: browser.storage.StorageName,
+  ) {
+    console.debug(`Storage has changed in ${areaName}:`, changes)
+
+    if (areaName !== "local") {
+      return
+    }
+
+    if ("cachedIgnoredHostnames" in changes) {
+      const cachedIgnoredHostnames = changes["cachedIgnoredHostnames"]
+      const newIgnoredHostnames = cachedIgnoredHostnames.newValue
+
+      if (newIgnoredHostnames && Array.isArray(newIgnoredHostnames)) {
+        this.applyIgnoredHostnames(newIgnoredHostnames)
+      }
+    }
   }
 
   private migrateIgnoredHostnames() {
-    browser.storage.local.get("ignoredHostnames").then((storage) => {
-      const ignoredHostnames = storage["ignoredHostnames"] as
-        | string[]
-        | undefined
+    browser.storage.local
+      .get("ignoredHostnames")
+      .then((storage) => {
+        const ignoredHostnames = storage["ignoredHostnames"] as
+          | string[]
+          | undefined
 
-      if (ignoredHostnames !== undefined) {
-        this.#nativeAppCommunicator
-          .migrateIgnoredHostnames(ignoredHostnames)
-          .then(() => {
-            browser.storage.local.remove("ignoredHostnames")
-          })
-      }
-    })
+        if (ignoredHostnames !== undefined) {
+          this.#nativeAppCommunicator
+            .migrateIgnoredHostnames(ignoredHostnames)
+            .then(() => {
+              browser.storage.local.remove("ignoredHostnames")
+            })
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to load ignored hostnames for migration", error)
+      })
   }
 }

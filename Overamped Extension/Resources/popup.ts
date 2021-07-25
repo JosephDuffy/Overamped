@@ -1,4 +1,4 @@
-import NativeAppCommunicator from "./NativeAppCommunicator"
+import ExtensionApplicator from "./ExtensionApplicator"
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const toggleAllowListButton = document.getElementById(
@@ -54,20 +54,20 @@ const submitFeedbackButton = document.getElementById(
 })()
 
 async function applyToPage() {
-  const nativeAppCommunicator = new NativeAppCommunicator()
-  const settingsPromise = nativeAppCommunicator.ignoredHostnames()
-  const currentTabPromise = browser.tabs.getCurrent()
-  const [ignoredHostnames, currentTab] = await Promise.all([
-    settingsPromise,
-    currentTabPromise,
-  ])
-  configurePage(ignoredHostnames, currentTab, nativeAppCommunicator)
+  const currentTab = await browser.tabs.getCurrent()
+  const extensionApplicator = new ExtensionApplicator(
+    document,
+    (ignoredHostnames: string[]) => {
+      configurePage(ignoredHostnames, currentTab, extensionApplicator)
+    },
+    false,
+  )
 }
 
 async function configurePage(
   ignoredHostnames: string[],
   currentTab: browser.tabs.Tab,
-  nativeAppCommunicator: NativeAppCommunicator,
+  extensionApplicator: ExtensionApplicator,
 ) {
   const currentTabURL = currentTab.url
   if (!currentTabURL) {
@@ -94,7 +94,7 @@ async function configurePage(
         ignoredHostnames,
         currentTabURL,
         <browser.tabs.Tab & { url: string }>currentTab,
-        nativeAppCommunicator,
+        extensionApplicator,
       )
     }
   } else {
@@ -102,7 +102,7 @@ async function configurePage(
       ignoredHostnames,
       currentTabURL,
       <browser.tabs.Tab & { url: string }>currentTab,
-      nativeAppCommunicator,
+      extensionApplicator,
     )
   }
 }
@@ -130,7 +130,7 @@ async function showNonGoogleUI(
   ignoredHostnames: string[],
   currentTabURL: string,
   currentTab: browser.tabs.Tab & { url: string },
-  nativeAppCommunicator: NativeAppCommunicator,
+  extensionApplicator: ExtensionApplicator,
 ) {
   toggleAllowListButton.hidden = false
   googleContentContainer.hidden = true
@@ -146,7 +146,7 @@ async function showNonGoogleUI(
 
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true
-      nativeAppCommunicator
+      extensionApplicator
         .removeIgnoredHostname(currentURL.hostname)
         .then(() => {
           console.info(
@@ -167,7 +167,7 @@ async function showNonGoogleUI(
     toggleAllowListButton.onclick = () => {
       toggleAllowListButton.disabled = true
 
-      nativeAppCommunicator
+      extensionApplicator
         .ignoreHostname(currentURL.hostname)
         .then(() => {
           console.info(`${currentURL.hostname} has been added to ignore list`)
