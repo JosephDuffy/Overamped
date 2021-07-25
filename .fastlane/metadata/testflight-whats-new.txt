@@ -1,3 +1,5 @@
+A pricing survey is available in the Support tab. If you have the time to fill out the 2 questions it would be much appreciated!
+
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it!
 
 Please note that Google will serve slightly different versions to different people, so getting this to work every time for everyone is tricky. This is why I'm so thankful for everyone reporting issues!
@@ -12,6 +14,7 @@ New in beta 8:
 - Ignored websites can be deleted from the Overamped app
   - Existing ignored hostnames will be migrated to the app when the extension is next loaded
 - Improvements to feedback form
+- Add base for Statistics tab. It's current static and no statistics are being collected.
 
 New in beta 7:
 
