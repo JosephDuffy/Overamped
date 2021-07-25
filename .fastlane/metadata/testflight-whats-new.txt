@@ -6,9 +6,12 @@ New in beta 8:
 
 - Hopefully fix Google News for everyone (please let me know)
 - Fix close button on images linking to the Google homepage
+- The canonical version of AMP pages can be manually opened from within the extension
+  - I'm working on making this automatic but it will require the extension to have more permissions
 - Rework app tabs, hide them before extension has been enabled
 - Ignored websites can be deleted from the Overamped app
   - Existing ignored hostnames will be migrated to the app when the extension is next loaded
+- Improvements to feedback form
 
 New in beta 7:
 
