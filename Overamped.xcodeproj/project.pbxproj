@@ -292,8 +292,8 @@
 			buildPhases = (
 				D9B8EC0026A29ED900C1243E /* Build background.js */,
 				D993C5612684AFDE002A84E6 /* Build google-amp-content.js */,
-				D993C55F26849E3F002A84E6 /* Build google-search-content.js */,
 				D9A2D74B269A013200BED34A /* Build google-news-article.js */,
+				D993C55F26849E3F002A84E6 /* Build google-search-content.js */,
 				D967DADA2687991100B328C6 /* Build popup.js */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
@@ -399,6 +399,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Overamped Extension/Resources/popup.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
 			);
 			name = "Build popup.js";
 			outputFileListPaths = (
@@ -419,6 +421,9 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Overamped Extension/Resources/google-search-content.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/deampURL.ts",
 			);
 			name = "Build google-search-content.js";
 			outputFileListPaths = (
@@ -439,6 +444,9 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Overamped Extension/Resources/google-amp-content.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/deampURL.ts",
 			);
 			name = "Build google-amp-content.js";
 			outputFileListPaths = (
@@ -459,6 +467,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Overamped Extension/Resources/google-news-article.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
+				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
 			);
 			name = "Build google-news-article.js";
 			outputFileListPaths = (
