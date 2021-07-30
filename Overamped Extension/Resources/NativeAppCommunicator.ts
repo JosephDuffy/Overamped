@@ -133,6 +133,25 @@ export default class NativeAppCommunicator {
       throw error
     }
   }
+
+  async logRedirectedLink(url: URL): Promise<void> {
+    const redirectedHostname = url.hostname
+    try {
+      await browser.runtime.sendMessage({
+        request: "logRedirectedLink",
+        payload: {
+          redirectedHostname,
+        },
+      })
+      console.debug(`Logged redirected hostnames ${redirectedHostname}`)
+    } catch (error) {
+      console.error(
+        `Failed to log redirected hostnames ${redirectedHostname}`,
+        error,
+      )
+      throw error
+    }
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace

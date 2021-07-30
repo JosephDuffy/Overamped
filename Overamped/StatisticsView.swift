@@ -7,6 +7,9 @@ struct StatisticsView: View {
     @AppStorage("replaceLinksCount")
     private var replaceLinksCount: Int = 0
 
+    @AppStorage("redirectedLinksCount")
+    private var redirectedLinksCount: Int = 0
+
     @State
     private var showLinksReplacedHelp = false
 
@@ -61,7 +64,7 @@ struct StatisticsView: View {
                         )
                     }
 
-                    Text("Links redirected: \(123456789.formatted())")
+                    Text("Links redirected: \(redirectedLinksCount.formatted())")
                 }
 
                 Text("Advanced Statistics")

@@ -138,6 +138,35 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 ]
             )
             defaults.set(existingReplacedLinks, forKey: "replacedLinks")
+        case "logRedirectedLink":
+            response = nil
+
+            guard let payload = messageDictionary["payload"] as? [String: String] else {
+                return
+            }
+
+            guard let redirectedHostname = payload["redirectedHostname"] else {
+                return
+            }
+
+            var redirectedLinksCount = defaults.integer(forKey: "redirectedLinksCount")
+            redirectedLinksCount += 1
+            defaults.set(redirectedLinksCount, forKey: "redirectedLinksCount")
+
+            logger.log("Increased redirected links count by 1, now \(redirectedLinksCount)")
+
+            let logRedirectedLinks = defaults.bool(forKey: "enabledAdvancedStatistics")
+
+            guard logRedirectedLinks else { return }
+
+            let existingRedirectedLinks = defaults.array(forKey: "redirectedLinks") ?? []
+            guard var existingRedirectedLinks = existingRedirectedLinks as? [[Date: String]] else { return }
+            existingRedirectedLinks.append(
+                [
+                    .now: redirectedHostname,
+                ]
+            )
+            defaults.set(existingRedirectedLinks, forKey: "redirectedLinks")
         default:
             logger.error("Unknown request \(request)")
             response = nil

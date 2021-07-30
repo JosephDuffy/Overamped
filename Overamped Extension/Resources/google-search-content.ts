@@ -130,6 +130,8 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
       console.debug("Pushing non-AMP URL")
       window.location.assign(finalURLString)
 
+      new NativeAppCommunicator().logRedirectedLink(finalURL)
+
       return false
     }
 
