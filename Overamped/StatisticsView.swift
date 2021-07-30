@@ -17,7 +17,7 @@ struct StatisticsView: View {
     private var showLinksRedirectedHelp = false
 
     @State
-    private var showShareUI = false
+    private var showShareSheet = false
 
     var body: some View {
         ScrollView {
@@ -86,12 +86,28 @@ struct StatisticsView: View {
         .toolbar {
             Button(
                 action: {
-                    showShareUI = true
+                    showShareSheet = true
                 },
                 label: {
                     Image(systemName: "square.and.arrow.up")
                 }
             )
+                .background(
+                    ActivityView(
+                        isPresented: $showShareSheet,
+                        items: {
+                            [
+                                String.localizedStringWithFormat(
+                                    String(localized: "statistics_share_content"),
+                                    replaceLinksCount
+                                ),
+                                URLUIActivityItemSource(
+                                    url: URL(string: "https://overamped.app")!
+                                ),
+                            ]
+                        }
+                    )
+                )
         }
     }
 }

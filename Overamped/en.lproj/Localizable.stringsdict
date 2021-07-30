@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>statistics_share_content</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@COUNT@</string>
+		<key>COUNT</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Overamped has replaced %ld AMP link in Safari. Download now to disable AMP.</string>
+			<key>other</key>
+			<string>Overamped has replaced %ld AMP links in Safari. Download now to disable AMP.</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
