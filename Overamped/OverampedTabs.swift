@@ -6,30 +6,23 @@ struct OverampedTabs: View {
         case statistics
         case feedback
         case support
-        case settings
+        case allowList
+        case about
     }
 
     @SceneStorage("OverampedTabs.selectedTab")
     private var selectedTab: Tab = .statistics
 
-    @State
-    private var showStatisticsTab: Bool = DistributionMethod.current == .debug
-
-    @State
-    private var showAboutTab: Bool = DistributionMethod.current == .debug
-
     var body: some View {
         TabView(selection: $selectedTab) {
-            if showStatisticsTab {
-                NavigationView {
-                    StatisticsView()
-                }
-                .tag(Tab.statistics)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "chart.xyaxis.line")
-                        Text("Statistics")
-                    }
+            NavigationView {
+                StatisticsView()
+            }
+            .tag(Tab.statistics)
+            .tabItem {
+                VStack {
+                    Image(systemName: "chart.xyaxis.line")
+                    Text("Statistics")
                 }
             }
 
@@ -56,13 +49,24 @@ struct OverampedTabs: View {
             }
 
             NavigationView {
-                SettingsView()
+                IgnoredHostnamesView()
             }
-            .tag(Tab.settings)
+            .tag(Tab.allowList)
             .tabItem {
                 VStack {
-                    Image(systemName: "gear")
-                    Text("Settings")
+                    Image(systemName: "checkmark")
+                    Text("Allow List")
+                }
+            }
+
+            NavigationView {
+                AboutView()
+            }
+            .tag(Tab.about)
+            .tabItem {
+                VStack {
+                    Image(systemName: "info.circle")
+                    Text("About")
                 }
             }
         }
@@ -76,12 +80,11 @@ struct OverampedTabs: View {
             case .feedback:
                 selectedTab = .feedback
             case .statistics:
-                showStatisticsTab = true
                 selectedTab = .statistics
             case .support:
                 selectedTab = .support
             case .settings:
-                selectedTab = .settings
+                selectedTab = .allowList
             }
         })
     }

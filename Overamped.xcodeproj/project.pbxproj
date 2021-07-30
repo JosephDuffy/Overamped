@@ -13,6 +13,8 @@
 		D967DAD82687627500B328C6 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD52686484100B328C6 /* popup.css */; };
 		D967DAD92687627500B328C6 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD62686484100B328C6 /* popup.html */; };
 		D96BF7DA26B3C6FE00E6EBE9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D96BF7DC26B3C6FE00E6EBE9 /* Localizable.stringsdict */; };
+		D96BF7DE26B3CA2900E6EBE9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */; };
+		D96BF7E026B3CD5E00E6EBE9 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */; };
 		D984BB9B26A8F54200500856 /* IgnoredHostnamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984BB9A26A8F54200500856 /* IgnoredHostnamesView.swift */; };
 		D993C5662684B052002A84E6 /* google-amp-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5622684B04F002A84E6 /* google-amp-content.js */; };
 		D993C5672684B052002A84E6 /* google-search-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D993C5632684B04F002A84E6 /* google-search-content.js */; };
@@ -31,7 +33,6 @@
 		D9CC9D9D26AA79DA00FE447C /* SurveyAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */; };
 		D9CC9D9F26AA943300FE447C /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC9D9E26AA943300FE447C /* ActivityView.swift */; };
 		D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */; };
-		D9CDF0AD26A0FC72006F6B99 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AC26A0FC72006F6B99 /* SettingsView.swift */; };
 		D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
 		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -81,6 +82,8 @@
 		D967DAD62686484100B328C6 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		D967DADB268799B400B328C6 /* popup.ts */ = {isa = PBXFileReference; explicitFileType = sourcecode.javascript; path = popup.ts; sourceTree = "<group>"; };
 		D96BF7DB26B3C6FE00E6EBE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		D984BB9A26A8F54200500856 /* IgnoredHostnamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredHostnamesView.swift; sourceTree = "<group>"; };
 		D993C5622684B04F002A84E6 /* google-amp-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-amp-content.js"; sourceTree = "<group>"; };
 		D993C5632684B04F002A84E6 /* google-search-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-search-content.js"; sourceTree = "<group>"; };
@@ -106,7 +109,6 @@
 		D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyAnswers.swift; sourceTree = "<group>"; };
 		D9CC9D9E26AA943300FE447C /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
-		D9CDF0AC26A0FC72006F6B99 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		D9FF5B69268142B30027BD81 /* Overamped.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overamped.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FF5B7B268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -197,7 +199,8 @@
 				D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */,
 				D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */,
 				D994C63A26A1EF9A000649AA /* TipJarView.swift */,
-				D9CDF0AC26A0FC72006F6B99 /* SettingsView.swift */,
+				D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */,
+				D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */,
 				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
 				D994C63726A13682000649AA /* TipJarStore.swift */,
 				D9CC9D9E26AA943300FE447C /* ActivityView.swift */,
@@ -519,6 +522,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D96BF7DE26B3CA2900E6EBE9 /* AboutView.swift in Sources */,
 				D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */,
 				D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */,
 				D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */,
@@ -526,10 +530,10 @@
 				D994C64326A26D29000649AA /* OverampedCoreImport.swift in Sources */,
 				D984BB9B26A8F54200500856 /* IgnoredHostnamesView.swift in Sources */,
 				D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */,
-				D9CDF0AD26A0FC72006F6B99 /* SettingsView.swift in Sources */,
 				D9CC9D9F26AA943300FE447C /* ActivityView.swift in Sources */,
 				D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */,
 				D9CC9D9D26AA79DA00FE447C /* SurveyAnswers.swift in Sources */,
+				D96BF7E026B3CD5E00E6EBE9 /* SafariView.swift in Sources */,
 				D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */,
 				D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */,
 				D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */,
@@ -810,6 +814,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -850,6 +855,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

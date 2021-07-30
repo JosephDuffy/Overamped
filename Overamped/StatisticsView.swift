@@ -74,9 +74,7 @@ struct StatisticsView: View {
                     // TODO: Show advanced statistics
                 } else {
                     Text("""
-                    Advanced statistics are disabled by default due to potential privacy concerns. Enable advanced statistics to collect:
-
-                    • Domains of redirected links
+                    Advanced statistics are disabled by default due to the sensitive nature of the data collected. Enable advanced statistics to collect the domains of links replaced
                     """)
                 }
             }
