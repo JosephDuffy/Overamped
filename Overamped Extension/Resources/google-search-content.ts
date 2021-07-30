@@ -1,5 +1,6 @@
 import deampURL from "./deampURL"
 import ExtensionApplicator from "./ExtensionApplicator"
+import NativeAppCommunicator from "./NativeAppCommunicator"
 
 new ExtensionApplicator(document, replaceAMPLinks, true)
 
@@ -48,6 +49,8 @@ function findAMPLogoRelativeToAnchor(
 function replaceAMPLinks(ignoredHostnames: string[]) {
   const ampAnchor = document.body.querySelectorAll("a[data-ved]")
   console.debug(`Found ${ampAnchor.length} AMP links`)
+
+  const newlyReplacedURLs: URL[] = []
 
   ampAnchor.forEach((element) => {
     const anchor = element as HTMLAnchorElement
@@ -111,6 +114,8 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
       return
     }
 
+    newlyReplacedURLs.push(finalURL)
+
     const finalURLString = finalURL.toString()
 
     console.info(`De-AMPed URL: ${finalURLString}`)
@@ -142,6 +147,8 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
 
     anchorOnclickListeners[ved] = modifiedAnchor
   })
+
+  new NativeAppCommunicator().logReplacedLinks(newlyReplacedURLs)
 
   document.body.dataset.overampedReplacedLinksCount = `${
     Object.keys(anchorOnclickListeners).length

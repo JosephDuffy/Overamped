@@ -110,6 +110,29 @@ export default class NativeAppCommunicator {
         })
     })
   }
+
+  async logReplacedLinks(urls: URL[]): Promise<void> {
+    if (urls.length === 0) {
+      return
+    }
+
+    const replacedHostnames = urls.map((url) => url.hostname)
+    try {
+      await browser.runtime.sendMessage({
+        request: "logReplacedLinks",
+        payload: {
+          replacedLinks: replacedHostnames,
+        },
+      })
+      console.debug(`Logged replaced hostnames ${replacedHostnames}`)
+    } catch (error) {
+      console.error(
+        `Failed to log replaced hostnames ${replacedHostnames}`,
+        error,
+      )
+      throw error
+    }
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace

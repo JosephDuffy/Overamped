@@ -4,6 +4,9 @@ struct StatisticsView: View {
     @SceneStorage("EnabledAdvancedStatistics")
     private var enabledAdvancedStatistics = false
 
+    @AppStorage("replaceLinksCount")
+    private var replaceLinksCount: Int = 0
+
     @State
     private var showLinksReplacedHelp = false
 
@@ -38,7 +41,7 @@ struct StatisticsView: View {
                         )
                     }
 
-                    Text("Links replaced: \(123456789.formatted())")
+                    Text("Links replaced: \(replaceLinksCount.formatted())")
                 }
 
                 HStack {

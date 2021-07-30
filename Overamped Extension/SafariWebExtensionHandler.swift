@@ -2,14 +2,18 @@ import SafariServices
 import os.log
 
 final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
+    private lazy var logger: Logger = {
+        Logger(subsystem: "net.yetii.Overamped.Extension", category: "Extension Request Handler")
+    }()
+
     func beginRequest(with context: NSExtensionContext) {
         // Unpack the message from Safari Web Extension.
         let item = context.inputItems[0] as? NSExtensionItem
         let message = item?.userInfo?[SFExtensionMessageKey]
 
         // Update the value in UserDefaults.
-        let defaults = UserDefaults(suiteName: "group.net.yetii.overamped")
-        defaults?.set(true, forKey: "extensionHasBeenEnabled")
+        let defaults = UserDefaults(suiteName: "group.net.yetii.overamped")!
+        defaults.set(true, forKey: "extensionHasBeenEnabled")
 
         let messageDictionary = message as? [String: Any]
 
@@ -25,13 +29,22 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         }
 
         guard let messageDictionary = messageDictionary else {
+            logger.error("Message dictionary was not provided")
             response = nil
             return
         }
 
-        switch messageDictionary["request"] as? String {
+        guard let request = messageDictionary["request"] as? String else {
+            logger.error("Message did not contain a request")
+            response = nil
+            return
+        }
+
+        logger.debug("Received request: \(request)")
+
+        switch request {
         case "ignoredHostnames":
-            let ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            let ignoredHostnames = (defaults.array(forKey: "ignoredHostnames") as? [String]) ?? []
             response = NSExtensionItem()
             response?.userInfo = [
                 SFExtensionMessageKey: [
@@ -49,9 +62,9 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 return
             }
 
-            var ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            var ignoredHostnames = (defaults.array(forKey: "ignoredHostnames") as? [String]) ?? []
             ignoredHostnames.append(hostname)
-            defaults?.set(ignoredHostnames, forKey: "ignoredHostnames")
+            defaults.set(ignoredHostnames, forKey: "ignoredHostnames")
 
             response = NSExtensionItem()
             response?.userInfo = [
@@ -70,9 +83,9 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 return
             }
 
-            var ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            var ignoredHostnames = (defaults.array(forKey: "ignoredHostnames") as? [String]) ?? []
             ignoredHostnames.removeAll(where: { $0 == hostname })
-            defaults?.set(ignoredHostnames, forKey: "ignoredHostnames")
+            defaults.set(ignoredHostnames, forKey: "ignoredHostnames")
 
             response = NSExtensionItem()
             response?.userInfo = [
@@ -91,12 +104,42 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 return
             }
 
-            var ignoredHostnames = (defaults?.array(forKey: "ignoredHostnames") as? [String]) ?? []
+            var ignoredHostnames = (defaults.array(forKey: "ignoredHostnames") as? [String]) ?? []
             ignoredHostnames.append(contentsOf: ignoredHostnamesToMigrate)
-            defaults?.set(ignoredHostnames, forKey: "ignoredHostnames")
+            defaults.set(ignoredHostnames, forKey: "ignoredHostnames")
 
             response = nil
+        case "logReplacedLinks":
+            response = nil
+
+            guard let payload = messageDictionary["payload"] as? [String: [String]] else {
+                return
+            }
+
+            guard let replacedLinks = payload["replacedLinks"] else {
+                return
+            }
+
+            var replaceLinksCount = defaults.integer(forKey: "replaceLinksCount")
+            replaceLinksCount += replacedLinks.count
+            defaults.set(replaceLinksCount, forKey: "replaceLinksCount")
+
+            logger.log("Increased replaced links count by \(replacedLinks.count), now \(replaceLinksCount)")
+
+            let logReplacedLinks = defaults.bool(forKey: "enabledAdvancedStatistics")
+
+            guard logReplacedLinks else { return }
+
+            let existingReplacedLinks = defaults.array(forKey: "replacedLinks") ?? []
+            guard var existingReplacedLinks = existingReplacedLinks as? [[Date: [String]]] else { return }
+            existingReplacedLinks.append(
+                [
+                    .now: replacedLinks,
+                ]
+            )
+            defaults.set(existingReplacedLinks, forKey: "replacedLinks")
         default:
+            logger.error("Unknown request \(request)")
             response = nil
         }
     }
