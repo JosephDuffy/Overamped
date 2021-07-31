@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct AboutView: View {
-    @State private var showInstallationInstructions = false
+    @SceneStorage("AboutView.showInstallationInstructions")
+    private var showInstallationInstructions = false
     @State private var showPrivacyPolicy = false
     @State private var showMoreApps = false
 

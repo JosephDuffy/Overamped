@@ -20,34 +20,107 @@ struct InstallationInstructionsView: View {
                 Text("""
                     The Overamped extension can be enabled from within Safari.
 
-                    Start by opening Safari and performing a Google search. Tap the bar at the bottom, then tap the \"More\" button:
+                    Start by opening Safari and opening a web page, such as a Google search. Tap the bar at the bottom, then tap the “More” button:
                     """)
 
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: "square.and.arrow.up")
                     .foregroundColor(.accentColor)
+                    .font(.title2)
 
-                Text("Then choose \"Extensions\":")
+                Group {
+                    Text("Then choose “Extensions”:")
 
-                HStack {
-                    Text("Extensions")
-                    Spacer()
-                    Image(systemName: "puzzlepiece")
+                    HStack {
+                        Text("Extensions")
+                        Spacer()
+                        Image(systemName: "puzzlepiece")
+                    }
+                    .padding()
+                    .background(
+                        Color(.secondarySystemBackground)
+                            .cornerRadius(12)
+                    )
+
+                    Text("Turn “Overamped” on:")
+
+                    HStack {
+                        Image("LargeIcon")
+                            .resizable()
+                            .frame(width: 38, height: 38)
+                        Text("Overamped")
+                        Spacer()
+                        Toggle(isOn: .constant(true), label: {})
+                            .allowsHitTesting(false)
+                    }
+                    .padding(.vertical, 4)
+                    .padding(.horizontal)
+                    .background(
+                        Color(.secondarySystemBackground)
+                            .cornerRadius(12)
+                    )
+
+                    Text("And tap “Done”:")
+
+                    HStack {
+                        Button("Done") {}
+                        .opacity(0)
+                        .allowsHitTesting(false)
+                        Spacer()
+                        Text("Extensions")
+                        Spacer()
+                        Button("Done") {}
+                        .allowsHitTesting(false)
+                    }
+                    .font(.body.bold())
+                    .padding()
+                    .background(
+                        Color(.secondarySystemBackground)
+                    )
+                    .clipShape(
+                        RoundedCorner(
+                            radius: 12,
+                            corners: [.topLeft, .topRight]
+                        )
+                    )
                 }
-                .padding()
-                .background(
-                    Color(.secondarySystemBackground)
-                        .cornerRadius(12)
-                )
 
-                Text(
-                    """
-                    Turn "Overamped" on and tap "Done".
+                Group {
+                    Text("Select Overamped:")
 
-                    Tap "Overamped" to provide access to Google.
+                    HStack {
+                        Text("Overamped")
+                        Spacer()
+                        Image("ToolbarIcon")
+                            .foregroundColor(.primary)
+                    }
+                    .padding()
+                    .background(
+                        Color(.secondarySystemBackground)
+                            .cornerRadius(12)
+                    )
 
-                    Any AMP links on the current page or any other Google searches will be updated to the non-AMP version.
-                    """
-                )
+                    Text("Choose “Always Allow...”:")
+
+                    HStack {
+                        Button("Always Allow...") {}
+                        .frame(maxWidth: .infinity)
+                        .allowsHitTesting(false)
+                    }
+                    .padding(12)
+                    .background(.ultraThinMaterial)
+
+                    Text("Providing access to all websites will ensure all AMP links are redirected, including links in Google search results, any website, and opened via apps.")
+
+                    HStack {
+                        Button("Always Allow on Every Website...") {}
+                        .frame(maxWidth: .infinity)
+                        .allowsHitTesting(false)
+                    }
+                    .padding(12)
+                    .background(.ultraThinMaterial)
+                }
+
+                Text("From now on you should never see an AMP or Yandex Turbo page again!")
             }
             .padding()
         }
@@ -61,3 +134,24 @@ struct InstallationInstructionsView_Previews: PreviewProvider {
         InstallationInstructionsView()
     }
 }
+
+struct RoundedCorner: Shape {
+
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+extension HorizontalAlignment {
+    private enum HCenterAlignment: AlignmentID {
+        static func defaultValue(in dimensions: ViewDimensions) -> CGFloat {
+            return dimensions[HorizontalAlignment.center]
+        }
+    }
+    static let hCenterred = HorizontalAlignment(HCenterAlignment.self)
+}
+
