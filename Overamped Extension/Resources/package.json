@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "checkTypes": "tsc --noEmit",
+    "build": "npm run build-background && npm run build-google-amp-content && npm run build-google-news-article && npm run build-google-search-content && npm run build-popup",
     "build-background": "esbuild background.ts --bundle --outfile=background.js --target=safari15",
     "build-google-amp-content": "esbuild google-amp-content.ts --bundle --outfile=google-amp-content.js --target=safari15",
     "build-google-news-article": "esbuild google-news-article.ts --bundle --outfile=google-news-article.js --target=safari15",

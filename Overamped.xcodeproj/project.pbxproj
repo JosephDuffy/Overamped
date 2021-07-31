@@ -296,11 +296,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Overamped Extension" */;
 			buildPhases = (
-				D9B8EC0026A29ED900C1243E /* Build background.js */,
-				D993C5612684AFDE002A84E6 /* Build google-amp-content.js */,
-				D9A2D74B269A013200BED34A /* Build google-news-article.js */,
-				D993C55F26849E3F002A84E6 /* Build google-search-content.js */,
-				D967DADA2687991100B328C6 /* Build popup.js */,
+				D993C5612684AFDE002A84E6 /* Build JS */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
 				D9FF5B84268142B90027BD81 /* Resources */,
@@ -397,115 +393,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D967DADA2687991100B328C6 /* Build popup.js */ = {
+		D993C5612684AFDE002A84E6 /* Build JS */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/popup.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
 			);
-			name = "Build popup.js";
+			name = "Build JS";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/popup.js",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-popup\n";
-		};
-		D993C55F26849E3F002A84E6 /* Build google-search-content.js */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/google-search-content.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/deampURL.ts",
-			);
-			name = "Build google-search-content.js";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/google-search-content.js",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-search-content\n";
-		};
-		D993C5612684AFDE002A84E6 /* Build google-amp-content.js */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/google-amp-content.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/deampURL.ts",
-			);
-			name = "Build google-amp-content.js";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/google-amp-content.js",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-amp-content\n";
-		};
-		D9A2D74B269A013200BED34A /* Build google-news-article.js */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/google-news-article.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/NativeAppCommunicator.ts",
-				"$(SRCROOT)/Overamped Extension/Resources/ExtensionApplicator.ts",
-			);
-			name = "Build google-news-article.js";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/google-news-article.js",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-google-news-article\n";
-		};
-		D9B8EC0026A29ED900C1243E /* Build background.js */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/background.ts",
-			);
-			name = "Build background.js";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/Overamped Extension/Resources/background.js",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build-background\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
