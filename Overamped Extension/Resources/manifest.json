@@ -236,7 +236,7 @@
     {
       "js": ["generic-amp-content.js"],
       "run_at": "document_start",
-      "matches": ["<all_urls>"]
+      "matches": ["http://*/*", "https://*/*"]
     },
     {
       "js": ["google-search-content.js"],
