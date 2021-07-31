@@ -154,30 +154,32 @@ export default class NativeAppCommunicator {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-// declare namespace browser.runtime {
-//   export function sendMessage(message: {
-//     request: "ignoredHostnames"
-//   }): Promise<{ ignoredHostnames: string[] }>
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace browser.runtime {
+    function sendMessage(message: {
+      request: "ignoredHostnames"
+    }): Promise<{ ignoredHostnames: string[] }>
 
-//   export function sendMessage(message: {
-//     request: "ignoreHostname"
-//     payload: {
-//       hostname: string
-//     }
-//   }): Promise<void>
+    function sendMessage(message: {
+      request: "ignoreHostname"
+      payload: {
+        hostname: string
+      }
+    }): Promise<{ ignoredHostnames: string[] }>
 
-//   export function sendMessage(message: {
-//     request: "removeIgnoredHostname"
-//     payload: {
-//       hostname: string
-//     }
-//   }): Promise<void>
+    function sendMessage(message: {
+      request: "removeIgnoredHostname"
+      payload: {
+        hostname: string
+      }
+    }): Promise<{ ignoredHostnames: string[] }>
 
-//   export function sendMessage(message: {
-//     request: "migrateIgnoredHostnames"
-//     payload: {
-//       ignoredHostnames: string[]
-//     }
-//   }): Promise<void>
-// }
+    function sendMessage(message: {
+      request: "migrateIgnoredHostnames"
+      payload: {
+        ignoredHostnames: string[]
+      }
+    }): Promise<void>
+  }
+}
