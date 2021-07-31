@@ -4,6 +4,12 @@ Thank you to everyone that's been using Overamped, especially those that have pr
 
 Please note that Google will serve slightly different versions to different people, so getting this to work every time for everyone is tricky. This is why I'm so thankful for everyone reporting issues!
 
+New in beta 10:
+
+- Remove manual "de-amping" of URLs to fix some websites, e.g. amp.dev
+  - Enabling access to all websites is strongly recommended now
+- Improve explanation and collections of statistics
+
 New in beta 9:
 
 - Google's AMP cache (/amp/s/ links) are now handled better and will redirect to the same URL displayed in the "i" dropdown
