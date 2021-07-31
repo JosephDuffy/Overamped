@@ -38,13 +38,13 @@ struct StatisticsView: View {
                     )
                     .alert(isPresented: $showLinksReplacedHelp) {
                         Alert(
-                            title: Text("Links Replaced"),
-                            message: Text("A replaced link is a link that Overamped replaced."),
+                            title: Text("AMP Search Results Found"),
+                            message: Text("A count of the Google search results that without Overamped would open with AMP."),
                             dismissButton: .default(Text("Dismiss"))
                         )
                     }
 
-                    Text("Links replaced: \(replaceLinksCount.formatted())")
+                    Text("AMP search results found: \(replaceLinksCount.formatted())")
                 }
 
                 HStack {
@@ -59,7 +59,7 @@ struct StatisticsView: View {
                     .alert(isPresented: $showLinksRedirectedHelp) {
                         Alert(
                             title: Text("Links Redirected"),
-                            message: Text("A redirected link is a link that has been opened and – without Overamped – would've opened the AMP version."),
+                            message: Text("A count of all the AMP and Yandex Turbo links that have been redirected to their canonical non-AMP version."),
                             dismissButton: .default(Text("Dismiss"))
                         )
                     }
