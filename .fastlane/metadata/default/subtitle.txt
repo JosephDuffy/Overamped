@@ -1,1 +1,1 @@
-Replace AMP pages in Safari
+Redirect AMP pages in Safari
