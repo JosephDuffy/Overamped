@@ -16,6 +16,8 @@
 
   "permissions": ["nativeMessaging", "activeTab", "storage"],
 
+  "optional_permissions": ["<all_urls>"],
+
   "browser_action": {
     "default_icon": {
       "16": "images/toolbar-icon-16.png",
@@ -225,6 +227,11 @@
         "*://*.google.co.zw/amp/s/*",
         "*://*.google.cat/amp/s/*"
       ]
+    },
+    {
+      "js": ["generic-amp-content.js"],
+      "run_at": "document_start",
+      "matches": ["<all_urls>"]
     },
     {
       "js": ["google-search-content.js"],
