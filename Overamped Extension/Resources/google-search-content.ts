@@ -1,6 +1,6 @@
-import deampURL from "./deampURL"
 import ExtensionApplicator from "./ExtensionApplicator"
 import NativeAppCommunicator from "./NativeAppCommunicator"
+import openURL from "./openURL"
 
 new ExtensionApplicator(document, replaceAMPLinks, true)
 
@@ -85,14 +85,12 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
 
     console.debug(`URL from attribute: ${anchorURL.toString()}`)
 
-    const finalURL = deampURL(anchorURL)
-
     const ampIcon = findAMPLogoRelativeToAnchor(anchor)
     let modifiedAnchor = anchorOnclickListeners[ved]
 
-    if (ignoredHostnames.includes(finalURL.hostname)) {
+    if (ignoredHostnames.includes(anchorURL.hostname)) {
       console.debug(
-        `Not modifying anchor; ${finalURL.hostname} is in ignore list`,
+        `Not modifying anchor; ${anchorURL.hostname} is in ignore list`,
         anchorOnclickListeners,
       )
 
@@ -114,18 +112,20 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
       return
     }
 
-    newlyReplacedURLs.push(finalURL)
-
-    const finalURLString = finalURL.toString()
-
-    console.info(`De-AMPed URL: ${finalURLString}`)
+    newlyReplacedURLs.push(anchorURL)
 
     const originalHREF = anchor.href
 
-    anchor.href = finalURLString
+    anchor.href = anchorURL.toString()
 
     function interceptAMPLink(event: MouseEvent) {
-      event.stopImmediatePropagation()
+      if (openURL(anchorURL, ignoredHostnames, "push")) {
+        event.preventDefault()
+        event.stopImmediatePropagation()
+        return false
+      } else {
+        return true
+      }
 
       console.debug("Pushing non-AMP URL")
       window.location.assign(finalURLString)

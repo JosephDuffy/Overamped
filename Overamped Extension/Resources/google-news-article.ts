@@ -1,9 +1,10 @@
 import ExtensionApplicator from "./ExtensionApplicator"
 import "./Array+compactMap"
+import openURL from "./openURL"
 
 new ExtensionApplicator(document, overrideAMPArticles, false)
 
-function overrideAMPArticles() {
+function overrideAMPArticles(ignoredHostnames: string[]) {
   const ampArticles = Array.from(
     document.querySelectorAll("article"),
   ).compactMap((article): [HTMLElement, HTMLSpanElement | undefined] => {
@@ -42,11 +43,14 @@ function overrideAMPArticles() {
 
     articleAnchor.onclick = (event) => {
       console.log("Article anchor clicked", articleAnchor)
-      event.preventDefault()
 
-      window.location.assign(articleAnchor.href)
-
-      return false
+      if (openURL(new URL(articleAnchor.href), ignoredHostnames, "push")) {
+        event.stopImmediatePropagation()
+        event.preventDefault()
+        return false
+      } else {
+        return true
+      }
     }
   })
 }
