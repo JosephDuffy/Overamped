@@ -1,10 +1,3 @@
-//
-//  InstallationInstructionsView.swift
-//  Overamped
-//
-//  Created by Joseph Duffy on 10/07/2021.
-//
-
 import SwiftUI
 
 struct InstallationInstructionsView: View {
