@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C26E26A92C8700CE8AC6 /* SurveyView.swift */; };
 		D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */; };
+		D94E168826B4D7A300294B9D /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = D94E168626B4D6B900294B9D /* options.html */; };
 		D967DAD72686484100B328C6 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD42686484100B328C6 /* popup.js */; };
 		D967DAD82687627500B328C6 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD52686484100B328C6 /* popup.css */; };
 		D967DAD92687627500B328C6 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD62686484100B328C6 /* popup.html */; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		D939C26E26A92C8700CE8AC6 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPricesProvider.swift; sourceTree = "<group>"; };
+		D94E168626B4D6B900294B9D /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
 		D967DAD42686484100B328C6 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		D967DAD52686484100B328C6 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
 		D967DAD62686484100B328C6 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				D9FF5B92268142B90027BD81 /* manifest.json */,
 				D967DAD52686484100B328C6 /* popup.css */,
 				D967DAD62686484100B328C6 /* popup.html */,
+				D94E168626B4D6B900294B9D /* options.html */,
 				D9B8EC0226A29F2800C1243E /* background.js */,
 				D9B8EC0126A29F2000C1243E /* background.ts */,
 				D967DAD42686484100B328C6 /* popup.js */,
@@ -381,6 +384,7 @@
 				D967DAD92687627500B328C6 /* popup.html in Resources */,
 				D967DAD82687627500B328C6 /* popup.css in Resources */,
 				D967DAD72686484100B328C6 /* popup.js in Resources */,
+				D94E168826B4D7A300294B9D /* options.html in Resources */,
 				D9B8EC0326A29F2800C1243E /* background.js in Resources */,
 				D993C5672684B052002A84E6 /* google-search-content.js in Resources */,
 				D9A2D74E269A020C00BED34A /* google-news-article.js in Resources */,
