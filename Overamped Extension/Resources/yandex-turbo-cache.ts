@@ -1,5 +1,4 @@
 import ExtensionApplicator from "./ExtensionApplicator"
-import NativeAppCommunicator from "./NativeAppCommunicator"
 import openURL from "./openURL"
 
 function redirectToCanonicalVersion(ignoredHostnames: string[]) {
