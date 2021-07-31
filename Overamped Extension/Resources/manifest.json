@@ -629,6 +629,11 @@
         "*://news.google.co.zw/*",
         "*://news.google.cat/*"
       ]
+    },
+    {
+      "js": ["yandex-turbo-cache.js"],
+      "run_at": "document_start",
+      "matches": ["https://*.turbopages.org/*"]
     }
   ]
 }
