@@ -1,14 +1,9 @@
+import OverampedCore
 import Persist
 import SwiftUI
 
 struct IgnoredHostnamesView: View {
-    @PersistStorage(
-        persister: Persister(
-            key: "ignoredHostnames",
-            userDefaults: UserDefaults(suiteName: "group.net.yetii.overamped")!,
-            defaultValue: []
-        )
-    )
+    @PersistStorage(persister: .ignoredHostnames)
     private(set) var ignoredHostnames: [String]
 
     var body: some View {

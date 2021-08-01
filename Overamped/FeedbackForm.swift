@@ -1,6 +1,7 @@
 import Combine
 import Persist
 import SwiftUI
+import OverampedCore
 import os.log
 
 enum FeedbackReason: Hashable, CaseIterable {
@@ -321,13 +322,7 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     @Published
     var includeIgnoredHostnames: Bool = true
 
-    @PersistStorage(
-        persister: Persister(
-            key: "ignoredHostnames",
-            userDefaults: UserDefaults(suiteName: "group.net.yetii.overamped")!,
-            defaultValue: []
-        )
-    )
+    @PersistStorage(persister: .ignoredHostnames)
     private(set) var ignoredHostnames: [String]
 
     var debugData: DebugData {

@@ -4,13 +4,7 @@ import OverampedCore
 
 @main
 struct OverampedApp: App {
-    @PersistStorage(
-        persister: Persister(
-            key: "extensionHasBeenEnabled",
-            userDefaults: UserDefaults(suiteName: "group.net.yetii.overamped")!,
-            defaultValue: false
-        )
-    )
+    @PersistStorage(persister: .extensionHasBeenEnabled)
     private(set) var extensionHasBeenEnabled: Bool
 
     @State

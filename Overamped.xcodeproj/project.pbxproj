@@ -12,6 +12,8 @@
 		D94E168826B4D7A300294B9D /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = D94E168626B4D6B900294B9D /* options.html */; };
 		D94E168B26B4DA2A00294B9D /* generic-amp-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D94E168926B4DA2200294B9D /* generic-amp-content.js */; };
 		D94E168E26B50B3C00294B9D /* yandex-turbo-cache.js in Resources */ = {isa = PBXBuildFile; fileRef = D94E168D26B50B3900294B9D /* yandex-turbo-cache.js */; };
+		D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E168F26B5F66D00294B9D /* SettingsView.swift */; };
+		D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */; };
 		D967DAD72686484100B328C6 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD42686484100B328C6 /* popup.js */; };
 		D967DAD82687627500B328C6 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD52686484100B328C6 /* popup.css */; };
 		D967DAD92687627500B328C6 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD62686484100B328C6 /* popup.html */; };
@@ -37,6 +39,7 @@
 		D9CC9D9F26AA943300FE447C /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC9D9E26AA943300FE447C /* ActivityView.swift */; };
 		D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */; };
 		D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */; };
+		D9DC7AEC26B61CB0005C8430 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9DC7AEB26B61CB0005C8430 /* OverampedCore */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
 		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
@@ -85,6 +88,8 @@
 		D94E168A26B4DA2200294B9D /* generic-amp-content.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "generic-amp-content.ts"; sourceTree = "<group>"; };
 		D94E168C26B50B3900294B9D /* yandex-turbo-cache.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "yandex-turbo-cache.ts"; sourceTree = "<group>"; };
 		D94E168D26B50B3900294B9D /* yandex-turbo-cache.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "yandex-turbo-cache.js"; sourceTree = "<group>"; };
+		D94E168F26B5F66D00294B9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedStatisticsView.swift; sourceTree = "<group>"; };
 		D967DAD42686484100B328C6 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		D967DAD52686484100B328C6 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
 		D967DAD62686484100B328C6 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
@@ -151,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9DC7AEC26B61CB0005C8430 /* OverampedCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +216,8 @@
 				D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */,
 				D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */,
 				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
+				D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */,
+				D94E168F26B5F66D00294B9D /* SettingsView.swift */,
 				D994C63726A13682000649AA /* TipJarStore.swift */,
 				D9CC9D9E26AA943300FE447C /* ActivityView.swift */,
 				D994C64226A26D29000649AA /* OverampedCoreImport.swift */,
@@ -319,6 +327,9 @@
 			dependencies = (
 			);
 			name = "Overamped Extension";
+			packageProductDependencies = (
+				D9DC7AEB26B61CB0005C8430 /* OverampedCore */,
+			);
 			productName = "Overamped Extension";
 			productReference = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -445,8 +456,10 @@
 			files = (
 				D96BF7DE26B3CA2900E6EBE9 /* AboutView.swift in Sources */,
 				D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */,
+				D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */,
 				D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */,
 				D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */,
+				D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */,
 				D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */,
 				D994C64326A26D29000649AA /* OverampedCoreImport.swift in Sources */,
 				D984BB9B26A8F54200500856 /* IgnoredHostnamesView.swift in Sources */,
@@ -872,6 +885,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */;
 			productName = Persist;
+		};
+		D9DC7AEB26B61CB0005C8430 /* OverampedCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OverampedCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

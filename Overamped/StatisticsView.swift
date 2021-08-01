@@ -1,14 +1,15 @@
 import SwiftUI
+import Persist
 
 struct StatisticsView: View {
-    @SceneStorage("EnabledAdvancedStatistics")
+    @AppStorage("enabledAdvancedStatistics")
     private var enabledAdvancedStatistics = false
 
-    @AppStorage("replaceLinksCount")
-    private var replaceLinksCount: Int = 0
+    @PersistStorage(persister: .replacedLinksCount)
+    private var replacedLinksCount: Int
 
-    @AppStorage("redirectedLinksCount")
-    private var redirectedLinksCount: Int = 0
+    @PersistStorage(persister: .redirectedLinksCount)
+    private var redirectedLinksCount: Int
 
     @State
     private var showLinksReplacedHelp = false
@@ -44,7 +45,7 @@ struct StatisticsView: View {
                         )
                     }
 
-                    Text("AMP search results found: \(replaceLinksCount.formatted())")
+                    Text("AMP search results found: \(replacedLinksCount.formatted())")
                 }
 
                 HStack {
@@ -71,11 +72,15 @@ struct StatisticsView: View {
                     .font(.title)
 
                 if enabledAdvancedStatistics {
-                    // TODO: Show advanced statistics
+                    AdvancedStatisticsView()
                 } else {
-                    Text("""
-                    Advanced statistics are disabled by default due to the sensitive nature of the data collected. Enable advanced statistics to collect the domains of links replaced
-                    """)
+                    Button("Enable Advanced Statistics") {
+                        enabledAdvancedStatistics = true
+                    }
+                        .buttonStyle(BorderedButtonStyle())
+
+                    Text("Enable advanced statistics to collect the domains and timestamps of replaced and redirect links.")
+                        .font(.caption)
                 }
             }
             .padding()
@@ -97,7 +102,7 @@ struct StatisticsView: View {
                             [
                                 String.localizedStringWithFormat(
                                     String(localized: "statistics_share_content"),
-                                    replaceLinksCount
+                                    replacedLinksCount
                                 ),
                                 URLUIActivityItemSource(
                                     url: URL(string: "https://overamped.app")!
