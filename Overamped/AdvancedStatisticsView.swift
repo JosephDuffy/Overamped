@@ -80,6 +80,9 @@ struct AdvancedStatisticsView: View {
                     }
                 }
             }
+
+            ClearAdvancedStatisticsView()
+                .buttonStyle(BorderedButtonStyle())
         }
 
         EmptyView().onReceive(_replacedLinks.persister.publisher) { replacedLinks in

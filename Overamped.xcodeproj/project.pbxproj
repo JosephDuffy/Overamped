@@ -40,6 +40,7 @@
 		D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */; };
 		D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */; };
 		D9DC7AEC26B61CB0005C8430 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9DC7AEB26B61CB0005C8430 /* OverampedCore */; };
+		D9DC7AEE26B6532D005C8430 /* ClearAdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
 		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
@@ -123,6 +124,7 @@
 		D9CC9D9E26AA943300FE447C /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
 		D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearAdvancedStatisticsView.swift; sourceTree = "<group>"; };
 		D9FF5B69268142B30027BD81 /* Overamped.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overamped.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FF5B7B268142B30027BD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9FF5B80268142B90027BD81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */,
 				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
 				D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */,
+				D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */,
 				D94E168F26B5F66D00294B9D /* SettingsView.swift */,
 				D994C63726A13682000649AA /* TipJarStore.swift */,
 				D9CC9D9E26AA943300FE447C /* ActivityView.swift */,
@@ -457,6 +460,7 @@
 				D96BF7DE26B3CA2900E6EBE9 /* AboutView.swift in Sources */,
 				D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */,
 				D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */,
+				D9DC7AEE26B6532D005C8430 /* ClearAdvancedStatisticsView.swift in Sources */,
 				D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */,
 				D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */,
 				D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */,
