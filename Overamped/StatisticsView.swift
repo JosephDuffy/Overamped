@@ -60,7 +60,7 @@ struct StatisticsView: View {
                     .alert(isPresented: $showLinksRedirectedHelp) {
                         Alert(
                             title: Text("Links Redirected"),
-                            message: Text("A count of all the AMP and Yandex Turbo links that have been redirected to their canonical non-AMP version."),
+                            message: Text("A count of all the AMP and Yandex Turbo links that have been redirected to their canonical version."),
                             dismissButton: .default(Text("Dismiss"))
                         )
                     }
