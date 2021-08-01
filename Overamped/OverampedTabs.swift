@@ -77,14 +77,16 @@ struct OverampedTabs: View {
             guard let deepLink = DeepLink(url: url) else { return }
 
             switch deepLink {
-            case .feedback:
-                selectedTab = .feedback
             case .statistics:
                 selectedTab = .statistics
             case .support:
                 selectedTab = .support
+            case .feedback:
+                selectedTab = .feedback
             case .settings:
                 selectedTab = .settings
+            case .about:
+                selectedTab = .about
             }
         })
     }

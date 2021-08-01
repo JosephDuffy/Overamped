@@ -1,10 +1,11 @@
 import Foundation
 
 public enum DeepLink: Hashable {
-    case feedback(searchURL: String?, websiteURL: String?)
     case statistics
     case support
+    case feedback(searchURL: String?, websiteURL: String?)
     case settings
+    case about
 
     public init?(url: URL) {
         if url.scheme == "overamped" {
@@ -28,14 +29,16 @@ public enum DeepLink: Hashable {
         }
 
         switch path {
-        case "feedback":
-            self.init(feedbackComponents: components)
         case "statistics":
             self = .statistics
         case "support":
             self = .support
+        case "feedback":
+            self.init(feedbackComponents: components)
         case "settings":
             self = .settings
+        case "about":
+            self = .about
         default:
             return nil
         }
