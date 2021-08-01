@@ -35,7 +35,7 @@ struct AdvancedStatisticsView: View {
 
                 ForEach(Array(replacedDomainsToCountsMap.prefix(3).enumerated()), id: \.offset) { enumerated in
                     let (offset, domainAndCount) = enumerated
-                    Text("\(offset + 1). \(domainAndCount.domain) (\(domainAndCount.count))")
+                    Text("**\(offset + 1).** \(domainAndCount.domain) (\(domainAndCount.count))")
                 }
 
                 if replacedDomainsToCountsMap.count > 3 {
@@ -61,7 +61,7 @@ struct AdvancedStatisticsView: View {
 
                 ForEach(Array(redirectedDomainsToCountsMap.prefix(3).enumerated()), id: \.offset) { enumerated in
                     let (offset, domainAndCount) = enumerated
-                    Text("\(offset + 1). \(domainAndCount.domain) (\(domainAndCount.count))")
+                    Text("**\(offset + 1).** \(domainAndCount.domain) (\(domainAndCount.count))")
                 }
 
                 if redirectedDomainsToCountsMap.count > 3 {
