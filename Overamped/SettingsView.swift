@@ -9,13 +9,41 @@ struct SettingsView: View {
     @SceneStorage("SettingsView.isShowingIgnoredHostnames")
     private var isShowingIgnoredHostnames = false
 
+    @PersistStorage(persister: .replacedLinks)
+    private var replacedLinks: [Date: [String]]
+
+    @PersistStorage(persister: .redirectedLinks)
+    private var redirectedLinks: [Date: String]
+
+    @State
+    private var hasCollectedAnyAdvancesStatistics = false
+
     @PersistStorage(persister: .ignoredHostnames)
     private(set) var ignoredHostnames: [String]
 
     var body: some View {
         List {
-            Section(footer: Text("Enable advanced statistics to collect the domains and timestamps of replaced and redirect links.")) {
-                Toggle(isOn: $enabledAdvancedStatistics, label: { Text("Advanced Statistics") })
+            Section(footer: Text("Advanced statistics includes the domains and timestamps of replaced and redirect links.")) {
+                Toggle(
+                    isOn: $enabledAdvancedStatistics,
+                    label: { Text("Collection Advanced Statistics") }
+                )
+                    .onReceive(_replacedLinks.persister.publisher.combineLatest(_redirectedLinks.persister.publisher)) { (replacedLinks, redirectedLinks) in
+                        guard !replacedLinks.contains(where: { !$0.value.isEmpty }) else {
+                            hasCollectedAnyAdvancesStatistics = true
+                            return
+                        }
+                        guard !redirectedLinks.contains(where: { !$0.value.isEmpty }) else {
+                            hasCollectedAnyAdvancesStatistics = true
+                            return
+                        }
+                        hasCollectedAnyAdvancesStatistics = false
+                    }
+
+                if hasCollectedAnyAdvancesStatistics {
+                    ClearAdvancedStatisticsView()
+                }
+            }
 
             Section(footer: Text("Overamped will not redirect to the canonical version of websites it has been disabled on.")) {
                 NavigationLink(
