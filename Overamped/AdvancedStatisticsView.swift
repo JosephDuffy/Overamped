@@ -15,6 +15,9 @@ struct AdvancedStatisticsView: View {
     @State
     private var redirectedDomainsToCountsMap: [DomainCount] = []
 
+    @Binding
+    private var showEmptyMessage: Bool
+
     private struct DomainCount: Hashable {
         let domain: String
         var count: Int
@@ -22,7 +25,9 @@ struct AdvancedStatisticsView: View {
     
     var body: some View {
         if replacedDomainsToCountsMap.isEmpty, redirectedDomainsToCountsMap.isEmpty {
-            Text("Nothing to display. Visit some websites to collect statistics.")
+            if showEmptyMessage {
+                Text("Nothing to display. Visit some websites to collect statistics.")
+            }
         } else {
             if !replacedDomainsToCountsMap.isEmpty {
                 Text("Top Replaced Domains")
@@ -101,12 +106,14 @@ struct AdvancedStatisticsView: View {
                 .sorted(by: { $0.count > $1.count })
         }
     }
+
+    init(showEmptyMessage: Binding<Bool>) {
+        _showEmptyMessage = showEmptyMessage
+    }
 }
 
 struct AdvancedStatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        AdvancedStatisticsView()
+        AdvancedStatisticsView(showEmptyMessage: .constant(true))
     }
 }
-
-

@@ -71,9 +71,7 @@ struct StatisticsView: View {
                 Text("Advanced Statistics")
                     .font(.title)
 
-                if enabledAdvancedStatistics {
-                    AdvancedStatisticsView()
-                } else {
+                if !enabledAdvancedStatistics {
                     Button("Enable Advanced Statistics") {
                         enabledAdvancedStatistics = true
                     }
@@ -82,6 +80,8 @@ struct StatisticsView: View {
                     Text("Enable advanced statistics to collect the domains and timestamps of replaced and redirect links.")
                         .font(.caption)
                 }
+
+                AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics)
             }
             .padding()
         }
