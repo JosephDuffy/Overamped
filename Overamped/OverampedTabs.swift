@@ -6,7 +6,7 @@ struct OverampedTabs: View {
         case statistics
         case feedback
         case support
-        case allowList
+        case settings
         case about
     }
 
@@ -49,13 +49,13 @@ struct OverampedTabs: View {
             }
 
             NavigationView {
-                IgnoredHostnamesView()
+                SettingsView()
             }
-            .tag(Tab.allowList)
+            .tag(Tab.settings)
             .tabItem {
                 VStack {
-                    Image(systemName: "checkmark")
-                    Text("Allow List")
+                    Image(systemName: "gear")
+                    Text("Settings")
                 }
             }
 
@@ -84,7 +84,7 @@ struct OverampedTabs: View {
             case .support:
                 selectedTab = .support
             case .settings:
-                selectedTab = .allowList
+                selectedTab = .settings
             }
         })
     }
