@@ -9,6 +9,7 @@ New in beta 10:
 - Remove manual "de-amping" of URLs to fix some websites, e.g. amp.dev
   - Enabling access to all websites is strongly recommended now
 - Improve explanation and collections of statistics
+- Implement advanced statistics
 
 New in beta 9:
 
