@@ -1,33 +1,65 @@
 <script lang="ts">
-  export let name: string
+  import Popup from "./Popup.svelte"
+  import NativeAppCommunicator from "../../NativeAppCommunicator"
+  import { dataIsGoogleTabData, GoogleTabData, TabData } from "./TabData"
+  import Footer from "./Footer.svelte"
+  import GooglePopup from "./GooglePopup.svelte"
+
+  const tabData = loadTabData()
+
+  async function loadTabData(): Promise<TabData> {
+    const ignoredHostnamesPromise =
+      new NativeAppCommunicator().ignoredHostnames()
+    const currentTabPromise = browser.tabs.getCurrent()
+    const [ignoredHostnames, currentTab] = await Promise.all([
+      ignoredHostnamesPromise,
+      currentTabPromise,
+    ])
+
+    const replacedLinksCount = await overampedReplacedLinksCountInTab(
+      currentTab,
+    )
+    if (replacedLinksCount) {
+      return {
+        ignoredHostnames,
+        currentTab,
+        replacedLinksCount,
+      } as GoogleTabData
+    } else {
+      return {
+        ignoredHostnames,
+        currentTab,
+      }
+    }
+  }
+
+  async function overampedReplacedLinksCountInTab(
+    tab: browser.tabs.Tab,
+  ): Promise<number | undefined> {
+    const scriptResult = await browser.tabs.executeScript(tab.id, {
+      code: `document.body.dataset.overampedReplacedLinksCount`,
+    })
+    if (scriptResult.length === 1 && typeof scriptResult[0] === "string") {
+      const replacedLinksCount = parseInt(scriptResult[0])
+
+      return replacedLinksCount
+    } else {
+      return undefined
+    }
+  }
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
+  {#await tabData}
+    <p>Loading tab data...</p>
+  {:then tabData}
+    {#if dataIsGoogleTabData(tabData)}
+      <GooglePopup {tabData} />
+    {:else}
+      <Popup {tabData} />
+    {/if}
+    <Footer />
+  {:catch error}
+    <p style="color: red">{error.message}</p>
+  {/await}
 </main>
-
-<style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
-</style>

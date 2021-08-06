@@ -413,7 +413,6 @@
 			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Overamped Extension" */;
 			buildPhases = (
 				D993C5612684AFDE002A84E6 /* Build JS */,
-				D963C67826BDBA7400AFCDC8 /* Build Popup */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
 				D9FF5B84268142B90027BD81 /* Resources */,
@@ -518,24 +517,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D963C67826BDBA7400AFCDC8 /* Build Popup */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Popup";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n#  exit 0;\n#fi\n\n#eval \"$(nodenv init -)\"\n#cd \"Overamped Extension/Resources/Popup\"\n#npm run build\n";
-		};
 		D993C5612684AFDE002A84E6 /* Build JS */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
