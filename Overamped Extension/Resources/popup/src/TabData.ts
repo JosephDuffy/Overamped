@@ -1,6 +1,7 @@
 export interface TabData {
-  readonly ignoredHostnames: string[]
-  readonly currentTab: browser.tabs.Tab
+  ignoredHostnames: string[]
+  readonly currentTab: browser.tabs.Tab & { url: string }
+  readonly canonicalURL: string | undefined
 }
 
 export interface GoogleTabData extends TabData {

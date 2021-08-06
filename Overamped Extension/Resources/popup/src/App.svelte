@@ -16,6 +16,16 @@
       currentTabPromise,
     ])
 
+    const tabContainsAMPPage = await checkTabContainsAMPPage(currentTab)
+
+    const canonicalURL = await (async () => {
+      if (tabContainsAMPPage) {
+        return await canonicalURLForTab(tabContainsAMPPage)
+      } else {
+        return undefined
+      }
+    })()
+
     const replacedLinksCount = await overampedReplacedLinksCountInTab(
       currentTab,
     )
@@ -24,11 +34,13 @@
         ignoredHostnames,
         currentTab,
         replacedLinksCount,
+        canonicalURL,
       } as GoogleTabData
     } else {
       return {
         ignoredHostnames,
         currentTab,
+        canonicalURL,
       }
     }
   }
@@ -47,13 +59,41 @@
       return undefined
     }
   }
+
+  async function checkTabContainsAMPPage(
+    tab: browser.tabs.Tab,
+  ): Promise<boolean> {
+    const scriptResult = await browser.tabs.executeScript(tab.id, {
+      code: `document.documentElement.attributes.hasOwnProperty("amp") || document.documentElement.attributes.hasOwnProperty("⚡")`,
+    })
+    return (
+      scriptResult.length === 1 &&
+      typeof scriptResult[0] === "boolean" &&
+      scriptResult[0]
+    )
+  }
+
+  async function canonicalURLForTab(
+    tab: browser.tabs.Tab,
+  ): Promise<string | undefined> {
+    const scriptResult = await browser.tabs.executeScript(tab.id, {
+      code: `document.head.querySelector("link[rel~='canonical'][href]").href`,
+    })
+    if (scriptResult.length === 1 && typeof scriptResult[0] === "string") {
+      return scriptResult[0]
+    } else {
+      return undefined
+    }
+  }
 </script>
 
 <main>
   {#await tabData}
     <p>Loading tab data...</p>
   {:then tabData}
-    {#if dataIsGoogleTabData(tabData)}
+    {#if !tabData.currentTab.url}
+      <p>Overamped is not available for the current page</p>
+    {:else if dataIsGoogleTabData(tabData)}
       <GooglePopup {tabData} />
     {:else}
       <Popup {tabData} />
