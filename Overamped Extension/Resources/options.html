@@ -9,10 +9,32 @@
         color-scheme: light dark;
         font: -apple-system-body;
         font-family: system-ui;
+        --linkColour: #007aff;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --linkColour: #0984ff;
+        }
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        min-height: -webkit-fill-available;
+        text-align: center;
+      }
+
+      a,
+      a:visited {
+        color: var(--linkColour);
       }
     </style>
   </head>
   <body>
-    <a href="overamped://settings">Open Settings</a>
+    <p>
+      Overamped settings are managed in the Overamped app.
+      <a href="overamped://settings">Open the app to manage settings</a>.
+    </p>
   </body>
 </html>
