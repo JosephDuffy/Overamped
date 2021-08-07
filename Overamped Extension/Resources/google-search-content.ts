@@ -1,3 +1,4 @@
+import deAMPURL from "./deAMPURl"
 import ExtensionApplicator from "./ExtensionApplicator"
 import NativeAppCommunicator from "./NativeAppCommunicator"
 import openURL from "./openURL"
@@ -75,7 +76,7 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
       return
     }
 
-    const anchorURL = new URL(anchorURLString)
+    let anchorURL = new URL(anchorURLString)
 
     if (anchorURL.hostname === window.location.hostname) {
       // Do not override internal links, e.g. links to `"#"` used for anchors acting as buttons
@@ -84,6 +85,10 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
     }
 
     console.debug(`URL from attribute: ${anchorURL.toString()}`)
+
+    anchorURL = deAMPURL(anchorURL)
+
+    console.debug(`De-AMPed URL: ${anchorURL}`)
 
     const ampIcon = findAMPLogoRelativeToAnchor(anchor)
     let modifiedAnchor = anchorOnclickListeners[ved]
