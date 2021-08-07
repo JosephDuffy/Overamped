@@ -12,6 +12,4 @@
   }
 </script>
 
-<footer>
-  <button on:click={openFeedback}>Submit Feedback</button>
-</footer>
+<button on:click={openFeedback}>Submit Feedback</button>

@@ -2,7 +2,7 @@
   import Popup from "./Popup.svelte"
   import NativeAppCommunicator from "../../NativeAppCommunicator"
   import { dataIsGoogleTabData, GoogleTabData, TabData } from "./TabData"
-  import Footer from "./Footer.svelte"
+  import FeedbackButton from "./FeedbackButton.svelte"
   import GooglePopup from "./GooglePopup.svelte"
 
   const tabData = loadTabData()
@@ -106,7 +106,7 @@
     {:else}
       <p>Overamped is not available for the current page</p>
     {/if}
-    <Footer currentTab={tabData.currentTab} />
+    <FeedbackButton currentTab={tabData.currentTab} />
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
