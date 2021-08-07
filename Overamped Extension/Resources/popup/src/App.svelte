@@ -106,7 +106,7 @@
     {:else}
       <p>Overamped is not available for the current page</p>
     {/if}
-    <Footer />
+    <Footer currentTab={tabData.currentTab} />
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
