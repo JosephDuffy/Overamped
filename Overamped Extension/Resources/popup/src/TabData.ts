@@ -1,6 +1,6 @@
 export interface TabData {
   ignoredHostnames: string[]
-  readonly currentTab: browser.tabs.Tab & { url: string }
+  readonly currentTab: browser.tabs.Tab
   readonly canonicalURL: string | undefined
 }
 

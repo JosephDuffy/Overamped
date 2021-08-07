@@ -2,7 +2,9 @@
   import type { TabData } from "./TabData"
   import NativeAppCommunicator from "../../NativeAppCommunicator"
 
-  export let tabData: TabData
+  export let tabData: TabData & {
+    currentTab: { url: string }
+  }
   export const currentTabURL = new URL(tabData.currentTab.url)
   $: isDisabledOnCurrentDomain = tabData.ignoredHostnames.includes(
     currentTabURL.hostname,

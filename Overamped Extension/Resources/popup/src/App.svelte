@@ -29,6 +29,7 @@
     const replacedLinksCount = await overampedReplacedLinksCountInTab(
       currentTab,
     )
+
     if (replacedLinksCount) {
       return {
         ignoredHostnames,
@@ -85,18 +86,25 @@
       return undefined
     }
   }
+
+  function tabHasURL(
+    tab: browser.tabs.Tab,
+  ): tab is browser.tabs.Tab & { url: string } {
+    return typeof tab.url !== "undefined"
+  }
 </script>
 
 <main>
   {#await tabData}
     <p>Loading tab data...</p>
   {:then tabData}
-    {#if !tabData.currentTab.url}
-      <p>Overamped is not available for the current page</p>
+    {#if tabHasURL(tabData.currentTab)}
+      <!-- The spread is required to satisfy the type system. Maybe TypeScript 4.4 will fix the need for this -->
+      <Popup tabData={{ ...tabData, currentTab: tabData.currentTab }} />
     {:else if dataIsGoogleTabData(tabData)}
       <GooglePopup {tabData} />
     {:else}
-      <Popup {tabData} />
+      <p>Overamped is not available for the current page</p>
     {/if}
     <Footer />
   {:catch error}
