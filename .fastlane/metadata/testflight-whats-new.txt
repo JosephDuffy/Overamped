@@ -8,6 +8,7 @@ New in beta 11:
 - The options page opened from Settings > Safari > Extensions > Overamped > Extension Settings has an improved design
 - The popup displayed when choosing Overamped from Safari's More menu has a loading state while the current page is being queried
 - The extension settings can be opened from the popup
+- Improve detection of AMP URLs (e.g. it will not try to redirect YouTube links in search results)
 
 New in beta 10:
 

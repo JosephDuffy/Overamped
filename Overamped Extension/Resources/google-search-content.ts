@@ -56,19 +56,23 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
   ampAnchor.forEach((element) => {
     const anchor = element as HTMLAnchorElement
 
-    console.debug("Checking AMP anchor", anchor)
+    console.debug("Checking anchor", anchor)
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const ved = anchor.dataset.ved!
 
     const anchorURLString = (() => {
+      if (anchor.dataset.amp) {
+        return anchor.dataset.amp
+      }
+
       const ampCur = anchor.dataset.ampCur
 
       if (ampCur && ampCur.length > 0) {
         return ampCur
       }
 
-      return anchor.dataset.cur ?? (anchor.href as string | undefined)
+      return anchor.dataset.cur
     })()
 
     if (!anchorURLString) {
