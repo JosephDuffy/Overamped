@@ -1,12 +1,17 @@
-A pricing survey is available in the Support tab. If you have the time to fill out the 2 questions it would be much appreciated!
+**Please note that all crashes have occurred on older builds of iOS 15. This build only support iOS 15 beta 4 (19A5307g)**
 
-Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it!
+Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it and really thankful for the bug reports!
 
-Please note that Google will serve slightly different versions to different people, so getting this to work every time for everyone is tricky. This is why I'm so thankful for everyone reporting issues!
+New in beta 11:
+
+- The "de-AMPing" of URLs in Google results has been added again, reducing the need for access to "Other Websites"
+- The options page opened from Settings > Safari > Extensions > Overamped > Extension Settings has an improved design
+- The popup displayed when choosing Overamped from Safari's More menu has a loading state while the current page is being queried
+- The extension settings can be opened from the popup
 
 New in beta 10:
 
-- Remove manual "de-amping" of URLs to fix some websites, e.g. amp.dev
+- Remove manual "de-AMPing" of URLs to fix some websites, e.g. amp.dev
   - Enabling access to all websites is strongly recommended now
 - Improve explanation and collections of statistics
 - Implement advanced statistics
