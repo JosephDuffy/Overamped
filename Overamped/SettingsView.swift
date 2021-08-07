@@ -26,7 +26,7 @@ struct SettingsView: View {
             Section(footer: Text("Advanced statistics includes the domains and timestamps of replaced and redirect links.")) {
                 Toggle(
                     isOn: $enabledAdvancedStatistics,
-                    label: { Text("Collection Advanced Statistics") }
+                    label: { Text("Collect Advanced Statistics") }
                 )
                     .onReceive(_replacedLinks.persister.publisher.combineLatest(_redirectedLinks.persister.publisher)) { (replacedLinks, redirectedLinks) in
                         guard !replacedLinks.contains(where: { !$0.value.isEmpty }) else {
