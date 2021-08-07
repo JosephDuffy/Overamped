@@ -20,7 +20,7 @@
 
     const canonicalURL = await (async () => {
       if (tabContainsAMPPage) {
-        return await canonicalURLForTab(tabContainsAMPPage)
+        return await canonicalURLForTab(currentTab)
       } else {
         return undefined
       }
