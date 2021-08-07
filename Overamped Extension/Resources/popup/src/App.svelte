@@ -4,6 +4,7 @@
   import { dataIsGoogleTabData, GoogleTabData, TabData } from "./TabData"
   import FeedbackButton from "./FeedbackButton.svelte"
   import GooglePopup from "./GooglePopup.svelte"
+  import SettingsButton from "./SettingsButton.svelte"
 
   const tabData = loadTabData()
 
@@ -106,7 +107,10 @@
     {:else}
       <p>Overamped is not available for the current page</p>
     {/if}
-    <FeedbackButton currentTab={tabData.currentTab} />
+    <div>
+      <SettingsButton />
+      <FeedbackButton currentTab={tabData.currentTab} />
+    </div>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
