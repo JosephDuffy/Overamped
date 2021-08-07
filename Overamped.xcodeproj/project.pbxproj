@@ -122,7 +122,6 @@
 		D94E168F26B5F66D00294B9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedStatisticsView.swift; sourceTree = "<group>"; };
 		D963DACC26BDBDA000AFCDC8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D963DACD26BDBDA000AFCDC8 /* rollup.config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = rollup.config.js; sourceTree = "<group>"; };
 		D963DACF26BDBDA000AFCDC8 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		D963DAD026BDBDA000AFCDC8 /* global.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = global.css; sourceTree = "<group>"; };
 		D963DAD126BDBDA000AFCDC8 /* favicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favicon.png; sourceTree = "<group>"; };
@@ -130,12 +129,11 @@
 		D963DAD426BDBDA000AFCDC8 /* bundle.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = bundle.js.map; sourceTree = "<group>"; };
 		D963DAD526BDBDA000AFCDC8 /* bundle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bundle.js; sourceTree = "<group>"; };
 		D963DAD626BDBDA000AFCDC8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D963DAD726BDBDA000AFCDC8 /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
-		D963DAD826BDBDA000AFCDC8 /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 		D963DAD926BDBDA000AFCDC8 /* tsconfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tsconfig.json; sourceTree = "<group>"; };
 		D963DADD26BDBDA000AFCDC8 /* main.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.ts; sourceTree = "<group>"; };
 		D963DADE26BDBDA000AFCDC8 /* App.svelte */ = {isa = PBXFileReference; lastKnownFileType = text; path = App.svelte; sourceTree = "<group>"; };
 		D963DADF26BDBDA000AFCDC8 /* global.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = global.d.ts; sourceTree = "<group>"; };
+		D963DAF226BF08E200AFCDC8 /* rollup.config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = rollup.config.js; sourceTree = "<group>"; };
 		D967DAD42686484100B328C6 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		D967DAD52686484100B328C6 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
 		D967DAD62686484100B328C6 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
@@ -214,11 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				D963DACC26BDBDA000AFCDC8 /* README.md */,
-				D963DACD26BDBDA000AFCDC8 /* rollup.config.js */,
 				D963DACE26BDBDA000AFCDC8 /* public */,
 				D963DAD626BDBDA000AFCDC8 /* .gitignore */,
-				D963DAD726BDBDA000AFCDC8 /* package-lock.json */,
-				D963DAD826BDBDA000AFCDC8 /* package.json */,
 				D963DAD926BDBDA000AFCDC8 /* tsconfig.json */,
 				D963DADC26BDBDA000AFCDC8 /* src */,
 			);
@@ -343,6 +338,7 @@
 				D9FF5B90268142B90027BD81 /* images */,
 				D963D38126BDBD9D00AFCDC8 /* popup */,
 				D9FF5B92268142B90027BD81 /* manifest.json */,
+				D963DAF226BF08E200AFCDC8 /* rollup.config.js */,
 				D967DAD52686484100B328C6 /* popup.css */,
 				D967DAD62686484100B328C6 /* popup.html */,
 				D94E168626B4D6B900294B9D /* options.html */,
