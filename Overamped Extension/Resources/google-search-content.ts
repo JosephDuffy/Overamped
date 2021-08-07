@@ -1,4 +1,4 @@
-import deAMPURL from "./deAMPURl"
+import deAMPURL from "./deAMPURL"
 import ExtensionApplicator from "./ExtensionApplicator"
 import NativeAppCommunicator from "./NativeAppCommunicator"
 import openURL from "./openURL"
