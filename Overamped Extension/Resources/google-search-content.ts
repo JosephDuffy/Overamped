@@ -62,14 +62,16 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
     const ved = anchor.dataset.ved!
 
     const anchorURLString = (() => {
-      if (anchor.dataset.amp) {
-        return anchor.dataset.amp
-      }
-
       const ampCur = anchor.dataset.ampCur
 
       if (ampCur && ampCur.length > 0) {
+        // data-amp-cur is available on News search results (not news.google)
+        // and has the full canonical URL
         return ampCur
+      }
+
+      if (anchor.dataset.amp) {
+        return anchor.dataset.amp
       }
 
       return anchor.dataset.cur
