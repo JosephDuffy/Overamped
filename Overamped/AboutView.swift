@@ -24,6 +24,7 @@ struct AboutView: View {
                         }
                     }
                     Text("Overamped is created by Joseph Duffy, an indie developer from the UK.")
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
                 Button(action: {
