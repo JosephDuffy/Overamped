@@ -9,6 +9,7 @@ New in beta 11:
 - The popup displayed when choosing Overamped from Safari's More menu has a loading state while the current page is being queried
 - The extension settings can be opened from the popup
 - Improve detection of AMP URLs (e.g. it will not try to redirect YouTube links in search results)
+- Potential fix for crash when Advanced Statistics is enabled
 
 New in beta 10:
 

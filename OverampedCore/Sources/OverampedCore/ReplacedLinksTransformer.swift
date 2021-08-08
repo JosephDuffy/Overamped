@@ -2,20 +2,22 @@ import Foundation
 import Persist
 
 struct ReplacedLinksTransformer: Transformer {
-    func transformValue(_ value: [Date: [String]]) throws -> [String: [String]] {
-        value.reduce(into: [:]) { partialResult, element in
+    func transformValue(_ value: [Date: [String]]) -> [String: [String]] {
+        lazy var dateFormatter = ISO8601DateFormatter()
+        return value.reduce(into: [:]) { partialResult, element in
             let (date, hostnames) = element
-            partialResult[date.ISO8601Format()] = hostnames
+            let dateString = dateFormatter.string(from: date)
+            partialResult[dateString] = hostnames
         }
     }
 
-    func untransformValue(_ value: [String: [String]]) throws -> [Date: [String]] {
-        value.reduce(into: [:]) { partialResult, element in
+    func untransformValue(_ value: [String: [String]]) -> [Date: [String]] {
+        lazy var dateFormatter = ISO8601DateFormatter()
+        return value.reduce(into: [:]) { partialResult, element in
             let (dateString, hostnames) = element
-            do {
-                let date = try Date(dateString, strategy: .iso8601)
+            if let date = dateFormatter.date(from: dateString) {
                 partialResult[date] = hostnames
-            } catch {
+            } else {
                 print("Failed to parse date from \(dateString)")
             }
         }
@@ -24,19 +26,21 @@ struct ReplacedLinksTransformer: Transformer {
 
 struct RedirectedLinksTransformer: Transformer {
     func transformValue(_ value: [Date: String]) throws -> [String: String] {
-        value.reduce(into: [:]) { partialResult, element in
+        lazy var dateFormatter = ISO8601DateFormatter()
+        return value.reduce(into: [:]) { partialResult, element in
             let (date, hostname) = element
-            partialResult[date.ISO8601Format()] = hostname
+            let dateString = dateFormatter.string(from: date)
+            partialResult[dateString] = hostname
         }
     }
 
     func untransformValue(_ value: [String: String]) throws -> [Date: String] {
-        value.reduce(into: [:]) { partialResult, element in
+        lazy var dateFormatter = ISO8601DateFormatter()
+        return value.reduce(into: [:]) { partialResult, element in
             let (dateString, hostname) = element
-            do {
-                let date = try Date(dateString, strategy: .iso8601)
+            if let date = dateFormatter.date(from: dateString) {
                 partialResult[date] = hostname
-            } catch {
+            } else {
                 print("Failed to parse date from \(dateString)")
             }
         }
