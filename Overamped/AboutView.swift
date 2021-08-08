@@ -3,6 +3,8 @@ import SwiftUI
 struct AboutView: View {
     @SceneStorage("AboutView.showInstallationInstructions")
     private var showInstallationInstructions = false
+    @SceneStorage("AboutView.showAcknowledgements")
+    private var showAcknowledgements = false
     @State private var showPrivacyPolicy = false
     @State private var showMoreApps = false
 
@@ -23,38 +25,6 @@ struct AboutView: View {
                     }
                     Text("Overamped is created by Joseph Duffy, an indie developer from the UK.")
                 }
-            }
-
-            Section {
-                NavigationLink(
-                    destination: InstallationInstructionsView(),
-                    isActive: $showInstallationInstructions
-                ) {
-                    Text("Installation Instructions")
-                }
-            }
-
-            Section("Links") {
-                Button(action: {
-                    showPrivacyPolicy = true
-                }, label: {
-                    HStack {
-                        Image(systemName: "eye.slash.fill")
-                            .font(.title3)
-                            .foregroundColor(.accentColor)
-                        Text("Privacy Policy")
-                            .foregroundColor(Color.primary)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(Font.system(size: 14).weight(.semibold))
-                            .foregroundColor(Color(.tertiaryLabel))
-                    }
-                })
-                    .sheet(isPresented: $showPrivacyPolicy) {
-                        SafariView(url: URL(string: "https://overamped.app/privacy")!) {
-                            showPrivacyPolicy = false
-                        }
-                    }
 
                 Button(action: {
                     showMoreApps = true
@@ -92,6 +62,65 @@ struct AboutView: View {
                 }
             }
 
+            Section("Overamped") {
+                NavigationLink(
+                    destination: InstallationInstructionsView(),
+                    isActive: $showInstallationInstructions
+                ) {
+                    Image(systemName: "puzzlepiece.fill")
+                        .font(.title3)
+                        .foregroundColor(.accentColor)
+                    Text("Installation Instructions")
+                }
+
+                Button(action: {
+                    showPrivacyPolicy = true
+                }, label: {
+                    HStack {
+                        Image(systemName: "eye.slash.fill")
+                            .font(.title3)
+                            .foregroundColor(.accentColor)
+                        Text("Privacy Policy")
+                            .foregroundColor(Color.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(Font.system(size: 14).weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                    }
+                })
+                    .sheet(isPresented: $showPrivacyPolicy) {
+                        SafariView(url: URL(string: "https://overamped.app/privacy")!) {
+                            showPrivacyPolicy = false
+                        }
+                    }
+
+                Link(destination: URL(string: "https://twitter.com/OverampedApp")!) {
+                    HStack {
+                        Image("twitter")
+                            .font(.title3)
+                            .foregroundColor(.accentColor)
+                        Text("Follow @OverampedApp on Twitter")
+                            .foregroundColor(Color.primary)
+                        Spacer()
+                        Image(systemName: "arrow.up.forward.app.fill")
+                            .font(Font.system(size: 14).weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                    }
+                }
+
+                NavigationLink(
+                    destination: Acknowledgements(),
+                    isActive: $showAcknowledgements
+                ) {
+                    Image(systemName: "chevron.left.forwardslash.chevron.right")
+                        .font(.title3)
+                        .foregroundColor(.accentColor)
+                    Text("Acknowledgements")
+                }
+
+
+            }
+
             Section(
                 footer: Text("© Yetii Ltd. 2021. Overamped \(Bundle.main.appVersion) (\(Bundle.main.appBuild))")
                     .frame(maxWidth: .infinity)
@@ -104,6 +133,8 @@ struct AboutView: View {
 
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutView()
+        NavigationView {
+            AboutView()
+        }
     }
 }

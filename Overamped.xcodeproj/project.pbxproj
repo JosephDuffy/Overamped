@@ -19,6 +19,7 @@
 		D963DAEF26BDBFC300AFCDC8 /* global.css in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DAD026BDBDA000AFCDC8 /* global.css */; };
 		D963DAF026BDBFCE00AFCDC8 /* bundle.css in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD326BDBDA000AFCDC8 /* bundle.css */; };
 		D963DAF126BDBFCE00AFCDC8 /* bundle.js in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD526BDBDA000AFCDC8 /* bundle.js */; };
+		D963DAF426BF5C3800AFCDC8 /* Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */; };
 		D967DAD72686484100B328C6 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD42686484100B328C6 /* popup.js */; };
 		D967DAD82687627500B328C6 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD52686484100B328C6 /* popup.css */; };
 		D967DAD92687627500B328C6 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D967DAD62686484100B328C6 /* popup.html */; };
@@ -134,6 +135,7 @@
 		D963DADE26BDBDA000AFCDC8 /* App.svelte */ = {isa = PBXFileReference; lastKnownFileType = text; path = App.svelte; sourceTree = "<group>"; };
 		D963DADF26BDBDA000AFCDC8 /* global.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = global.d.ts; sourceTree = "<group>"; };
 		D963DAF226BF08E200AFCDC8 /* rollup.config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = rollup.config.js; sourceTree = "<group>"; };
+		D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgements.swift; sourceTree = "<group>"; };
 		D967DAD42686484100B328C6 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		D967DAD52686484100B328C6 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
 		D967DAD62686484100B328C6 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */,
 				D994C63A26A1EF9A000649AA /* TipJarView.swift */,
 				D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */,
+				D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */,
 				D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */,
 				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
 				D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */,
@@ -555,6 +558,7 @@
 				D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */,
 				D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */,
 				D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */,
+				D963DAF426BF5C3800AFCDC8 /* Acknowledgements.swift in Sources */,
 				D994C64326A26D29000649AA /* OverampedCoreImport.swift in Sources */,
 				D984BB9B26A8F54200500856 /* IgnoredHostnamesView.swift in Sources */,
 				D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */,
