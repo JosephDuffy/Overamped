@@ -118,8 +118,6 @@ struct AboutView: View {
                         .foregroundColor(.accentColor)
                     Text("Acknowledgements")
                 }
-
-
             }
 
             Section(
