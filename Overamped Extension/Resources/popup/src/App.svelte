@@ -100,10 +100,12 @@
     <p>Loading tab data...</p>
   {:then tabData}
     {#if tabHasURL(tabData.currentTab)}
-      <!-- The spread is required to satisfy the type system. Maybe TypeScript 4.4 will fix the need for this -->
-      <Popup tabData={{ ...tabData, currentTab: tabData.currentTab }} />
-    {:else if dataIsGoogleTabData(tabData)}
-      <GooglePopup {tabData} />
+      {#if dataIsGoogleTabData(tabData)}
+        <GooglePopup {tabData} />
+      {:else}
+        <!-- The spread is required to satisfy the type system. Maybe TypeScript 4.4 will fix the need for this -->
+        <Popup tabData={{ ...tabData, currentTab: tabData.currentTab }} />
+      {/if}
     {:else}
       <p>Overamped is not available for the current page</p>
     {/if}
