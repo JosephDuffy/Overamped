@@ -2,6 +2,11 @@
 
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it and really thankful for the bug reports!
 
+New in beta 12:
+
+- Fix "de-AMPing" of abc.net.au. If you find a website is incorrectly redirected please submit the feedback form and include the domain
+- Fix not showing number of replaced links in popover
+
 New in beta 11:
 
 - The "de-AMPing" of URLs in Google results has been added again, reducing the need for access to "Other Websites"
