@@ -156,6 +156,12 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
 
   new NativeAppCommunicator().logReplacedLinks(newlyReplacedURLs)
 
+  console.info(
+    `A total of ${
+      Object.keys(anchorOnclickListeners).length
+    } AMP links have been replaced`,
+  )
+
   document.body.dataset.overampedReplacedLinksCount = `${
     Object.keys(anchorOnclickListeners).length
   }`
