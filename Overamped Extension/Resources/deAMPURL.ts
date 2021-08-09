@@ -11,7 +11,10 @@ export default function deAMPURL(finalURL: URL): URL {
 
   finalURL.search = finalSearchParams.toString()
 
-  if (finalURL.pathname.startsWith("/amp/")) {
+  if (finalURL.hostname === "amp.abc.net.au") {
+    finalURL.hostname = "www.abc.net.au"
+    finalURL.pathname = finalURL.pathname.replace("article", "news")
+  } else if (finalURL.pathname.startsWith("/amp/")) {
     console.debug("Removing amp/ prefix")
     finalURL.pathname = finalURL.pathname.substring(4)
   } else if (finalURL.pathname.endsWith("/amp/")) {

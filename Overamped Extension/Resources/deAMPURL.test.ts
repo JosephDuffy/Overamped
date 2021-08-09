@@ -42,6 +42,13 @@ test("amp is not removed from domain", () => {
   )
 })
 
+test("abc.net.au is transformed correctly", () => {
+  testURLIsTransformed(
+    "https://amp.abc.net.au/article/100361158",
+    "https://www.abc.net.au/news/100361158",
+  )
+})
+
 function testURLIsTransformed(input: string, expectedOutput: string) {
   const inputURL = new URL(input)
   const outputURL = deAMPURL(inputURL)
