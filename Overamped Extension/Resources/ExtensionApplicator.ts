@@ -3,7 +3,7 @@ import NativeAppCommunicator from "./NativeAppCommunicator"
 export type ExtensionApplierThunk = (ignoredHostnames: string[]) => void
 
 export default class ExtensionApplicator {
-  #document: HTMLDocument
+  #document: Document
 
   #thunk: ExtensionApplierThunk
 
@@ -14,7 +14,7 @@ export default class ExtensionApplicator {
   #ignoredHostnames?: string[]
 
   constructor(
-    document: HTMLDocument,
+    document: Document,
     thunk: ExtensionApplierThunk,
     listedForDOMNodeInserted: boolean,
   ) {
