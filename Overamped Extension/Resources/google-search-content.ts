@@ -119,7 +119,7 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
 
       return
     } else if (modifiedAnchor) {
-      // Link has already been overridden.
+      console.debug("Not modifying anchor; it has already been modified")
       return
     }
 
