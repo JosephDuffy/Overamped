@@ -5,7 +5,7 @@ browser.runtime.onMessage.addListener(
     sender: browser.runtime.MessageSender,
     // eslint-disable-next-line @typescript-eslint/ban-types
     sendResponse: (response: object) => Promise<void>,
-  ) => {
+  ): boolean => {
     console.log("Received request", payload, "from", sender, sendResponse)
 
     browser.runtime
