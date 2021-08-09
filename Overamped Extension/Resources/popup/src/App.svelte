@@ -31,7 +31,7 @@
       currentTab,
     )
 
-    if (replacedLinksCount) {
+    if (replacedLinksCount !== undefined) {
       return {
         ignoredHostnames,
         currentTab,
