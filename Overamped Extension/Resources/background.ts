@@ -1,7 +1,7 @@
 browser.runtime.onMessage.addListener(
   (
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    payload: object,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    payload: any,
     sender: browser.runtime.MessageSender,
     // eslint-disable-next-line @typescript-eslint/ban-types
     sendResponse: (response: object) => Promise<void>,
