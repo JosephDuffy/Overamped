@@ -18,7 +18,15 @@ struct AdvancedStatisticsView: View {
     @Binding
     private var showEmptyMessage: Bool
 
-    private struct DomainCount: Hashable {
+    private struct DomainCount: Hashable, Comparable {
+        static func < (lhs: AdvancedStatisticsView.DomainCount, rhs: AdvancedStatisticsView.DomainCount) -> Bool {
+            if lhs.count == rhs.count {
+                return lhs.domain > rhs.domain
+            } else {
+                return lhs.count < rhs.count
+            }
+        }
+
         let domain: String
         var count: Int
     }
@@ -94,7 +102,7 @@ struct AdvancedStatisticsView: View {
                 .map { element in
                     DomainCount(domain: element.key, count: element.value)
                 }
-                .sorted(by: { $0.count > $1.count })
+                .sorted(by: >)
         }
 
         EmptyView().onReceive(_redirectedLinks.persister.publisher) { redirectedLinks in
@@ -106,7 +114,7 @@ struct AdvancedStatisticsView: View {
                 .map { element in
                     DomainCount(domain: element.key, count: element.value)
                 }
-                .sorted(by: { $0.count > $1.count })
+                .sorted(by: >)
         }
     }
 
