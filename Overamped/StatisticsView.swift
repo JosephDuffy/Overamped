@@ -83,6 +83,7 @@ struct StatisticsView: View {
 
                 AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics)
             }
+            .frame(maxWidth: .infinity)
             .padding()
         }
         .navigationTitle("Statistics")
