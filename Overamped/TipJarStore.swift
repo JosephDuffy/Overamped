@@ -1,8 +1,8 @@
 import StoreKit
 
 public final class TipJarStore: ObservableObject {
-    public enum Error: Swift.Error {
-        case failedVerification
+    public enum Error<T>: Swift.Error {
+        case failedVerification(VerificationResult<T>.VerificationError)
     }
 
     public enum State: Hashable {
@@ -157,10 +157,10 @@ public final class TipJarStore: ObservableObject {
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {
-        case .unverified(let signed):
+        case .unverified(let signed, let error):
             switch DistributionMethod.current {
             case .appStore:
-                throw Error.failedVerification
+                throw Error.failedVerification(error)
             case .testFlight, .debug:
                 return signed
             }
