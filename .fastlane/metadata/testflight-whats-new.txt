@@ -1,6 +1,13 @@
 **Please note that a crash on launch or in the background is caused by changes in the iOS beta. If you're using iOS 15 beta 4 (19A5307g) you will need to stay on build 11.**
 
-Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it and really thankful for the bug reports!
+Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it and I'm really thankful for the bug reports!
+
+New in beta 13:
+
+**This build only supports iOS 15 beta 5 (19A5318f)**
+
+- Sort statistics with the same count by domain
+- Remove recurring tips
 
 New in beta 12:
 
