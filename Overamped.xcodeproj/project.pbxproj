@@ -33,6 +33,7 @@
 		D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C63A26A1EF9A000649AA /* TipJarView.swift */; };
 		D994C64126A26C6E000649AA /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D994C64026A26C6E000649AA /* OverampedCore */; };
 		D994C64326A26D29000649AA /* OverampedCoreImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C64226A26D29000649AA /* OverampedCoreImport.swift */; };
+		D99B9AFD26C5882000619FC7 /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D99B9AFC26C5882000619FC7 /* Persist */; };
 		D9A2D74E269A020C00BED34A /* google-news-article.js in Resources */ = {isa = PBXBuildFile; fileRef = D9A2D74C269A020600BED34A /* google-news-article.js */; };
 		D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */; };
 		D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C04269A62D800D225F8 /* OverampedApp.swift */; };
@@ -204,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9DC7AEC26B61CB0005C8430 /* OverampedCore in Frameworks */,
+				D99B9AFD26C5882000619FC7 /* Persist in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +427,7 @@
 			name = "Overamped Extension";
 			packageProductDependencies = (
 				D9DC7AEB26B61CB0005C8430 /* OverampedCore */,
+				D99B9AFC26C5882000619FC7 /* Persist */,
 			);
 			productName = "Overamped Extension";
 			productReference = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */;
@@ -978,6 +981,11 @@
 		D994C64026A26C6E000649AA /* OverampedCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OverampedCore;
+		};
+		D99B9AFC26C5882000619FC7 /* Persist */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */;
+			productName = Persist;
 		};
 		D9B8EC0526A3E42E00C1243E /* Persist */ = {
 			isa = XCSwiftPackageProductDependency;
