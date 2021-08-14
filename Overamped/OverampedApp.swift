@@ -58,7 +58,7 @@ struct OverampedApp: App {
                 switch DistributionMethod.current {
                 case .debug, .testFlight:
                     showDebugView = true
-                case .appStore:
+                case .appStore, .unknown:
                     break
                 }
             }

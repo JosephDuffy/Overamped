@@ -159,9 +159,9 @@ public final class TipJarStore: ObservableObject {
         switch result {
         case .unverified(let signed, let error):
             switch DistributionMethod.current {
-            case .appStore:
+            case .appStore, .testFlight, .unknown:
                 throw Error.failedVerification(error)
-            case .testFlight, .debug:
+            case .debug:
                 return signed
             }
         case .verified(let signed):
