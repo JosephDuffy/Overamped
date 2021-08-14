@@ -1,13 +1,18 @@
-**Please note that all crashes have occurred on older builds of iOS 15. This build only support iOS 15 beta 4 (19A5307g)**
+**Please note that a crash on launch or in the background is caused by changes in the iOS beta. If you're using iOS 15 beta 4 (19A5307g) you will need to stay on build 11.**
 
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it and really thankful for the bug reports!
 
 New in beta 12:
 
+**This build only supports iOS 15 beta 5 (19A5318f)**
+
 - Fix "de-AMPing" of abc.net.au. If you find a website is incorrectly redirected please submit the feedback form and include the domain
 - Fix not showing number of replaced links in popover
+- New build to support iOS 15 beta 5 (19A5318f)
 
 New in beta 11:
+
+**This build only supports iOS 15 beta 4 (19A5307g)**
 
 - The "de-AMPing" of URLs in Google results has been added again, reducing the need for access to "Other Websites"
 - The options page opened from Settings > Safari > Extensions > Overamped > Extension Settings has an improved design
