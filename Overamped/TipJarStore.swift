@@ -13,7 +13,6 @@ public final class TipJarStore: ObservableObject {
 
     @Published public private(set) var state: State = .idle
     @Published public private(set) var consumables: [Product] = []
-    @Published public private(set) var subscriptions: [Product] = []
     @Published public private(set) var verifiedTransactions: Set<Transaction> = []
 
     public var canMakePurchase: Bool {
@@ -47,9 +46,6 @@ public final class TipJarStore: ObservableObject {
         "consumable.regulartip",
         "consumable.largetip",
         "consumable.hugetip",
-        "subscription.regulartip.monthly",
-        "subscription.largetip.monthly",
-        "subscription.hugetip.monthly",
     ]
 
     public init() {
@@ -88,15 +84,12 @@ public final class TipJarStore: ObservableObject {
             let storeProducts = try await Product.products(for: productIdentifiers)
 
             var consumables: [Product] = []
-            var subscriptions: [Product] = []
 
             for product in storeProducts {
                 switch product.type {
                 case .consumable:
                     consumables.append(product)
-                case .autoRenewable:
-                    subscriptions.append(product)
-                case .nonRenewable, .nonConsumable:
+                case .nonRenewable, .nonConsumable, .autoRenewable:
                     break
                 default:
                     break
@@ -104,7 +97,6 @@ public final class TipJarStore: ObservableObject {
             }
 
             self.consumables = sortByPrice(consumables)
-            self.subscriptions = sortByPrice(subscriptions)
         } catch {
             print("Failed product request: \(error)")
         }
