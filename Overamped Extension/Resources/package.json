@@ -63,7 +63,5 @@
     "typescript": "^4.3.5",
     "web-ext-types": "^3.2.1"
   },
-  "dependencies": {
-    "sirv-cli": "^1.0.12"
-  }
+  "dependencies": {}
 }
