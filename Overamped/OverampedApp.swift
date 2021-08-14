@@ -68,6 +68,12 @@ struct OverampedApp: App {
                         Button("Reset extension has been enabled") {
                             extensionHasBeenEnabled = false
                         }
+                        HStack {
+                            Text("Distribution Method")
+                            Spacer()
+                            Text(String(describing: DistributionMethod.current))
+                                .foregroundColor(Color(.secondaryLabel))
+                        }
                     }
                     .navigationTitle("Debug")
                 }
