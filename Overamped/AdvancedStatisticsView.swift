@@ -54,7 +54,7 @@ struct AdvancedStatisticsView: View {
                                     Text(redirectedDomainsToCounts.domain)
                                     Spacer()
                                     Text(redirectedDomainsToCounts.count.formatted())
-                                        .foregroundColor(Color(.placeholderText))
+                                        .foregroundColor(Color(.secondaryLabel))
                                 }
                             }
                         }
@@ -80,7 +80,7 @@ struct AdvancedStatisticsView: View {
                                     Text(redirectedDomainsToCounts.domain)
                                     Spacer()
                                     Text(redirectedDomainsToCounts.count.formatted())
-                                        .foregroundColor(Color(.placeholderText))
+                                        .foregroundColor(Color(.secondaryLabel))
                                 }
                             }
                         }

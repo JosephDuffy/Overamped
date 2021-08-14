@@ -55,7 +55,7 @@ struct SettingsView: View {
                         Text("Disabled Websites")
                         Spacer()
                         Text(ignoredHostnames.count.formatted())
-                            .foregroundColor(Color(.placeholderText))
+                            .foregroundColor(Color(.secondaryLabel))
                     }
                 }
             }

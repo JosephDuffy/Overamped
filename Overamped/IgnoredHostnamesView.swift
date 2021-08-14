@@ -13,7 +13,7 @@ struct IgnoredHostnamesView: View {
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color(.placeholderText))
+                    .foregroundColor(Color(.secondaryLabel))
             } else {
                 List {
                     ForEach(ignoredHostnames, id: \.self) { ignoredHostname in
