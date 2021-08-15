@@ -6,8 +6,12 @@ New in beta 13:
 
 **This build only supports iOS 15 beta 5 (19A5318f)**
 
+- Search results will no longer be redirected to a 404 when it has access to the website in the search result
+  - Providing access to "Other Websites" is the best way to do this
+  - This fixes the root cause of bugs when accessing abc.net.au and amp.dev
+  - It will still "de-AMP" results Overamped can't access. If you find a bug with this contact me and I'll fix it
 - Sort statistics with the same count by domain
-- Remove recurring tips
+- Remove recurring tips in Support tab
 
 New in beta 12:
 

@@ -181,5 +181,19 @@ declare global {
         ignoredHostnames: string[]
       }
     }): Promise<void>
+
+    function sendMessage(message: {
+      request: "logReplacedLinks"
+      payload: {
+        replacedLinks: string[]
+      }
+    }): Promise<void>
+
+    function sendMessage(message: {
+      request: "canAccessURL"
+      payload: {
+        url: string
+      }
+    }): Promise<{ canAccess: boolean }>
   }
 }
