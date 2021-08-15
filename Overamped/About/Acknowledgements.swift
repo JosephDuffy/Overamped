@@ -2,7 +2,9 @@ import SwiftUI
 
 struct Acknowledgements: View {
     private var acknowledgements: [Acknowledgement] = []
-    @SceneStorage("Acknowledgements.displayedAcknowledgement") private var displayedAcknowledgement: URL?
+
+    @State
+    private var displayedAcknowledgement: URL?
 
     var body: some View {
         List {
