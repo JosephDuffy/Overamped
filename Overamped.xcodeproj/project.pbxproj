@@ -33,6 +33,7 @@
 		D99B9AFD26C5882000619FC7 /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D99B9AFC26C5882000619FC7 /* Persist */; };
 		D9A2D74E269A020C00BED34A /* google-news-article.js in Resources */ = {isa = PBXBuildFile; fileRef = D9A2D74C269A020600BED34A /* google-news-article.js */; };
 		D9A9141026C7809C00C34C30 /* TipOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9140F26C7809C00C34C30 /* TipOptionView.swift */; };
+		D9A9141826C8A59500C34C30 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9141726C8A59400C34C30 /* FAQView.swift */; };
 		D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */; };
 		D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C04269A62D800D225F8 /* OverampedApp.swift */; };
 		D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */; };
@@ -151,6 +152,7 @@
 		D9A2D74C269A020600BED34A /* google-news-article.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "google-news-article.js"; sourceTree = "<group>"; };
 		D9A2D74D269A020600BED34A /* google-news-article.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "google-news-article.ts"; sourceTree = "<group>"; };
 		D9A9140F26C7809C00C34C30 /* TipOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipOptionView.swift; sourceTree = "<group>"; };
+		D9A9141726C8A59400C34C30 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackForm.swift; sourceTree = "<group>"; };
 		D9AB8C04269A62D800D225F8 /* OverampedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverampedApp.swift; sourceTree = "<group>"; };
 		D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationInstructionsView.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			children = (
 				D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */,
 				D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */,
+				D9A9141726C8A59400C34C30 /* FAQView.swift */,
 				D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */,
 			);
 			path = About;
@@ -611,6 +614,7 @@
 				D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */,
 				D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */,
 				D994C63826A13682000649AA /* TipJarStore.swift in Sources */,
+				D9A9141826C8A59500C34C30 /* FAQView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

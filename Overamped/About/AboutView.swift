@@ -1,12 +1,26 @@
 import SwiftUI
+import WebKit
 
 struct AboutView: View {
     @SceneStorage("AboutView.showInstallationInstructions")
     private var showInstallationInstructions = false
+
     @SceneStorage("AboutView.showAcknowledgements")
     private var showAcknowledgements = false
-    @State private var showPrivacyPolicy = false
-    @State private var showMoreApps = false
+
+    @SceneStorage("AboutView.showFAQ")
+    private var showFAQ = false
+
+    @State
+    private var displayedURL: DisplayedURL?
+
+    private struct DisplayedURL: Identifiable {
+        var id: String {
+            url.absoluteString
+        }
+
+        let url: URL
+    }
 
     var body: some View {
         List {
@@ -28,7 +42,7 @@ struct AboutView: View {
                 }
 
                 Button(action: {
-                    showMoreApps = true
+                    displayedURL = DisplayedURL(url: URL(string: "https://josephduffy.co.uk/apps")!)
                 }, label: {
                     HStack {
                         Image(systemName: "app.fill")
@@ -42,11 +56,6 @@ struct AboutView: View {
                             .foregroundColor(Color(.tertiaryLabel))
                     }
                 })
-                    .sheet(isPresented: $showMoreApps) {
-                        SafariView(url: URL(string: "https://josephduffy.co.uk/apps")!) {
-                            showMoreApps = false
-                        }
-                    }
 
                 Link(destination: URL(string: "https://twitter.com/Joe_Duffy")!) {
                     HStack {
@@ -74,8 +83,18 @@ struct AboutView: View {
                     Text("Installation Instructions")
                 }
 
+                NavigationLink(
+                    destination: FAQView(),
+                    isActive: $showFAQ
+                ) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.title3)
+                        .foregroundColor(.accentColor)
+                    Text("FAQ")
+                }
+
                 Button(action: {
-                    showPrivacyPolicy = true
+                    displayedURL = DisplayedURL(url: URL(string: "https://overamped.app/privacy")!)
                 }, label: {
                     HStack {
                         Image(systemName: "eye.slash.fill")
@@ -89,11 +108,6 @@ struct AboutView: View {
                             .foregroundColor(Color(.tertiaryLabel))
                     }
                 })
-                    .sheet(isPresented: $showPrivacyPolicy) {
-                        SafariView(url: URL(string: "https://overamped.app/privacy")!) {
-                            showPrivacyPolicy = false
-                        }
-                    }
 
                 Link(destination: URL(string: "https://twitter.com/OverampedApp")!) {
                     HStack {
@@ -125,6 +139,11 @@ struct AboutView: View {
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
             ) {}
+        }
+        .sheet(item: $displayedURL, onDismiss: { displayedURL = nil }) { displayedURL in
+            SafariView(url: displayedURL.url) {
+                self.displayedURL = nil
+            }
         }
         .navigationTitle("About")
     }
