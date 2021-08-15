@@ -257,6 +257,67 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D9A9141126C8910200C34C30 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		D9A9141226C8911100C34C30 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */,
+				D939C26E26A92C8700CE8AC6 /* SurveyView.swift */,
+				D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */,
+				D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */,
+				D994C63726A13682000649AA /* TipJarStore.swift */,
+				D994C63A26A1EF9A000649AA /* TipJarView.swift */,
+				D9A9140F26C7809C00C34C30 /* TipOptionView.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		D9A9141326C8913300C34C30 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
+				D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		D9A9141426C8915200C34C30 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D94E168F26B5F66D00294B9D /* SettingsView.swift */,
+				D984BB9A26A8F54200500856 /* IgnoredHostnamesView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D9A9141526C8917100C34C30 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D9CC9D9E26AA943300FE447C /* ActivityView.swift */,
+				D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */,
+				D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */,
+				D994C64226A26D29000649AA /* OverampedCoreImport.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D9A9141626C8918000C34C30 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */,
+				D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */,
+				D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		D9B9D58F2698B1F600F7D361 /* Overamped Extension UI Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,25 +353,12 @@
 			children = (
 				D9AB8C04269A62D800D225F8 /* OverampedApp.swift */,
 				D9AB8C08269A895500D225F8 /* OverampedTabs.swift */,
-				D984BB9A26A8F54200500856 /* IgnoredHostnamesView.swift */,
-				D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */,
-				D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */,
-				D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */,
-				D939C26E26A92C8700CE8AC6 /* SurveyView.swift */,
-				D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */,
-				D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */,
-				D994C63A26A1EF9A000649AA /* TipJarView.swift */,
-				D9A9140F26C7809C00C34C30 /* TipOptionView.swift */,
-				D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */,
-				D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */,
-				D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */,
-				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
-				D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */,
-				D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */,
-				D94E168F26B5F66D00294B9D /* SettingsView.swift */,
-				D994C63726A13682000649AA /* TipJarStore.swift */,
-				D9CC9D9E26AA943300FE447C /* ActivityView.swift */,
-				D994C64226A26D29000649AA /* OverampedCoreImport.swift */,
+				D9A9141326C8913300C34C30 /* Statistics */,
+				D9A9141226C8911100C34C30 /* Support */,
+				D9A9141126C8910200C34C30 /* Feedback */,
+				D9A9141426C8915200C34C30 /* Settings */,
+				D9A9141626C8918000C34C30 /* About */,
+				D9A9141526C8917100C34C30 /* Shared */,
 				D96BF7DC26B3C6FE00E6EBE9 /* Localizable.stringsdict */,
 				D994C63926A143F8000649AA /* Products.storekit */,
 				D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */,
