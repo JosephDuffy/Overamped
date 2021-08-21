@@ -125,7 +125,6 @@
 		D963DACC26BDBDA000AFCDC8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D963DACF26BDBDA000AFCDC8 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		D963DAD026BDBDA000AFCDC8 /* global.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = global.css; sourceTree = "<group>"; };
-		D963DAD126BDBDA000AFCDC8 /* favicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favicon.png; sourceTree = "<group>"; };
 		D963DAD326BDBDA000AFCDC8 /* bundle.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bundle.css; sourceTree = "<group>"; };
 		D963DAD426BDBDA000AFCDC8 /* bundle.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = bundle.js.map; sourceTree = "<group>"; };
 		D963DAD526BDBDA000AFCDC8 /* bundle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bundle.js; sourceTree = "<group>"; };
@@ -226,7 +225,6 @@
 			children = (
 				D963DACF26BDBDA000AFCDC8 /* index.html */,
 				D963DAD026BDBDA000AFCDC8 /* global.css */,
-				D963DAD126BDBDA000AFCDC8 /* favicon.png */,
 				D963DAD226BDBDA000AFCDC8 /* build */,
 			);
 			path = public;
