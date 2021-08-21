@@ -20,6 +20,17 @@ struct StatisticsView: View {
     @State
     private var showShareSheet = false
 
+    @State
+    private var displayedURL: DisplayedURL?
+
+    private struct DisplayedURL: Identifiable {
+        var id: String {
+            url.absoluteString
+        }
+
+        let url: URL
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -85,6 +96,15 @@ struct StatisticsView: View {
             }
             .frame(maxWidth: .infinity)
             .padding()
+        }
+        .environment(\.openURL, OpenURLAction { url in
+            displayedURL = DisplayedURL(url: url)
+            return .handled
+        })
+        .sheet(item: $displayedURL, onDismiss: { displayedURL = nil }) { displayedURL in
+            SafariView(url: displayedURL.url) {
+                self.displayedURL = nil
+            }
         }
         .navigationTitle("Statistics")
         .toolbar {
