@@ -98,6 +98,11 @@
 <main>
   {#await tabData}
     <p>Loading tab data...</p>
+    <style>
+      p {
+        text-align: center;
+      }
+    </style>
   {:then tabData}
     {#if tabHasURL(tabData.currentTab)}
       {#if dataIsGoogleTabData(tabData)}
