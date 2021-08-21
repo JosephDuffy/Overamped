@@ -21,7 +21,7 @@
       "16": "images/toolbar-icon-16.png",
       "32": "images/toolbar-icon-32.png"
     },
-    "default_popup": "popup/index.html"
+    "default_popup": "popup/popup.html"
   },
 
   "background": {

@@ -15,7 +15,7 @@
 		D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E168F26B5F66D00294B9D /* SettingsView.swift */; };
 		D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */; };
 		D963DAEC26BDBF1200AFCDC8 /* bundle.js.map in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD426BDBDA000AFCDC8 /* bundle.js.map */; };
-		D963DAEE26BDBFC300AFCDC8 /* index.html in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DACF26BDBDA000AFCDC8 /* index.html */; };
+		D963DAEE26BDBFC300AFCDC8 /* popup.html in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DACF26BDBDA000AFCDC8 /* popup.html */; };
 		D963DAEF26BDBFC300AFCDC8 /* global.css in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DAD026BDBDA000AFCDC8 /* global.css */; };
 		D963DAF026BDBFCE00AFCDC8 /* bundle.css in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD326BDBDA000AFCDC8 /* bundle.css */; };
 		D963DAF126BDBFCE00AFCDC8 /* bundle.js in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD526BDBDA000AFCDC8 /* bundle.js */; };
@@ -80,7 +80,7 @@
 			dstPath = popup;
 			dstSubfolderSpec = 1;
 			files = (
-				D963DAEE26BDBFC300AFCDC8 /* index.html in Copy Popup Root */,
+				D963DAEE26BDBFC300AFCDC8 /* popup.html in Copy Popup Root */,
 				D963DAEF26BDBFC300AFCDC8 /* global.css in Copy Popup Root */,
 			);
 			name = "Copy Popup Root";
@@ -123,7 +123,7 @@
 		D94E168F26B5F66D00294B9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedStatisticsView.swift; sourceTree = "<group>"; };
 		D963DACC26BDBDA000AFCDC8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D963DACF26BDBDA000AFCDC8 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		D963DACF26BDBDA000AFCDC8 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		D963DAD026BDBDA000AFCDC8 /* global.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = global.css; sourceTree = "<group>"; };
 		D963DAD326BDBDA000AFCDC8 /* bundle.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bundle.css; sourceTree = "<group>"; };
 		D963DAD426BDBDA000AFCDC8 /* bundle.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = bundle.js.map; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		D963DACE26BDBDA000AFCDC8 /* public */ = {
 			isa = PBXGroup;
 			children = (
-				D963DACF26BDBDA000AFCDC8 /* index.html */,
+				D963DACF26BDBDA000AFCDC8 /* popup.html */,
 				D963DAD026BDBDA000AFCDC8 /* global.css */,
 				D963DAD226BDBDA000AFCDC8 /* build */,
 			);
