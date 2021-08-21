@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct InstallationInstructionsView: View {
+    @State
+    private var showWhyOtherWebsites = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -120,20 +123,29 @@ struct InstallationInstructionsView: View {
                 Group {
                     Text("Finally choose “Allow”:")
 
-                    HStack {
-                        Text("Allow")
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Allow")
 
-                        Spacer()
+                            Spacer()
 
-                        Image(systemName: "checkmark")
-                            .font(.body.bold())
-                            .foregroundColor(Color(.systemBlue))
+                            Image(systemName: "checkmark")
+                                .font(.body.bold())
+                                .foregroundColor(Color(.systemBlue))
+                        }
+                        .frame(minHeight: 44)
+                        .padding(.horizontal, 16)
+                        .background(
+                            Color(.secondarySystemGroupedBackground)
+                        )
+
+                        Button {
+                            showWhyOtherWebsites = true
+                        } label: {
+                            Text("Why grant access to “Other Websites”?")
+                                .font(.footnote)
+                        }
                     }
-                    .frame(minHeight: 44)
-                    .padding(.horizontal, 16)
-                    .background(
-                        Color(.systemBackground)
-                    )
                 }
 
                 Text("From now on you should never see an AMP or Yandex Turbo page again!")
@@ -145,6 +157,24 @@ struct InstallationInstructionsView: View {
         )
         .navigationTitle("Installation Instructions")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showWhyOtherWebsites) {
+            NavigationView {
+                ScrollView {
+                    QuestionView(question: .whyOtherWebsites)
+                        .toolbar {
+                            Button(
+                                action: {
+                                    showWhyOtherWebsites = false
+                                },
+                                label: {
+                                    Text("Done")
+                                }
+                            )
+                        }
+                        .navigationBarTitleDisplayMode(.inline)
+                }
+            }
+        }
     }
 }
 
