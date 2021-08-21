@@ -63,7 +63,7 @@ extension FAQView {
                 )
             ),
             Question(
-                question: "A specific website website isn't redirecting correctly, can I provide access to only that website to fix the redirection?",
+                question: "A specific website isn't redirecting correctly, can I provide access to only that website to fix the redirection?",
                 answer: """
                 Yes, providing access to specific websites will also fix incorrect redirects. To provide access to a specific website first visit the website, then open Overamped on that page and grant access to the website.
 
