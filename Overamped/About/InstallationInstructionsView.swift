@@ -10,113 +10,139 @@ struct InstallationInstructionsView: View {
                     Spacer()
                 }
 
-                Text("""
-                    The Overamped extension can be enabled from within Safari.
-
-                    Start by opening Safari and opening a web page, such as a Google search. Tap the bar at the bottom, then tap the “More” button:
-                    """)
-
-                Image(systemName: "square.and.arrow.up")
-                    .foregroundColor(.accentColor)
-                    .font(.title2)
+                Text("The Overamped extension can be enabled from the Settings app.")
 
                 Group {
-                    Text("Then choose “Extensions”:")
+                    Text("Start by opening Settings and scroll down to Safari:")
+
+                    HStack {
+                        Image("SafariTableIcon")
+                            .resizable()
+                            .frame(width: 29, height: 29)
+                            .cornerRadius(6)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 6)
+                                    .stroke(Color.gray, lineWidth: 1 / UIScreen.main.nativeScale)
+                            )
+                        Text("Overamped")
+                        Spacer()
+
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(Font.system(size: 14).weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                    }
+                    .frame(minHeight: 44)
+                    .padding(.horizontal, 16)
+                    .background(
+                        Color(.systemBackground)
+                    )
+                }
+
+                Group {
+                    Text("Choose “Extensions”:")
 
                     HStack {
                         Text("Extensions")
                         Spacer()
-                        Image(systemName: "puzzlepiece")
-                    }
-                    .padding()
-                    .background(
-                        Color(.secondarySystemBackground)
-                            .cornerRadius(12)
-                    )
 
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(Font.system(size: 14).weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                    }
+                    .frame(minHeight: 44)
+                    .padding(.horizontal, 16)
+                    .background(
+                        Color(.systemBackground)
+                    )
+                }
+
+                Group {
+                    Text("Tap “Overamped”:")
+
+                    HStack {
+                        Image("LargeIcon")
+                            .resizable()
+                            .frame(width: 29, height: 29)
+                        Text("Overamped")
+
+                        Spacer()
+
+                        Text("Off")
+                            .foregroundColor(Color(.secondaryLabel))
+                        Image(systemName: "chevron.right")
+                            .font(Font.system(size: 14).weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                    }
+                    .frame(minHeight: 44)
+                    .padding(.horizontal, 16)
+                    .background(
+                        Color(.systemBackground)
+                    )
+                }
+
+                Group {
                     Text("Turn “Overamped” on:")
 
                     HStack {
                         Image("LargeIcon")
                             .resizable()
-                            .frame(width: 38, height: 38)
+                            .frame(width: 29, height: 29)
                         Text("Overamped")
                         Spacer()
                         Toggle(isOn: .constant(true), label: {})
                             .allowsHitTesting(false)
                     }
-                    .padding(.vertical, 4)
-                    .padding(.horizontal)
+                    .frame(minHeight: 44)
+                    .padding(.horizontal, 16)
                     .background(
-                        Color(.secondarySystemBackground)
-                            .cornerRadius(12)
+                        Color(.systemBackground)
                     )
 
-                    Text("And tap “Done”:")
+                    Text("Scroll down and select “Other Websites”:")
 
                     HStack {
-                        Button("Done") {}
-                        .opacity(0)
-                        .allowsHitTesting(false)
+                        Text("Other Websites")
+
                         Spacer()
-                        Text("Extensions")
-                        Spacer()
-                        Button("Done") {}
-                        .allowsHitTesting(false)
+
+                        Text("Ask")
+                            .foregroundColor(Color(.secondaryLabel))
                     }
-                    .font(.body.bold())
-                    .padding()
+                    .frame(minHeight: 44)
+                    .padding(.horizontal, 16)
                     .background(
-                        Color(.secondarySystemBackground)
-                    )
-                    .clipShape(
-                        RoundedCorner(
-                            radius: 12,
-                            corners: [.topLeft, .topRight]
-                        )
+                        Color(.systemBackground)
                     )
                 }
 
                 Group {
-                    Text("Select Overamped:")
+                    Text("Finally choose “Allow”:")
 
                     HStack {
-                        Text("Overamped")
+                        Text("Allow")
+
                         Spacer()
-                        Image("ToolbarIcon")
-                            .foregroundColor(.primary)
+
+                        Image(systemName: "checkmark")
+                            .font(.body.bold())
+                            .foregroundColor(Color(.systemBlue))
                     }
-                    .padding()
+                    .frame(minHeight: 44)
+                    .padding(.horizontal, 16)
                     .background(
-                        Color(.secondarySystemBackground)
-                            .cornerRadius(12)
+                        Color(.systemBackground)
                     )
-
-                    Text("Choose “Always Allow...”:")
-
-                    HStack {
-                        Button("Always Allow...") {}
-                        .frame(maxWidth: .infinity)
-                        .allowsHitTesting(false)
-                    }
-                    .padding(12)
-                    .background(.ultraThinMaterial)
-
-                    Text("Providing access to all websites will ensure all AMP links are redirected, including links in Google search results, any website, and opened via apps.")
-
-                    HStack {
-                        Button("Always Allow on Every Website...") {}
-                        .frame(maxWidth: .infinity)
-                        .allowsHitTesting(false)
-                    }
-                    .padding(12)
-                    .background(.ultraThinMaterial)
                 }
 
                 Text("From now on you should never see an AMP or Yandex Turbo page again!")
             }
             .padding()
         }
+        .background(
+            Color(.secondarySystemBackground)
+        )
         .navigationTitle("Installation Instructions")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -125,11 +151,11 @@ struct InstallationInstructionsView: View {
 struct InstallationInstructionsView_Previews: PreviewProvider {
     static var previews: some View {
         InstallationInstructionsView()
+            .previewLayout(.sizeThatFits)
     }
 }
 
 struct RoundedCorner: Shape {
-
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
 
@@ -138,13 +164,3 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
-
-extension HorizontalAlignment {
-    private enum HCenterAlignment: AlignmentID {
-        static func defaultValue(in dimensions: ViewDimensions) -> CGFloat {
-            return dimensions[HorizontalAlignment.center]
-        }
-    }
-    static let hCenterred = HorizontalAlignment(HCenterAlignment.self)
-}
-
