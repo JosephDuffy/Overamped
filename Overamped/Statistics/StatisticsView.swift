@@ -89,7 +89,7 @@ struct StatisticsView: View {
                         .buttonStyle(BorderedButtonStyle())
 
                     Text("Enable advanced statistics to collect the domains and timestamps of replaced and redirect links.")
-                        .font(.caption)
+                        .font(.footnote)
                 }
 
                 AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics)

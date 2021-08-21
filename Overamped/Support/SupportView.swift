@@ -91,7 +91,7 @@ struct SupportView: View {
                 .buttonStyle(BorderedButtonStyle())
 
             Text("Having an issue? [Submit feedback instead](overamped:feedback).")
-                .font(.caption)
+                .font(.footnote)
         }
     }
 }
