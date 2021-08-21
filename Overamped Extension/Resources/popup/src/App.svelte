@@ -114,10 +114,18 @@
     {:else}
       <p>Overamped is not available for the current page</p>
     {/if}
-    <div>
+    <div class="buttonsContainer">
       <SettingsButton />
       <FeedbackButton currentTab={tabData.currentTab} />
     </div>
+    <style>
+      .buttonsContainer {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto;
+        gap: 8px;
+      }
+    </style>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
