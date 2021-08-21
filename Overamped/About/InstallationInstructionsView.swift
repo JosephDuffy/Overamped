@@ -35,7 +35,7 @@ struct InstallationInstructionsView: View {
                     .frame(minHeight: 44)
                     .padding(.horizontal, 16)
                     .background(
-                        Color(.systemBackground)
+                        Color(.secondarySystemGroupedBackground)
                     )
                 }
 
@@ -54,7 +54,7 @@ struct InstallationInstructionsView: View {
                     .frame(minHeight: 44)
                     .padding(.horizontal, 16)
                     .background(
-                        Color(.systemBackground)
+                        Color(.secondarySystemGroupedBackground)
                     )
                 }
 
@@ -78,7 +78,7 @@ struct InstallationInstructionsView: View {
                     .frame(minHeight: 44)
                     .padding(.horizontal, 16)
                     .background(
-                        Color(.systemBackground)
+                        Color(.secondarySystemGroupedBackground)
                     )
                 }
 
@@ -97,7 +97,7 @@ struct InstallationInstructionsView: View {
                     .frame(minHeight: 44)
                     .padding(.horizontal, 16)
                     .background(
-                        Color(.systemBackground)
+                        Color(.secondarySystemGroupedBackground)
                     )
 
                     Text("Scroll down and select “Other Websites”:")
@@ -113,7 +113,7 @@ struct InstallationInstructionsView: View {
                     .frame(minHeight: 44)
                     .padding(.horizontal, 16)
                     .background(
-                        Color(.systemBackground)
+                        Color(.secondarySystemGroupedBackground)
                     )
                 }
 
@@ -141,7 +141,7 @@ struct InstallationInstructionsView: View {
             .padding()
         }
         .background(
-            Color(.secondarySystemBackground)
+            Color(.systemGroupedBackground)
         )
         .navigationTitle("Installation Instructions")
         .navigationBarTitleDisplayMode(.inline)
