@@ -29,6 +29,7 @@ struct OverampedTabs: View {
             NavigationView {
                 SupportView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tab.support)
             .tabItem {
                 VStack {
@@ -40,6 +41,7 @@ struct OverampedTabs: View {
             NavigationView {
                 FeedbackForm()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tab.feedback)
             .tabItem {
                 VStack {
