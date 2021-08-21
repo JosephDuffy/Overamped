@@ -31,14 +31,12 @@ struct AboutView: View {
                             .resizable()
                             .frame(width: 64, height: 64)
                         VStack(alignment: .leading) {
-                            Text("Overamped")
-                                .font(.headline)
-                            Text("by Joseph Duffy")
-                                .font(.subheadline)
+                            Text("Overamped is created by Joseph Duffy, an indie developer from the UK")
+                                .fixedSize(horizontal: false, vertical: true)
                         }
+                        .padding(.top, 4)
                     }
-                    Text("Overamped is created by Joseph Duffy, an indie developer from the UK.")
-                        .fixedSize(horizontal: false, vertical: true)
+
                 }
 
                 Button(action: {
@@ -154,5 +152,6 @@ struct AboutView_Previews: PreviewProvider {
         NavigationView {
             AboutView()
         }
+        .previewLayout(.sizeThatFits)
     }
 }
