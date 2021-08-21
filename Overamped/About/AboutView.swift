@@ -43,11 +43,15 @@ struct AboutView: View {
                     displayedURL = DisplayedURL(url: URL(string: "https://josephduffy.co.uk/apps")!)
                 }, label: {
                     HStack {
-                        Image(systemName: "app.fill")
-                            .font(.title3)
-                            .foregroundColor(.accentColor)
-                        Text("View More Apps I've Made")
-                            .foregroundColor(Color.primary)
+                        Label {
+                            Text("View More Apps I've Made")
+                                .foregroundColor(Color.primary)
+                        } icon: {
+                            Image(systemName: "app.fill")
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
+                        }
+
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(Font.system(size: 14).weight(.semibold))
@@ -57,11 +61,15 @@ struct AboutView: View {
 
                 Link(destination: URL(string: "https://twitter.com/Joe_Duffy")!) {
                     HStack {
-                        Image("twitter")
-                            .font(.title3)
-                            .foregroundColor(.accentColor)
-                        Text("Follow Me on Twitter")
-                            .foregroundColor(Color.primary)
+                        Label {
+                            Text("Follow @Joe_Duffy")
+                                .foregroundColor(Color.primary)
+                        } icon: {
+                            Image("twitter")
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
+                        }
+
                         Spacer()
                         Image(systemName: "arrow.up.forward.app.fill")
                             .font(Font.system(size: 14).weight(.semibold))
@@ -75,31 +83,41 @@ struct AboutView: View {
                     destination: InstallationInstructionsView(),
                     isActive: $showInstallationInstructions
                 ) {
-                    Image(systemName: "puzzlepiece.fill")
-                        .font(.title3)
-                        .foregroundColor(.accentColor)
-                    Text("Installation Instructions")
+                    Label {
+                        Text("Installation Instructions")
+                    } icon: {
+                        Image(systemName: "puzzlepiece.fill")
+                            .font(.title3)
+                            .foregroundColor(.accentColor)
+                    }
                 }
 
                 NavigationLink(
                     destination: FAQView(),
                     isActive: $showFAQ
                 ) {
-                    Image(systemName: "questionmark.circle")
-                        .font(.title3)
-                        .foregroundColor(.accentColor)
-                    Text("FAQ")
+                    Label {
+                        Text("FAQ")
+                    } icon: {
+                        Image(systemName: "questionmark.circle")
+                            .font(.title3)
+                            .foregroundColor(.accentColor)
+                    }
                 }
 
                 Button(action: {
                     displayedURL = DisplayedURL(url: URL(string: "https://overamped.app/privacy")!)
                 }, label: {
                     HStack {
-                        Image(systemName: "eye.slash.fill")
-                            .font(.title3)
-                            .foregroundColor(.accentColor)
-                        Text("Privacy Policy")
-                            .foregroundColor(Color.primary)
+                        Label {
+                            Text("Privacy Policy")
+                                .foregroundColor(Color.primary)
+                        } icon: {
+                            Image(systemName: "eye.slash.fill")
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
+                        }
+
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(Font.system(size: 14).weight(.semibold))
@@ -109,11 +127,15 @@ struct AboutView: View {
 
                 Link(destination: URL(string: "https://twitter.com/OverampedApp")!) {
                     HStack {
-                        Image("twitter")
-                            .font(.title3)
-                            .foregroundColor(.accentColor)
-                        Text("Follow @OverampedApp on Twitter")
-                            .foregroundColor(Color.primary)
+                        Label {
+                            Text("Follow @OverampedApp")
+                                .foregroundColor(Color.primary)
+                        } icon: {
+                            Image("twitter")
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
+                        }
+
                         Spacer()
                         Image(systemName: "arrow.up.forward.app.fill")
                             .font(Font.system(size: 14).weight(.semibold))
@@ -125,10 +147,13 @@ struct AboutView: View {
                     destination: Acknowledgements(),
                     isActive: $showAcknowledgements
                 ) {
-                    Image(systemName: "chevron.left.forwardslash.chevron.right")
-                        .font(.title3)
-                        .foregroundColor(.accentColor)
-                    Text("Acknowledgements")
+                    Label {
+                        Text("Acknowledgements")
+                    } icon: {
+                        Image(systemName: "chevron.left.forwardslash.chevron.right")
+                            .font(.title3)
+                            .foregroundColor(.accentColor)
+                    }
                 }
             }
 
@@ -154,4 +179,20 @@ struct AboutView_Previews: PreviewProvider {
         }
         .previewLayout(.sizeThatFits)
     }
+}
+
+extension HorizontalAlignment {
+    /// A custom alignment for image titles.
+    private struct ImageTitleAlignment: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            // Default to bottom alignment if no guides are set.
+            context[HorizontalAlignment.leading]
+        }
+    }
+
+
+    /// A guide for aligning titles.
+    static let imageTitleAlignmentGuide = VerticalAlignment(
+        ImageTitleAlignment.self
+    )
 }
