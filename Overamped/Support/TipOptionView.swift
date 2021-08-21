@@ -14,6 +14,7 @@ struct TipOptionView: View {
 
             Text(displayPrice)
         }
+        .foregroundColor(Color(.white))
         .frame(maxWidth: .infinity)
         .multilineTextAlignment(.center)
         .padding()
