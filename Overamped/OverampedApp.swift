@@ -25,6 +25,7 @@ struct OverampedApp: App {
                             HStack {
                                 Text("The Overamped Safari Extension has been enabled")
                                     .frame(maxWidth: .infinity)
+                                    .foregroundColor(Color(.white))
                                     .multilineTextAlignment(.center)
                                     .padding(.horizontal)
                                     .padding(.vertical, 8)
