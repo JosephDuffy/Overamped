@@ -66,12 +66,14 @@ struct OverampedApp: App {
             .sheet(isPresented: $showDebugView) {
                 NavigationView {
                     List {
-                        Button("Reset extension has been enabled") {
-                            extensionHasBeenEnabled = false
-                        }
-                        Button("Show extension has been enabled banner") {
-                            extensionHasBeenEnabled = true
-                            didRecentlyInstallExtension = true
+                        Section("Installation") {
+                            Button("Reset extension has been enabled") {
+                                extensionHasBeenEnabled = false
+                            }
+                            Button("Show extension has been enabled banner") {
+                                extensionHasBeenEnabled = true
+                                didRecentlyInstallExtension = true
+                            }
                         }
                         HStack {
                             Text("Distribution Method")
