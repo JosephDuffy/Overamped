@@ -75,11 +75,36 @@ struct OverampedApp: App {
                                 didRecentlyInstallExtension = true
                             }
                         }
-                        HStack {
-                            Text("Distribution Method")
-                            Spacer()
-                            Text(String(describing: DistributionMethod.current))
-                                .foregroundColor(Color(.secondaryLabel))
+
+                        Section("Receipt") {
+                            HStack {
+                                Text("Path")
+                                Spacer()
+                                Text(Bundle.main.appStoreReceiptURL?.path ?? "nil")
+                                    .foregroundColor(Color(.secondaryLabel))
+                            }
+
+                            HStack {
+                                Text("Exists")
+                                Spacer()
+                                Text(
+                                    Bundle
+                                        .main
+                                        .appStoreReceiptURL
+                                        .flatMap { url in
+                                            FileManager.default.fileExists(atPath: url.path).description
+                                        }
+                                    ?? "-"
+                                )
+                                    .foregroundColor(Color(.secondaryLabel))
+                            }
+
+                            HStack {
+                                Text("Distribution Method")
+                                Spacer()
+                                Text(String(describing: DistributionMethod.current))
+                                    .foregroundColor(Color(.secondaryLabel))
+                            }
                         }
                     }
                     .navigationTitle("Debug")
