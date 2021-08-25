@@ -12,7 +12,7 @@ platform :ios do
     gym
 
     pilot(
-      distribute_external: true,
+      distribute_external: false,
       groups: [
         "Airport",
         "Cold Emails",
