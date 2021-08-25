@@ -56,12 +56,7 @@ struct OverampedApp: App {
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: .motionShakeDidEndNotification)) { _ in
-                switch DistributionMethod.current {
-                case .debug, .testFlight:
-                    showDebugView = true
-                case .appStore, .unknown:
-                    break
-                }
+                showDebugView = true
             }
             .sheet(isPresented: $showDebugView) {
                 NavigationView {
