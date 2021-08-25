@@ -1,7 +1,8 @@
 <script lang="ts">
   import Popup from "./Popup.svelte"
   import NativeAppCommunicator from "../../NativeAppCommunicator"
-  import { dataIsGoogleTabData, GoogleTabData, TabData } from "./TabData"
+  import { dataIsGoogleTabData } from "./TabData"
+  import type { GoogleTabData, TabData } from "./TabData"
   import FeedbackButton from "./FeedbackButton.svelte"
   import GooglePopup from "./GooglePopup.svelte"
   import SettingsButton from "./SettingsButton.svelte"
