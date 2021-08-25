@@ -5,7 +5,17 @@ export default function openURL(
   ignoredHostnames: string[],
   action: "push" | "replace",
 ): boolean {
-  if (ignoredHostnames.includes(url.hostname)) {
+  // An array of hostnames that Overamped will never redirect
+  const globallyIgnoredHostnames = [
+    "www.thegate.ca", // Redirects to AMP Version when opened on iOS
+  ]
+  if (globallyIgnoredHostnames.includes(url.hostname)) {
+    console.info(
+      `Not redirecting to ${url} because ${url.hostname} is in the globally ignored hostnames`,
+    )
+
+    return false
+  } else if (ignoredHostnames.includes(url.hostname)) {
     console.info(
       `Not redirecting to ${url} because ${url.hostname} is in the ignored hostnames`,
     )
