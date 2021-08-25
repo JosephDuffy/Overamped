@@ -1,6 +1,7 @@
 import Persist
 import SwiftUI
 import OverampedCore
+import os.log
 
 @main
 struct OverampedApp: App {
@@ -55,8 +56,26 @@ struct OverampedApp: App {
                         }
                 }
             }
+            .onOpenURL(perform: { url in
+                Logger(subsystem: "net.yetii.Overamped", category: "URL Handler")
+                    .log("Opened via URL \(url.absoluteString)")
+
+                guard let deepLink = DeepLink(url: url) else { return }
+
+                switch deepLink {
+                case .debug:
+                    showDebugView = true
+                default:
+                    break
+                }
+            })
             .onReceive(NotificationCenter.default.publisher(for: .motionShakeDidEndNotification)) { _ in
-                showDebugView = true
+                switch DistributionMethod.current {
+                case .debug, .testFlight:
+                    showDebugView = true
+                case .appStore, .unknown:
+                    break
+                }
             }
             .sheet(isPresented: $showDebugView) {
                 NavigationView {

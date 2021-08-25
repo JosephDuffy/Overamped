@@ -1,6 +1,7 @@
 import Foundation
 
 public enum DeepLink: Hashable {
+    case debug
     case statistics
     case support
     case feedback(searchURL: String?, websiteURL: String?)
@@ -39,6 +40,8 @@ public enum DeepLink: Hashable {
             self = .settings
         case "about":
             self = .about
+        case "debug":
+            self = .debug
         default:
             return nil
         }

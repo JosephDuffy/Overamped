@@ -73,9 +73,6 @@ struct OverampedTabs: View {
             }
         }
         .onOpenURL(perform: { url in
-            Logger(subsystem: "net.yetii.Overamped", category: "URL Handler")
-                .log("Opened via URL \(url.absoluteString)")
-
             guard let deepLink = DeepLink(url: url) else { return }
 
             switch deepLink {
@@ -89,6 +86,8 @@ struct OverampedTabs: View {
                 selectedTab = .settings
             case .about:
                 selectedTab = .about
+            case .debug:
+                break
             }
         })
     }
