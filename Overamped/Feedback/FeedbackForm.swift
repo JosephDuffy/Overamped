@@ -305,6 +305,7 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     struct DebugData: Codable {
         let versionString: String?
         let buildNumber: String?
+        let osVersion: String
         let ignoredHostnames: [String]?
         let permittedOrigins: [String]?
 
@@ -313,6 +314,7 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
             self.permittedOrigins = permittedOrigins
             versionString = bundle.infoDictionary?["CFBundleShortVersionString"] as? String
             buildNumber = bundle.infoDictionary?["CFBundleVersion"] as? String
+            osVersion = ProcessInfo.processInfo.operatingSystemVersionString
         }
     }
 
