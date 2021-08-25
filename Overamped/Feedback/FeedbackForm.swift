@@ -155,7 +155,7 @@ struct FeedbackForm: View {
             guard let deepLink = DeepLink(url: url) else { return }
 
             switch deepLink {
-            case .feedback(let searchURL, let websiteURL):
+            case .feedback(let searchURL, let websiteURL, let permittedOrigins):
                 if let searchURL = searchURL {
                     formAPI.formData.searchURL = searchURL
                 }
@@ -163,6 +163,8 @@ struct FeedbackForm: View {
                 if let websiteURL = websiteURL {
                     formAPI.formData.websiteURL = websiteURL
                 }
+
+                formAPI.formData.permittedOrigins = permittedOrigins
             default:
                 break
             }
@@ -304,9 +306,11 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
         let versionString: String?
         let buildNumber: String?
         let ignoredHostnames: [String]?
+        let permittedOrigins: [String]?
 
-        init(ignoredHostnames: [String]?, bundle: Bundle = .main) {
+        init(ignoredHostnames: [String]?, permittedOrigins: [String]?, bundle: Bundle = .main) {
             self.ignoredHostnames = ignoredHostnames
+            self.permittedOrigins = permittedOrigins
             versionString = bundle.infoDictionary?["CFBundleShortVersionString"] as? String
             buildNumber = bundle.infoDictionary?["CFBundleVersion"] as? String
         }
@@ -317,6 +321,7 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     @Published var contactReason: FeedbackReason = .initial
     @Published var message: String = ""
     @Published var searchURL: String = ""
+    @Published var permittedOrigins: [String]?
     @Published var websiteURL: String = ""
 
     @Published
@@ -326,7 +331,7 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     private(set) var ignoredHostnames: [String]
 
     var debugData: DebugData {
-        DebugData(ignoredHostnames: includeIgnoredHostnames ? ignoredHostnames : nil)
+        DebugData(ignoredHostnames: includeIgnoredHostnames ? ignoredHostnames : nil, permittedOrigins: permittedOrigins)
     }
 
     var customMirror: Mirror {

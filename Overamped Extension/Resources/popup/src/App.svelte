@@ -9,13 +9,15 @@
 
   const tabData = loadTabData()
 
-  async function loadTabData(): Promise<TabData> {
+  async function loadTabData(): Promise<TabData | GoogleTabData> {
     const ignoredHostnamesPromise =
       new NativeAppCommunicator().ignoredHostnames()
     const currentTabPromise = browser.tabs.getCurrent()
-    const [ignoredHostnames, currentTab] = await Promise.all([
+    const permissionsPromise = browser.permissions.getAll()
+    const [ignoredHostnames, currentTab, permissions] = await Promise.all([
       ignoredHostnamesPromise,
       currentTabPromise,
+      permissionsPromise,
     ])
 
     const tabContainsAMPPage = await checkTabContainsAMPPage(currentTab)
@@ -38,12 +40,14 @@
         currentTab,
         replacedLinksCount,
         canonicalURL,
-      } as GoogleTabData
+        permittedOrigins: permissions.origins,
+      }
     } else {
       return {
         ignoredHostnames,
         currentTab,
         canonicalURL,
+        permittedOrigins: permissions.origins,
       }
     }
   }
@@ -117,7 +121,7 @@
     {/if}
     <div class="buttonsContainer">
       <SettingsButton />
-      <FeedbackButton currentTab={tabData.currentTab} />
+      <FeedbackButton {tabData} />
     </div>
     <style>
       .buttonsContainer {

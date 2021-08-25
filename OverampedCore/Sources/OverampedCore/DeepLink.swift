@@ -4,7 +4,7 @@ public enum DeepLink: Hashable {
     case debug
     case statistics
     case support
-    case feedback(searchURL: String?, websiteURL: String?)
+    case feedback(searchURL: String?, websiteURL: String?, permittedOrigins: [String]?)
     case settings
     case about
 
@@ -60,10 +60,18 @@ public enum DeepLink: Hashable {
     private init(feedbackComponents components: URLComponents) {
         let openURL: URL? = (components.queryItems?.first(where: { $0.name == "url" })?.value).flatMap { URL(string: $0) }
 
+        let permittedOrigins = components
+            .queryItems?
+            .first(where: { $0.name == "permittedOrigins" })?
+            .value
+            .flatMap {
+                $0.split(separator: ",").map(String.init(_:))
+            }
+
         if openURL?.host?.contains("google.") == true, openURL?.path.hasPrefix("/search") == true || openURL?.host?.hasPrefix("news.google.") == true {
-            self = .feedback(searchURL: openURL?.absoluteString, websiteURL: nil)
+            self = .feedback(searchURL: openURL?.absoluteString, websiteURL: nil, permittedOrigins: permittedOrigins)
         } else {
-            self = .feedback(searchURL: nil, websiteURL: openURL?.absoluteString)
+            self = .feedback(searchURL: nil, websiteURL: openURL?.absoluteString, permittedOrigins: permittedOrigins)
         }
     }
 }
