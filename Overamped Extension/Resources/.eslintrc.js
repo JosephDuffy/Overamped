@@ -19,4 +19,13 @@ module.exports = {
     browser: true,
     es2020: true,
   },
+  overrides: [
+    {
+      files: [".eslintrc.js", "rollup.config.js"],
+      env: {
+        browser: false,
+        node: true,
+      },
+    },
+  ],
 }
