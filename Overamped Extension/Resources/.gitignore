@@ -6,3 +6,4 @@ coverage
 *.js
 !.eslintrc.js
 !babel.config.js
+!rollup.config.js
