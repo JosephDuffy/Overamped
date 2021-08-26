@@ -5,9 +5,10 @@ struct FAQView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 0) {
                 ForEach(questions) { question in
                     QuestionView(question: question)
+                        .frame(maxWidth: .infinity)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -22,8 +23,9 @@ struct QuestionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(question.question)
-                .font(.title)
+                .font(.title2.bold())
             Text(question.answer)
+                .foregroundColor(Color(uiColor: .secondaryLabel))
         }
         .padding()
     }
