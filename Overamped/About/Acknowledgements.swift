@@ -8,11 +8,16 @@ struct Acknowledgements: View {
 
     var body: some View {
         List {
-            Section() {
+            Section(header: Text("Open Source")) {
                 ForEach(acknowledgements, id: \.url) { acknowledgement in
                     NavigationLink(acknowledgement.name, tag: acknowledgement.url, selection: $displayedAcknowledgement) {
                         AcknowledgementView(acknowledgement: acknowledgement)
                     }
+                }
+            }
+            Section(header: Text("Icons")) {
+                Link(destination: URL(string: "https://icons8.com/l/sf/")!) {
+                    Text("Icons8")
                 }
             }
         }

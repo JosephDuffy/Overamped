@@ -47,8 +47,8 @@ struct AboutView: View {
                             Text("View More Apps I've Made")
                                 .foregroundColor(Color.primary)
                         } icon: {
-                            Image(systemName: "app.fill")
-                                .font(.title3)
+                            Image("app.store.circle.fill")
+                                .font(.title2)
                                 .foregroundColor(.accentColor)
                         }
 
