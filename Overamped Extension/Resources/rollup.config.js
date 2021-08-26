@@ -35,12 +35,12 @@ function serve() {
 }
 
 export default {
-  input: "src/popup/src/main.ts",
+  input: "popup/src/main.ts",
   output: {
     sourcemap: false,
     format: "iife",
     name: "app",
-    file: "build/popup/bundle.js",
+    file: "popup/public/build/bundle.js",
   },
   plugins: [
     svelte({
@@ -52,7 +52,7 @@ export default {
     }),
     // we'll extract any component CSS out into
     // a separate file - better for performance
-    css({ output: "build/popup/bundle.css" }),
+    css({ output: "popup/public/build/bundle.css" }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
