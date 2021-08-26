@@ -5,24 +5,70 @@ final class DeepLinkTests: XCTestCase {
     func testAppSchemeWithSlashesFeedbackWithoutURL() throws {
         let url = URL(string: "overamped://feedback")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))
-        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil))
+        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil, permittedOrigins: nil))
     }
 
     func testAppSchemeWithoutSlashesFeedbackWithoutURL() throws {
         let url = URL(string: "overamped:feedback")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))
-        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil))
+        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil, permittedOrigins: nil))
     }
 
     func testWebURLFeedbackWithoutURL() throws {
         let url = URL(string: "https://overamped.app/feedback")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))
-        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil))
+        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil, permittedOrigins: nil))
     }
 
     func testWebURLFeedbackWithURL() throws {
         let url = URL(string: "https://overamped.app/feedback?url=https://example.com")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))
-        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: "https://example.com"))
+        XCTAssertEqual(
+            deepLink,
+                .feedback(
+                    searchURL: nil,
+                    websiteURL: URL(string: "https://example.com")!,
+                    permittedOrigins: nil
+                )
+        )
+    }
+
+    func testWebURLFeedbackWithEmptyPermittedOrigins() throws {
+        let url = URL(string: "https://overamped.app/feedback?url=https://example.com&permittedOrigins=")!
+        let deepLink = try XCTUnwrap(DeepLink(url: url))
+        XCTAssertEqual(
+            deepLink,
+                .feedback(
+                    searchURL: nil,
+                    websiteURL: URL(string: "https://example.com")!,
+                    permittedOrigins: []
+                )
+        )
+    }
+
+    func testWebURLFeedbackWithSinglePermittedOrigin() throws {
+        let url = URL(string: "https://overamped.app/feedback?url=https://example.com&permittedOrigins=google.com")!
+        let deepLink = try XCTUnwrap(DeepLink(url: url))
+        XCTAssertEqual(
+            deepLink,
+            .feedback(
+                searchURL: nil,
+                websiteURL: URL(string: "https://example.com")!,
+                permittedOrigins: ["google.com"]
+            )
+        )
+    }
+
+    func testWebURLFeedbackWithMultiplePermittedOrigins() throws {
+        let url = URL(string: "https://overamped.app/feedback?url=https://example.com&permittedOrigins=google.com,google.co.uk")!
+        let deepLink = try XCTUnwrap(DeepLink(url: url))
+        XCTAssertEqual(
+            deepLink,
+            .feedback(
+                searchURL: nil,
+                websiteURL: URL(string: "https://example.com")!,
+                permittedOrigins: ["google.com", "google.co.uk"]
+            )
+        )
     }
 }
