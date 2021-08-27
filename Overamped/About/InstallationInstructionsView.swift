@@ -152,9 +152,9 @@ struct InstallationInstructionsView: View {
             }
             .padding()
         }
-        .background(
-            Color(.systemGroupedBackground)
-        )
+        .background(Color(.systemGroupedBackground))
+        .constrainedToReadableWidth()
+        .background(Color(.systemGroupedBackground))
         .navigationTitle("Installation Instructions")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showWhyOtherWebsites) {

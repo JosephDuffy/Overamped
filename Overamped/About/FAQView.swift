@@ -12,6 +12,9 @@ struct FAQView: View {
             }
             .padding(.horizontal)
         }
+        .background(Color(.systemGroupedBackground))
+        .constrainedToReadableWidth()
+        .background(Color(.systemGroupedBackground))
         .navigationTitle("FAQ")
     }
 }

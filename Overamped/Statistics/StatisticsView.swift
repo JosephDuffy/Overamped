@@ -101,9 +101,9 @@ struct StatisticsView: View {
             .frame(maxWidth: .infinity)
             .padding()
         }
-        .background(
-            Color(.systemGroupedBackground)
-        )
+        .background(Color(.systemGroupedBackground))
+        .constrainedToReadableWidth()
+        .background(Color(.systemGroupedBackground))
         .environment(\.openURL, OpenURLAction { url in
             displayedURL = DisplayedURL(url: url)
             return .handled

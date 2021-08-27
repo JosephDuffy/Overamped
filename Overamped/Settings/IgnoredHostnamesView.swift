@@ -23,6 +23,9 @@ struct IgnoredHostnamesView: View {
                 }
             }
         }
+        .background(Color(.systemGroupedBackground))
+        .constrainedToReadableWidth()
+        .background(Color(.systemGroupedBackground))
         .navigationTitle("Disabled Websites")
     }
 
