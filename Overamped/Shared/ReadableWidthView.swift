@@ -42,6 +42,6 @@ public struct ReadableWidthView<Content: View>: UIViewControllerRepresentable {
 
 extension View {
     func constrainedToReadableWidth() -> some View {
-        ReadableWidthView(content: self)
+        self
     }
 }
