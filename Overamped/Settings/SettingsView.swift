@@ -60,6 +60,7 @@ struct SettingsView: View {
                 }
             }
         }
+        .background(Color(.systemGroupedBackground))
         .navigationBarTitle("Settings")
     }
 }
