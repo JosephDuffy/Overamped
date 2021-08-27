@@ -9,51 +9,16 @@ struct OverampedApp: App {
     private(set) var extensionHasBeenEnabled: Bool
 
     @State
-    private var didRecentlyInstallExtension = false
-
-    @State
     private var showDebugView = false
-
-    @Environment(\.scenePhase)
-    private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             Group {
                 if extensionHasBeenEnabled {
-                    VStack(spacing: 0) {
-                        if didRecentlyInstallExtension {
-                            HStack {
-                                Text("The Overamped Safari Extension has been enabled")
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundColor(Color(.white))
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 8)
-                            }
-                            .frame(maxWidth: .infinity)
-                            .background(Color(.systemGreen))
-                            Divider()
-                        }
-                        OverampedTabs()
-                            .defaultAppStorage(UserDefaults(suiteName: "group.net.yetii.overamped")!)
-                        // TODO: Pass `didRecentlyInstallExtension` via environment
-                            .onChange(of: scenePhase) { scenePhase in
-                                switch scenePhase {
-                                case .background:
-                                    didRecentlyInstallExtension = false
-                                case .active, .inactive:
-                                    break
-                                @unknown default:
-                                    break
-                                }
-                            }
-                    }
+                    OverampedTabs()
+                        .defaultAppStorage(UserDefaults(suiteName: "group.net.yetii.overamped")!)
                 } else {
                     InstallationInstructionsView()
-                        .onDisappear {
-                            didRecentlyInstallExtension = true
-                        }
                 }
             }
             .onOpenURL(perform: { url in
@@ -83,10 +48,6 @@ struct OverampedApp: App {
                         Section("Installation") {
                             Button("Reset extension has been enabled") {
                                 extensionHasBeenEnabled = false
-                            }
-                            Button("Show extension has been enabled banner") {
-                                extensionHasBeenEnabled = true
-                                didRecentlyInstallExtension = true
                             }
                         }
 
