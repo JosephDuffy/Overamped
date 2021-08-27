@@ -37,7 +37,7 @@ function serve() {
 export default {
   input: "popup/src/main.ts",
   output: {
-    sourcemap: false,
+    sourcemap: true,
     format: "iife",
     name: "app",
     file: "popup/public/build/bundle.js",
