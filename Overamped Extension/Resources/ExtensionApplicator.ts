@@ -85,7 +85,7 @@ export default class ExtensionApplicator {
   private applyIgnoredHostnames(ignoredHostnames: string[]) {
     this.#ignoredHostnames = ignoredHostnames
 
-    if (this.#document.readyState == "loading") {
+    if (this.#document.readyState === "loading") {
       console.debug(
         "Ignore list has been loaded but the webpage is still loading",
       )
@@ -110,7 +110,9 @@ export default class ExtensionApplicator {
   }
 
   private handleDOMNodeInserted() {
-    this.#thunk(this.#ignoredHostnames ?? [])
+    if (this.#document.readyState !== "loading") {
+      this.#thunk(this.#ignoredHostnames ?? [])
+    }
   }
 
   private loadIgnoredHostnames() {
