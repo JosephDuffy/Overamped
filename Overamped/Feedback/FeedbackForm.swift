@@ -71,14 +71,6 @@ struct FeedbackForm: View {
 
                 Form {
                     Section(
-                        footer: Text("Submit this form to send me feedback about Overamped. I am a solo indie app developer so please allow a couple of days before your message is addressed.")
-                            .font(.body)
-                            .padding(.horizontal, -16)
-                            .padding(.top, -64)
-                            .foregroundColor(Color.primary)
-                    ) {}
-
-                    Section(
                         header: Text("Contact Details"),
                         footer: Text("Please provide contact details if you would like me to follow up with you, or if you're willing to provide help debug any issues you report.")
                     ) {
@@ -157,11 +149,11 @@ struct FeedbackForm: View {
             switch deepLink {
             case .feedback(let searchURL, let websiteURL, let permittedOrigins):
                 if let searchURL = searchURL {
-                    formAPI.formData.searchURL = searchURL
+                    formAPI.formData.searchURL = searchURL.absoluteString
                 }
 
                 if let websiteURL = websiteURL {
-                    formAPI.formData.websiteURL = websiteURL
+                    formAPI.formData.websiteURL = websiteURL.absoluteString
                 }
 
                 formAPI.formData.permittedOrigins = permittedOrigins
