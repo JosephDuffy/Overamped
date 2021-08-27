@@ -34,10 +34,7 @@ public struct ReadableWidthView<Content: View>: UIViewControllerRepresentable {
         return viewController
     }
 
-    public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        guard let hostingController = uiViewController.children.lazy.compactMap({ $0 as? UIHostingController<Content> }).first else { return }
-        hostingController.rootView = content
-    }
+    public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 extension View {
