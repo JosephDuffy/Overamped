@@ -93,10 +93,12 @@
     }
   }
 
-  function tabHasURL(
-    tab: browser.tabs.Tab,
-  ): tab is browser.tabs.Tab & { url: string } {
-    return typeof tab.url !== "undefined"
+  function tabDataHasURL(
+    tabData: TabData | GoogleTabData,
+  ): tabData is
+    | (TabData & { currentTab: { url: string } })
+    | (GoogleTabData & { currentTab: { url: string } }) {
+    return typeof tabData.currentTab.url !== "undefined"
   }
 </script>
 
@@ -109,12 +111,11 @@
       }
     </style>
   {:then tabData}
-    {#if tabHasURL(tabData.currentTab)}
+    {#if tabDataHasURL(tabData)}
       {#if dataIsGoogleTabData(tabData)}
         <GooglePopup {tabData} />
       {:else}
-        <!-- The spread is required to satisfy the type system. Maybe TypeScript 4.4 will fix the need for this -->
-        <Popup tabData={{ ...tabData, currentTab: tabData.currentTab }} />
+        <Popup {tabData} />
       {/if}
     {:else}
       <p>Overamped is not available for the current page</p>
