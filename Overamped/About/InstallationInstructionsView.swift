@@ -161,6 +161,7 @@ struct InstallationInstructionsView: View {
             NavigationView {
                 ScrollView {
                     QuestionView(question: .whyOtherWebsites)
+                        .padding(.horizontal)
                         .toolbar {
                             Button(
                                 action: {

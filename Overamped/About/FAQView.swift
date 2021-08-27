@@ -5,13 +5,12 @@ struct FAQView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: 12) {
                 ForEach(questions) { question in
                     QuestionView(question: question)
-                        .frame(maxWidth: .infinity)
                 }
             }
-            .frame(maxWidth: .infinity)
+            .padding(.horizontal)
         }
         .navigationTitle("FAQ")
     }
@@ -20,14 +19,15 @@ struct FAQView: View {
 struct QuestionView: View {
     private let question: FrequentlyAskedQuestion
 
+    @ViewBuilder
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(question.question)
                 .font(.title2.bold())
             Text(question.answer)
                 .foregroundColor(Color(uiColor: .secondaryLabel))
         }
-        .padding()
+        .padding(.bottom)
     }
 
     init(question: FrequentlyAskedQuestion) {
@@ -38,6 +38,7 @@ struct QuestionView: View {
 struct FAQView_Previews: PreviewProvider {
     static var previews: some View {
         FAQView()
+            .previewDevice("iPhone SE (2nd Generation)")
     }
 }
 
