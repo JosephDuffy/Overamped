@@ -126,7 +126,7 @@
     <style>
       .buttonsContainer {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: calc(50% - 4px) calc(50% - 4px);
         grid-template-rows: auto;
         gap: 8px;
       }
