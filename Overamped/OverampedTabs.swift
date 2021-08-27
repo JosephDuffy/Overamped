@@ -47,7 +47,7 @@ struct OverampedTabs: View {
             case .support:
                 SupportView()
             case .feedback:
-                FeedbackView()
+                FeedbackForm()
             case .settings:
                 SettingsView()
             case .about:

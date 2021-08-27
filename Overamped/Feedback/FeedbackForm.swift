@@ -157,11 +157,11 @@ struct FeedbackForm: View {
             switch deepLink {
             case .feedback(let searchURL, let websiteURL, let permittedOrigins):
                 if let searchURL = searchURL {
-                    formAPI.formData.searchURL = searchURL
+                    formAPI.formData.searchURL = searchURL.absoluteString
                 }
 
                 if let websiteURL = websiteURL {
-                    formAPI.formData.websiteURL = websiteURL
+                    formAPI.formData.websiteURL = websiteURL.absoluteString
                 }
 
                 formAPI.formData.permittedOrigins = permittedOrigins
