@@ -629,6 +629,11 @@
       ]
     },
     {
+      "js": ["yahoo-jp-search-content.js"],
+      "run_at": "document_start",
+      "matches": ["https://search.yahoo.co.jp/search*"]
+    },
+    {
       "js": ["yandex-turbo-cache.js"],
       "run_at": "document_start",
       "matches": ["https://*.turbopages.org/*"]
