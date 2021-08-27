@@ -43,6 +43,9 @@ struct SupportView: View {
             }
             .padding()
         }
+        .background(
+            Color(.systemGroupedBackground)
+        )
         .navigationTitle("Support Overamped")
     }
 
@@ -50,7 +53,7 @@ struct SupportView: View {
     private var shareSection: some View {
         VStack(alignment: horizontalSizeClass == .regular ? .leading : .leading) {
             Text("Share")
-                .font(.title)
+                .font(.title.weight(.semibold))
 
             Text("The easiest way to support Overamped is to share Overamped with friends and on social media.")
 
@@ -78,7 +81,7 @@ struct SupportView: View {
     private var reviewSection: some View {
         VStack(alignment: horizontalSizeClass == .regular ? .leading : .leading) {
             Text("Write a Review")
-                .font(.title)
+                .font(.title.weight(.semibold))
 
             Text("Reviews are very important on the App Store. You can also rate Overamped without writing a review.")
 

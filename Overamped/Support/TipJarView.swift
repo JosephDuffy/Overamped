@@ -6,7 +6,7 @@ public struct TipJarView: View {
 
     public var body: some View {
         Text("Tip Jar")
-            .font(.title)
+            .font(.title.weight(.semibold))
 
         Text("Overamped requires ongoing maintenance to keep up-to-date with changes to iOS, Google, and Yandex. Any extra financial support will help with this tremendously.")
 
