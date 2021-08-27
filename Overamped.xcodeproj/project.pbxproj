@@ -14,10 +14,8 @@
 		D94E168E26B50B3C00294B9D /* yandex-turbo-cache.js in Resources */ = {isa = PBXBuildFile; fileRef = D94E168D26B50B3900294B9D /* yandex-turbo-cache.js */; };
 		D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E168F26B5F66D00294B9D /* SettingsView.swift */; };
 		D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */; };
-		D963DAEC26BDBF1200AFCDC8 /* bundle.js.map in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD426BDBDA000AFCDC8 /* bundle.js.map */; };
 		D963DAEE26BDBFC300AFCDC8 /* popup.html in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DACF26BDBDA000AFCDC8 /* popup.html */; };
 		D963DAEF26BDBFC300AFCDC8 /* global.css in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DAD026BDBDA000AFCDC8 /* global.css */; };
-		D963DAF026BDBFCE00AFCDC8 /* bundle.css in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD326BDBDA000AFCDC8 /* bundle.css */; };
 		D963DAF126BDBFCE00AFCDC8 /* bundle.js in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD526BDBDA000AFCDC8 /* bundle.js */; };
 		D963DAF426BF5C3800AFCDC8 /* Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */; };
 		D96BF7DA26B3C6FE00E6EBE9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D96BF7DC26B3C6FE00E6EBE9 /* Localizable.stringsdict */; };
@@ -92,9 +90,7 @@
 			dstPath = popup/build;
 			dstSubfolderSpec = 1;
 			files = (
-				D963DAF026BDBFCE00AFCDC8 /* bundle.css in Copy Popup Build */,
 				D963DAF126BDBFCE00AFCDC8 /* bundle.js in Copy Popup Build */,
-				D963DAEC26BDBF1200AFCDC8 /* bundle.js.map in Copy Popup Build */,
 			);
 			name = "Copy Popup Build";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,8 +121,6 @@
 		D963DACC26BDBDA000AFCDC8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D963DACF26BDBDA000AFCDC8 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		D963DAD026BDBDA000AFCDC8 /* global.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = global.css; sourceTree = "<group>"; };
-		D963DAD326BDBDA000AFCDC8 /* bundle.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bundle.css; sourceTree = "<group>"; };
-		D963DAD426BDBDA000AFCDC8 /* bundle.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = bundle.js.map; sourceTree = "<group>"; };
 		D963DAD526BDBDA000AFCDC8 /* bundle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bundle.js; sourceTree = "<group>"; };
 		D963DAD626BDBDA000AFCDC8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D963DAD926BDBDA000AFCDC8 /* tsconfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tsconfig.json; sourceTree = "<group>"; };
@@ -233,8 +227,6 @@
 		D963DAD226BDBDA000AFCDC8 /* build */ = {
 			isa = PBXGroup;
 			children = (
-				D963DAD326BDBDA000AFCDC8 /* bundle.css */,
-				D963DAD426BDBDA000AFCDC8 /* bundle.js.map */,
 				D963DAD526BDBDA000AFCDC8 /* bundle.js */,
 			);
 			path = build;
