@@ -34,6 +34,7 @@ function serve() {
   }
 }
 
+/** @type {import('rollup').RollupOptions} */
 export default {
   input: "popup/src/main.ts",
   output: {
