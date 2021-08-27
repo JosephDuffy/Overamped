@@ -51,6 +51,11 @@
       Disable Overamped on {currentTabURL.hostname}
     </button>
   {/if}
+  <style>
+    button {
+      width: 100%;
+    }
+  </style>
   <p id="toggleAllowListButtonExplanation">
     If Overamped is disabled for {currentTabURL.hostname} it will not redirect to
     the canonical version of {currentTabURL.hostname}.
