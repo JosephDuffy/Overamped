@@ -12,57 +12,39 @@
   },
   "data": [
     {
-      "filter": "0 Scans Tab",
+      "filter": "0 Google",
       "title": {
-        "text": "Automatically Detects Scanned Objects"
+        "text": "Redirect AMP links found on Google"
       }
     },
     {
-      "filter": "1 Location Scan Result",
+      "filter": "1 Yandex",
       "title": {
-        "text": "View Rich Information About Scanned Objects"
+        "text": "Redirect AMP links found on Yandex"
       }
     },
     {
-      "filter": "2 Scan Tab",
+      "filter": "2 Other Websites",
       "title": {
-        "text": "Scan With Your Camera"
+        "text": "Redirect links found\non all websites"
       }
     },
     {
-      "filter": "3 Safari Share Sheet",
+      "filter": "2 Native App",
       "title": {
-        "text": "Scan Codes From Websites"
+        "text": "Open links in native app"
       }
     },
     {
-      "filter": "4 Generated Codes",
+      "filter": "3 Statistics",
       "title": {
-        "text": "Generate and Share Images"
+        "text": "View how many links have\nbeen replaced and redirected"
       }
     },
     {
-      "filter": "5 View Scan Text",
+      "filter": "4 Disabled Websites",
       "title": {
-        "text": "View Text Exactly As Scanned"
-      }
-    },
-    {
-      "filter": "6 Light Interface",
-      "title": {
-        "text": "Supports Dark and Light UI"
-      }
-    },
-    {
-      "filter": "7 Event Scan Result",
-      "title": {
-        "text": "Add Events to Your Calendar"
-      }
-    },
-    {
-      "filter": "8 Contact Scan Result",
-      "title": {
-        "text": "Add New Contact Cards"
+        "text": "Disable Overamped on websites\nyou want to use AMP"
       }
     }
   ]

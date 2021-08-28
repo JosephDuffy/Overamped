@@ -32,6 +32,10 @@
 		D9A2D74E269A020C00BED34A /* google-news-article.js in Resources */ = {isa = PBXBuildFile; fileRef = D9A2D74C269A020600BED34A /* google-news-article.js */; };
 		D9A2FA0026D96207007F9F9E /* ReadableWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A2F9FF26D96207007F9F9E /* ReadableWidthView.swift */; };
 		D9A2FA0326D986B1007F9F9E /* yahoo-jp-search-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D9A2FA0226D986AD007F9F9E /* yahoo-jp-search-content.js */; };
+		D9A2FA0B26D997A5007F9F9E /* Overamped_Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A2FA0A26D997A5007F9F9E /* Overamped_Screenshots.swift */; };
+		D9A2FA1626D99813007F9F9E /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A2FA1526D99813007F9F9E /* SnapshotHelper.swift */; };
+		D9A2FA1826D99A09007F9F9E /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D9A2FA1726D99A09007F9F9E /* Persist */; };
+		D9A2FA1A26D99A0C007F9F9E /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9A2FA1926D99A0C007F9F9E /* OverampedCore */; };
 		D9A9141026C7809C00C34C30 /* TipOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9140F26C7809C00C34C30 /* TipOptionView.swift */; };
 		D9A9141826C8A59500C34C30 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9141726C8A59400C34C30 /* FAQView.swift */; };
 		D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */; };
@@ -57,6 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D9A2FA0E26D997A5007F9F9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9FF5B61268142B30027BD81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9FF5B68268142B30027BD81;
+			remoteInfo = Overamped;
+		};
 		D9B9D5922698B1F600F7D361 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9FF5B61268142B30027BD81 /* Project object */;
@@ -149,6 +160,9 @@
 		D9A2F9FF26D96207007F9F9E /* ReadableWidthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableWidthView.swift; sourceTree = "<group>"; };
 		D9A2FA0126D986AD007F9F9E /* yahoo-jp-search-content.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "yahoo-jp-search-content.ts"; sourceTree = "<group>"; };
 		D9A2FA0226D986AD007F9F9E /* yahoo-jp-search-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "yahoo-jp-search-content.js"; sourceTree = "<group>"; };
+		D9A2FA0826D997A5007F9F9E /* Overamped Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Screenshots.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9A2FA0A26D997A5007F9F9E /* Overamped_Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Screenshots.swift; sourceTree = "<group>"; };
+		D9A2FA1526D99813007F9F9E /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		D9A9140F26C7809C00C34C30 /* TipOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipOptionView.swift; sourceTree = "<group>"; };
 		D9A9141726C8A59400C34C30 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackForm.swift; sourceTree = "<group>"; };
@@ -179,6 +193,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D9A2FA0526D997A5007F9F9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9A2FA1826D99A09007F9F9E /* Persist in Frameworks */,
+				D9A2FA1A26D99A0C007F9F9E /* OverampedCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9B9D58B2698B1F500F7D361 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +275,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9A2FA0926D997A5007F9F9E /* Overamped Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				D9A2FA0A26D997A5007F9F9E /* Overamped_Screenshots.swift */,
+				D9A2FA1526D99813007F9F9E /* SnapshotHelper.swift */,
+			);
+			path = "Overamped Screenshots";
 			sourceTree = "<group>";
 		};
 		D9A9141126C8910200C34C30 /* Feedback */ = {
@@ -332,6 +364,7 @@
 				D994C63E26A2686B000649AA /* OverampedCore */,
 				D9FF5B8A268142B90027BD81 /* Overamped Extension */,
 				D9B9D58F2698B1F600F7D361 /* Overamped Extension UI Tests */,
+				D9A2FA0926D997A5007F9F9E /* Overamped Screenshots */,
 				D9FF5B6A268142B30027BD81 /* Products */,
 				D994C63F26A26C6E000649AA /* Frameworks */,
 			);
@@ -343,6 +376,7 @@
 				D9FF5B69268142B30027BD81 /* Overamped.app */,
 				D9FF5B86268142B90027BD81 /* Overamped Extension.appex */,
 				D9B9D58E2698B1F500F7D361 /* Overamped Extension UI Tests.xctest */,
+				D9A2FA0826D997A5007F9F9E /* Overamped Screenshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -409,6 +443,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D9A2FA0726D997A5007F9F9E /* Overamped Screenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9A2FA1226D997A5007F9F9E /* Build configuration list for PBXNativeTarget "Overamped Screenshots" */;
+			buildPhases = (
+				D9A2FA0426D997A5007F9F9E /* Sources */,
+				D9A2FA0526D997A5007F9F9E /* Frameworks */,
+				D9A2FA0626D997A5007F9F9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9A2FA0F26D997A5007F9F9E /* PBXTargetDependency */,
+			);
+			name = "Overamped Screenshots";
+			packageProductDependencies = (
+				D9A2FA1726D99A09007F9F9E /* Persist */,
+				D9A2FA1926D99A0C007F9F9E /* OverampedCore */,
+			);
+			productName = "Overamped Screenshots";
+			productReference = D9A2FA0826D997A5007F9F9E /* Overamped Screenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D9B9D58D2698B1F500F7D361 /* Overamped Extension UI Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9B9D5942698B1F600F7D361 /* Build configuration list for PBXNativeTarget "Overamped Extension UI Tests" */;
@@ -484,6 +540,10 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					D9A2FA0726D997A5007F9F9E = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = D9FF5B68268142B30027BD81;
+					};
 					D9B9D58D2698B1F500F7D361 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = D9FF5B68268142B30027BD81;
@@ -515,11 +575,19 @@
 				D9FF5B68268142B30027BD81 /* Overamped */,
 				D9FF5B85268142B90027BD81 /* Overamped Extension */,
 				D9B9D58D2698B1F500F7D361 /* Overamped Extension UI Tests */,
+				D9A2FA0726D997A5007F9F9E /* Overamped Screenshots */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D9A2FA0626D997A5007F9F9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9B9D58C2698B1F500F7D361 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -580,6 +648,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D9A2FA0426D997A5007F9F9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9A2FA0B26D997A5007F9F9E /* Overamped_Screenshots.swift in Sources */,
+				D9A2FA1626D99813007F9F9E /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9B9D58A2698B1F500F7D361 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -629,6 +706,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D9A2FA0F26D997A5007F9F9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9FF5B68268142B30027BD81 /* Overamped */;
+			targetProxy = D9A2FA0E26D997A5007F9F9E /* PBXContainerItemProxy */;
+		};
 		D9B9D5932698B1F600F7D361 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9FF5B68268142B30027BD81 /* Overamped */;
@@ -661,6 +743,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D9A2FA1026D997A5007F9F9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HGVGKE57E6;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.yetii.Overamped-Screenshots";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Overamped;
+			};
+			name = Debug;
+		};
+		D9A2FA1126D997A5007F9F9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HGVGKE57E6;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.yetii.Overamped-Screenshots";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Overamped;
+			};
+			name = Release;
+		};
 		D9B9D5952698B1F600F7D361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -970,6 +1098,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D9A2FA1226D997A5007F9F9E /* Build configuration list for PBXNativeTarget "Overamped Screenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9A2FA1026D997A5007F9F9E /* Debug */,
+				D9A2FA1126D997A5007F9F9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D9B9D5942698B1F600F7D361 /* Build configuration list for PBXNativeTarget "Overamped Extension UI Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1028,6 +1165,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */;
 			productName = Persist;
+		};
+		D9A2FA1726D99A09007F9F9E /* Persist */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */;
+			productName = Persist;
+		};
+		D9A2FA1926D99A0C007F9F9E /* OverampedCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OverampedCore;
 		};
 		D9B8EC0526A3E42E00C1243E /* Persist */ = {
 			isa = XCSwiftPackageProductDependency;

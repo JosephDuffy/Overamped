@@ -6,7 +6,7 @@ devices([
   # "iPhone SE (1st generation)", # 4". Disabled due to missing frames. See https://github.com/fastlane/frameit-frames/issues/19
   "iPad Pro (12.9-inch) (3rd generation)", # 12.9"
   "iPad Pro (12.9-inch) (2nd generation)", # 12.9"
-  "iPad Pro (11-inch) (2nd generation)", # 11"
+  "iPad Pro (11-inch) (3rd generation)", # 11"
   # "iPad Pro (10.5-inch)", # 10.5". Disabled due to lack of frame.
   "iPad Pro (9.7-inch)", # 9.7"
 ])
@@ -14,12 +14,13 @@ devices([
 languages([
   "en-GB",
   "en-US",
+  "ru-RU",
 ])
 
 scheme("Overamped Screenshots")
 clear_previous_screenshots(true)
 override_status_bar(true)
-reinstall_app(true)
+# reinstall_app(true)
 skip_open_summary(true)
-concurrent_simulators(false)
+# concurrent_simulators(false)
 dark_mode(true)
