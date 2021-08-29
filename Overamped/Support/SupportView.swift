@@ -36,10 +36,8 @@ struct SupportView: View {
                     reviewSection
                 }
 
-                if DistributionMethod.current == .debug {
-                    TipJarView()
-                        .padding(.vertical, horizontalSizeClass == .regular ? 12 : 0)
-                }
+                TipJarView()
+                    .padding(.vertical, horizontalSizeClass == .regular ? 12 : 0)
             }
             .padding()
         }
