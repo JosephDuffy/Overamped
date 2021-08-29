@@ -8,7 +8,7 @@ public struct TipJarView: View {
         Text("Tip Jar")
             .font(.title.weight(.semibold))
 
-        Text("Overamped requires ongoing maintenance to keep up-to-date with changes to iOS, Google, and Yandex. Any extra financial support will help with this tremendously.")
+        Text("Overamped requires ongoing maintenance to keep up-to-date with changes to iOS, Google, Yahoo, Yandex, etc. Any extra financial support will help with this tremendously.")
 
         HStack(spacing: 16) {
             switch store.state {
