@@ -80,7 +80,7 @@ struct AboutView: View {
 
             Section("Overamped") {
                 NavigationLink(
-                    destination: InstallationInstructionsView(),
+                    destination: InstallationInstructionsView(hasAlreadyInstalled: true),
                     isActive: $showInstallationInstructions
                 ) {
                     Label {

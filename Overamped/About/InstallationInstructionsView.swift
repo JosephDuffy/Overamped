@@ -4,6 +4,8 @@ struct InstallationInstructionsView: View {
     @State
     private var showWhyOtherWebsites = false
 
+    private let hasAlreadyInstalled: Bool
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -148,7 +150,11 @@ struct InstallationInstructionsView: View {
                     }
                 }
 
-                Text("From now on you should never see an AMP or Yandex Turbo page again!")
+                Text("With this setup you should never see an AMP or Yandex Turbo page again!")
+
+                if !hasAlreadyInstalled {
+                    Text("Open a page in Safari with the Overamped extension activated to automatically unlock the rest of the app, or [unlock the app now](overamped://unlock).")
+                }
             }
             .padding()
         }
@@ -177,11 +183,15 @@ struct InstallationInstructionsView: View {
             }
         }
     }
+
+    init(hasAlreadyInstalled: Bool) {
+        self.hasAlreadyInstalled = hasAlreadyInstalled
+    }
 }
 
 struct InstallationInstructionsView_Previews: PreviewProvider {
     static var previews: some View {
-        InstallationInstructionsView()
+        InstallationInstructionsView(hasAlreadyInstalled: false)
             .previewLayout(.sizeThatFits)
     }
 }

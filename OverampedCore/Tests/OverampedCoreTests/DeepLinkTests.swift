@@ -14,6 +14,12 @@ final class DeepLinkTests: XCTestCase {
         XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil, permittedOrigins: nil))
     }
 
+    func testAppSchemeUnlock() throws {
+        let url = URL(string: "overamped://unlock")!
+        let deepLink = try XCTUnwrap(DeepLink(url: url))
+        XCTAssertEqual(deepLink, .unlock)
+    }
+
     func testWebURLFeedbackWithoutURL() throws {
         let url = URL(string: "https://overamped.app/feedback")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))

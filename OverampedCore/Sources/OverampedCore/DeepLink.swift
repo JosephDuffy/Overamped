@@ -7,6 +7,7 @@ public enum DeepLink: Hashable {
     case feedback(searchURL: URL?, websiteURL: URL?, permittedOrigins: [String]?)
     case settings
     case about
+    case unlock
 
     public init?(url: URL) {
         if url.scheme == "overamped" {
@@ -42,6 +43,8 @@ public enum DeepLink: Hashable {
             self = .about
         case "debug":
             self = .debug
+        case "unlock":
+            self = .unlock
         default:
             return nil
         }

@@ -21,7 +21,7 @@ struct OverampedApp: App {
                     OverampedTabs()
                         .defaultAppStorage(UserDefaults(suiteName: "group.net.yetii.overamped")!)
                 } else {
-                    InstallationInstructionsView()
+                    InstallationInstructionsView(hasAlreadyInstalled: false)
                 }
             }
             .onOpenURL(perform: { url in
@@ -33,6 +33,8 @@ struct OverampedApp: App {
                 switch deepLink {
                 case .debug:
                     showDebugView = true
+                case .unlock:
+                    extensionHasBeenEnabled = true
                 default:
                     break
                 }

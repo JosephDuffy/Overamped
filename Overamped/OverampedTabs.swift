@@ -83,7 +83,7 @@ struct OverampedTabs: View {
                     selectedTab = .settings
                 case .about:
                     selectedTab = .about
-                case .debug:
+                case .debug, .unlock:
                     break
                 }
             })
