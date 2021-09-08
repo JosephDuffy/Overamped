@@ -19,7 +19,7 @@ final class Overamped_Screenshots: XCTestCase {
 
         app.buttons["Statistics"].tap()
 
-        snapshot("0 Statistics")
+        snapshot("3 Statistics")
 
         app.buttons["Settings"].tap()
 
@@ -27,15 +27,16 @@ final class Overamped_Screenshots: XCTestCase {
             app.cells.element(matching: NSPredicate(format: "label BEGINSWITH[c] %@", "Disabled Websites")).tap()
         }
 
-        snapshot("1 Disabled Websites")
+        snapshot("4 Disabled Websites")
     }
 
     func testSafariScreenshots() throws {
-        // Screenshots aren't working on iOS, but the simulator has the wrong
-        // design anyway
         enableExtension()
 
         let safari = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+        setupSnapshot(safari)
+        // When `-ui_testing` is passed Safari won't launch
+        safari.launchArguments.removeAll(where: { $0 == "-ui_testing" })
         safari.launch()
 
         switch safari.windows.firstMatch.horizontalSizeClass {
@@ -49,6 +50,14 @@ final class Overamped_Screenshots: XCTestCase {
 
         closeAllTabs(safari)
         typeInAddressField("iOS 15 web extensions news", inSafari: safari)
+
+        // Agree to Google's bullshit
+        if safari.buttons["I agree"].waitForExistence(timeout: 1) {
+            // Wait for bottom bar to disappear
+//            Thread.sleep(forTimeInterval: 3)
+            safari.buttons["I agree"].tap()
+        }
+
         snapshot("0 Google")
 
         if Locale.current.regionCode == "RU" {
@@ -60,10 +69,17 @@ final class Overamped_Screenshots: XCTestCase {
         closeAllTabs(safari)
         typeInAddressField("https://www.reddit.com/r/XboxSeriesX/comments/pa6hlj/", inSafari: safari)
 
-        if safari.buttons["Continue"].exists {
-            Thread.sleep(forTimeInterval: 3)
+        if safari.buttons["Continue"].waitForExistence(timeout: 1) {
+            // Wait for bottom bar to disappear
+//            Thread.sleep(forTimeInterval: 3)
             safari.buttons["Continue"].tap()
         }
+
+        if safari.staticTexts["This page looks better in the app"].waitForExistence(timeout: 1), safari.buttons.firstMatch.label.isEmpty {
+            // Should be the "X" in the "This page looks better in the app" banner
+            safari.buttons.firstMatch.tap()
+        }
+
         snapshot("2 Other Websites")
     }
 
@@ -95,6 +111,11 @@ final class Overamped_Screenshots: XCTestCase {
             settings.cells["Allow"].tap()
             settings.navigationBars.buttons["Overamped"].tap()
         }
+
+        // Go home to prevent "< Settings" in status bar
+        XCUIDevice.shared.press(.home)
+
+        Thread.sleep(forTimeInterval: 0.5)
     }
 
     private func closeAllTabs(_ safari: XCUIApplication) {
@@ -116,8 +137,10 @@ final class Overamped_Screenshots: XCTestCase {
         if safari.buttons["Address"].exists {
             safari.buttons["Address"].tap()
             XCTAssertTrue(safari.textFields["Address"].waitForExistence(timeout: 1))
-        } else if safari.textFields["Address"].exists {
-            safari.textFields["Address"].firstMatch.tap()
+        } else if safari.textFields.firstMatch.waitForExistence(timeout: 1) {
+            safari.textFields.firstMatch.tap()
+        } else {
+            print("No address button or text field")
         }
 
         safari.textFields.firstMatch.typeText(text + "\n")
