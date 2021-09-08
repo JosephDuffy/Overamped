@@ -17,6 +17,7 @@ languages([
   "ru-RU",
 ])
 
+output_directory(".fastlane/screenshots")
 scheme("Overamped Screenshots")
 clear_previous_screenshots(true)
 override_status_bar(true)
