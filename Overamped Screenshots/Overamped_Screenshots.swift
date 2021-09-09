@@ -92,6 +92,10 @@ final class Overamped_Screenshots: XCTestCase {
             safari.buttons["Close"].tap()
         }
 
+        Thread.sleep(forTimeInterval: 1)
+
+        safari.swipeDown()
+
         snapshot("2 Other Websites")
     }
 
