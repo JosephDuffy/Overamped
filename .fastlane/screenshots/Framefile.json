@@ -7,32 +7,28 @@
       "color": "#000033"
     },
     "background": "./background.jpg",
-    "padding": 50,
-    "stack_title": true
+    "padding": "50x20"
   },
   "data": [
     {
       "filter": "0 Google",
+      "title_below_image": true,
       "title": {
-        "text": "Redirect AMP links found on Google"
+        "text": "Redirect AMP links\nfound on Google"
       }
     },
     {
       "filter": "1 Yandex",
+      "title_below_image": true,
       "title": {
-        "text": "Redirect AMP links found on Yandex"
+        "text": "Redirect AMP links\nfound on Yandex"
       }
     },
     {
       "filter": "2 Other Websites",
+      "title_below_image": true,
       "title": {
         "text": "Redirect links found\non all websites"
-      }
-    },
-    {
-      "filter": "2 Native App",
-      "title": {
-        "text": "Open links in native app"
       }
     },
     {
