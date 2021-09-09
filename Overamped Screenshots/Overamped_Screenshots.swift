@@ -62,7 +62,7 @@ final class Overamped_Screenshots: XCTestCase {
         }
 
         // Agree to Google's bullshit
-        if safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 1) {
+        if safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 3) {
             safari.buttons[agreeGoogleCookiesText].tap()
         }
 
@@ -83,7 +83,7 @@ final class Overamped_Screenshots: XCTestCase {
         closeAllTabs(safari)
         typeInAddressField("https://twitter.com/Joe_Duffy/status/1435739074938146821", inSafari: safari)
 
-        if safari.buttons["Not now"].waitForExistence(timeout: 1) {
+        if safari.buttons["Not now"].waitForExistence(timeout: 3) {
             safari.buttons["Not now"].tap()
         }
 
