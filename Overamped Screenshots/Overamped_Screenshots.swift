@@ -4,6 +4,8 @@ import XCTest
 
 final class Overamped_Screenshots: XCTestCase {
     func testScreenshotApp() throws {
+        // Go home to prevent "< Settings" in status bar
+        XCUIDevice.shared.press(.home)
         let app = XCUIApplication()
         app.launchArguments.append("--uiTests")
         setupSnapshot(app)
@@ -51,33 +53,43 @@ final class Overamped_Screenshots: XCTestCase {
         closeAllTabs(safari)
         typeInAddressField("iOS 15 web extensions news", inSafari: safari)
 
+        var agreeGoogleCookiesText: String {
+            if deviceLanguage == "ru-RU" {
+                return "Принимаю"
+            } else {
+                return "I agree"
+            }
+        }
+
         // Agree to Google's bullshit
-        if safari.buttons["I agree"].waitForExistence(timeout: 1) {
-            // Wait for bottom bar to disappear
-//            Thread.sleep(forTimeInterval: 3)
-            safari.buttons["I agree"].tap()
+        if safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 1) {
+            safari.buttons[agreeGoogleCookiesText].tap()
         }
 
         snapshot("0 Google")
 
-        if Locale.current.regionCode == "RU" {
+        /*
+        // Disabled because Yandex keeps throwing up captchas and the "Access All" ("Принять") button isn't found
+        if deviceLanguage == "ru-RU" {
             closeAllTabs(safari)
             typeInAddressField("https://yandex.ru/search/touch/?text=ios+15+web+extensions+appleinsider.ru", inSafari: safari)
+            if safari.buttons["Принять"].waitForExistence(timeout: 1) {
+                safari.buttons["Принять"].tap()
+            }
             snapshot("1 Yandex")
         }
+        */
 
         closeAllTabs(safari)
-        typeInAddressField("https://www.reddit.com/r/XboxSeriesX/comments/pa6hlj/", inSafari: safari)
+        typeInAddressField("https://twitter.com/Joe_Duffy/status/1435739074938146821", inSafari: safari)
 
-        if safari.buttons["Continue"].waitForExistence(timeout: 1) {
-            // Wait for bottom bar to disappear
-//            Thread.sleep(forTimeInterval: 3)
-            safari.buttons["Continue"].tap()
+        if safari.buttons["Not now"].waitForExistence(timeout: 1) {
+            safari.buttons["Not now"].tap()
         }
 
-        if safari.staticTexts["This page looks better in the app"].waitForExistence(timeout: 1), safari.buttons.firstMatch.label.isEmpty {
-            // Should be the "X" in the "This page looks better in the app" banner
-            safari.buttons.firstMatch.tap()
+        if safari.windows.firstMatch.horizontalSizeClass == .compact, safari.buttons["Close"].waitForExistence(timeout: 1) {
+            // This is not working on iPads; it taps the link in the tweet
+            safari.buttons["Close"].tap()
         }
 
         snapshot("2 Other Websites")
@@ -115,11 +127,11 @@ final class Overamped_Screenshots: XCTestCase {
         // Go home to prevent "< Settings" in status bar
         XCUIDevice.shared.press(.home)
 
-        Thread.sleep(forTimeInterval: 0.5)
+        Thread.sleep(forTimeInterval: 1)
     }
 
     private func closeAllTabs(_ safari: XCUIApplication) {
-        if safari.otherElements["CapsuleNavigationBar?isSelected=true"].exists {
+        if !safari.buttons["TabOverviewButton"].exists, safari.otherElements["CapsuleNavigationBar?isSelected=true"].exists {
             safari.otherElements["CapsuleNavigationBar?isSelected=true"].tap()
         }
 
@@ -136,13 +148,22 @@ final class Overamped_Screenshots: XCTestCase {
     private func typeInAddressField(_ text: String, inSafari safari: XCUIApplication) {
         if safari.buttons["Address"].exists {
             safari.buttons["Address"].tap()
-            XCTAssertTrue(safari.textFields["Address"].waitForExistence(timeout: 1))
-        } else if safari.textFields.firstMatch.waitForExistence(timeout: 1) {
-            safari.textFields.firstMatch.tap()
+        } else if safari.textFields["TabBarItemTitle"].waitForExistence(timeout: 3) {
+            safari.textFields["TabBarItemTitle"].tap()
         } else {
-            print("No address button or text field")
+            print("No address button or text field; likely didn't close tab")
         }
 
-        safari.textFields.firstMatch.typeText(text + "\n")
+        if safari.buttons["ClearTextButton"].exists {
+            safari.buttons["ClearTextButton"].tap()
+        }
+        if let url = URL(string: text) {
+            UIPasteboard.general.url = url
+        } else {
+            UIPasteboard.general.string = text
+        }
+        safari.textFields.firstMatch.doubleTap()
+        safari.menuItems.firstMatch.tap()
+        safari.textFields.firstMatch.typeText("\n")
     }
 }
