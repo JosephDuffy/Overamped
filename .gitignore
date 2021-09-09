@@ -18,7 +18,6 @@ xcuserdata/
 /.fastlane/screenshots/*
 !/.fastlane/screenshots/Framefile.json
 !/.fastlane/screenshots/background.jpg
-!/.fastlane/screenshots/Camera Placeholder.jpg
 !/.fastlane/screenshots/fonts/
 
 # Assets
