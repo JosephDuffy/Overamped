@@ -4,12 +4,13 @@ Development is now focussed on polish and bug features in preparation for the 1.
 
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it and I'm really thankful for the bug reports!
 
-New in beta 17:
+New in beta 18:
 
 **This build only supports iOS 15 beta 5 (19A5318f) or later**
 
 - Use correct sized icons for popover (icon in Safari should no longer be blurry)
--
+- Allow manually unlocking the main app on first install
+- The Tip Jar can be tested (note no payment are made)
 
 New in beta 17:
 
