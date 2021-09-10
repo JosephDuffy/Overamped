@@ -1,4 +1,4 @@
-**This build only supports iOS 15 beta 5 (19A5318f) and beta 6 (19A5325f) and beta 7 (19A5337a)**
+**This build only supports iOS 15 beta 5 (19A5318f) or later**
 
 Development is now focussed on polish and bug features in preparation for the 1.0 release.
 
@@ -6,13 +6,20 @@ Thank you to everyone that's been using Overamped, especially those that have pr
 
 New in beta 17:
 
-**This build only supports iOS 15 beta 5 (19A5318f) and beta 6 (19A5325f) and beta 7 (19A5337a)**
+**This build only supports iOS 15 beta 5 (19A5318f) or later**
+
+- Use correct sized icons for popover (icon in Safari should no longer be blurry)
+-
+
+New in beta 17:
+
+**This build only supports iOS 15 beta 5 (19A5318f) or later**
 
 - Fix issue that may cause black screen on launch
 
 New in beta 16:
 
-**This build only supports iOS 15 beta 5 (19A5318f) and beta 6 (19A5325f) and beta 7 (19A5337a)**
+**This build only supports iOS 15 beta 5 (19A5318f) or later**
 
 - Support for Yahoo! JAPAN
 - Various design improvements including iPad navigation, screen layout, typography, colours, icons, and popup layout
@@ -25,7 +32,7 @@ New in beta 15:
 
 New in beta 14:
 
-**This build only supports iOS 15 beta 5 (19A5318f) and beta 6 (19A5325f) and beta 7 (19A5337a)**
+**This build only supports iOS 15 beta 5 (19A5318f) or later**
 
 - Installation instructions have been updated to setup via the Settings app, not Safari
 - Improvements on iPadOS
@@ -37,7 +44,7 @@ New in beta 14:
 
 New in beta 13:
 
-**This build only supports iOS 15 beta 5 (19A5318f) and beta 6 (19A5325f) and beta 7 (19A5337a)**
+**This build only supports iOS 15 beta 5 (19A5318f) or later**
 
 - Search results will no longer be redirected to a 404 when it has access to the website in the search result
   - Providing access to "Other Websites" is the best way to do this
