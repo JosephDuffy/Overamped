@@ -8,12 +8,6 @@
   box-sizing: border-box;
 }
 
-body {
-  min-width: 220px;
-  margin: 10px;
-  padding: 0;
-}
-
 button {
   font: -apple-system-body;
   margin-left: 0;
