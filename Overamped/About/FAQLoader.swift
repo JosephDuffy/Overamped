@@ -30,7 +30,7 @@ public final class FAQLoader: ObservableObject {
 
     private func loadLatestQuestions() async {
         do {
-            let url = URL(string: "http://overamped.app/api/faq")!
+            let url = URL(string: "https://overamped.app/api/faq")!
             for try await response in URLSession.shared.dataTaskPublisher(for: url).values {
                 let jsonData = response.data
                 let decoder = JSONDecoder()
