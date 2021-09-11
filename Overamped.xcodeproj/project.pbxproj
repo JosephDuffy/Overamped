@@ -48,6 +48,7 @@
 		D9CAB14626ED181F004A1CCD /* FAQLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAB14526ED181F004A1CCD /* FAQLoader.swift */; };
 		D9CAB14826ED23E4004A1CCD /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAB14726ED23E4004A1CCD /* QuestionView.swift */; };
 		D9CAB14A26ED23F7004A1CCD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAB14926ED23F7004A1CCD /* Question.swift */; };
+		D9CAB14D26ED2DE6004A1CCD /* Containers in Frameworks */ = {isa = PBXBuildFile; productRef = D9CAB14C26ED2DE6004A1CCD /* Containers */; };
 		D9CC9D9D26AA79DA00FE447C /* SurveyAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */; };
 		D9CC9D9F26AA943300FE447C /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC9D9E26AA943300FE447C /* ActivityView.swift */; };
 		D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */; };
@@ -219,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9CAB14D26ED2DE6004A1CCD /* Containers in Frameworks */,
 				D994C64126A26C6E000649AA /* OverampedCore in Frameworks */,
 				D9B8EC0626A3E42E00C1243E /* Persist in Frameworks */,
 			);
@@ -510,6 +512,7 @@
 			packageProductDependencies = (
 				D994C64026A26C6E000649AA /* OverampedCore */,
 				D9B8EC0526A3E42E00C1243E /* Persist */,
+				D9CAB14C26ED2DE6004A1CCD /* Containers */,
 			);
 			productName = Overamped;
 			productReference = D9FF5B69268142B30027BD81 /* Overamped.app */;
@@ -576,6 +579,7 @@
 			mainGroup = D9FF5B60268142B30027BD81;
 			packageReferences = (
 				D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */,
+				D9CAB14B26ED2DE6004A1CCD /* XCRemoteSwiftPackageReference "Containers" */,
 			);
 			productRefGroup = D9FF5B6A268142B30027BD81 /* Products */;
 			projectDirPath = "";
@@ -1166,6 +1170,14 @@
 				kind = branch;
 			};
 		};
+		D9CAB14B26ED2DE6004A1CCD /* XCRemoteSwiftPackageReference "Containers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUI-Plus/Containers.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1191,6 +1203,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */;
 			productName = Persist;
+		};
+		D9CAB14C26ED2DE6004A1CCD /* Containers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9CAB14B26ED2DE6004A1CCD /* XCRemoteSwiftPackageReference "Containers" */;
+			productName = Containers;
 		};
 		D9DC7AEB26B61CB0005C8430 /* OverampedCore */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,5 +1,6 @@
 import SwiftUI
 import Persist
+import Containers
 
 struct StatisticsView: View {
     @AppStorage("enabledAdvancedStatistics")
@@ -33,76 +34,80 @@ struct StatisticsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("All statistics are collected and remain on-device; these statistics are never given to anyone else. For more information read the [privacy policy](https://overamped.app/privacy).")
+            LayoutReader { layout in
+                HStack {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("All statistics are collected and remain on-device; these statistics are never given to anyone else. For more information read the [privacy policy](https://overamped.app/privacy).")
 
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Basic Statistics")
-                        .font(.title.weight(.semibold))
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Basic Statistics")
+                                .font(.title.weight(.semibold))
 
-                    HStack {
-                        Button(
-                            action: {
-                                showLinksReplacedHelp = true
-                            },
-                            label: {
-                                Image(systemName: "questionmark.circle")
+                            HStack {
+                                Button(
+                                    action: {
+                                        showLinksReplacedHelp = true
+                                    },
+                                    label: {
+                                        Image(systemName: "questionmark.circle")
+                                    }
+                                )
+                                .alert(isPresented: $showLinksReplacedHelp) {
+                                    Alert(
+                                        title: Text("AMP Search Results Found"),
+                                        message: Text("A count of the Google search results that without Overamped would open with AMP."),
+                                        dismissButton: .default(Text("Dismiss"))
+                                    )
+                                }
+
+                                Text("AMP search results found: \(replacedLinksCount.formatted())")
                             }
-                        )
-                        .alert(isPresented: $showLinksReplacedHelp) {
-                            Alert(
-                                title: Text("AMP Search Results Found"),
-                                message: Text("A count of the Google search results that without Overamped would open with AMP."),
-                                dismissButton: .default(Text("Dismiss"))
-                            )
-                        }
 
-                        Text("AMP search results found: \(replacedLinksCount.formatted())")
-                    }
+                            HStack {
+                                Button(
+                                    action: {
+                                        showLinksRedirectedHelp = true
+                                    },
+                                    label: {
+                                        Image(systemName: "questionmark.circle")
+                                    }
+                                )
+                                .alert(isPresented: $showLinksRedirectedHelp) {
+                                    Alert(
+                                        title: Text("Links Redirected"),
+                                        message: Text("A count of all the AMP and Yandex Turbo links that have been redirected to their canonical version."),
+                                        dismissButton: .default(Text("Dismiss"))
+                                    )
+                                }
 
-                    HStack {
-                        Button(
-                            action: {
-                                showLinksRedirectedHelp = true
-                            },
-                            label: {
-                                Image(systemName: "questionmark.circle")
+                                Text("Links redirected: \(redirectedLinksCount.formatted())")
                             }
-                        )
-                        .alert(isPresented: $showLinksRedirectedHelp) {
-                            Alert(
-                                title: Text("Links Redirected"),
-                                message: Text("A count of all the AMP and Yandex Turbo links that have been redirected to their canonical version."),
-                                dismissButton: .default(Text("Dismiss"))
-                            )
                         }
 
-                        Text("Links redirected: \(redirectedLinksCount.formatted())")
-                    }
-                }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Advanced Statistics")
+                                .font(.title.weight(.semibold))
 
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Advanced Statistics")
-                        .font(.title.weight(.semibold))
+                            if !enabledAdvancedStatistics {
+                                Button("Enable Advanced Statistics") {
+                                    enabledAdvancedStatistics = true
+                                }
+                                    .buttonStyle(BorderedButtonStyle())
 
-                    if !enabledAdvancedStatistics {
-                        Button("Enable Advanced Statistics") {
-                            enabledAdvancedStatistics = true
+                                Text("Enable advanced statistics to collect the domains and timestamps of replaced and redirect links.")
+                                    .font(.footnote)
+                            }
+
+                            AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics)
                         }
-                            .buttonStyle(BorderedButtonStyle())
-
-                        Text("Enable advanced statistics to collect the domains and timestamps of replaced and redirect links.")
-                            .font(.footnote)
                     }
 
-                    AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics)
+                    Spacer(minLength: 0)
                 }
+                .frame(maxWidth: layout.size(in: .readable).width)
             }
             .frame(maxWidth: .infinity)
-            .padding()
         }
-        .background(Color(.systemGroupedBackground))
-        .constrainedToReadableWidth()
         .background(Color(.systemGroupedBackground))
         .environment(\.openURL, OpenURLAction { url in
             displayedURL = DisplayedURL(url: url)

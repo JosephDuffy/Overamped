@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Containers",
+        "repositoryURL": "https://github.com/SwiftUI-Plus/Containers.git",
+        "state": {
+          "branch": null,
+          "revision": "ba8df27f893a97cdf9421c8ea4652cde0e4830a5",
+          "version": "1.4.1"
+        }
+      },
+      {
         "package": "Persist",
         "repositoryURL": "https://github.com/JosephDuffy/Persist.git",
         "state": {

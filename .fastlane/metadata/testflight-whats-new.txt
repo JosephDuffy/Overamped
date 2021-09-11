@@ -10,6 +10,7 @@ New in beta 19:
 
 - Update FAQ questions
 - New questions can be loaded via an API, allowing for new questions to be added without updating the app
+- Statistics tab will be constrained to the readable width, improving the padding across devices and text sizes
 
 New in beta 18:
 
