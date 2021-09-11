@@ -20,6 +20,7 @@ struct OverampedApp: App {
                 if extensionHasBeenEnabled {
                     OverampedTabs()
                         .defaultAppStorage(UserDefaults(suiteName: "group.net.yetii.overamped")!)
+                        .environmentObject(FAQLoader())
                 } else {
                     InstallationInstructionsView(hasAlreadyInstalled: false)
                 }

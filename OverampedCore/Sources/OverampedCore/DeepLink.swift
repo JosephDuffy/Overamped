@@ -7,6 +7,7 @@ public enum DeepLink: Hashable {
     case feedback(searchURL: URL?, websiteURL: URL?, permittedOrigins: [String]?)
     case settings
     case about
+    case installationInstructions
     case unlock
 
     public init?(url: URL) {
@@ -43,6 +44,8 @@ public enum DeepLink: Hashable {
             self = .about
         case "debug":
             self = .debug
+        case "installation-instructions":
+            self = .installationInstructions
         case "unlock":
             self = .unlock
         default:
@@ -55,6 +58,8 @@ public enum DeepLink: Hashable {
         case "/feedback":
             guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
             self.init(feedbackComponents: components)
+        case "/how-to-disable-amp-in-safari" where url.fragment == "setup-overamped":
+            self = .installationInstructions
         default:
             return nil
         }

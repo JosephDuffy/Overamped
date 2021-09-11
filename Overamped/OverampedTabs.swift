@@ -81,7 +81,7 @@ struct OverampedTabs: View {
                     selectedTab = .feedback
                 case .settings:
                     selectedTab = .settings
-                case .about:
+                case .about, .installationInstructions:
                     selectedTab = .about
                 case .debug, .unlock:
                     break

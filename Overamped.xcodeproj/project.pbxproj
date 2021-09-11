@@ -45,6 +45,9 @@
 		D9B8EC0326A29F2800C1243E /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = D9B8EC0226A29F2800C1243E /* background.js */; };
 		D9B8EC0626A3E42E00C1243E /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D9B8EC0526A3E42E00C1243E /* Persist */; };
 		D9B9D5912698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */; };
+		D9CAB14626ED181F004A1CCD /* FAQLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAB14526ED181F004A1CCD /* FAQLoader.swift */; };
+		D9CAB14826ED23E4004A1CCD /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAB14726ED23E4004A1CCD /* QuestionView.swift */; };
+		D9CAB14A26ED23F7004A1CCD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAB14926ED23F7004A1CCD /* Question.swift */; };
 		D9CC9D9D26AA79DA00FE447C /* SurveyAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */; };
 		D9CC9D9F26AA943300FE447C /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC9D9E26AA943300FE447C /* ActivityView.swift */; };
 		D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */; };
@@ -175,6 +178,9 @@
 		D9B8EC0226A29F2800C1243E /* background.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
 		D9B9D58E2698B1F500F7D361 /* Overamped Extension UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Extension UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Extension_UI_Tests.swift; sourceTree = "<group>"; };
+		D9CAB14526ED181F004A1CCD /* FAQLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQLoader.swift; sourceTree = "<group>"; };
+		D9CAB14726ED23E4004A1CCD /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		D9CAB14926ED23F7004A1CCD /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		D9CC9D9C26AA79DA00FE447C /* SurveyAnswers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyAnswers.swift; sourceTree = "<group>"; };
 		D9CC9D9E26AA943300FE447C /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D9CDF0AA26A0F67B006F6B99 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
@@ -344,6 +350,9 @@
 				D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */,
 				D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */,
 				D9A9141726C8A59400C34C30 /* FAQView.swift */,
+				D9CAB14726ED23E4004A1CCD /* QuestionView.swift */,
+				D9CAB14526ED181F004A1CCD /* FAQLoader.swift */,
+				D9CAB14926ED23F7004A1CCD /* Question.swift */,
 				D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */,
 			);
 			path = About;
@@ -669,7 +678,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9CAB14826ED23E4004A1CCD /* QuestionView.swift in Sources */,
 				D96BF7DE26B3CA2900E6EBE9 /* AboutView.swift in Sources */,
+				D9CAB14626ED181F004A1CCD /* FAQLoader.swift in Sources */,
 				D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */,
 				D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */,
 				D9DC7AEE26B6532D005C8430 /* ClearAdvancedStatisticsView.swift in Sources */,
@@ -688,6 +699,7 @@
 				D96BF7E026B3CD5E00E6EBE9 /* SafariView.swift in Sources */,
 				D9A9141026C7809C00C34C30 /* TipOptionView.swift in Sources */,
 				D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */,
+				D9CAB14A26ED23F7004A1CCD /* Question.swift in Sources */,
 				D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */,
 				D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */,
 				D994C63826A13682000649AA /* TipJarStore.swift in Sources */,

@@ -2,7 +2,10 @@ import SwiftUI
 
 struct InstallationInstructionsView: View {
     @State
-    private var showWhyOtherWebsites = false
+    private var questionToDisplay: Question?
+
+    @EnvironmentObject
+    private var faqLoader: FAQLoader
 
     private let hasAlreadyInstalled: Bool
 
@@ -141,11 +144,13 @@ struct InstallationInstructionsView: View {
                             Color(.secondarySystemGroupedBackground)
                         )
 
-                        Button {
-                            showWhyOtherWebsites = true
-                        } label: {
-                            Text("Why grant access to “Other Websites”?")
-                                .font(.footnote)
+                        if let whyOtherWebsitesQuestion = faqLoader.questionWithId("why-other-websites-permission") {
+                            Button {
+                                questionToDisplay = whyOtherWebsitesQuestion
+                            } label: {
+                                Text("Why grant access to “Other Websites”?")
+                                    .font(.footnote)
+                            }
                         }
                     }
                 }
@@ -163,15 +168,15 @@ struct InstallationInstructionsView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Installation Instructions")
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showWhyOtherWebsites) {
+        .sheet(item: $questionToDisplay, onDismiss: { questionToDisplay = nil }) { questionToDisplay in
             NavigationView {
                 ScrollView {
-                    QuestionView(question: .whyOtherWebsites)
+                    QuestionView(question: questionToDisplay)
                         .padding(.horizontal)
                         .toolbar {
                             Button(
                                 action: {
-                                    showWhyOtherWebsites = false
+                                    self.questionToDisplay = nil
                                 },
                                 label: {
                                     Text("Done")

@@ -170,6 +170,16 @@ struct AboutView: View {
                 self.displayedURL = nil
             }
         }
+        .onOpenURL(perform: { url in
+            guard let deepLink = DeepLink(url: url) else { return }
+
+            switch deepLink {
+            case .installationInstructions:
+                showInstallationInstructions = true
+            default:
+                break
+            }
+        })
         .navigationTitle("About")
     }
 }
