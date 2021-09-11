@@ -163,7 +163,6 @@ struct AboutView: View {
                     .multilineTextAlignment(.center)
             ) {}
         }
-        .constrainedToReadableWidth()
         .background(Color(.systemGroupedBackground))
         .sheet(item: $displayedURL, onDismiss: { displayedURL = nil }) { displayedURL in
             SafariView(url: displayedURL.url) {

@@ -138,7 +138,6 @@ struct FeedbackForm: View {
                 )
             }
         }
-        .constrainedToReadableWidth()
         .background(Color(.systemGroupedBackground))
         .navigationBarTitle("Submit Feedback")
         .navigationBarTitleDisplayMode(.inline)

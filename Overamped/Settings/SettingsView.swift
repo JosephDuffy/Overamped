@@ -60,7 +60,6 @@ struct SettingsView: View {
                 }
             }
         }
-        .constrainedToReadableWidth()
         .background(Color(.systemGroupedBackground))
         .navigationBarTitle("Settings")
     }

@@ -27,8 +27,6 @@ struct FAQView: View {
             }
         }
         .background(Color(.systemGroupedBackground))
-        .constrainedToReadableWidth()
-        .background(Color(.systemGroupedBackground))
         .navigationTitle("FAQ")
     }
 }

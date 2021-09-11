@@ -164,8 +164,6 @@ struct InstallationInstructionsView: View {
             .padding()
         }
         .background(Color(.systemGroupedBackground))
-        .constrainedToReadableWidth()
-        .background(Color(.systemGroupedBackground))
         .navigationTitle("Installation Instructions")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $questionToDisplay, onDismiss: { questionToDisplay = nil }) { questionToDisplay in

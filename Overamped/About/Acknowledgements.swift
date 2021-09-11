@@ -21,7 +21,6 @@ struct Acknowledgements: View {
                 }
             }
         }
-        .constrainedToReadableWidth()
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Acknowledgements")
     }
@@ -87,7 +86,6 @@ struct AcknowledgementView: View {
                 Text(acknowledgement.licenseText)
             }
         }
-        .constrainedToReadableWidth()
         .background(Color(.systemGroupedBackground))
         .navigationTitle(acknowledgement.name)
     }
