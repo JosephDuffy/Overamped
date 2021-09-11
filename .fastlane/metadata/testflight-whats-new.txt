@@ -4,6 +4,13 @@ Development is now focussed on polish and bug features in preparation for the 1.
 
 Thank you to everyone that's been using Overamped, especially those that have provide feedback. It's great to hear how much people have been enjoying it and I'm really thankful for the bug reports!
 
+New in beta 19:
+
+**This build only supports iOS 15 beta 5 (19A5318f) or later**
+
+- Update FAQ questions
+- New questions can be loaded via an API, allowing for new questions to be added without updating the app
+
 New in beta 18:
 
 **This build only supports iOS 15 beta 5 (19A5318f) or later**
