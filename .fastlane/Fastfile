@@ -66,7 +66,7 @@ Note how the search results have the AMP logo (the lightning bolt) next to them 
   desc "Generate and frame App Store screenshots"
   lane :generate_screenshots do
     capture_screenshots
-    frame_screenshots
+    frame_screenshots(path: "./.fastlane/screenshots/")
   end
 
   desc "Download iOS certificates (read only)"
