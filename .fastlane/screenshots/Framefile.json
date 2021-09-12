@@ -3,44 +3,43 @@
   "default": {
     "title": {
       "font": "fonts/SF-Pro-Rounded-Medium.otf",
-      "font_size": 128,
       "color": "#000033"
     },
     "background": "./background.jpg",
-    "padding": "50x20"
+    "padding": 50
   },
   "data": [
     {
       "filter": "0 Google",
       "title_below_image": true,
       "title": {
-        "text": "Redirect AMP links\nfound on Google"
+        "text": "Redirect AMP links found on Google"
       }
     },
     {
       "filter": "1 Yandex",
       "title_below_image": true,
       "title": {
-        "text": "Redirect AMP links\nfound on Yandex"
+        "text": "Redirect AMP links found on Yandex"
       }
     },
     {
       "filter": "2 Other Websites",
       "title_below_image": true,
       "title": {
-        "text": "Redirect links found\non all websites"
+        "text": "Redirect links found on all websites"
       }
     },
     {
       "filter": "3 Statistics",
       "title": {
-        "text": "View how many links have\nbeen replaced and redirected"
+        "text": "View how many links have been replaced and redirected"
       }
     },
     {
       "filter": "4 Disabled Websites",
       "title": {
-        "text": "Disable Overamped on websites\nyou want to use AMP"
+        "text": "Disable Overamped on websites you want to use AMP"
       }
     }
   ]
