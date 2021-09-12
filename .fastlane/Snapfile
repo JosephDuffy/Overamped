@@ -19,7 +19,7 @@ languages([
 
 output_directory(".fastlane/screenshots")
 scheme("Overamped Screenshots")
-clear_previous_screenshots(true)
+clear_previous_screenshots(false)
 override_status_bar(true)
 override_status_bar_arguments("--operatorName '' --dataNetwork wifi --wifiMode active --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100 --time 2018-01-09T09:41:00Z")
 # reinstall_app(true)
