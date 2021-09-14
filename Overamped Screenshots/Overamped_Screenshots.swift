@@ -152,8 +152,8 @@ final class Overamped_Screenshots: XCTestCase {
     private func typeInAddressField(_ text: String, inSafari safari: XCUIApplication) {
         if safari.buttons["Address"].exists {
             safari.buttons["Address"].tap()
-        } else if safari.textFields["TabBarItemTitle"].waitForExistence(timeout: 3) {
-            safari.textFields["TabBarItemTitle"].tap()
+        } else if safari.textFields.firstMatch.waitForExistence(timeout: 1) {
+            safari.textFields.firstMatch.tap()
         } else {
             print("No address button or text field; likely didn't close tab")
         }
