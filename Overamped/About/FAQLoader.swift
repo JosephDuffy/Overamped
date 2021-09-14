@@ -1,28 +1,37 @@
 import Combine
 import Foundation
+import UIKit
 
 public final class FAQLoader: ObservableObject {
     @Published
+    @MainActor
     private(set) var questions: [Question] = []
 
     public init(bundle: Bundle = .main) {
-        loadQuestionsInBundle(bundle)
-
         Task {
+            await loadQuestionsInBundle(bundle)
             await loadLatestQuestions()
         }
     }
 
+    @MainActor
     public func questionWithId(_ id: String) -> Question? {
         questions.first(where: { $0.id == id })
     }
 
-    private func loadQuestionsInBundle(_ bundle: Bundle) {
+    private func loadQuestionsInBundle(_ bundle: Bundle) async {
         do {
-            guard let bundledJSON = bundle.url(forResource: "faq", withExtension: "json") else { return }
-            guard let jsonData = FileManager.default.contents(atPath: bundledJSON.path) else { return }
+            guard let bundledDataAsset = NSDataAsset(name: "FAQ.json", bundle: bundle) else {
+                print("No FAQ json in bundle")
+                return
+            }
+            let jsonData = bundledDataAsset.data
             let decoder = JSONDecoder()
-            questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
+            let questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
+            await MainActor.run {
+                self.questions = questions
+                print("JSON Data loaded from bundle")
+            }
         } catch {
             print("Failed to load questions from bundle", error)
         }
@@ -33,8 +42,11 @@ public final class FAQLoader: ObservableObject {
             let url = URL(string: "https://overamped.app/api/faq")!
             let (jsonData, _) = try await URLSession.shared.data(from: url, delegate: nil)
             let decoder = JSONDecoder()
-            questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
-            print("JSON Data loaded from network")
+            let questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
+            await MainActor.run {
+                self.questions = questions
+                print("JSON Data loaded from network")
+            }
         } catch {
             print("Failed to load JSON data from network", error)
         }
