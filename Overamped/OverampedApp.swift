@@ -20,11 +20,11 @@ struct OverampedApp: App {
                 if extensionHasBeenEnabled {
                     OverampedTabs()
                         .defaultAppStorage(UserDefaults(suiteName: "group.net.yetii.overamped")!)
-                        .environmentObject(FAQLoader())
                 } else {
                     InstallationInstructionsView(hasAlreadyInstalled: false)
                 }
             }
+            .environmentObject(FAQLoader())
             .onOpenURL(perform: { url in
                 Logger(subsystem: "net.yetii.Overamped", category: "URL Handler")
                     .log("Opened via URL \(url.absoluteString)")
