@@ -31,11 +31,9 @@ public final class FAQLoader: ObservableObject {
     private func loadLatestQuestions() async {
         do {
             let url = URL(string: "https://overamped.app/api/faq")!
-            for try await response in URLSession.shared.dataTaskPublisher(for: url).values {
-                let jsonData = response.data
-                let decoder = JSONDecoder()
-                questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
-            }
+            let (jsonData, _) = try await URLSession.shared.data(from: url, delegate: nil)
+            let decoder = JSONDecoder()
+            questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
             print("JSON Data loaded from network")
         } catch {
             print("Failed to load JSON data from network", error)
