@@ -7,6 +7,7 @@ Once the app has been released I would really appreciate reviews in the App Stor
 New in beta 20:
 
 - Fix crash when loading app for first time
+- Update bundled FAQ JSON
 
 New in beta 19:
 
