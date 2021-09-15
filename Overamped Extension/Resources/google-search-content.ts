@@ -48,7 +48,7 @@ function findAMPLogoRelativeToAnchor(
   return null
 }
 
-function replaceAMPLinks(ignoredHostnames: string[]) {
+async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
   const ampAnchor = document.body.querySelectorAll("a[data-ved]")
   console.debug(`Found ${ampAnchor.length} AMP links`)
 
@@ -57,23 +57,22 @@ function replaceAMPLinks(ignoredHostnames: string[]) {
     return modifyAnchorIfRequired(anchor, ignoredHostnames)
   })
 
-  Promise.all(modifyAnchorPromises).then((modifiedURLs) => {
-    const newlyReplacedURLs = modifiedURLs.compactMap((element) => {
-      return element
-    })
-
-    new NativeAppCommunicator().logReplacedLinks(newlyReplacedURLs)
-
-    console.info(
-      `A total of ${
-        Object.keys(anchorOnclickListeners).length
-      } AMP links have been replaced`,
-    )
-
-    document.body.dataset.overampedReplacedLinksCount = `${
-      Object.keys(anchorOnclickListeners).length
-    }`
+  const modifiedURLs = await Promise.all(modifyAnchorPromises)
+  const newlyReplacedURLs = modifiedURLs.compactMap((element) => {
+    return element
   })
+
+  new NativeAppCommunicator().logReplacedLinks(newlyReplacedURLs)
+
+  console.info(
+    `A total of ${
+      Object.keys(anchorOnclickListeners).length
+    } AMP links have been replaced`,
+  )
+
+  document.body.dataset.overampedReplacedLinksCount = `${
+    Object.keys(anchorOnclickListeners).length
+  }`
 }
 
 async function modifyAnchorIfRequired(
@@ -151,6 +150,8 @@ async function modifyAnchorIfRequired(
     console.debug("Not modifying anchor; it has already been modified")
     return
   }
+
+  console.debug("Modifying anchor to intercept opening")
 
   const originalHREF = anchor.href
 

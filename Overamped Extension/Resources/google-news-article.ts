@@ -4,7 +4,7 @@ import openURL from "./openURL"
 
 new ExtensionApplicator(document, overrideAMPArticles, false)
 
-function overrideAMPArticles(ignoredHostnames: string[]) {
+function overrideAMPArticles(ignoredHostnames: string[]): Promise<void> {
   const ampArticles = Array.from(
     document.querySelectorAll("article"),
   ).compactMap((article): [HTMLElement, HTMLSpanElement | undefined] => {
@@ -53,4 +53,6 @@ function overrideAMPArticles(ignoredHostnames: string[]) {
       }
     }
   })
+
+  return Promise.resolve()
 }

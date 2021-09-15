@@ -1,6 +1,8 @@
 import NativeAppCommunicator from "./NativeAppCommunicator"
 
-export type ExtensionApplierThunk = (ignoredHostnames: string[]) => void
+export type ExtensionApplierThunk = (
+  ignoredHostnames: string[],
+) => Promise<void>
 
 export default class ExtensionApplicator {
   #document: Document
@@ -13,6 +15,10 @@ export default class ExtensionApplicator {
 
   #ignoredHostnames?: string[]
 
+  #pendingPromise?: () => void
+
+  #state: "idle" | { pending: () => Promise<void> } | "applying"
+
   constructor(
     document: Document,
     thunk: ExtensionApplierThunk,
@@ -20,6 +26,7 @@ export default class ExtensionApplicator {
   ) {
     this.#document = document
     this.#thunk = thunk
+    this.#state = "idle"
     this.#nativeAppCommunicator = new NativeAppCommunicator()
 
     this.loadIgnoredHostnames()
@@ -106,12 +113,41 @@ export default class ExtensionApplicator {
       return
     }
 
-    this.#thunk(ignoredHostnames)
+    this.callThunk(ignoredHostnames)
   }
 
   private handleDOMNodeInserted() {
     if (this.#document.readyState !== "loading") {
-      this.#thunk(this.#ignoredHostnames ?? [])
+      this.callThunk(this.#ignoredHostnames ?? [])
+    }
+  }
+
+  private callThunk(ignoredHostnames: string[]) {
+    console.debug("Calling thunk with ignored hostnames")
+
+    if (this.#state === "idle") {
+      this.#state = "applying"
+      this.#thunk(ignoredHostnames).finally(() => {
+        this.checkState()
+      })
+    } else {
+      this.#state = {
+        pending: () => {
+          return this.#thunk(ignoredHostnames)
+        },
+      }
+    }
+  }
+
+  private checkState() {
+    if (this.#state === "applying") {
+      this.#state = "idle"
+    } else if (this.#state !== "idle") {
+      const pendingPromise = this.#state.pending
+      this.#state = "applying"
+      pendingPromise().finally(() => {
+        this.checkState()
+      })
     }
   }
 
