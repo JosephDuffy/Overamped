@@ -12,6 +12,9 @@ struct SettingsView: View {
     @PersistStorage(persister: .basicStatisticsResetDate)
     private var basicStatisticsResetDate: Date?
 
+    @PersistStorage(persister: .advancedStatisticsResetDate)
+    private var advancedStatisticsResetDate: Date?
+
     @PersistStorage(persister: .replacedLinks)
     private var replacedLinks: [Date: [String]]
 
@@ -30,7 +33,7 @@ struct SettingsView: View {
                 ClearBasicStatisticsView()
             }
 
-            Section(footer: Text("Advanced statistics includes the domains and timestamps of replaced and redirect links.")) {
+            Section(footer: Text("Advanced statistics includes the domains and timestamps of replaced and redirect links.\nAdvanced statistics last reset: \(advancedStatisticsResetDate?.formatted() ?? "Never").")) {
                 Toggle(
                     isOn: $enabledAdvancedStatistics,
                     label: { Text("Collect Advanced Statistics") }

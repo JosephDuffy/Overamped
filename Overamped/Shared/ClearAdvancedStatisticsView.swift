@@ -9,6 +9,9 @@ struct ClearAdvancedStatisticsView: View {
     @PersistStorage(persister: .redirectedLinks)
     private var redirectedLinks: [Date: String]
 
+    @PersistStorage(persister: .advancedStatisticsResetDate)
+    private var advancedStatisticsResetDate: Date?
+
     @State
     private var showClearAdvancedStatistics = false
 
@@ -23,6 +26,7 @@ struct ClearAdvancedStatisticsView: View {
                 primaryButton: .destructive(Text("Clear"), action: {
                     replacedLinks = [:]
                     redirectedLinks = [:]
+                    advancedStatisticsResetDate = .now
                 }),
                 secondaryButton: .cancel(Text("Cancel"))
             )

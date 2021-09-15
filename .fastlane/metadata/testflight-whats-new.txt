@@ -8,6 +8,7 @@ New in beta 21:
 
 - Prevent performing multiple replaces at once. This has a few advantages when using Google, namely that statistics are now much more accurate.
 - Basic statistics can now be cleared from the Settings tab
+- The date that basic and advanced statistics were last reset is shown in Settings
 
 New in beta 20:
 

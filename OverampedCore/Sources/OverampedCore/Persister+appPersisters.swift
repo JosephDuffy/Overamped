@@ -48,6 +48,14 @@ extension Persister {
         )
     }
 
+    /// A `Persister` that stores the date advanced statistics were reset.
+    public static var advancedStatisticsResetDate: Persister<Date?> {
+        Persister<Date?>(
+            key: "advancedStatisticsResetDate",
+            userDefaults: UserDefaults.groupSuite
+        )
+    }
+
     /// A `Persister` that stores the "Enable Advanced Statistics" setting.
     public static var enabledAdvancedStatistics: Persister<Bool> {
         Persister<Bool>(
