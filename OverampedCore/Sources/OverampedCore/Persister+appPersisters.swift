@@ -20,6 +20,14 @@ extension Persister {
         )
     }
 
+    /// A `Persister` that stores the date basic statistics were reset.
+    public static var basicStatisticsResetDate: Persister<Date?> {
+        Persister<Date?>(
+            key: "basicStatisticsResetDate",
+            userDefaults: UserDefaults.groupSuite
+        )
+    }
+
     /// A `Persister` that stores a collection of the links replaced.
     public static var replacedLinks: Persister<[Date: [String]]> {
         Persister<[Date: [String]]>(

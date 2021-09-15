@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C26E26A92C8700CE8AC6 /* SurveyView.swift */; };
 		D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */; };
+		D945BC1326F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D945BC1226F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift */; };
 		D94E168826B4D7A300294B9D /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = D94E168626B4D6B900294B9D /* options.html */; };
 		D94E168B26B4DA2A00294B9D /* generic-amp-content.js in Resources */ = {isa = PBXBuildFile; fileRef = D94E168926B4DA2200294B9D /* generic-amp-content.js */; };
 		D94E168E26B50B3C00294B9D /* yandex-turbo-cache.js in Resources */ = {isa = PBXBuildFile; fileRef = D94E168D26B50B3900294B9D /* yandex-turbo-cache.js */; };
@@ -127,6 +128,7 @@
 /* Begin PBXFileReference section */
 		D939C26E26A92C8700CE8AC6 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPricesProvider.swift; sourceTree = "<group>"; };
+		D945BC1226F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBasicStatisticsView.swift; sourceTree = "<group>"; };
 		D94E168626B4D6B900294B9D /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
 		D94E168926B4DA2200294B9D /* generic-amp-content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "generic-amp-content.js"; sourceTree = "<group>"; };
 		D94E168A26B4DA2200294B9D /* generic-amp-content.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = "generic-amp-content.ts"; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				D9CC9D9E26AA943300FE447C /* ActivityView.swift */,
 				D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */,
 				D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */,
+				D945BC1226F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift */,
 				D994C64226A26D29000649AA /* OverampedCoreImport.swift */,
 			);
 			path = Shared;
@@ -692,6 +695,7 @@
 				D963DAF426BF5C3800AFCDC8 /* Acknowledgements.swift in Sources */,
 				D994C64326A26D29000649AA /* OverampedCoreImport.swift in Sources */,
 				D984BB9B26A8F54200500856 /* IgnoredHostnamesView.swift in Sources */,
+				D945BC1326F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift in Sources */,
 				D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */,
 				D9CC9D9F26AA943300FE447C /* ActivityView.swift in Sources */,
 				D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */,

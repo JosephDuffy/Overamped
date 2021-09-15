@@ -9,6 +9,9 @@ struct SettingsView: View {
     @SceneStorage("SettingsView.isShowingIgnoredHostnames")
     private var isShowingIgnoredHostnames = false
 
+    @PersistStorage(persister: .basicStatisticsResetDate)
+    private var basicStatisticsResetDate: Date?
+
     @PersistStorage(persister: .replacedLinks)
     private var replacedLinks: [Date: [String]]
 
@@ -23,6 +26,10 @@ struct SettingsView: View {
 
     var body: some View {
         List {
+            Section(footer: Text("Basic statistics last reset: \(basicStatisticsResetDate?.formatted() ?? "Never").")) {
+                ClearBasicStatisticsView()
+            }
+
             Section(footer: Text("Advanced statistics includes the domains and timestamps of replaced and redirect links.")) {
                 Toggle(
                     isOn: $enabledAdvancedStatistics,
