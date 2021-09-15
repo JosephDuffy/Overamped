@@ -61,7 +61,7 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
             return
         }
 
-        logger.debug("Received request: \(request)")
+        logger.debug("Received request: \(request, privacy: .public)")
 
         switch request {
         case "ignoredHostnames":
@@ -136,7 +136,7 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
             replacedLinksCount += replacedLinks.count
 
-            logger.log("Increased replaced links count by \(replacedLinks.count), now \(self.replacedLinksCount)")
+            logger.log("Increased replaced links count by \(replacedLinks.count, privacy: .public), now \(self.replacedLinksCount, privacy: .public)")
 
             guard enabledAdvancedStatistics else { return }
 
@@ -156,7 +156,7 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
             redirectedLinksCount += 1
 
-            logger.log("Increased redirected links count by 1, now \(self.redirectedLinksCount)")
+            logger.log("Increased redirected links count by 1, now \(self.redirectedLinksCount, privacy: .public)")
 
             guard enabledAdvancedStatistics else { return }
 
