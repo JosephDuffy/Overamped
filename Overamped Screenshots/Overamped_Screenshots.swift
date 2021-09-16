@@ -62,9 +62,8 @@ final class Overamped_Screenshots: XCTestCase {
         }
 
         // Agree to Google's bullshit
-        if safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 5) {
-            safari.buttons[agreeGoogleCookiesText].tap()
-        }
+        _ = safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 5)
+        safari.buttons[agreeGoogleCookiesText].tap()
 
         var enableDarkModeText: String {
             if deviceLanguage == "ru-RU" {
