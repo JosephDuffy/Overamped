@@ -94,9 +94,6 @@ struct AdvancedStatisticsView: View {
                         }
                     }
                 }
-
-                ClearAdvancedStatisticsView()
-                    .buttonStyle(BorderedButtonStyle())
             }
         }
 
