@@ -7,7 +7,7 @@ struct AdvancedStatisticsView: View {
     private var replacedLinks: [ReplacedLinksEvent]
 
     @PersistStorage(persister: .redirectedLinks)
-    private var redirectedLinks: [Date: String]
+    private var redirectedLinks: [RedirectLinkEvent]
 
     @State
     private var replacedDomainsToCountsMap: [DomainCount] = []
@@ -113,7 +113,7 @@ struct AdvancedStatisticsView: View {
         }
 
         EmptyView().onReceive(_redirectedLinks.persister.publisher) { redirectedLinks in
-            let allDomains = redirectedLinks.values
+            let allDomains = redirectedLinks.map(\.domain)
             redirectedDomainsToCountsMap = allDomains
                 .reduce(into: [:], { partialResult, domain in
                     partialResult[domain, default: 0] += 1

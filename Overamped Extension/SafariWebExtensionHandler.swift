@@ -18,7 +18,7 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
     private var replacedLinks: [ReplacedLinksEvent]
 
     @Persisted(persister: .redirectedLinks)
-    private var redirectedLinks: [Date: String]
+    private var redirectedLinks: [RedirectLinkEvent]
 
     @Persisted(persister: .enabledAdvancedStatistics)
     private var enabledAdvancedStatistics: Bool
@@ -161,7 +161,8 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
             guard enabledAdvancedStatistics else { return }
 
-            self.redirectedLinks[.now] = redirectedHostname
+            let event = RedirectLinkEvent(id: UUID(), date: .now, domain: redirectedHostname)
+            self.redirectedLinks.append(event)
 
             logger.log("Logged redirect to \(redirectedHostname)")
         default:

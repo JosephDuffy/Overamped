@@ -13,6 +13,18 @@ public struct ReplacedLinksEvent: Identifiable {
     }
 }
 
+public struct RedirectLinkEvent: Identifiable {
+    public let id: UUID
+    public let date: Date
+    public let domain: String
+
+    public init(id: UUID, date: Date, domain: String) {
+        self.id = id
+        self.date = date
+        self.domain = domain
+    }
+}
+
 extension Persister {
     /// A `Persister` that stores whether the extension has been enabled.
     public static var extensionHasBeenEnabled: Persister<Bool> {
@@ -51,12 +63,12 @@ extension Persister {
     }
 
     /// A `Persister` that stores a collection of the links redirected.
-    public static var redirectedLinks: Persister<[Date: String]> {
-        Persister<[Date: String]>(
-            key: "redirectedLinks",
+    public static var redirectedLinks: Persister<[RedirectLinkEvent]> {
+        Persister<[RedirectLinkEvent]>(
+            key: "redirectedLinkEvents",
             userDefaults: UserDefaults.groupSuite,
             transformer: RedirectedLinksTransformer(),
-            defaultValue: [:]
+            defaultValue: []
         )
     }
 

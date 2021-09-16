@@ -7,7 +7,7 @@ struct ClearAdvancedStatisticsView: View {
     private var replacedLinks: [ReplacedLinksEvent]
 
     @PersistStorage(persister: .redirectedLinks)
-    private var redirectedLinks: [Date: String]
+    private var redirectedLinks: [RedirectLinkEvent]
 
     @PersistStorage(persister: .advancedStatisticsResetDate)
     private var advancedStatisticsResetDate: Date?
@@ -25,7 +25,7 @@ struct ClearAdvancedStatisticsView: View {
                 message: Text("All logged advanced statistics will be deleted. This cannot be undone."),
                 primaryButton: .destructive(Text("Clear"), action: {
                     replacedLinks = []
-                    redirectedLinks = [:]
+                    redirectedLinks = []
                     advancedStatisticsResetDate = .now
                 }),
                 secondaryButton: .cancel(Text("Cancel"))
