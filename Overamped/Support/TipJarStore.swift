@@ -1,4 +1,5 @@
 import StoreKit
+import os.log
 
 public final class TipJarStore: ObservableObject {
     public enum Error<T>: Swift.Error {
@@ -48,6 +49,8 @@ public final class TipJarStore: ObservableObject {
         "consumable.hugetip",
     ]
 
+    private let logger = Logger(subsystem: "net.yetii.Overamped", category: "Tip Jar Store")
+
     public init() {
         taskHandle = listenForTransactions()
 
@@ -60,9 +63,9 @@ public final class TipJarStore: ObservableObject {
             for await transaction in Transaction.all {
                 do {
                     try await self.handleTransaction(transaction)
-                    print("Loaded existing transaction", transaction)
+                    self.logger.error("Loaded existing transaction: \(String(describing: transaction))")
                 } catch {
-                    print("Failed to verify existing transaction", error)
+                    self.logger.error("Failed to verify existing transaction: \(String(describing: error))")
                 }
             }
         }
@@ -79,6 +82,8 @@ public final class TipJarStore: ObservableObject {
         defer {
             state = .idle
         }
+
+        logger.log("Loading products")
 
         do {
             let storeProducts = try await Product.products(for: productIdentifiers)
@@ -98,13 +103,15 @@ public final class TipJarStore: ObservableObject {
 
             self.consumables = sortByPrice(consumables)
         } catch {
-            print("Failed product request: \(error)")
+            logger.error("Failed to load products: \(String(describing: error))")
         }
     }
 
     @MainActor
     func purchase(_ product: Product) async throws -> Transaction? {
         state = .purchasingProduct(product)
+
+        logger.log("Attempting to purchase product \(String(describing: product))")
 
         defer {
             state = .idle
@@ -115,9 +122,14 @@ public final class TipJarStore: ObservableObject {
         switch result {
         case .success(let result):
             return try await handleTransaction(result)
-        case .userCancelled, .pending:
+        case .userCancelled:
+            logger.log("User cancelled purchase of \(String(describing: product))")
             return nil
-        default:
+        case .pending:
+            logger.log("User purchase is pending: \(String(describing: product))")
+            return nil
+        @unknown default:
+            logger.log("Unknown result for purchase of \(String(describing: product)): \(String(describing: result))")
             return nil
         }
     }
