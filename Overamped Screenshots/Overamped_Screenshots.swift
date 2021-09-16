@@ -122,6 +122,14 @@ final class Overamped_Screenshots: XCTestCase {
         if settings.cells["Safari"].exists {
             settings.cells["Safari"].tap()
         }
+
+        if settings.cells["Overamped"].exists {
+            // Go back
+            settings.buttons["Safari"].tap()
+        }
+
+        settings.button["Clear History and Website Data"].tap()
+
         if settings.cells["Extensions"].exists {
             settings.cells["Extensions"].tap()
         }
