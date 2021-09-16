@@ -1,17 +1,7 @@
-Overamped is a Safari Web Extension that redirects AMP and Yandex Turbo to their canonical equivalents. It can do this from search results including Google, Yahoo JAPAN!, and Yandex, or from any other source such as links opened from apps, received via Messages, or on any webpage.
+Overamped automatically redirects AMP and Yandex Turbo to their original version, effectively disabling AMP and Yandex Turbo in Safari.
 
 HOW IT WORKS
-The Overamped app provides a Safari Web Extension. It interacts with webpages in Safari and redirects AMP and Yandex Turbo pages.
-
-Any AMP pages found in search results will be replaced with the canonical version of the linked website, exactly as they would be if you searched using a tablet or laptop.
-
-When opening a link from a search result, any website, or any app Overamped will find and redirect to the canonical version automatically. This means it will work with all AMP and Yandex Turbo pages no matter how the page is opened..
-
-REDIRECT AMP IN SEARCH RESULTS
-Overamped automatically finds search results in Google and Yahoo! JAPAN that point to AMP pages and Yandex search results that point to Yandex Turbo. All of these links are update them to point to their canonical version automatically.
-Redirect Any AMP Link
-
-All AMP links opened by Safari will be redirected, including those found on websites or opened from native apps.
+When opening a link from any source – including Google Search, Google News, Yahoo! JAPAN, any website, and native apps – Overamped will find and redirect to the canonical version automatically. This means it will work with all AMP and Yandex Turbo pages no matter how the page is opened.
 
 OPEN NATIVE APPS
 If you have the native app installed for a website that is redirected Overamped will automatically open the native app rather than the website.
