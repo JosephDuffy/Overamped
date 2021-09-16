@@ -66,6 +66,18 @@ final class Overamped_Screenshots: XCTestCase {
             safari.buttons[agreeGoogleCookiesText].tap()
         }
 
+        var enableDarkModeText: String {
+            if deviceLanguage == "ru-RU" {
+                return "Включить"
+            } else {
+                return "Turn on"
+            }
+        }
+
+        if safari.buttons[enableDarkModeText].waitForExistence(timeout: 3) {
+            safari.buttons[enableDarkModeText].tap()
+        }
+
         snapshot("0 Google")
 
         /*
