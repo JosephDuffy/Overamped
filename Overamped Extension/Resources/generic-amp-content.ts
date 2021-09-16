@@ -22,7 +22,7 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
 
   const canonicalURL = new URL(canonicalElement.href)
 
-  openURL(canonicalURL, ignoredHostnames, "replace")
+  openURL(canonicalURL, ignoredHostnames, true, "replace")
 
   return Promise.resolve()
 }

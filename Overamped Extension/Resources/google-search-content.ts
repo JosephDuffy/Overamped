@@ -119,6 +119,8 @@ async function modifyAnchorIfRequired(
   const ampIcon = findAMPLogoRelativeToAnchor(anchor)
   let modifiedAnchor = anchorOnclickListeners[ved]
 
+  let logRedirection: boolean
+
   if (!hasCanonicalURL) {
     const { canAccess: canAccessURL } = await browser.runtime.sendMessage({
       request: "canAccessURL",
@@ -127,12 +129,16 @@ async function modifyAnchorIfRequired(
       },
     })
 
+    logRedirection = !canAccessURL
+
     if (!canAccessURL) {
       // Only de-AMP the URL if redirecting to the AMP URL
       // wouldn't be redirected.
       anchorURL = deAMPURL(anchorURL)
       console.debug(`De-AMPed URL: ${anchorURL}`)
     }
+  } else {
+    logRedirection = true
   }
 
   if (ignoredHostnames.includes(anchorURL.hostname)) {
@@ -158,7 +164,7 @@ async function modifyAnchorIfRequired(
   anchor.href = anchorURL.toString()
 
   function interceptAMPLink(event: MouseEvent) {
-    if (openURL(anchorURL, ignoredHostnames, "push")) {
+    if (openURL(anchorURL, ignoredHostnames, logRedirection, "push")) {
       event.preventDefault()
       event.stopImmediatePropagation()
       return false

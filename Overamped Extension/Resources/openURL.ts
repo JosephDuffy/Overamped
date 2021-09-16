@@ -3,6 +3,7 @@ import NativeAppCommunicator from "./NativeAppCommunicator"
 export default function openURL(
   url: URL,
   ignoredHostnames: string[],
+  logEvent: boolean,
   action: "push" | "replace",
 ): boolean {
   // An array of hostnames that Overamped will never redirect
@@ -28,9 +29,13 @@ export default function openURL(
 
     return false
   } else {
-    console.log(`Redirecting page to ${url.toString()}`)
+    console.log(
+      `Redirecting ${document.location.toString()} to ${url.toString()}`,
+    )
 
-    new NativeAppCommunicator().logRedirectedLink(url)
+    if (logEvent) {
+      new NativeAppCommunicator().logRedirectedLink(url)
+    }
 
     switch (action) {
       case "push":
