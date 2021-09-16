@@ -128,7 +128,7 @@ final class Overamped_Screenshots: XCTestCase {
             settings.buttons["Safari"].tap()
         }
 
-        settings.button["Clear History and Website Data"].tap()
+        settings.buttons["Clear History and Website Data"].tap()
 
         if settings.cells["Extensions"].exists {
             settings.cells["Extensions"].tap()
