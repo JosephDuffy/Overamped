@@ -108,66 +108,21 @@ private final class AppDelegate: NSObject, UIApplicationDelegate {
                 ]
                 try Persister<Any>.ignoredHostnames.persist(ignoredHostnames)
                 try Persister<Any>.replacedLinksCount.persist(387)
-                try Persister<Any>.redirectedLinksCount.persist(52)
+                try Persister<Any>.redirectedLinksCount.persist(22)
 
                 let redirectsDomains: [String]
                 let replacedLinks: [String]
 
                 switch Locale.current.regionCode {
                 case "GB":
-                    redirectsDomains = [
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "theguardian.com",
-                        "theguardian.com",
-                        "theguardian.com",
-                        "theguardian.com",
-                        "theguardian.com",
-                        "bbc.com",
-                        "bbc.com",
-                    ]
-                    replacedLinks = Array(repeating: "reddit.com", count: 12) + Array(repeating: "theguardian.com", count: 9) + Array(repeating: "bbc.com", count: 5) + Array(repeating: "amp.dev", count: 1)
+                    redirectsDomains = Array(repeating: "bbc.co.uk", count: 7) + Array(repeating: "reddit.com", count: 5) + Array(repeating: "theguardian.com", count: 2) + Array(repeating: "amp.dev", count: 1)
+                    replacedLinks = Array(repeating: "reddit.com", count: 27) + Array(repeating: "theguardian.com", count: 14) + Array(repeating: "bbc.co.uk", count: 9) + Array(repeating: "amp.dev", count: 1)
                 case "RU":
-                    redirectsDomains = [
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "appleinsider.ru",
-                        "appleinsider.ru",
-                        "appleinsider.ru",
-                        "appleinsider.ru",
-                        "appleinsider.ru",
-                        "bbc.com",
-                        "bbc.com",
-                    ]
-                    replacedLinks = Array(repeating: "reddit.com", count: 12) + Array(repeating: "applinsider.ru", count: 9) + Array(repeating: "bbc.com", count: 5) + Array(repeating: "amp.dev", count: 1)
+                    redirectsDomains = Array(repeating: "applinsider.ru", count: 7) + Array(repeating: "reddit.com", count: 5) + Array(repeating: "bbc.com", count: 2) + Array(repeating: "amp.dev", count: 1)
+                    replacedLinks = Array(repeating: "reddit.com", count: 27) + Array(repeating: "applinsider.ru", count: 14) + Array(repeating: "bbc.com", count: 9) + Array(repeating: "amp.dev", count: 1)
                 default:
-                    redirectsDomains = [
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "reddit.com",
-                        "newegg.com",
-                        "newegg.com",
-                        "newegg.com",
-                        "newegg.com",
-                        "newegg.com",
-                        "cnn.com",
-                        "cnn.com",
-                    ]
-                    replacedLinks = Array(repeating: "reddit.com", count: 12) + Array(repeating: "newegg.com", count: 9) + Array(repeating: "cnn.com", count: 5) + Array(repeating: "amp.dev", count: 1)
+                    redirectsDomains = Array(repeating: "cnn.com", count: 7) + Array(repeating: "reddit.com", count: 5) + Array(repeating: "newegg.com", count: 2) + Array(repeating: "amp.dev", count: 1)
+                    replacedLinks = Array(repeating: "reddit.com", count: 27) + Array(repeating: "newegg.com", count: 14) + Array(repeating: "cnn.com", count: 9) + Array(repeating: "amp.dev", count: 1)
                 }
 
                 let replacedLinksEvent = ReplacedLinksEvent(id: UUID(), date: .now, domains: replacedLinks)
