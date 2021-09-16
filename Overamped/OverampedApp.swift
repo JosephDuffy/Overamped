@@ -183,25 +183,30 @@ private final class AppDelegate: NSObject, UIApplicationDelegate {
 
         if let linksToMigrate = UserDefaults.groupSuite.dictionary(forKey: "replacedLinks") {
             lazy var dateFormatter = ISO8601DateFormatter()
-            let events = linksToMigrate.compactMap { element -> ReplacedLinksEvent? in
+            let migratedEvents = linksToMigrate.compactMap { element -> ReplacedLinksEvent? in
                 let (dateString, domains) = element
                 guard let domains = domains as? [String] else { return nil }
                 guard let date = dateFormatter.date(from: dateString) else { return nil }
                 return ReplacedLinksEvent(id: UUID(), date: date, domains: domains)
             }
-            try? Persister<Any>.replacedLinks.persist(events)
+            let persister = Persister<Any>.replacedLinks
+            let existingEvents = persister.retrieveValue()
+            try? persister.persist(migratedEvents + existingEvents)
             UserDefaults.groupSuite.removeObject(forKey: "replacedLinks")
         }
 
         if let linksToMigrate = UserDefaults.groupSuite.dictionary(forKey: "redirectedLinks") {
             lazy var dateFormatter = ISO8601DateFormatter()
-            let events = linksToMigrate.compactMap { element -> RedirectLinkEvent? in
+            let migratedEvents = linksToMigrate.compactMap { element -> RedirectLinkEvent? in
                 let (dateString, domain) = element
                 guard let domain = domain as? String else { return nil }
                 guard let date = dateFormatter.date(from: dateString) else { return nil }
                 return RedirectLinkEvent(id: UUID(), date: date, domain: domain)
             }
-            try? Persister<Any>.redirectedLinks.persist(events)
+            let persister = Persister<Any>.redirectedLinks
+            let existingEvents = persister.retrieveValue()
+            try? persister.persist(migratedEvents + existingEvents)
+            UserDefaults.groupSuite.removeObject(forKey: "redirectedLinks")
         }
 
         return true
