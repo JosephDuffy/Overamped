@@ -1,1 +1,1 @@
-amp,google,yahoo,yandex,turbo,bing,safari,web,extension,redirect,skip,bypass,disable,reddit,news
+amp,google,yahoo,yandex,turbo,bing,safari,web,extension,addon,redirect,bypass,disable,reddit,news
