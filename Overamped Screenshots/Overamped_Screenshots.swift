@@ -61,9 +61,19 @@ final class Overamped_Screenshots: XCTestCase {
             }
         }
 
+        let agreeToCookiesButton: XCUIElement = {
+            if deviceLanguage == "ru-RU" {
+                return safari.buttons["Принимаю"].firstMatch
+            } else {
+                return safari.buttons["I agree"].firstMatch
+            }
+        }()
+
         // Agree to Google's bullshit
-        _ = safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 5)
-        safari.buttons[agreeGoogleCookiesText].tap()
+        if !agreeToCookiesButton.waitForExistence(timeout: 5) {
+            XCTFail("Couldn't find cookie agree button")
+        }
+        agreeToCookiesButton.tap()
 
         var enableDarkModeText: String {
             if deviceLanguage == "ru-RU" {
@@ -120,17 +130,18 @@ final class Overamped_Screenshots: XCTestCase {
 
         if settings.cells["Safari"].exists {
             settings.cells["Safari"].tap()
-        }
-
-        if settings.cells["Overamped"].exists {
+        } else if settings.cells["Overamped"].exists {
             // Go back
             settings.buttons["Safari"].tap()
         }
 
         settings.cells["Clear History and Website Data"].tap()
         if settings.buttons["Clear History and Data"].exists {
-            // Doesn't exist if there's no data to be reset
+            // Sheet on iPhone
             settings.buttons["Clear History and Data"].tap()
+        } else if settings.buttons["Clear"].exists {
+            // Alert on iPad
+            settings.buttons["Clear"].tap()
         }
         settings.cells["Extensions"].tap()
         settings.cells["Overamped"].tap()
@@ -155,13 +166,8 @@ final class Overamped_Screenshots: XCTestCase {
     }
 
     private func closeAllTabs(_ safari: XCUIApplication) {
-        if !safari.buttons["TabOverviewButton"].exists, safari.otherElements["CapsuleNavigationBar?isSelected=true"].exists {
-            safari.otherElements["CapsuleNavigationBar?isSelected=true"].tap()
-        }
-
-        if safari.buttons["TabOverviewButton"].exists {
-            safari.buttons["TabOverviewButton"].tap()
-        }
+        // Show tabs exposé
+        safari.buttons["TabOverviewButton"].tap()
 
         let closeButtons = safari.buttons.matching(identifier: "Close")
         closeButtons.allElementsBoundByIndex.reversed().forEach { closeButton in
@@ -170,17 +176,24 @@ final class Overamped_Screenshots: XCTestCase {
     }
 
     private func typeInAddressField(_ text: String, inSafari safari: XCUIApplication) {
-        if safari.buttons["Address"].exists {
-            safari.buttons["Address"].tap()
-        } else if safari.textFields.firstMatch.waitForExistence(timeout: 1) {
-            safari.textFields.firstMatch.tap()
-        } else {
-            print("No address button or text field; likely didn't close tab")
+        let addressBarElement: XCUIElement
+
+        switch safari.windows.firstMatch.horizontalSizeClass {
+        case .compact, .unspecified:
+            addressBarElement = safari.textFields.firstMatch
+        case .regular:
+            addressBarElement = safari.buttons.element(matching: NSPredicate(format: "identifier BEGINSWITH[c] %@", "UnifiedTabBarItemView"))
+        @unknown default:
+            addressBarElement = safari.textFields.firstMatch
         }
 
-        if safari.buttons["ClearTextButton"].exists {
-            safari.buttons["ClearTextButton"].tap()
+        guard addressBarElement.waitForExistence(timeout: 3) else {
+            XCTFail("Couldn't find address bar element")
+            return
         }
+
+        addressBarElement.tap()
+
         if let url = URL(string: text) {
             UIPasteboard.general.url = url
         } else {
