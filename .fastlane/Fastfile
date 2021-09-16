@@ -1,5 +1,7 @@
 default_platform :ios
 
+xcode_select("/Applications/Xcode_13.0-RC1.app/")
+
 platform :ios do
   desc "Submit a new iOS build to TestFlight"
   lane :submit_beta do
