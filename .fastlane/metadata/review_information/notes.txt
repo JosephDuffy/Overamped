@@ -1,7 +1,3 @@
-A demo video of the extension: https://www.icloud.com/iclouddrive/0XdsN2H8yosymSi6YtxNE0YtA#IMG_2637
+A demo video of the extension: https://www.icloud.com/iclouddrive/0CrIK3GXyer7_XpcMC4vUq27A#App_Review_Demo
 
-Note how the search results have the AMP logo (the lightning bolt) next to them and would display the AMP version of the search result. When the extension is enabled the AMP logo is removed and tapping on the search result opens the original (non-AMP) page.
-
-The AMP logo does not display for everyone on Google.
-
-To easily find an AMP link search for something in the news and select one of the news links -- they're all AMP links.
+Overamped is not enabled at the start of the video. Note how tapping the news result in Google opens the AMP version of the page (website is hosted by Google, shows actual website domain at top, the website is missing some features such as the navigation menu). Once the extension has been enabled and the page refresh tapping the same link instead loads the original page.
