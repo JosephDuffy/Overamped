@@ -102,7 +102,6 @@ public final class TipJarStore: ObservableObject {
         }
     }
 
-    @discardableResult
     @MainActor
     func purchase(_ product: Product) async throws -> Transaction? {
         state = .purchasingProduct(product)
@@ -149,13 +148,8 @@ public final class TipJarStore: ObservableObject {
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {
-        case .unverified(let signed, let error):
-            switch DistributionMethod.current {
-            case .appStore, .testFlight, .unknown:
-                throw Error.failedVerification(error)
-            case .debug:
-                return signed
-            }
+        case .unverified(_, let error):
+            throw Error.failedVerification(error)
         case .verified(let signed):
             return signed
         }

@@ -6,6 +6,8 @@ public struct TipJarView: View {
 
     @State private var didRecentlyTip = false
 
+    @State private var purchaseError: Error?
+
     public var body: some View {
         Text("Tip Jar")
             .font(.title.weight(.semibold))
@@ -14,6 +16,8 @@ public struct TipJarView: View {
 
         if didRecentlyTip {
             Text("❤️ Thank you so much for your support!")
+        } else if let purchaseError = purchaseError {
+            Text(purchaseError.localizedDescription)
         }
 
         HStack(spacing: 16) {
@@ -26,10 +30,16 @@ public struct TipJarView: View {
                         action: {
                             Task {
                                 do {
-                                    try await store.purchase(product)
-                                    didRecentlyTip = true
+                                    let transaction = try await store.purchase(product)
+                                    withAnimation {
+                                        didRecentlyTip = transaction != nil
+                                        purchaseError = nil
+                                    }
                                 } catch {
-                                    print("Purchase failed", error)
+                                    withAnimation {
+                                        didRecentlyTip = false
+                                        purchaseError = error
+                                    }
                                 }
                             }
                         },
