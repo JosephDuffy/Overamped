@@ -15,7 +15,7 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
     private var extensionHasBeenEnabled: Bool
 
     @Persisted(persister: .replacedLinks)
-    private var replacedLinks: [Date: [String]]
+    private var replacedLinks: [ReplacedLinksEvent]
 
     @Persisted(persister: .redirectedLinks)
     private var redirectedLinks: [Date: String]
@@ -140,7 +140,8 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
             guard enabledAdvancedStatistics else { return }
 
-            self.replacedLinks[.now, default: []].append(contentsOf: replacedLinks)
+            let event = ReplacedLinksEvent(id: UUID(), date: .now, domains: replacedLinks)
+            self.replacedLinks.append(event)
 
             logger.log("Logged replacing links with domains \(replacedLinks)")
         case "logRedirectedLink":

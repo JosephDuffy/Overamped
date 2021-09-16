@@ -1,6 +1,18 @@
 import Foundation
 import Persist
 
+public struct ReplacedLinksEvent: Identifiable {
+    public let id: UUID
+    public let date: Date
+    public let domains: [String]
+
+    public init(id: UUID, date: Date, domains: [String]) {
+        self.id = id
+        self.date = date
+        self.domains = domains
+    }
+}
+
 extension Persister {
     /// A `Persister` that stores whether the extension has been enabled.
     public static var extensionHasBeenEnabled: Persister<Bool> {
@@ -29,12 +41,12 @@ extension Persister {
     }
 
     /// A `Persister` that stores a collection of the links replaced.
-    public static var replacedLinks: Persister<[Date: [String]]> {
-        Persister<[Date: [String]]>(
-            key: "replacedLinks",
+    public static var replacedLinks: Persister<[ReplacedLinksEvent]> {
+        Persister<[ReplacedLinksEvent]>(
+            key: "replacedLinkEvents",
             userDefaults: UserDefaults.groupSuite,
             transformer: ReplacedLinksTransformer(),
-            defaultValue: [:]
+            defaultValue: []
         )
     }
 

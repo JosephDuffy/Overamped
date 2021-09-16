@@ -29,7 +29,7 @@ struct SettingsView: View {
     private var advancedStatisticsResetDate: Date?
 
     @PersistStorage(persister: .replacedLinks)
-    private var replacedLinks: [Date: [String]]
+    private var replacedLinks: [ReplacedLinksEvent]
 
     @PersistStorage(persister: .redirectedLinks)
     private var redirectedLinks: [Date: String]
@@ -58,7 +58,7 @@ struct SettingsView: View {
                     label: { Text("Collect Advanced Statistics") }
                 )
                     .onReceive(_replacedLinks.persister.publisher.combineLatest(_redirectedLinks.persister.publisher)) { (replacedLinks, redirectedLinks) in
-                        guard !replacedLinks.contains(where: { !$0.value.isEmpty }) else {
+                        guard !replacedLinks.contains(where: { !$0.domains.isEmpty }) else {
                             hasCollectedAnyAdvancesStatistics = true
                             return
                         }

@@ -170,7 +170,8 @@ private final class AppDelegate: NSObject, UIApplicationDelegate {
                     replacedLinks = Array(repeating: "reddit.com", count: 12) + Array(repeating: "newegg.com", count: 9) + Array(repeating: "cnn.com", count: 5) + Array(repeating: "amp.dev", count: 1)
                 }
 
-                try Persister<Any>.replacedLinks.persist([.now: replacedLinks])
+                let replacedLinksEvent = ReplacedLinksEvent(id: UUID(), date: .now, domains: replacedLinks)
+                try Persister<Any>.replacedLinks.persist([replacedLinksEvent])
 
                 let redirectsLinks: [Date: String] = redirectsDomains.enumerated().reduce(into: [:]) { redirectsLinks, element in
                     let (offset, domain) = element
@@ -178,6 +179,18 @@ private final class AppDelegate: NSObject, UIApplicationDelegate {
                 }
                 try Persister<Any>.redirectedLinks.persist(redirectsLinks)
             } catch {}
+        }
+
+        if let linksToMigrate = UserDefaults.groupSuite.dictionary(forKey: "replacedLinks") {
+            lazy var dateFormatter = ISO8601DateFormatter()
+            let events = linksToMigrate.compactMap { element -> ReplacedLinksEvent? in
+                let (dateString, domains) = element
+                guard let domains = domains as? [String] else { return nil }
+                guard let date = dateFormatter.date(from: dateString) else { return nil }
+                return ReplacedLinksEvent(id: UUID(), date: date, domains: domains)
+            }
+            try? Persister<Any>.replacedLinks.persist(events)
+            UserDefaults.groupSuite.removeObject(forKey: "replacedLinks")
         }
 
         return true

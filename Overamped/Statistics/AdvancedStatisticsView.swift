@@ -4,7 +4,7 @@ import SwiftUI
 
 struct AdvancedStatisticsView: View {
     @PersistStorage(persister: .replacedLinks)
-    private var replacedLinks: [Date: [String]]
+    private var replacedLinks: [ReplacedLinksEvent]
 
     @PersistStorage(persister: .redirectedLinks)
     private var redirectedLinks: [Date: String]
@@ -101,7 +101,7 @@ struct AdvancedStatisticsView: View {
         }
 
         EmptyView().onReceive(_replacedLinks.persister.publisher) { replacedLinks in
-            let allDomains = replacedLinks.values.flatMap { $0 }
+            let allDomains = replacedLinks.flatMap { $0.domains }
             replacedDomainsToCountsMap = allDomains
                 .reduce(into: [:], { partialResult, domain in
                     partialResult[domain, default: 0] += 1
