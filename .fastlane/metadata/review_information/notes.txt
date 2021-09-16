@@ -1,3 +1,7 @@
 A demo video of the extension: https://www.icloud.com/iclouddrive/0XdsN2H8yosymSi6YtxNE0YtA#IMG_2637
 
 Note how the search results have the AMP logo (the lightning bolt) next to them and would display the AMP version of the search result. When the extension is enabled the AMP logo is removed and tapping on the search result opens the original (non-AMP) page.
+
+The AMP logo does not display for everyone on Google.
+
+To easily find an AMP link search for something in the news and select one of the news links -- they're all AMP links.
