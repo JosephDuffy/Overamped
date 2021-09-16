@@ -6,9 +6,10 @@ Once the app has been released I would really appreciate reviews in the App Stor
 
 New in beta 21:
 
-- Prevent performing multiple replaces at once. This has a few advantages when using Google, namely that statistics are now much more accurate.
 - Basic statistics can now be cleared from the Settings tab
 - The date that basic and advanced statistics were last reset is shown in Settings
+- Prevent performing multiple replaces at once. This has a few advantages when using Google, namely that statistics are now much more accurate
+- Prevent displaying multiple redirections in statistics when redirecting AMP results in Google or Yahoo JAPAN! with the “Other Websites” permission
 
 New in beta 20:
 
