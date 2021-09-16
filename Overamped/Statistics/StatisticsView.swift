@@ -1,6 +1,5 @@
 import SwiftUI
 import Persist
-import Containers
 
 struct StatisticsView: View {
     @AppStorage("enabledAdvancedStatistics")
