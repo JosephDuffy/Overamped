@@ -62,7 +62,7 @@ final class Overamped_Screenshots: XCTestCase {
         }
 
         // Agree to Google's bullshit
-        if safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 3) {
+        if safari.buttons[agreeGoogleCookiesText].waitForExistence(timeout: 5) {
             safari.buttons[agreeGoogleCookiesText].tap()
         }
 
