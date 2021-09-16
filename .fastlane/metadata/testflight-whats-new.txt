@@ -4,6 +4,10 @@ Thank you to everyone that's been using Overamped, especially those that have pr
 
 Once the app has been released I would really appreciate reviews in the App Store and mentions of social media!
 
+New in beta 22:
+
+- IAP purchase errors are displayed in the app
+
 New in beta 21:
 
 - Basic statistics can now be cleared from the Settings tab
