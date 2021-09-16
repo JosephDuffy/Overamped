@@ -14,7 +14,7 @@ devices([
 languages([
   "en-GB",
   "en-US",
-  "ru-RU",
+  "ru",
 ])
 
 output_directory(".fastlane/screenshots")
