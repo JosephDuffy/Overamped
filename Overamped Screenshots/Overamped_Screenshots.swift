@@ -127,11 +127,12 @@ final class Overamped_Screenshots: XCTestCase {
             settings.buttons["Safari"].tap()
         }
 
-        settings.buttons["Clear History and Website Data"].tap()
-
-        if settings.cells["Extensions"].exists {
-            settings.cells["Extensions"].tap()
+        settings.cells["Clear History and Website Data"].tap()
+        if settings.buttons["Clear History and Data"].exists {
+            // Doesn't exist if there's no data to be reset
+            settings.buttons["Clear History and Data"].tap()
         }
+        settings.cells["Extensions"].tap()
         settings.cells["Overamped"].tap()
 
         let enableSwitch = settings.switches["Overamped"]
