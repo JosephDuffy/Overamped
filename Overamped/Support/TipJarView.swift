@@ -24,6 +24,8 @@ public struct TipJarView: View {
             switch store.state {
             case .loadingProducts:
                 ProgressView("Loading Tips...")
+            case .error(let error):
+                Text("Error loading in-app purchases: " + error.localizedDescription)
             case .idle, .purchasingProduct:
                 ForEach(store.consumables) { product in
                     Button(

@@ -6,10 +6,26 @@ public final class TipJarStore: ObservableObject {
         case failedVerification(VerificationResult<T>.VerificationError)
     }
 
-    public enum State: Hashable {
+    public enum State: Equatable {
+        public static func == (lhs: TipJarStore.State, rhs: TipJarStore.State) -> Bool {
+            switch (lhs, rhs) {
+            case (.loadingProducts, .loadingProducts):
+                return true
+            case (.idle, .idle):
+                return true
+            case (.purchasingProduct(let lhsProduct), .purchasingProduct(let rhsProduct)):
+                return lhsProduct == rhsProduct
+            case (.error(let lhsError), .error(let rhsError)):
+                return lhsError as NSError == rhsError as NSError
+            default:
+                return false
+            }
+        }
+
         case loadingProducts
         case idle
         case purchasingProduct(Product)
+        case error(Swift.Error)
     }
 
     @Published public private(set) var state: State = .idle
@@ -20,7 +36,7 @@ public final class TipJarStore: ObservableObject {
         switch state {
         case .idle, .loadingProducts:
             return true
-        case .purchasingProduct:
+        case .purchasingProduct, .error:
             return false
         }
     }
@@ -79,10 +95,6 @@ public final class TipJarStore: ObservableObject {
     func requestProducts() async {
         state = .loadingProducts
 
-        defer {
-            state = .idle
-        }
-
         logger.log("Loading products")
 
         do {
@@ -102,8 +114,10 @@ public final class TipJarStore: ObservableObject {
             }
 
             self.consumables = sortByPrice(consumables)
+            state = .idle
         } catch {
             logger.error("Failed to load products: \(String(describing: error))")
+            state = .error(error)
         }
     }
 
