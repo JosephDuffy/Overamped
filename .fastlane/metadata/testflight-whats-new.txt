@@ -1,2 +1,3 @@
 - Fix showing “Overamped” in place of “Safari” in installation instructions
 - Add link to source code in About tab
+- Disable redirections to student.si

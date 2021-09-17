@@ -9,6 +9,7 @@ export default function openURL(
   // An array of hostnames that Overamped will never redirect
   const globallyIgnoredHostnames = [
     "www.thegate.ca", // Redirects to AMP Version when opened on iOS
+    "www.student.si",
   ]
   if (globallyIgnoredHostnames.includes(url.hostname)) {
     console.info(
