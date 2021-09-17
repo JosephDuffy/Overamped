@@ -25,7 +25,14 @@ public struct TipJarView: View {
             case .loadingProducts:
                 ProgressView("Loading Tips...")
             case .error(let error):
-                Text("Error loading in-app purchases: " + error.localizedDescription)
+                VStack {
+                    Text("Error loading in-app purchases: " + error.localizedDescription)
+                    Button("\(Image(systemName: "arrow.clockwise")) Retry") {
+                        Task {
+                            await store.requestProducts()
+                        }
+                    }
+                }
             case .idle, .purchasingProduct:
                 ForEach(store.consumables) { product in
                     Button(
