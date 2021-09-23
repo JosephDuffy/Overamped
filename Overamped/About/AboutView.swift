@@ -106,6 +106,18 @@ struct AboutView: View {
                 }
 
                 Button(action: {
+                    displayedURL = DisplayedURL(url: URL(string: "https://github.com/JosephDuffy/Overamped")!)
+                }, label: {
+                    Label {
+                        Text("Source Code")
+                    } icon: {
+                        Image(systemName: "chevron.left.forwardslash.chevron.right")
+                            .font(.title3)
+                            .foregroundColor(.accentColor)
+                    }
+                })
+
+                Button(action: {
                     displayedURL = DisplayedURL(url: URL(string: "https://overamped.app/privacy")!)
                 }, label: {
                     HStack {
