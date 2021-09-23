@@ -1,1 +1,5 @@
-Initial release
+Thank you to everyone that has downloaded Overamped! More features are planned for the future. This build is mainly minor bug fixes:
+
+- Fix showing “Overamped” in place of “Safari” in installation instructions
+- Add link to source code in About tab
+- Disable redirections to student.si
