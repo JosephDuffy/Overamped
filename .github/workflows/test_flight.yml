@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
 
       - name: Use Xcode 13.0
         run: sudo xcode-select --switch /Applications/Xcode_13.0.app
@@ -31,4 +29,5 @@ jobs:
           APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
           APP_STORE_CONNECT_API_KEY_IS_KEY_CONTENT_BASE64: "true"
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_GIT_URL: "https://github.com/JosephDuffy/yetii-ios-certificates.git"
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
