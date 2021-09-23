@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
 
       - name: Use Xcode 13.0
         run: sudo xcode-select --switch /Applications/Xcode_13.0.app
