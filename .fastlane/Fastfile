@@ -1,7 +1,5 @@
 default_platform :ios
 
-xcode_select("/Applications/Xcode_13.0-RC1.app/")
-
 platform :ios do
   desc "Submit a new iOS build to TestFlight"
   lane :submit_beta do
@@ -16,19 +14,11 @@ platform :ios do
     pilot(
       distribute_external: false,
       groups: [
-        "Airport",
-        "Cold Emails",
-        "MacRumors",
-        "Marketing Website",
-        "Personal Website",
-        "Relay FM Discord",
-        "Twitter",
+        "Priority",
       ],
       beta_app_review_info: {
-        contact_email: "josephduffy@me.com",
         contact_first_name: "Joseph",
         contact_last_name: "Duffy",
-        contact_phone: "+447706600541",
         demo_account_name: "",
         demo_account_password: "",
         notes: "A demo video of the extension: https://www.icloud.com/iclouddrive/0CrIK3GXyer7_XpcMC4vUq27A#App_Review_Demo
