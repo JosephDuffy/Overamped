@@ -22,6 +22,15 @@ jobs:
           # Version is read from .ruby-version
           bundler-cache: true
 
+      - name: Read .node-version
+        run: echo "##[set-output name=node-version;]$(cat 'Overamped Extension/Resources/.node-version')"
+        id: node-version
+
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.node-version.outputs.node-version }}"
+
       - run: bundle exec fastlane submit_beta
         env:
           APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
