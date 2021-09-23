@@ -1,0 +1,32 @@
+name: Upload to TestFlight
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  upload:
+    name: Upload to App Store Connect
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Xcode 13.0
+      run: xcode-select --switch /Applications/Xcode_13.0.app
+
+    - name: Install Ruby and fastlane
+      - uses: ruby/setup-ruby@v1
+      with:
+        # Version is read from .ruby-version
+        bundler-cache: true
+
+    - run: bundle exec fastlane submit_beta
+      env:
+        APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+        APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+        APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
+        APP_STORE_CONNECT_API_KEY_IS_KEY_CONTENT_BASE64: "true"
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
