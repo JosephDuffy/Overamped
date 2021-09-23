@@ -652,7 +652,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\neval \"$(nodenv init -)\"\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nif [ \"${CI}\" != \"true\" ]; then\n  eval \"$(nodenv init -)\"\nfi\n\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
