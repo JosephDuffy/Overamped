@@ -32,7 +32,7 @@ struct InstallationInstructionsView: View {
                                 RoundedRectangle(cornerRadius: 6)
                                     .stroke(Color.gray, lineWidth: 1 / UIScreen.main.nativeScale)
                             )
-                        Text("Overamped")
+                        Text("Safari")
                         Spacer()
 
                         Spacer()
