@@ -2,6 +2,8 @@
 
 Overamped is an iOS app that disables AMP and Yandex Turbo in Safari via a Web Extension. More information is available at [overamped.app](https://overamped.app). The app is also available for [download on the App Store](https://apps.apple.com/app/apple-store/id1573901090?mt=8).
 
+The app is built using SwiftUI, the popup uses Svelte, and the extension logic using TypeScript. I do not claim that any of this code is good.
+
 ## Auditing
 
 This repo is provided **for auditing purposes only**. This means you can read the code to ensure nothing nefarious is being done with your data without only taking my word for it.
