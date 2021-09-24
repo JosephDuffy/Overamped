@@ -44,3 +44,4 @@ jobs:
           platform: "iOS"
           action: build
           configuration: release
+          verbosity: verbose
