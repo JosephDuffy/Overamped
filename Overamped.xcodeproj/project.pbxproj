@@ -522,9 +522,9 @@
 				D993C5612684AFDE002A84E6 /* Build JS */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
-				D9FF5B84268142B90027BD81 /* Resources */,
 				D963DAEA26BDBEF700AFCDC8 /* Copy Popup Build */,
 				D963DAE426BDBEB300AFCDC8 /* Copy Popup Root */,
+				D9FF5B84268142B90027BD81 /* Resources */,
 			);
 			buildRules = (
 			);
