@@ -63,7 +63,10 @@ Overamped is not enabled at the start of the video. Note how tapping the news re
 
   desc "Download iOS certificates (read only)"
   lane :download_certs do
-    setup_app_store_connect_api_key
+    if !is_ci
+      setup_app_store_connect_api_key
+    end
+
     match()
   end
 

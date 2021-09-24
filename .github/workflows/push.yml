@@ -1,0 +1,46 @@
+name: Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build app
+    runs-on: macos-11
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Ruby and fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          # Version is read from .ruby-version
+          bundler-cache: true
+
+      - name: Read .node-version
+        working-directory: ./Overamped Extension/Resources
+        run: echo "##[set-output name=node-version;]$(cat '.node-version')"
+        id: node-version
+
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.node-version.outputs.node-version }}"
+
+      - run: npm install
+        working-directory: ./Overamped Extension/Resources
+
+      - run: bundle exec fastlane download_certs
+        env:
+          MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+
+      - uses: mxcl/xcodebuild@v1
+        timeout-minutes: 5
+        with:
+          xcode: "13.0"
+          platform: "iOS"
+          action: build
+          configuration: release
