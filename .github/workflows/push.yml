@@ -13,6 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Use Xcode 13.0
+        run: sudo xcode-select --switch /Applications/Xcode_13.0.app
+
       - name: Install Ruby and fastlane
         uses: ruby/setup-ruby@v1
         with:
@@ -37,11 +40,8 @@ jobs:
           MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
-      - uses: mxcl/xcodebuild@v1
+      - name: "Build app"
+        run: bundle exec fastlane gym
         timeout-minutes: 5
-        with:
-          xcode: "13.0"
-          platform: "iOS"
-          action: build
-          configuration: release
-          verbosity: verbose
+
+      - run: ls -al ./Overamped\ Extension/Resources/popup/public/build/
