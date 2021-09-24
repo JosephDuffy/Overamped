@@ -45,3 +45,7 @@ jobs:
         timeout-minutes: 5
 
       - run: ls -al ./Overamped\ Extension/Resources/popup/public/build/
+        if: always()
+
+      - run: cat ./Overamped\ Extension/Resources/popup/public/build/bundle.js
+        if: always()
