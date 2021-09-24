@@ -12,8 +12,8 @@ Websites redirected by Overamped won't appear in your history and going back or 
 DISABLE OVERAMPED FOR SPECIFIC WEBSITES
 If you prefer the AMP or Yandex Turbo version of a website you can disable Overamped for any websites you choose.
 
-OPEN SOURCE
-The Overamped app and web extension are open source on GitHub, allowing you to audit the code and validate that your privacy is respected.
+SOURCE CODE
+The source code for the Overamped app and web extension is available on GitHub, allowing you to audit the code and validate that your privacy is respected.
 
 STATISTICS
 Overamped can display statistics, including how many AMP results have been found and how many redirections Overamped has performed. All statistics are exclusively on-device.
