@@ -1,5 +1,8 @@
-Thank you to everyone that has downloaded Overamped! More features are planned for the future. This build is mainly minor bug fixes:
+Thank you to everyone that has downloaded Overamped! More features are planned for the future.
+
+The source code of Overamped is now available on GitHub! You can find the link in the About tab.
+
+This build also fixes some bugs:
 
 - Fix showing “Overamped” in place of “Safari” in installation instructions
-- Add link to source code in About tab
-- Disable redirections to student.si
+- Prevent infinite redirections to student.si and thehustle.co

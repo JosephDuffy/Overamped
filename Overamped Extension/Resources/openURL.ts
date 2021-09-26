@@ -10,6 +10,7 @@ export default function openURL(
   const globallyIgnoredHostnames = [
     "www.thegate.ca", // Redirects to AMP Version when opened on iOS
     "www.student.si",
+    "thehustle.co",
   ]
   if (globallyIgnoredHostnames.includes(url.hostname)) {
     console.info(
