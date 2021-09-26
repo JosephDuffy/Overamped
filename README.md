@@ -12,13 +12,15 @@ This repo is provided **for auditing purposes only**. This means you can read th
 
 It is almost impossible to prove that the source code in this repo is the same code that is distributed via the App Store. With a jailbroken device and [reproducible builds it would be possible, but this is an arduous process](https://core.telegram.org/reproducible-builds#reproducible-builds-for-ios) and not something I wish to pursue.
 
-#### GitHub CI Builds
+#### GitHub Actions Builds
 
-From version 1.0.1 (build 24) all builds are compiled and submitted using GitHub CI, which provide public logs. This should make it possible to validate that the app is uploaded to the Yetii Ltd. developer account. Since App Store Connect will not accept multiple builds of the same version or duplicate bundle identifiers you can validate that the uploaded build is the same that has been published.
+From version 1.0.1 (build 24) all builds are compiled and submitted using GitHub Actions, which provide public logs. This should make it possible to validate that the app is uploaded to the Yetii Ltd. developer account. Since App Store Connect will not accept multiple builds of the same version or duplicate bundle identifiers you can validate that the uploaded build is the same that has been published.
+
+Note that logs are only available for 90 days; this is a restriction of GitHub Actions and cannot currently be increased.
 
 ### Repo Security
 
-All commits are signed with [my GPG key](https://josephduffy.co.uk/commits.asc), which should – assuming my security has not been compromised – prove that all code is written and committed by myself.
+All commits and tags are signed with [my GPG key](https://josephduffy.co.uk/commits.asc). If the key is ever compromised it will be revoked and I will publicly announce the new key.
 
 ### Forks
 
