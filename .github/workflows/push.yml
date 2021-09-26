@@ -43,5 +43,11 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
       - name: "Build app"
-        run: xcodebuild -scheme Overamped -project ./Overamped.xcodeproj -destination 'generic/platform=iOS' -archivePath "./build.xcarchive" -verbose
+        run: bundle exec fastlane gym
         timeout-minutes: 5
+
+      - run: ls -al ./Overamped\ Extension/Resources/popup/public/build/
+        if: always()
+
+      - run: cat ./Overamped\ Extension/Resources/popup/public/build/bundle.js
+        if: always()
