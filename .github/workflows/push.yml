@@ -35,6 +35,8 @@ jobs:
       - run: npm install
         working-directory: ./Overamped Extension/Resources
 
+      - run: bundle exec fastlane setup_ci
+
       - run: bundle exec fastlane download_certs
         env:
           MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
