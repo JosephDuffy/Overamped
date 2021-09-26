@@ -108,12 +108,20 @@ struct AboutView: View {
                 Button(action: {
                     displayedURL = DisplayedURL(url: URL(string: "https://github.com/JosephDuffy/Overamped")!)
                 }, label: {
-                    Label {
-                        Text("Source Code")
-                    } icon: {
-                        Image(systemName: "chevron.left.forwardslash.chevron.right")
-                            .font(.title3)
-                            .foregroundColor(.accentColor)
+                    HStack {
+                        Label {
+                            Text("Source Code")
+                                .foregroundColor(Color.primary)
+                        } icon: {
+                            Image(systemName: "chevron.left.forwardslash.chevron.right")
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
+                        }
+
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(Font.system(size: 14).weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
                     }
                 })
 
