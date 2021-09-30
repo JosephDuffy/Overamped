@@ -1,8 +1,5 @@
-Thank you to everyone that has downloaded Overamped! More features are planned for the future.
+Thank you to everyone that has downloaded Overamped!
 
-The source code of Overamped is now available on GitHub! You can find the link in the About tab.
+The release is a hotfix for changes to Google image searches. Clicking links will no longer open the AMP popover and the AMP popover should be removed from the bottom of the screen
 
-This build also fixes some bugs:
-
-- Fix showing “Overamped” in place of “Safari” in installation instructions
-- Prevent infinite redirections to student.si and thehustle.co
+More features are being worked on.

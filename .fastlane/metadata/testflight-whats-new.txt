@@ -1,3 +1,1 @@
-- Fix showing “Overamped” in place of “Safari” in installation instructions
-- Add link to source code in About tab
-- Disable redirections to student.si
+Hotfix for changes to Google image searches. Clicking links will no longer open the AMP popover and the AMP popover should be removed from the bottom of the screen

@@ -84,21 +84,56 @@ async function modifyAnchorIfRequired(
   const ved = anchor.dataset.ved
   let hasCanonicalURL = false
 
-  const anchorURLString = (() => {
+  // The URL to redirect to – if found – and the element
+  // that contains the AMP popover (used in image searches)
+  const [anchorURLString, ampPopover] = ((): [
+    string | null,
+    Element | null,
+  ] => {
     const ampCur = anchor.dataset.ampCur
 
     if (ampCur && ampCur.length > 0) {
       // data-amp-cur is available on News search results (not news.google)
       // and has the full canonical URL
       hasCanonicalURL = true
-      return ampCur
+      return [ampCur, null]
     }
 
     if (anchor.dataset.amp) {
-      return anchor.dataset.amp
+      return [anchor.dataset.amp, null]
     }
 
-    return anchor.dataset.cur
+    if (anchor.dataset.cur) {
+      return [anchor.dataset.cur, null]
+    } else {
+      // Check if this is an AMP result within an image search result
+      // This is a little fragile but seems to be the most efficient
+      // without replacing links that aren't to AMP pages.
+
+      // This is a div containing the links
+      const upperContainer = anchor.parentElement?.parentElement
+
+      if (!upperContainer) {
+        return [null, null]
+      }
+
+      if (!upperContainer.nextElementSibling) {
+        // Likely not an AMP link; the next sibling should be
+        // the element that displays the AMP page
+        return [null, null]
+      }
+
+      // Double check this is in fact an AMP link
+      if (
+        upperContainer.nextElementSibling.querySelector(
+          "div[aria-label*='AMP']",
+        ) === null
+      ) {
+        return [null, null]
+      }
+
+      return [anchor.href, upperContainer.nextElementSibling]
+    }
   })()
 
   if (!anchorURLString) {
@@ -183,6 +218,11 @@ async function modifyAnchorIfRequired(
   if (ampIcon) {
     modifiedAnchor.ampIconDisplay = ampIcon.style.display
     ampIcon.style.display = "none"
+  }
+
+  if (ampPopover) {
+    console.debug("Removing AMP popover", ampPopover)
+    ampPopover.remove()
   }
 
   anchorOnclickListeners[ved] = modifiedAnchor
