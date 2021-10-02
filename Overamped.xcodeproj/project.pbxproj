@@ -36,6 +36,7 @@
 		D9A2FA1626D99813007F9F9E /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A2FA1526D99813007F9F9E /* SnapshotHelper.swift */; };
 		D9A2FA1826D99A09007F9F9E /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D9A2FA1726D99A09007F9F9E /* Persist */; };
 		D9A2FA1A26D99A0C007F9F9E /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9A2FA1926D99A0C007F9F9E /* OverampedCore */; };
+		D9A90D042708A5A400183C48 /* EventLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A90D032708A5A400183C48 /* EventLogsView.swift */; };
 		D9A9141026C7809C00C34C30 /* TipOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9140F26C7809C00C34C30 /* TipOptionView.swift */; };
 		D9A9141826C8A59500C34C30 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9141726C8A59400C34C30 /* FAQView.swift */; };
 		D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */; };
@@ -166,6 +167,7 @@
 		D9A2FA0826D997A5007F9F9E /* Overamped Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Screenshots.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A2FA0A26D997A5007F9F9E /* Overamped_Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Screenshots.swift; sourceTree = "<group>"; };
 		D9A2FA1526D99813007F9F9E /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		D9A90D032708A5A400183C48 /* EventLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogsView.swift; sourceTree = "<group>"; };
 		D9A9140F26C7809C00C34C30 /* TipOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipOptionView.swift; sourceTree = "<group>"; };
 		D9A9141726C8A59400C34C30 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackForm.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			children = (
 				D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */,
 				D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */,
+				D9A90D032708A5A400183C48 /* EventLogsView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				D96BF7DE26B3CA2900E6EBE9 /* AboutView.swift in Sources */,
 				D9CAB14626ED181F004A1CCD /* FAQLoader.swift in Sources */,
 				D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */,
+				D9A90D042708A5A400183C48 /* EventLogsView.swift in Sources */,
 				D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */,
 				D9DC7AEE26B6532D005C8430 /* ClearAdvancedStatisticsView.swift in Sources */,
 				D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */,

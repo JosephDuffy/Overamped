@@ -4,7 +4,7 @@ import Persist
 public struct ReplacedLinksEvent: Identifiable {
     public let id: UUID
     public let date: Date
-    public let domains: [String]
+    public var domains: [String]
 
     public init(id: UUID, date: Date, domains: [String]) {
         self.id = id

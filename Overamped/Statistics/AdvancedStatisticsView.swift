@@ -39,6 +39,10 @@ struct AdvancedStatisticsView: View {
             }
         } else {
             VStack(alignment: .leading, spacing: 16) {
+                NavigationLink("Event Logs \(Image(systemName: "arrow.forward"))") {
+                    EventLogsView()
+                }
+
                 if !replacedDomainsToCountsMap.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Top Replaced Domains")
