@@ -239,6 +239,7 @@ private final class FormAPI: ObservableObject {
             request.httpBody = try bodyEncoder.encode(formData)
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.attribution = .user
 
             logger.log("Submitting contact form \(String(describing: self.formData))")
 
