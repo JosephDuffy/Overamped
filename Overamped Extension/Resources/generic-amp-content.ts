@@ -22,6 +22,16 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
 
   const canonicalURL = new URL(canonicalElement.href)
 
+  if (
+    canonicalURL.toString() === document.referrer ||
+    document.referrer === document.location.toString()
+  ) {
+    console.info(
+      "Not redirecting to AMP page due to recursive redirect; redirecting this page would redirect back to this AMP page",
+    )
+    return Promise.resolve()
+  }
+
   openURL(canonicalURL, ignoredHostnames, true, "replace")
 
   return Promise.resolve()
