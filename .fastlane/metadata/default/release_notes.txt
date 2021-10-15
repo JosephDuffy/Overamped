@@ -1,5 +1,3 @@
 Thank you to everyone that has downloaded Overamped!
 
-The release is a hotfix for changes to Google image searches. Clicking links will no longer open the AMP popover and the AMP popover should be removed from the bottom of the screen
-
-More features are being worked on.
+This update includes a change that will hopefully prevent all recursive redirects, e.g. when a website automatically redirects to the AMP version. Unfortunately it's not possible to prevent the redirection to the AMP version but this fix should prevent the page repeatedly reloading.
