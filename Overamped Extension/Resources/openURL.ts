@@ -11,6 +11,7 @@ export default function openURL(
     "www.thegate.ca", // Redirects to AMP Version when opened on iOS
     "www.student.si",
     "thehustle.co",
+    "www.bobbakermazda.com",
   ]
   if (globallyIgnoredHostnames.includes(url.hostname)) {
     console.info(
