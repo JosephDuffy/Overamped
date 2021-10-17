@@ -81,7 +81,7 @@ struct AdvancedStatisticsView: View {
 
                         if (replacedDomainsToCountsMap.count + redirectedDomainsToCountsMap.count) > 3 {
                             NavigationLink("View All \(Image(systemName: "arrow.forward"))") {
-                                EventLogsView()
+                                EventsLogView()
                             }
                         }
                     }

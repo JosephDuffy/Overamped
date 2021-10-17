@@ -26,7 +26,7 @@ enum Event: Identifiable {
     }
 }
 
-struct EventLogsView: View {
+struct EventsLogView: View {
     @PersistStorage(persister: .replacedLinks)
     private var replacedLinks: [ReplacedLinksEvent]
 
@@ -83,7 +83,7 @@ struct EventLogsView: View {
             }
         }
         .searchable(text: $searchText)
-        .navigationTitle("Event Logs")
+        .navigationTitle("Events Log")
     }
 
     @ViewBuilder
