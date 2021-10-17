@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ReplacedLinksEvent: Identifiable {
+public struct ReplacedLinksEvent: Identifiable, Hashable {
     public let id: UUID
     public let date: Date
     public var domains: [String]

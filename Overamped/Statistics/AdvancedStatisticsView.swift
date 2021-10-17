@@ -15,23 +15,9 @@ struct AdvancedStatisticsView: View {
     @State
     private var redirectedDomainsToCountsMap: [DomainCount] = []
 
-    private var recentEvents: [(String, [Event])] {
+    private var recentEvents: [EventsByRelativeDate] {
         let allEvents = replacedLinks.map { Event.replacedLinks($0) } + redirectedLinks.map { Event.redirectedLink($0) }
-        return allEvents
-            .sorted(by: { $0.date > $1.date })
-            .prefix(3)
-            .map { event -> (String, Event) in
-                let formattedDate = event.date.formatted(.relative(presentation: .numeric, unitsStyle: .wide))
-                return (formattedDate, event)
-            }
-            .reduce(into: [(String, [Event])]()) { partialResult, tuple in
-                let (formattedDate, event) = tuple
-                if let sameDateIndex = partialResult.firstIndex(where: { $0.0 == formattedDate }) {
-                    partialResult[sameDateIndex].1.append(event)
-                } else {
-                    partialResult.append((formattedDate, [event]))
-                }
-            }
+        return Event.recentEventsGroupedByRelativeDate(allEvents)
     }
 
     @Binding
@@ -63,13 +49,11 @@ struct AdvancedStatisticsView: View {
                         Text("Recent Events")
                             .font(.title2.weight(.semibold))
 
-                        ForEach(recentEvents, id: \.0) { tuple in
-                            let (formattedDate, events) = tuple
-
-                            Text(formattedDate)
+                        ForEach(recentEvents, id: \.relativeDate) { eventsGroup in
+                            Text(eventsGroup.relativeDate)
                                 .font(.headline.weight(.semibold))
 
-                            ForEach(events) { event in
+                            ForEach(eventsGroup.events) { event in
                                 switch event {
                                 case .replacedLinks(let event):
                                     Text("• Replaced \(event.domains.count) links")

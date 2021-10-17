@@ -24,6 +24,7 @@
 		D95A92B2271C469700B8FA79 /* WidgetsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D95A92A2271C469400B8FA79 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D95A92B7271C46F100B8FA79 /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D95A92B6271C46F100B8FA79 /* Persist */; };
 		D95A92B9271C470100B8FA79 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D95A92B8271C470100B8FA79 /* OverampedCore */; };
+		D95A92BC271C5DC000B8FA79 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D95A92BA271C5DA500B8FA79 /* Localizable.stringsdict */; };
 		D963DAEE26BDBFC300AFCDC8 /* popup.html in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DACF26BDBDA000AFCDC8 /* popup.html */; };
 		D963DAEF26BDBFC300AFCDC8 /* global.css in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DAD026BDBDA000AFCDC8 /* global.css */; };
 		D963DAF126BDBFCE00AFCDC8 /* bundle.js in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD526BDBDA000AFCDC8 /* bundle.js */; };
@@ -160,6 +161,8 @@
 		D95A92AA271C469400B8FA79 /* Widgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Widgets.intentdefinition; sourceTree = "<group>"; };
 		D95A92AB271C469700B8FA79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D95A92AD271C469700B8FA79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D95A92BB271C5DA500B8FA79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		D95A92BD271C62E800B8FA79 /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
 		D963DACC26BDBDA000AFCDC8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D963DACF26BDBDA000AFCDC8 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		D963DAD026BDBDA000AFCDC8 /* global.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = global.css; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				D95A92A8271C469400B8FA79 /* Widgets.swift */,
 				D95A92AA271C469400B8FA79 /* Widgets.intentdefinition */,
 				D95A92AB271C469700B8FA79 /* Assets.xcassets */,
+				D95A92BD271C62E800B8FA79 /* WidgetsExtension.entitlements */,
+				D95A92BA271C5DA500B8FA79 /* Localizable.stringsdict */,
 				D95A92AD271C469700B8FA79 /* Info.plist */,
 			);
 			path = Widgets;
@@ -674,6 +679,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D95A92AC271C469700B8FA79 /* Assets.xcassets in Resources */,
+				D95A92BC271C5DC000B8FA79 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +845,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D95A92BA271C5DA500B8FA79 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D95A92BB271C5DA500B8FA79 /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		D96BF7DC26B3C6FE00E6EBE9 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -864,6 +878,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 28;
@@ -892,6 +907,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 28;

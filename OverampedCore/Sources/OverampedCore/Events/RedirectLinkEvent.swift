@@ -1,6 +1,6 @@
 import Foundation
 
-public struct RedirectLinkEvent: Identifiable {
+public struct RedirectLinkEvent: Identifiable, Hashable {
     public let id: UUID
     public let date: Date
     public let domain: String
