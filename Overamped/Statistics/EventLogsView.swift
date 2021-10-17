@@ -3,30 +3,30 @@ import Persist
 import SwiftUI
 import OverampedCore
 
-struct EventLogsView: View {
-    private enum Event: Identifiable {
-        case replacedLinks(ReplacedLinksEvent)
-        case redirectedLink(RedirectLinkEvent)
+enum Event: Identifiable {
+    case replacedLinks(ReplacedLinksEvent)
+    case redirectedLink(RedirectLinkEvent)
 
-        var id: UUID {
-            switch self {
-            case .replacedLinks(let event):
-                return event.id
-            case .redirectedLink(let event):
-                return event.id
-            }
-        }
-
-        var date: Date {
-            switch self {
-            case .replacedLinks(let event):
-                return event.date
-            case .redirectedLink(let event):
-                return event.date
-            }
+    var id: UUID {
+        switch self {
+        case .replacedLinks(let event):
+            return event.id
+        case .redirectedLink(let event):
+            return event.id
         }
     }
 
+    var date: Date {
+        switch self {
+        case .replacedLinks(let event):
+            return event.date
+        case .redirectedLink(let event):
+            return event.date
+        }
+    }
+}
+
+struct EventLogsView: View {
     @PersistStorage(persister: .replacedLinks)
     private var replacedLinks: [ReplacedLinksEvent]
 
