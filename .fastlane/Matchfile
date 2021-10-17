@@ -1,4 +1,4 @@
 git_url("git@github.com:JosephDuffy/yetii-ios-certificates.git")
 type("appstore")
-app_identifier ["net.yetii.Overamped", "net.yetii.Overamped.Extension"]
+app_identifier ["net.yetii.Overamped", "net.yetii.Overamped.Extension", "net.yetii.Overamped.Widgets"]
 readonly(true)
