@@ -4,7 +4,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-struct Provider: IntentTimelineProvider {
+struct Provider: TimelineProvider {
     @PersistStorage(persister: .replacedLinks)
     private var replacedLinks: [ReplacedLinksEvent]
 
@@ -17,17 +17,17 @@ struct Provider: IntentTimelineProvider {
     }
 
     func placeholder(in context: Context) -> Entry {
-        Entry(events: events, configuration: ConfigurationIntent())
+        Entry(events: events)
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Entry) -> ()) {
-        let entry = Entry(events: events, configuration: configuration)
+    func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
+        let entry = Entry(events: events)
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         let entries = [
-            Entry(events: events, configuration: ConfigurationIntent()),
+            Entry(events: events),
         ]
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -37,11 +37,9 @@ struct Provider: IntentTimelineProvider {
 struct Entry: TimelineEntry {
     let date: Date
     let events: [Event]
-    let configuration: ConfigurationIntent
 
-    init(events: [Event], configuration: ConfigurationIntent) {
+    init(events: [Event]) {
         self.events = events
-        self.configuration = configuration
         date = events.first?.date ?? .now
     }
 }
@@ -184,7 +182,7 @@ struct Widgets: Widget {
     let kind: String = "Widgets"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             WidgetsEntryView(entry: entry)
         }
         .configurationDisplayName("Recent Events")
@@ -200,7 +198,7 @@ struct Widgets_Previews: PreviewProvider {
             .replacedLinks(ReplacedLinksEvent(id: UUID(), date: .now.addingTimeInterval(-262), domains: ["amp.reddit.com"])),
             .replacedLinks(ReplacedLinksEvent(id: UUID(), date: .now.addingTimeInterval(-265), domains: ["amp.reddit.com", "bbc.co.uk"])),
         ]
-        return Entry(events: events, configuration: ConfigurationIntent())
+        return Entry(events: events)
     }
 
     static var previews: some View {
