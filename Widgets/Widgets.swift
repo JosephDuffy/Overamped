@@ -106,11 +106,11 @@ struct WidgetsEntryView: View {
     private var padding: CGFloat {
         switch family {
         case .systemSmall:
-            return 6
+            return 11
         case .systemMedium, .systemLarge, .systemExtraLarge:
-            return 12
+            return 16
         @unknown default:
-            return 6
+            return 11
         }
     }
 
