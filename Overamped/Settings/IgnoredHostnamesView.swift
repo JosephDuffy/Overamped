@@ -7,7 +7,7 @@ struct IgnoredHostnamesView: View {
     private(set) var ignoredHostnames: [String]
 
     var body: some View {
-        Group {
+        VStack {
             if ignoredHostnames.isEmpty {
                 Text("Overamped has not been disabled on any websites")
                     .font(.title)
@@ -23,6 +23,7 @@ struct IgnoredHostnamesView: View {
                 }
             }
         }
+        .frame(maxHeight: .infinity)
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Disabled Websites")
     }
