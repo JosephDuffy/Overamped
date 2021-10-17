@@ -23,6 +23,9 @@ struct AdvancedStatisticsView: View {
     @Binding
     private var showEmptyMessage: Bool
 
+    @Binding
+    private var showEventsLog: Bool
+
     private struct DomainCount: Hashable, Comparable {
         static func < (lhs: AdvancedStatisticsView.DomainCount, rhs: AdvancedStatisticsView.DomainCount) -> Bool {
             if lhs.count == rhs.count {
@@ -64,7 +67,7 @@ struct AdvancedStatisticsView: View {
                         }
 
                         if (replacedDomainsToCountsMap.count + redirectedDomainsToCountsMap.count) > 3 {
-                            NavigationLink("View All \(Image(systemName: "arrow.forward"))") {
+                            NavigationLink("View All \(Image(systemName: "arrow.forward"))", isActive: $showEventsLog) {
                                 EventsLogView()
                             }
                         }
@@ -127,6 +130,16 @@ struct AdvancedStatisticsView: View {
                     }
                 }
             }
+            .onOpenURL(perform: { url in
+                guard let deepLink = DeepLink(url: url) else { return }
+
+                switch deepLink {
+                case .eventsLog:
+                    showEventsLog = true
+                default:
+                    break
+                }
+            })
         }
 
         EmptyView().onReceive(_replacedLinks.persister.publisher) { replacedLinks in
@@ -154,13 +167,14 @@ struct AdvancedStatisticsView: View {
         }
     }
 
-    init(showEmptyMessage: Binding<Bool>) {
+    init(showEmptyMessage: Binding<Bool>, showEventsLog: Binding<Bool>) {
         _showEmptyMessage = showEmptyMessage
+        _showEventsLog = showEventsLog
     }
 }
 
 struct AdvancedStatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        AdvancedStatisticsView(showEmptyMessage: .constant(true))
+        AdvancedStatisticsView(showEmptyMessage: .constant(true), showEventsLog: .constant(false))
     }
 }

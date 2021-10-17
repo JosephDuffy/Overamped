@@ -157,6 +157,7 @@ struct WidgetsEntryView: View {
             Spacer()
         }
         .padding(padding)
+        .widgetURL(DeepLink.eventsLog.appSchemeURL)
     }
 
     @ViewBuilder

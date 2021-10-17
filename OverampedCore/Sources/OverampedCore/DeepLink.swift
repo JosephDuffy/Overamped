@@ -3,12 +3,44 @@ import Foundation
 public enum DeepLink: Hashable {
     case debug
     case statistics
+    case eventsLog
     case support
-    case feedback(searchURL: URL?, websiteURL: URL?, permittedOrigins: [String]?)
+    case websiteFeedback(websiteURL: URL?, permittedOrigins: [String]?)
+    case searchFeedback(searchURL: URL?, permittedOrigins: [String]?)
     case settings
     case about
     case installationInstructions
     case unlock
+
+    public var appSchemeURL: URL {
+        switch self {
+        case .debug:
+            return URL(string: "overamped://debug")!
+        case .statistics:
+            return URL(string: "overamped://statistics")!
+        case .eventsLog:
+            return URL(string: "overamped://events-log")!
+        case .support:
+            return URL(string: "overamped://support")!
+        case .websiteFeedback(let url, let permittedOrigins), .searchFeedback(let url, let permittedOrigins):
+            var urlComponents = URLComponents()
+            urlComponents.scheme = "overamped"
+            urlComponents.host = "feedback"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "url", value: url?.absoluteString),
+                URLQueryItem(name: "permittedOrigins", value: permittedOrigins?.joined(separator: ",")),
+            ]
+            return urlComponents.url!
+        case .settings:
+            return URL(string: "overamped://settings")!
+        case .about:
+            return URL(string: "overamped://about")!
+        case .installationInstructions:
+            return URL(string: "overamped://installation-instructions")!
+        case .unlock:
+            return URL(string: "overamped://unlock")!
+        }
+    }
 
     public init?(url: URL) {
         if url.scheme == "overamped" {
@@ -34,6 +66,8 @@ public enum DeepLink: Hashable {
         switch path {
         case "statistics":
             self = .statistics
+        case "events-log":
+            self = .eventsLog
         case "support":
             self = .support
         case "feedback":
@@ -77,9 +111,9 @@ public enum DeepLink: Hashable {
             }
 
         if openURL?.host?.contains("google.") == true, openURL?.path.hasPrefix("/search") == true || openURL?.host?.hasPrefix("news.google.") == true {
-            self = .feedback(searchURL: openURL, websiteURL: nil, permittedOrigins: permittedOrigins)
+            self = .searchFeedback(searchURL: openURL, permittedOrigins: permittedOrigins)
         } else {
-            self = .feedback(searchURL: nil, websiteURL: openURL, permittedOrigins: permittedOrigins)
+            self = .websiteFeedback(websiteURL: openURL, permittedOrigins: permittedOrigins)
         }
     }
 }

@@ -5,13 +5,13 @@ final class DeepLinkTests: XCTestCase {
     func testAppSchemeWithSlashesFeedbackWithoutURL() throws {
         let url = URL(string: "overamped://feedback")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))
-        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil, permittedOrigins: nil))
+        XCTAssertEqual(deepLink, .websiteFeedback(websiteURL: nil, permittedOrigins: nil))
     }
 
     func testAppSchemeWithoutSlashesFeedbackWithoutURL() throws {
         let url = URL(string: "overamped:feedback")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))
-        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil, permittedOrigins: nil))
+        XCTAssertEqual(deepLink, .websiteFeedback(websiteURL: nil, permittedOrigins: nil))
     }
 
     func testAppSchemeUnlock() throws {
@@ -23,7 +23,7 @@ final class DeepLinkTests: XCTestCase {
     func testWebURLFeedbackWithoutURL() throws {
         let url = URL(string: "https://overamped.app/feedback")!
         let deepLink = try XCTUnwrap(DeepLink(url: url))
-        XCTAssertEqual(deepLink, .feedback(searchURL: nil, websiteURL: nil, permittedOrigins: nil))
+        XCTAssertEqual(deepLink, .websiteFeedback(websiteURL: nil, permittedOrigins: nil))
     }
 
     func testWebURLFeedbackWithURL() throws {
@@ -31,8 +31,7 @@ final class DeepLinkTests: XCTestCase {
         let deepLink = try XCTUnwrap(DeepLink(url: url))
         XCTAssertEqual(
             deepLink,
-                .feedback(
-                    searchURL: nil,
+                .websiteFeedback(
                     websiteURL: URL(string: "https://example.com")!,
                     permittedOrigins: nil
                 )
@@ -44,8 +43,7 @@ final class DeepLinkTests: XCTestCase {
         let deepLink = try XCTUnwrap(DeepLink(url: url))
         XCTAssertEqual(
             deepLink,
-                .feedback(
-                    searchURL: nil,
+                .websiteFeedback(
                     websiteURL: URL(string: "https://example.com")!,
                     permittedOrigins: []
                 )
@@ -57,8 +55,7 @@ final class DeepLinkTests: XCTestCase {
         let deepLink = try XCTUnwrap(DeepLink(url: url))
         XCTAssertEqual(
             deepLink,
-            .feedback(
-                searchURL: nil,
+            .websiteFeedback(
                 websiteURL: URL(string: "https://example.com")!,
                 permittedOrigins: ["google.com"]
             )
@@ -70,8 +67,7 @@ final class DeepLinkTests: XCTestCase {
         let deepLink = try XCTUnwrap(DeepLink(url: url))
         XCTAssertEqual(
             deepLink,
-            .feedback(
-                searchURL: nil,
+            .websiteFeedback(
                 websiteURL: URL(string: "https://example.com")!,
                 permittedOrigins: ["google.com", "google.co.uk"]
             )

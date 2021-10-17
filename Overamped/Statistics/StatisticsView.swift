@@ -12,6 +12,9 @@ struct StatisticsView: View {
     private var redirectedLinksCount: Int
 
     @State
+    private var showEventsLog = false
+
+    @State
     private var showLinksReplacedHelp = false
 
     @State
@@ -96,7 +99,7 @@ struct StatisticsView: View {
                                 .font(.footnote)
                         }
 
-                        AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics)
+                        AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics, showEventsLog: $showEventsLog)
                     }
                 }
                 .padding()
