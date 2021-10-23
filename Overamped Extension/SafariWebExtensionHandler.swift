@@ -29,6 +29,9 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
     @Persisted(persister: .redirectedLinksCount)
     private var redirectedLinksCount: Int
 
+    @Persisted(persister: .postNotificationWhenRedirecting)
+    private var postNotificationWhenRedirecting: Bool
+
     func beginRequest(with context: NSExtensionContext) {
         // Unpack the message from Safari Web Extension.
         let item = context.inputItems[0] as? NSExtensionItem
@@ -151,7 +154,7 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 return
             }
 
-            guard let redirectedHostname = payload["redirectedHostname"] else {
+            guard let fromURLString = payload["fromURL"], let fromURL = URL(string: fromURLString) else {
                 return
             }
 
@@ -159,15 +162,41 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
             logger.log("Increased redirected links count by 1, now \(self.redirectedLinksCount, privacy: .public)")
 
-            guard enabledAdvancedStatistics else { return }
+            if postNotificationWhenRedirecting, let contentType = payload["contentType"], let toURLString = payload["toURL"] {
+                let notificationContent = UNMutableNotificationContent()
+                notificationContent.title = "Redirected \(contentType) Page"
+                notificationContent.body = "Redirect from \(fromURLString) to \(toURLString)"
+                let notificationRequest = UNNotificationRequest(identifier: "Redirection", content: notificationContent, trigger: nil)
+                Task {
+                    await postNotificationRequest(notificationRequest)
+                }
+            }
 
-            let event = RedirectLinkEvent(id: UUID(), date: .now, domain: redirectedHostname)
-            self.redirectedLinks.append(event)
+            if enabledAdvancedStatistics, let redirectedHostname = fromURL.hostname {
+                let event = RedirectLinkEvent(id: UUID(), date: .now, domain: redirectedHostname)
+                self.redirectedLinks.append(event)
 
-            logger.log("Logged redirect to \(redirectedHostname)")
+                logger.log("Logged redirect to \(redirectedHostname)")
+            }
         default:
             logger.error("Unknown request \(request)")
             response = nil
+        }
+    }
+
+    private func postNotificationRequest(_ request: UNNotificationRequest) async {
+        let notificationSetting = await UNUserNotificationCenter.current().notificationSettings()
+        switch notificationSetting.authorizationStatus {
+        case .authorized, .ephemeral:
+            do {
+                try await UNUserNotificationCenter.current().add(request)
+            } catch {
+                logger.error("Failed to post notification: \(String(describing: error))")
+            }
+        case .denied, .notDetermined, .provisional:
+            break
+        @unknown default:
+            break
         }
     }
 }

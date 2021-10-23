@@ -82,4 +82,14 @@ extension Persister {
             defaultValue: 0
         )
     }
+
+    /// A `Persister` that stores whether the user wishes to be notified when
+    /// the web extension performs a redirection.
+    public static var postNotificationWhenRedirecting: Persister<Bool> {
+        Persister<Bool>(
+            key: "postNotificationWhenRedirecting",
+            userDefaults: UserDefaults.groupSuite,
+            defaultValue: false
+        )
+    }
 }

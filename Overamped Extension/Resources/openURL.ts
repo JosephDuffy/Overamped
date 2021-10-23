@@ -4,6 +4,7 @@ export default function openURL(
   url: URL,
   ignoredHostnames: string[],
   logEvent: boolean,
+  contentType: "AMP" | "Yandex Turbo",
   action: "push" | "replace",
 ): boolean {
   // An array of hostnames that Overamped will never redirect
@@ -37,7 +38,11 @@ export default function openURL(
     )
 
     if (logEvent) {
-      new NativeAppCommunicator().logRedirectedLink(url)
+      new NativeAppCommunicator().logRedirectedLink(
+        contentType,
+        new URL(window.location.href),
+        url,
+      )
     }
 
     switch (action) {

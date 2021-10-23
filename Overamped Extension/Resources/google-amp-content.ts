@@ -12,7 +12,7 @@ async function redirectToCanonicalVersion(
     // This is the actual URL of the non-AMP page
     const canonicalURL = new URL(canonicalAnchor.href)
 
-    openURL(canonicalURL, ignoredHostnames, true, "replace")
+    openURL(canonicalURL, ignoredHostnames, true, "AMP", "replace")
   } else if (document.readyState === "complete") {
     // Google may have changed something so the canonical link is used as a fallback.
     // This isn't ideal because the canonical link is the AMP version of the website
@@ -36,13 +36,13 @@ async function redirectToCanonicalVersion(
 
     if (canAccessURL) {
       // The canonical AMP page can be redirected
-      openURL(canonicalURL, ignoredHostnames, false, "replace")
+      openURL(canonicalURL, ignoredHostnames, false, "AMP", "replace")
     } else {
       // Only de-AMP the URL if redirecting to the AMP URL
       // wouldn't be redirected.
       const deAMPedURL = deAMPURL(canonicalURL)
       console.debug(`De-AMPed URL: ${deAMPedURL}`)
-      openURL(canonicalURL, ignoredHostnames, true, "replace")
+      openURL(canonicalURL, ignoredHostnames, true, "AMP", "replace")
     }
   }
   return Promise.resolve()

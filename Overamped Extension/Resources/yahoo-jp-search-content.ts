@@ -120,7 +120,7 @@ async function modifyAnchorIfRequired(
   anchor.href = anchorURL.toString()
 
   function interceptAMPLink(event: MouseEvent) {
-    if (openURL(anchorURL, ignoredHostnames, !canAccessURL, "push")) {
+    if (openURL(anchorURL, ignoredHostnames, !canAccessURL, "AMP", "push")) {
       event.preventDefault()
       event.stopImmediatePropagation()
       return false

@@ -134,19 +134,24 @@ export default class NativeAppCommunicator {
     }
   }
 
-  async logRedirectedLink(url: URL): Promise<void> {
-    const redirectedHostname = url.hostname
+  async logRedirectedLink(
+    contentType: "AMP" | "Yandex Turbo",
+    fromURL: URL,
+    toURL: URL,
+  ): Promise<void> {
     try {
       await browser.runtime.sendMessage({
         request: "logRedirectedLink",
         payload: {
-          redirectedHostname,
+          contentType,
+          fromURL,
+          toURL,
         },
       })
-      console.debug(`Logged redirected hostnames ${redirectedHostname}`)
+      console.debug(`Logged redirection from ${fromURL} to ${toURL}`)
     } catch (error) {
       console.error(
-        `Failed to log redirected hostnames ${redirectedHostname}`,
+        `Failed to log redirection from ${fromURL} to ${toURL}`,
         error,
       )
       throw error

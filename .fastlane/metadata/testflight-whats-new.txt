@@ -1,3 +1,5 @@
+A new option in the Settings allows for a notification to be posted whenever Overamped redirects an AMP or Yandex Turbo page in Safari.
+
 Advanced Statistics now displays the most recent events and links to a screen that displays each event that has occurred and allows for the deletion of individual events.
 
 These recent events can also be viewed in a new widget. The design of this widget is very basic and will be improved.

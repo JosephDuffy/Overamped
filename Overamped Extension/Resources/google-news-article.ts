@@ -45,7 +45,13 @@ function overrideAMPArticles(ignoredHostnames: string[]): Promise<void> {
       console.log("Article anchor clicked", articleAnchor)
 
       if (
-        openURL(new URL(articleAnchor.href), ignoredHostnames, true, "push")
+        openURL(
+          new URL(articleAnchor.href),
+          ignoredHostnames,
+          true,
+          "AMP",
+          "push",
+        )
       ) {
         event.stopImmediatePropagation()
         event.preventDefault()

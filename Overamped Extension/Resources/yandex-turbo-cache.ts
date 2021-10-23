@@ -13,7 +13,7 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
 
   const canonicalURL = new URL(canonicalElement.href)
 
-  openURL(canonicalURL, ignoredHostnames, true, "replace")
+  openURL(canonicalURL, ignoredHostnames, true, "Yandex Turbo", "replace")
 
   return Promise.resolve()
 }

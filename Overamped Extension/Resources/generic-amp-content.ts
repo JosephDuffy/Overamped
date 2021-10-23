@@ -32,7 +32,7 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
     return Promise.resolve()
   }
 
-  openURL(canonicalURL, ignoredHostnames, true, "replace")
+  openURL(canonicalURL, ignoredHostnames, true, "AMP", "replace")
 
   return Promise.resolve()
 }
