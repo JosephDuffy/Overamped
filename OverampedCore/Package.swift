@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "OverampedCore", targets: ["OverampedCore"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/JosephDuffy/Persist.git", .branch("swiftui-support")),
+        .package(url: "https://github.com/JosephDuffy/Persist.git", .branch("master")),
     ],
     targets: [
         .target(name: "OverampedCore", dependencies: ["Persist"]),

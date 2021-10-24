@@ -5,8 +5,8 @@
         "package": "Persist",
         "repositoryURL": "https://github.com/JosephDuffy/Persist.git",
         "state": {
-          "branch": "swiftui-support",
-          "revision": "98b970b348be9627071fa869eac764789c4c1b48",
+          "branch": "master",
+          "revision": "7c8042a671e97f3fee0443d3ee9121ae11adf99b",
           "version": null
         }
       }

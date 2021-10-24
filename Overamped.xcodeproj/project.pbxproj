@@ -1335,7 +1335,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JosephDuffy/Persist.git";
 			requirement = {
-				branch = "swiftui-support";
+				branch = master;
 				kind = branch;
 			};
 		};
