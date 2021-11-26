@@ -2,7 +2,7 @@ import ExtensionApplicator from "./ExtensionApplicator"
 import "./Array+compactMap"
 import openURL from "./openURL"
 
-new ExtensionApplicator(document, overrideAMPArticles, false)
+new ExtensionApplicator(document, overrideAMPArticles, true)
 
 function overrideAMPArticles(ignoredHostnames: string[]): Promise<void> {
   const ampArticles = Array.from(
