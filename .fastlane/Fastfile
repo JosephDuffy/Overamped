@@ -9,7 +9,7 @@ platform :ios do
 
     whats_new = ""
 
-    if File.exists("./metadata/testflight_whats_new.txt")
+    if File.exists?("./metadata/testflight_whats_new.txt")
       whats_new = File.read("./metadata/testflight_whats_new.txt")
     end
 
