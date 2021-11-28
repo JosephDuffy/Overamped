@@ -186,24 +186,21 @@ export default class ExtensionApplicator {
     }
   }
 
-  private migrateIgnoredHostnames() {
-    browser.storage.local
-      .get("ignoredHostnames")
-      .then((storage) => {
-        const ignoredHostnames = storage["ignoredHostnames"] as
-          | string[]
-          | undefined
+  private async migrateIgnoredHostnames() {
+    try {
+      const storage = await browser.storage.local.get("ignoredHostnames")
+      const ignoredHostnames = storage["ignoredHostnames"] as
+        | string[]
+        | undefined
 
-        if (ignoredHostnames !== undefined) {
-          this.#nativeAppCommunicator
-            .migrateIgnoredHostnames(ignoredHostnames)
-            .then(() => {
-              browser.storage.local.remove("ignoredHostnames")
-            })
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to load ignored hostnames for migration", error)
-      })
+      if (ignoredHostnames !== undefined) {
+        await this.#nativeAppCommunicator.migrateIgnoredHostnames(
+          ignoredHostnames,
+        )
+        await browser.storage.local.remove("ignoredHostnames")
+      }
+    } catch (error) {
+      console.error("Failed to load ignored hostnames for migration", error)
+    }
   }
 }
