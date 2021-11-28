@@ -108,10 +108,10 @@ struct InstallationInstructionsView: View {
                         Color(.secondarySystemGroupedBackground)
                     )
 
-                    Text("Scroll down and select “Other Websites”:")
+                    Text("Select “All Websites”:")
 
                     HStack {
-                        Text("Other Websites")
+                        Text("All Websites")
 
                         Spacer()
 

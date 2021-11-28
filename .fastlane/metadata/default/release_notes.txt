@@ -1,3 +1,5 @@
 A new option in the Settings allows for a notification to be posted whenever Overamped redirects an AMP or Yandex Turbo page in Safari.
 
 A new screen has been added under Advanced Statistics that displays each event that has occurred and allows for the deletion of individual events.
+
+The permissions model has been simplified. The "Other Websites" will now be the only option shown when first installing the extension.

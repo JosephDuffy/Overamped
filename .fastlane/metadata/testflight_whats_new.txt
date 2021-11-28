@@ -5,3 +5,5 @@ Advanced Statistics now displays the most recent events and links to a screen th
 These recent events can also be viewed in a new widget. The design of this widget is very basic and will be improved.
 
 The widget doesn't yet display a message when empty or refresh when the app is opened. These changes will be made before the update is submitted to the App Store.
+
+The permissions model has been simplified. The "Other Websites" will now be the only option shown when first installing the extension.
