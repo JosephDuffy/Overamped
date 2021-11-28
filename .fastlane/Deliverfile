@@ -1,5 +1,5 @@
 app_identifier "net.yetii.Overamped"
-languages ["en-GB"]
+languages ["en-GB", "en-US", "ru-RU"]
 submit_for_review false
 overwrite_screenshots true
 force true # Skip HTML file check
