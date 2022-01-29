@@ -164,6 +164,7 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
             if postNotificationWhenRedirecting, let contentType = payload["contentType"], let toURLString = payload["toURL"] {
                 let notificationContent = UNMutableNotificationContent()
+                notificationContent.interruptionLevel = .timeSensitive
                 notificationContent.title = "Redirected \(contentType) Page"
                 notificationContent.body = "Redirect from \(fromURLString) to \(toURLString)"
                 let notificationRequest = UNNotificationRequest(identifier: "Redirection", content: notificationContent, trigger: nil)
