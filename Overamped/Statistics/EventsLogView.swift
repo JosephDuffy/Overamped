@@ -9,17 +9,27 @@ struct EventsLogView: View {
     var body: some View {
         VStack {
             if let events = eventsLog.events {
-                if events.isEmpty {
-                    Spacer()
-                    if eventsLog.searchText.isEmpty {
+                if events.isEmpty, eventsLog.searchText.isEmpty {
+                    VStack {
+                        Spacer()
                         Text("No events logged.")
-                    } else {
-                        Text("No events found matching search.")
+                            .foregroundColor(Color(.placeholderText))
+                            .font(.title3)
+                        Spacer()
                     }
-                    Spacer()
                 } else {
-                    eventsView(events)
-                        .searchable(text: $eventsLog.searchText)
+                    VStack {
+                        if events.isEmpty, !eventsLog.searchText.isEmpty {
+                            Spacer()
+                            Text("No events found matching search.")
+                                .foregroundColor(Color(.placeholderText))
+                                .font(.title3)
+                            Spacer()
+                        } else {
+                            eventsView(events)
+                        }
+                    }
+                    .searchable(text: $eventsLog.searchText)
                 }
             } else {
                 Spacer()
