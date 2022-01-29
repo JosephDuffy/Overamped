@@ -19,7 +19,6 @@
 		D95A92AC271C469700B8FA79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95A92AB271C469700B8FA79 /* Assets.xcassets */; };
 		D95A92AE271C469700B8FA79 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D95A92AA271C469400B8FA79 /* Widgets.intentdefinition */; };
 		D95A92AF271C469700B8FA79 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D95A92AA271C469400B8FA79 /* Widgets.intentdefinition */; };
-		D95A92B2271C469700B8FA79 /* WidgetsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D95A92A2271C469400B8FA79 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D95A92B7271C46F100B8FA79 /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D95A92B6271C46F100B8FA79 /* Persist */; };
 		D95A92B9271C470100B8FA79 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D95A92B8271C470100B8FA79 /* OverampedCore */; };
 		D95A92BC271C5DC000B8FA79 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D95A92BA271C5DA500B8FA79 /* Localizable.stringsdict */; };
@@ -70,13 +69,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D95A92B0271C469700B8FA79 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9FF5B61268142B30027BD81 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D95A92A1271C469400B8FA79;
-			remoteInfo = WidgetsExtension;
-		};
 		D9A2FA0E26D997A5007F9F9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9FF5B61268142B30027BD81 /* Project object */;
@@ -101,6 +93,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D90B5DDC27A507D100C84891 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D963DAE426BDBEB300AFCDC8 /* Copy Popup Root */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,7 +131,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D95A92B2271C469700B8FA79 /* WidgetsExtension.appex in Embed App Extensions */,
 				D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -548,12 +548,12 @@
 				D9FF5B66268142B30027BD81 /* Frameworks */,
 				D9FF5B67268142B30027BD81 /* Resources */,
 				D9FF5BA5268142B90027BD81 /* Embed App Extensions */,
+				D90B5DDC27A507D100C84891 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D9FF5B89268142B90027BD81 /* PBXTargetDependency */,
-				D95A92B1271C469700B8FA79 /* PBXTargetDependency */,
 			);
 			name = Overamped;
 			packageProductDependencies = (
@@ -786,11 +786,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D95A92B1271C469700B8FA79 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D95A92A1271C469400B8FA79 /* WidgetsExtension */;
-			targetProxy = D95A92B0271C469700B8FA79 /* PBXContainerItemProxy */;
-		};
 		D9A2FA0F26D997A5007F9F9E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9FF5B68268142B30027BD81 /* Overamped */;
