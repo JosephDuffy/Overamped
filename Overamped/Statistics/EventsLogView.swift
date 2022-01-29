@@ -109,7 +109,7 @@ private final class EventsLog: ObservableObject {
             .combineLatest(
                 $searchText
                     .prepend("")
-                    .debounce(for: 0.3, scheduler: workQueue)
+                    .throttle(for: .seconds(0.3), scheduler: workQueue, latest: true)
             )
             .map { parameters -> [Event] in
                 var events = parameters.0
