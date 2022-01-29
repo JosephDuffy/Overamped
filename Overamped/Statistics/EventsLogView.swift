@@ -115,8 +115,6 @@ private final class EventsLog: ObservableObject {
                 var events = parameters.0
                 let searchText = parameters.1
 
-                print("Filtering")
-
                 if !searchText.isEmpty {
                     events = events.filter { event -> Bool in
                         switch event {
