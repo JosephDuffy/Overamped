@@ -102,10 +102,10 @@ struct SettingsView: View {
                 }
             }
 
-            Section(footer: Text("When enabled Overamped will post a notification when an AMP or Yandex Turbo page is redirected in Safari.")) {
+            Section(footer: Text("When enabled Overamped will send a notification when an AMP or Yandex Turbo page is redirected in Safari.")) {
                 Toggle(
                     isOn: $postNotificationWhenRedirecting,
-                    label: { Text("Post Notification When Redirecting") }
+                    label: { Text("Send Notification When Redirecting") }
                 )
                     .disabled(!notificationsAuthorizationState.enableSwitch)
                     .onChange(of: postNotificationWhenRedirecting) { postNotificationWhenRedirecting in
