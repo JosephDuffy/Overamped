@@ -84,43 +84,49 @@ async function modifyAnchorIfRequired(
   const ved = anchor.dataset.ved
   let hasCanonicalURL = false
 
+  interface AnchorAttributes {
+    url: string
+    ampPopover: Element | null
+  }
+
   // The URL to redirect to – if found – and the element
   // that contains the AMP popover (used in image searches)
-  const [anchorURLString, ampPopover] = ((): [
-    string | null,
-    Element | null,
-  ] => {
+  const attributes = ((): AnchorAttributes | null => {
     const ampCur = anchor.dataset.ampCur
 
     if (ampCur && ampCur.length > 0) {
       // data-amp-cur is available on News search results (not news.google)
       // and has the full canonical URL
       hasCanonicalURL = true
-      return [ampCur, null]
+      return { url: ampCur, ampPopover: null }
     }
 
     if (anchor.dataset.amp) {
-      return [anchor.dataset.amp, null]
+      return { url: anchor.dataset.amp, ampPopover: null }
     }
 
     if (anchor.dataset.cur) {
-      return [anchor.dataset.cur, null]
+      return { url: anchor.dataset.cur, ampPopover: null }
     } else {
       // Check if this is an AMP result within an image search result
       // This is a little fragile but seems to be the most efficient
       // without replacing links that aren't to AMP pages.
+      //
+      // TODO: Check if it's possible to detect links on image search
+      // result pages. e.g. the Universe Today link on
+      // https://www.google.co.uk/search?q=eta+carinae&client=safari&hl=en-gb&prmd=nivx&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjBqdOumez1AhXoJEQIHS7UBWAQ_AUoAnoECAIQAg&biw=375&bih=635&dpr=3
 
       // This is a div containing the links
       const upperContainer = anchor.parentElement?.parentElement
 
       if (!upperContainer) {
-        return [null, null]
+        return null
       }
 
       if (!upperContainer.nextElementSibling) {
         // Likely not an AMP link; the next sibling should be
         // the element that displays the AMP page
-        return [null, null]
+        return null
       }
 
       // Double check this is in fact an AMP link
@@ -129,17 +135,19 @@ async function modifyAnchorIfRequired(
           "div[aria-label*='AMP']",
         ) === null
       ) {
-        return [null, null]
+        return null
       }
 
-      return [anchor.href, upperContainer.nextElementSibling]
+      return { url: anchor.href, ampPopover: upperContainer.nextElementSibling }
     }
   })()
 
-  if (!anchorURLString) {
+  if (!attributes) {
     console.debug(`Failed to get final URL from anchor`, anchor)
     return
   }
+
+  const { url: anchorURLString, ampPopover } = attributes
 
   let anchorURL = new URL(anchorURLString)
 
