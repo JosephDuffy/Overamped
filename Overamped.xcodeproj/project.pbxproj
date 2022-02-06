@@ -43,6 +43,7 @@
 		D9A90D042708A5A400183C48 /* EventsLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A90D032708A5A400183C48 /* EventsLogView.swift */; };
 		D9A9141026C7809C00C34C30 /* TipOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9140F26C7809C00C34C30 /* TipOptionView.swift */; };
 		D9A9141826C8A59500C34C30 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9141726C8A59400C34C30 /* FAQView.swift */; };
+		D9AB29B427B0899C00173BB6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D9AB29B327B0899C00173BB6 /* Settings.bundle */; };
 		D9AB8C03269A626A00D225F8 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */; };
 		D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C04269A62D800D225F8 /* OverampedApp.swift */; };
 		D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */; };
@@ -180,6 +181,7 @@
 		D9A90D032708A5A400183C48 /* EventsLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLogView.swift; sourceTree = "<group>"; };
 		D9A9140F26C7809C00C34C30 /* TipOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipOptionView.swift; sourceTree = "<group>"; };
 		D9A9141726C8A59400C34C30 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
+		D9AB29B327B0899C00173BB6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D9AB8C02269A626A00D225F8 /* FeedbackForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackForm.swift; sourceTree = "<group>"; };
 		D9AB8C04269A62D800D225F8 /* OverampedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverampedApp.swift; sourceTree = "<group>"; };
 		D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationInstructionsView.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				D994C63926A143F8000649AA /* Products.storekit */,
 				D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */,
 				D9FF5B80268142B90027BD81 /* Assets.xcassets */,
+				D9AB29B327B0899C00173BB6 /* Settings.bundle */,
 				D9AB8C0A269A8A7C00D225F8 /* Overamped.entitlements */,
 				D9FF5B81268142B90027BD81 /* Info.plist */,
 			);
@@ -670,6 +673,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9AB29B427B0899C00173BB6 /* Settings.bundle in Resources */,
 				D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */,
 				D9FF5B9F268142B90027BD81 /* Assets.xcassets in Resources */,
 				D96BF7DA26B3C6FE00E6EBE9 /* Localizable.stringsdict in Resources */,
