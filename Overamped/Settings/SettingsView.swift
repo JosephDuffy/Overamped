@@ -138,6 +138,15 @@ struct SettingsView: View {
                             }
                         }
                     }
+
+                if
+                    let settingsURL = URL(string: UIApplication.openSettingsURLString),
+                    UIApplication.shared.canOpenURL(settingsURL)
+                {
+                    Button("Manage Settings") {
+                        UIApplication.shared.open(settingsURL)
+                    }
+                }
             }
         }
         .onAppear(perform: {
