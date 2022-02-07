@@ -49,6 +49,31 @@ function findAMPLogoRelativeToAnchor(
 }
 
 async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
+  // Look for the AMP popover. This is a kind of catch-all for unknown or
+  // hard-to-handle cases, e.g. tapping the website in Google Images.
+
+  const ampContainer = document.querySelector("div[aria-label*='AMP']")
+
+  if (ampContainer) {
+    const anchors = ampContainer.querySelectorAll("a")
+
+    anchors.forEach((anchor) => {
+      if (anchor.innerText == anchor.href) {
+        // This is the actual URL
+        const didOpen = openURL(
+          new URL(anchor.href),
+          ignoredHostnames,
+          true,
+          "AMP",
+          "replace",
+        )
+        if (didOpen) {
+          return
+        }
+      }
+    })
+  }
+
   const ampAnchor = document.body.querySelectorAll("a[data-ved]")
   console.debug(`Found ${ampAnchor.length} AMP links`)
 
