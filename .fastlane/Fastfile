@@ -13,7 +13,7 @@ platform :ios do
       whats_new = File.read("./metadata/testflight_whats_new.txt")
     end
 
-    if whats_new.empty?
+    if whats_new.strip!.empty?
       whats_new = File.read("./metadata/default/release_notes.txt")
     end
 
