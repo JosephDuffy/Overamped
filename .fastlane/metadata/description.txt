@@ -1,7 +1,7 @@
 Overamped automatically redirects AMP and Yandex Turbo to their original version, effectively disabling AMP and Yandex Turbo in Safari.
 
 HOW IT WORKS
-When opening a link from any source – including Google Search, Google News, Yahoo! JAPAN, any website, and native apps – Overamped will find and redirect to the canonical version automatically. This means it will work with all AMP and Yandex Turbo pages no matter how the page is opened.
+When opening a link from any source – including Google Search, Google Images, Google News, Yahoo! JAPAN, any website, and native apps – Overamped will find and redirect to the canonical version automatically. This means it will work with all AMP and Yandex Turbo pages no matter how the page is opened.
 
 OPEN NATIVE APPS
 If you have the native app installed for a website that is redirected Overamped will automatically open the native app rather than the website.
