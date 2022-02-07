@@ -2,7 +2,7 @@ import NativeAppCommunicator from "./NativeAppCommunicator"
 
 export type ExtensionApplierThunk = (
   ignoredHostnames: string[],
-) => Promise<void>
+) => Promise<unknown>
 
 export default class ExtensionApplicator {
   #document: Document
@@ -17,7 +17,7 @@ export default class ExtensionApplicator {
 
   #pendingPromise?: () => void
 
-  #state: "idle" | { pending: () => Promise<void> } | "applying"
+  #state: "idle" | { pending: () => Promise<unknown> } | "applying"
 
   constructor(
     document: Document,
