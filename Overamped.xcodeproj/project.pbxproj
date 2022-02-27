@@ -1298,8 +1298,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JosephDuffy/Persist.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

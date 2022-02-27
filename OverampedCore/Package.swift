@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "OverampedCore", targets: ["OverampedCore"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/JosephDuffy/Persist.git", .branch("master")),
+        .package(url: "https://github.com/JosephDuffy/Persist.git", .upToNextMajor(from: "1.2.1")),
     ],
     targets: [
         .target(name: "OverampedCore", dependencies: ["Persist"]),

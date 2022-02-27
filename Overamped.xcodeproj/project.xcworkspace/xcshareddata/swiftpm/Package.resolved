@@ -5,9 +5,9 @@
         "package": "Persist",
         "repositoryURL": "https://github.com/JosephDuffy/Persist.git",
         "state": {
-          "branch": "master",
-          "revision": "da642c98b573cf1e37668ec95db4ad8e8df0b1cf",
-          "version": null
+          "branch": null,
+          "revision": "b0be7ec4af4cf463c4bf824c971fa8b15ab86e1d",
+          "version": "1.2.1"
         }
       }
     ]
