@@ -11,6 +11,25 @@ extension Persister {
         )
     }
 
+    /// A `Persister` that stores whether the user has been asked for a review
+    /// triggered by opening the app at least 1 week after their first
+    /// redirection.
+    public static var hasAskedForOneWeekReview: Persister<Bool> {
+        Persister<Bool>(
+            key: "hasAskedForOneWeekReview",
+            userDefaults: UserDefaults.groupSuite,
+            defaultValue: false
+        )
+    }
+
+    public static var lastReviewRequest: Persister<Date?> {
+        Persister<Date?>(
+            key: "lastReviewRequest",
+            userDefaults: UserDefaults.groupSuite,
+            defaultValue: nil
+        )
+    }
+
     /// A `Persister` that stores the array of hostnames the user has disabled Overamped on.
     public static var ignoredHostnames: Persister<[String]> {
         Persister<[String]>(

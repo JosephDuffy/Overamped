@@ -1,4 +1,5 @@
 import Persist
+import StoreKit
 import SwiftUI
 import OverampedCore
 import os.log
@@ -10,6 +11,9 @@ struct OverampedApp: App {
 
     @PersistStorage(persister: .extensionHasBeenEnabled)
     private(set) var extensionHasBeenEnabled: Bool
+
+    @Environment(\.scenePhase)
+    private var scenePhase
 
     @State
     private var showDebugView = false
@@ -25,6 +29,34 @@ struct OverampedApp: App {
                 }
             }
             .environmentObject(FAQLoader())
+            .onChange(of: scenePhase, perform: { scenePhase in
+                switch scenePhase {
+                case .active:
+                    // Request a review if the user has a redirection from at
+                    // least one week ago.
+                    let hasAskedForOneWeekReviewPersister = Persister<Bool>.hasAskedForOneWeekReview
+                    let hasAskedForOneWeekReview = hasAskedForOneWeekReviewPersister.retrieveValue()
+
+                    guard !hasAskedForOneWeekReview else { return }
+
+                    let hasRedirectedAtLeastOneWeekAgo = Persister<Any>.redirectedLinks.retrieveValue().contains { link in
+                        return link.date.timeIntervalSinceNow >= 7 * 24 * 60 * 60
+                    }
+
+                    guard hasRedirectedAtLeastOneWeekAgo else { return }
+
+                    if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                        SKStoreReviewController.requestReview(in: scene)
+                    }
+
+                    try? hasAskedForOneWeekReviewPersister.persist(true)
+                    try? Persister<Date>.lastReviewRequest.persist(.now)
+                case .inactive, .background:
+                    break
+                @unknown default:
+                    break
+                }
+            })
             .onOpenURL(perform: { url in
                 Logger(subsystem: "net.yetii.Overamped", category: "URL Handler")
                     .log("Opened via URL \(url.absoluteString)")
