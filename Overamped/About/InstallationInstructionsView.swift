@@ -148,7 +148,7 @@ struct InstallationInstructionsView: View {
                             Button {
                                 questionToDisplay = whyOtherWebsitesQuestion
                             } label: {
-                                Text("Why grant access to “Other Websites”?")
+                                Text("Why grant access to “All Websites”?")
                                     .font(.footnote)
                             }
                         }
