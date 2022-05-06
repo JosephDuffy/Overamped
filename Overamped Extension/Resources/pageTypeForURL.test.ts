@@ -59,3 +59,15 @@ test("Yandex Turbo URL with subdomain", () => {
   const pageType = pageTypeForURL(url)
   expect(pageType).toEqual(PageType.YandexTurboCache)
 })
+
+test("Install Checker AMP URL", () => {
+  const url = new URL("https://overamped.app/install-checker")
+  const pageType = pageTypeForURL(url)
+  expect(pageType).toEqual(PageType.InstallChecker)
+})
+
+test("Overamped Website URL", () => {
+  const url = new URL("https://overamped.app/")
+  const pageType = pageTypeForURL(url)
+  expect(pageType).toEqual(PageType.Unknown)
+})

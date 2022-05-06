@@ -24,6 +24,10 @@ export default function pageTypeForURL(url: URL): PageType {
     return PageType.YandexTurboCache
   }
 
+  if (pageHostname === "overamped.app" && url.pathname === "/install-checker") {
+    return PageType.InstallChecker
+  }
+
   return PageType.Unknown
 }
 
@@ -33,6 +37,7 @@ export enum PageType {
   GoogleAMPCache,
   YahooJAPANSearch,
   YandexTurboCache,
+  InstallChecker,
   Unknown,
 }
 

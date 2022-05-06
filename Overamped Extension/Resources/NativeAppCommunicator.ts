@@ -135,7 +135,7 @@ export default class NativeAppCommunicator {
   }
 
   async logRedirectedLink(
-    contentType: "AMP" | "Yandex Turbo",
+    contentType: "AMP" | "Yandex Turbo" | "Install Checker",
     fromURL: URL,
     toURL: URL,
   ): Promise<void> {

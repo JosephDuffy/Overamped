@@ -37,6 +37,10 @@ switch (pageType) {
     console.debug("Loading Yandex Turbo Cache handler")
     import("./yandex-turbo-cache")
     break
+  case PageType.InstallChecker:
+    console.debug("Loading Install Checker handler")
+    import("./install-checker")
+    break
   case PageType.Unknown:
     // Fallback to try redirecting this page is it's an AMP page
     console.debug("Loading Generic AMP handler")

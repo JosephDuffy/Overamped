@@ -157,6 +157,8 @@ struct InstallationInstructionsView: View {
 
                 Text("With this setup you should never see an AMP or Yandex Turbo page again!")
 
+                Text("Want to check it's working? Open the [Overamped Install Checker](https://overamped.app/install-checker).")
+
                 if !hasAlreadyInstalled {
                     Text("Open a page in Safari with the Overamped extension activated to automatically unlock the rest of the app, or [unlock the app now](overamped://unlock).")
                 }

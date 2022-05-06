@@ -4,7 +4,7 @@ export default function openURL(
   url: URL,
   ignoredHostnames: string[],
   logEvent: boolean,
-  contentType: "AMP" | "Yandex Turbo",
+  contentType: "AMP" | "Yandex Turbo" | "Install Checker",
   action: "push" | "replace",
 ): boolean {
   // An array of hostnames that Overamped will never redirect
