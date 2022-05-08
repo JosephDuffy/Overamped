@@ -18,6 +18,8 @@ struct OverampedApp: App {
     @State
     private var showDebugView = false
 
+    private let faqLoader = FAQLoader()
+
     var body: some Scene {
         WindowGroup {
             Group {
@@ -28,7 +30,7 @@ struct OverampedApp: App {
                     InstallationInstructionsView(hasAlreadyInstalled: false)
                 }
             }
-            .environmentObject(FAQLoader())
+            .environmentObject(faqLoader)
             .onChange(of: scenePhase, perform: { scenePhase in
                 switch scenePhase {
                 case .active:
