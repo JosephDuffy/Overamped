@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import os.log
 import UIKit
 
 public final class FAQLoader: ObservableObject {
@@ -7,7 +8,10 @@ public final class FAQLoader: ObservableObject {
     @MainActor
     private(set) var questions: [Question] = []
 
+    private let logger: Logger
+
     public init(bundle: Bundle = .main) {
+        logger = Logger(subsystem: "net.yetii.Overamped", category: "FAQ Loader")
         Task {
             await loadQuestionsInBundle(bundle)
             await loadLatestQuestions()
@@ -29,11 +33,11 @@ public final class FAQLoader: ObservableObject {
             let decoder = JSONDecoder()
             let questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
             await MainActor.run {
+                logger.debug("Loaded questions from bundle \(questions.map(\.title))")
                 self.questions = questions
-                print("JSON Data loaded from bundle")
             }
         } catch {
-            print("Failed to load questions from bundle", error)
+            logger.debug("Failed to load questions from bundle: \(error.localizedDescription)")
         }
     }
 
@@ -44,11 +48,11 @@ public final class FAQLoader: ObservableObject {
             let decoder = JSONDecoder()
             let questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
             await MainActor.run {
+                logger.debug("Loaded questions from network \(questions.map(\.title))")
                 self.questions = questions
-                print("JSON Data loaded from network")
             }
         } catch {
-            print("Failed to load JSON data from network", error)
+            logger.debug("Failed to load questions from network: \(error.localizedDescription)")
         }
     }
 }
