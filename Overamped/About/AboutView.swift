@@ -105,6 +105,24 @@ struct AboutView: View {
                     }
                 }
 
+                Link(destination: URL(string: "https://overamped.app/install-checker")!) {
+                    HStack {
+                        Label {
+                            Text("Install Checker")
+                                .foregroundColor(Color.primary)
+                        } icon: {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.title3)
+                                .foregroundColor(.accentColor)
+                        }
+
+                        Spacer()
+                        Image(systemName: "arrow.up.forward.app.fill")
+                            .font(Font.system(size: 14).weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                    }
+                }
+
                 Button(action: {
                     displayedURL = DisplayedURL(url: URL(string: "https://github.com/JosephDuffy/Overamped")!)
                 }, label: {
