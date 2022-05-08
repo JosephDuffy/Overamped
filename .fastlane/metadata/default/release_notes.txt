@@ -1,7 +1,3 @@
-A new option in the Settings allows for a notification to be posted whenever Overamped redirects an AMP or Yandex Turbo page in Safari.
+Support for the Overamped Install Checker has been added, enabling a method of automatically checking if the Safari Extension is enabled and setup correctly.
 
-Advanced Statistics now displays the most recent events and links to a screen that displays each event that has occurred and allows for the deletion of individual events.
-
-The permissions model has been simplified. The "All Websites" will now be the only option shown when first installing the extension.
-
-A new check has been added to find Google's AMP popover, which fixes Google Images still showing the AMP version of pages when tapped.
+The new install checker can be found in the About tab.
