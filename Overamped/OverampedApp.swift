@@ -31,6 +31,9 @@ struct OverampedApp: App {
                 }
             }
             .environmentObject(faqLoader)
+            .task {
+                await faqLoader.loadQuestions()
+            }
             .onChange(of: scenePhase, perform: { scenePhase in
                 switch scenePhase {
                 case .active:

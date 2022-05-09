@@ -6,16 +6,12 @@ import UIKit
 public final class FAQLoader: ObservableObject {
     @Published
     @MainActor
-    private(set) var questions: [Question] = []
+    public private(set) var questions: [Question] = []
 
     private let logger: Logger
 
-    public init(bundle: Bundle = .main) {
+    public init() {
         logger = Logger(subsystem: "net.yetii.Overamped", category: "FAQ Loader")
-        Task {
-            await loadQuestionsInBundle(bundle)
-            await loadLatestQuestions()
-        }
     }
 
     @MainActor
@@ -23,7 +19,12 @@ public final class FAQLoader: ObservableObject {
         questions.first(where: { $0.id == id })
     }
 
-    private func loadQuestionsInBundle(_ bundle: Bundle) async {
+    public func loadQuestions(bundle: Bundle = .main, session: URLSession = .shared) async {
+        await loadQuestionsInBundle(bundle)
+        await loadLatestQuestions(session: session)
+    }
+
+    public func loadQuestionsInBundle(_ bundle: Bundle) async {
         do {
             guard let bundledDataAsset = NSDataAsset(name: "FAQ.json", bundle: bundle) else {
                 print("No FAQ json in bundle")
@@ -41,10 +42,10 @@ public final class FAQLoader: ObservableObject {
         }
     }
 
-    private func loadLatestQuestions() async {
+    public func loadLatestQuestions(session: URLSession) async {
         do {
             let url = URL(string: "https://overamped.app/api/faq")!
-            let (jsonData, _) = try await URLSession.shared.data(from: url, delegate: nil)
+            let (jsonData, _) = try await session.data(from: url, delegate: nil)
             let decoder = JSONDecoder()
             let questions = try decoder.decode([Question].self, from: jsonData).filter { $0.platforms.contains(.app) }
             await MainActor.run {
