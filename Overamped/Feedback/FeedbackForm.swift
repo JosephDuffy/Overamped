@@ -106,6 +106,20 @@ struct FeedbackForm: View {
 
                     switch formAPI.formData.contactReason {
                     case .websiteLoadedAMPVersion:
+                        Section (
+                            footer: Text("If no AMP links are being redirected the Overamped Install Checker can help verify that the Safari Extension is enabled and configured correctly.")
+                        ) {
+                            Link(destination: URL(string: "https://overamped.app/install-checker")!) {
+                                HStack {
+                                    Text("Install Checker")
+                                        .foregroundColor(.accentColor)
+                                    Spacer()
+                                    Image(systemName: "arrow.up.forward.app.fill")
+                                        .font(Font.system(size: 14).weight(.semibold))
+                                        .foregroundColor(Color(.tertiaryLabel))
+                                }
+                            }
+                        }
                         Section(
                             header: Text("Problem Links")
                         ) {
