@@ -76,6 +76,15 @@ Overamped is not enabled at the start of the video. Note how tapping the news re
     match()
   end
 
+  desc "Download iOS certificates, generating any missing profiles"
+  lane :download_or_generate_certs do
+    if !is_ci
+      setup_app_store_connect_api_key
+    end
+
+    match(readonly: false)
+  end
+
   desc "Force recreation of iOS certificates"
   lane :generate_certs do
     setup_app_store_connect_api_key
