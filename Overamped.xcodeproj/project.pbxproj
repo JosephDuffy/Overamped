@@ -59,7 +59,7 @@
 		D9DC7AEC26B61CB0005C8430 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9DC7AEB26B61CB0005C8430 /* OverampedCore */; };
 		D9DC7AEE26B6532D005C8430 /* ClearAdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
-		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
 		D9FF5B8F268142B90027BD81 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B8E268142B90027BD81 /* _locales */; };
 		D9FF5B91268142B90027BD81 /* images in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B90268142B90027BD81 /* images */; };
@@ -124,15 +124,15 @@
 			name = "Copy Popup Build";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9FF5BA5268142B90027BD81 /* Embed App Extensions */ = {
+		D9FF5BA5268142B90027BD81 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed App Extensions */,
+				D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -544,7 +544,7 @@
 				D9FF5B65268142B30027BD81 /* Sources */,
 				D9FF5B66268142B30027BD81 /* Frameworks */,
 				D9FF5B67268142B30027BD81 /* Resources */,
-				D9FF5BA5268142B90027BD81 /* Embed App Extensions */,
+				D9FF5BA5268142B90027BD81 /* Embed Foundation Extensions */,
 				D90B5DDC27A507D100C84891 /* CopyFiles */,
 			);
 			buildRules = (
@@ -593,7 +593,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					D95A92A1271C469400B8FA79 = {
 						CreatedOnToolsVersion = 13.0;
