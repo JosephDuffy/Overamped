@@ -55,14 +55,6 @@ Overamped is not enabled at the start of the video. Note how tapping the news re
     )
   end
 
-  desc "Submit a new build to the App Store"
-  lane :submit_app_store do
-    setup_app_store_connect_api_key
-    download_certs
-    gym
-    deliver(platform: "ios", skip_screenshots: is_ci)
-  end
-
   desc "Upload metadata the App Store"
   lane :upload_metadata do
     setup_app_store_connect_api_key
