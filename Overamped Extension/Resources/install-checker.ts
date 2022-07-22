@@ -2,9 +2,9 @@ import ExtensionApplicator from "./ExtensionApplicator"
 import openURL from "./openURL"
 
 function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
-  const checkTokenElement: HTMLMetaElement | null = document.head.querySelector(
+  const checkTokenElement = document.head.querySelector(
     "meta[name='overamped-check-token'][content]",
-  )
+  ) as HTMLMetaElement | null
 
   const checkToken = checkTokenElement?.content
 

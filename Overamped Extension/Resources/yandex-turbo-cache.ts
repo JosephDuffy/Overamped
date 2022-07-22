@@ -2,9 +2,9 @@ import ExtensionApplicator from "./ExtensionApplicator"
 import openURL from "./openURL"
 
 function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
-  const canonicalElement: HTMLLinkElement | null = document.head.querySelector(
+  const canonicalElement = document.head.querySelector(
     "link[rel~='canonical'][href]",
-  )
+  ) as HTMLLinkElement | null
 
   if (!canonicalElement) {
     console.debug("Couldn't find canonical URL to redirect to")
