@@ -19,8 +19,23 @@ public final class FAQLoader: ObservableObject {
         questions.first(where: { $0.id == id })
     }
 
-    public func loadQuestions(bundle: Bundle = .main, session: URLSession = .shared) async {
+    public func loadQuestions() async {
+        await loadQuestionsInBundle(.main)
+        await loadLatestQuestions(session: .shared)
+    }
+
+    public func loadQuestions(bundle: Bundle, session: URLSession) async {
         await loadQuestionsInBundle(bundle)
+        await loadLatestQuestions(session: session)
+    }
+
+    public func loadQuestions(bundle: Bundle = .main) async {
+        await loadQuestionsInBundle(bundle)
+        await loadLatestQuestions(session: .shared)
+    }
+
+    public func loadQuestions(session: URLSession = .shared) async {
+        await loadQuestionsInBundle(.main)
         await loadLatestQuestions(session: session)
     }
 
