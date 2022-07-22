@@ -1,3 +1,1 @@
-Support for the Overamped Install Checker has been added, enabling a method of automatically checking if the Safari Extension is enabled and setup correctly.
-
-The new install checker can be found in the About tab.
+Fixed an issue that can occur on newer versions of Safari on Google Images.

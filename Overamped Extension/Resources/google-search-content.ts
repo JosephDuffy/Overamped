@@ -57,21 +57,19 @@ async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
   if (ampContainer) {
     const anchors = ampContainer.querySelectorAll("a")
 
-    anchors.forEach((anchor) => {
+    for (const anchor of Array.from(anchors)) {
       if (anchor.innerText == anchor.href) {
         // This is the actual URL
-        const didOpen = openURL(
-          new URL(anchor.href),
-          ignoredHostnames,
-          true,
-          "AMP",
-          "replace",
-        )
-        if (didOpen) {
-          return
+        try {
+          // This can throw on Safari 16 when the href is an empty string
+          const url = new URL(anchor.href)
+          openURL(url, ignoredHostnames, true, "AMP", "replace")
+          // This previously used the return value from `openURL` (`didOpen`) and `return`ed, but it was within a `forEach` so the return didn't do anything. It's not clear what the intention was so it was removed in 1.2.1.
+        } catch {
+          console.warn("Found an anchor with an invalid URL", anchor.href)
         }
       }
-    })
+    }
   }
 
   const ampAnchor = document.body.querySelectorAll("a[data-ved]")
@@ -174,7 +172,14 @@ async function modifyAnchorIfRequired(
 
   const { url: anchorURLString, ampPopover } = attributes
 
-  let anchorURL = new URL(anchorURLString)
+  let anchorURL: URL
+
+  try {
+    anchorURL = new URL(anchorURLString)
+  } catch {
+    console.warn("Anchor has invalid URL", anchorURLString)
+    return
+  }
 
   if (anchorURL.hostname === window.location.hostname) {
     // Do not override internal links, e.g. links to `"#"` used for anchors acting as buttons
