@@ -127,9 +127,13 @@ export default class ExtensionApplicator {
 
     if (this.#state === "idle") {
       this.#state = "applying"
-      this.#thunk(ignoredHostnames).finally(() => {
-        this.checkState()
-      })
+      this.#thunk(ignoredHostnames)
+        .catch((error) => {
+          console.error("Thunk threw error", error)
+        })
+        .finally(() => {
+          this.checkState()
+        })
     } else {
       this.#state = {
         pending: () => {
@@ -145,9 +149,13 @@ export default class ExtensionApplicator {
     } else if (this.#state !== "idle") {
       const pendingPromise = this.#state.pending
       this.#state = "applying"
-      pendingPromise().finally(() => {
-        this.checkState()
-      })
+      pendingPromise()
+        .catch((error) => {
+          console.error("Thunk threw error", error)
+        })
+        .finally(() => {
+          this.checkState()
+        })
     }
   }
 
