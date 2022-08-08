@@ -1,1 +1,0 @@
-normal,google,images,yahoo,link,block,bing,redirect,bypass,disable,reddit,news,safari,extension
