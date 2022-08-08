@@ -64,7 +64,6 @@ Overamped is not enabled at the start of the video. Note how tapping the news re
   desc "Generate and frame App Store screenshots"
   lane :generate_screenshots do
     capture_screenshots
-    frame_screenshots(path: "./.fastlane/screenshots/")
   end
 
   desc "Download iOS certificates (read only)"
