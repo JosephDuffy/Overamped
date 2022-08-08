@@ -1,1 +1,2 @@
-Fixed an issue that can occur on newer versions of Safari on Google Images.
+- Fixed an issue that can occur on newer versions of Safari on Google Images
+- Improved layout of popover on larger screens
