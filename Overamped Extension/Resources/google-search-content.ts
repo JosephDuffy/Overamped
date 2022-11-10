@@ -48,10 +48,51 @@ function findAMPLogoRelativeToAnchor(
   return null
 }
 
-async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
-  // Look for the AMP popover. This is a kind of catch-all for unknown or
-  // hard-to-handle cases, e.g. tapping the website in Google Images.
+/// Remove all the AMP popovers, which are displayed at the bottom of the screen on Google Images results.
+///
+/// This seems to be officially called the "Google AMP Viewer"
+function removeAMPPopovers() {
+  const moreInfoAnchors = document.querySelectorAll(
+    "a[href='https://support.google.com/websearch/?p=AMP",
+  )
 
+  moreInfoAnchors.forEach((moreInfoAnchor) => {
+    const ampAnchor = moreInfoAnchor.previousElementSibling
+
+    if (ampAnchor === null || ampAnchor.nodeName !== "A") {
+      console.debug(
+        "Found an AMP support link not next to an anchor",
+        moreInfoAnchor,
+        ampAnchor,
+      )
+      return
+    }
+
+    const cWizElement = ampAnchor.closest("c-wiz")
+
+    if (cWizElement === null) {
+      console.debug("Couldn't find parent c-wiz element")
+      return
+    }
+
+    if (
+      cWizElement.children.item(0)?.getAttribute("role") !== "button" ||
+      cWizElement.children.item(0)?.ariaLabel?.includes("AMP") !== true
+    ) {
+      console.debug(
+        "c-wiz element doesn't contain AMP header as first child",
+        cWizElement,
+        cWizElement.children.item(0),
+      )
+      return
+    }
+
+    console.info("Removing AMP Popover", cWizElement.parentElement)
+    cWizElement.parentElement?.remove()
+  })
+}
+
+async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
   const ampContainer = document.querySelector("div[aria-label*='AMP']")
 
   if (ampContainer) {
@@ -71,6 +112,8 @@ async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
       }
     }
   }
+
+  // removeAMPPopovers()
 
   const ampAnchor = document.body.querySelectorAll("a[data-ved]")
   console.debug(`Found ${ampAnchor.length} AMP links`)
@@ -109,11 +152,9 @@ async function modifyAnchorIfRequired(
 
   interface AnchorAttributes {
     url: string
-    ampPopover: Element | null
   }
 
-  // The URL to redirect to – if found – and the element
-  // that contains the AMP popover (used in image searches)
+  // The URL to redirect to, if found.
   const attributes = ((): AnchorAttributes | null => {
     const ampCur = anchor.dataset.ampCur
 
@@ -121,47 +162,17 @@ async function modifyAnchorIfRequired(
       // data-amp-cur is available on News search results (not news.google)
       // and has the full canonical URL
       hasCanonicalURL = true
-      return { url: ampCur, ampPopover: null }
+      return { url: ampCur }
     }
 
     if (anchor.dataset.amp) {
-      return { url: anchor.dataset.amp, ampPopover: null }
+      return { url: anchor.dataset.amp }
     }
 
     if (anchor.dataset.cur) {
-      return { url: anchor.dataset.cur, ampPopover: null }
+      return { url: anchor.dataset.cur }
     } else {
-      // Check if this is an AMP result within an image search result
-      // This is a little fragile but seems to be the most efficient
-      // without replacing links that aren't to AMP pages.
-      //
-      // TODO: Check if it's possible to detect links on image search
-      // result pages. e.g. the Universe Today link on
-      // https://www.google.co.uk/search?q=eta+carinae&client=safari&hl=en-gb&prmd=nivx&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjBqdOumez1AhXoJEQIHS7UBWAQ_AUoAnoECAIQAg&biw=375&bih=635&dpr=3
-
-      // This is a div containing the links
-      const upperContainer = anchor.parentElement?.parentElement
-
-      if (!upperContainer) {
-        return null
-      }
-
-      if (!upperContainer.nextElementSibling) {
-        // Likely not an AMP link; the next sibling should be
-        // the element that displays the AMP page
-        return null
-      }
-
-      // Double check this is in fact an AMP link
-      if (
-        upperContainer.nextElementSibling.querySelector(
-          "div[aria-label*='AMP']",
-        ) === null
-      ) {
-        return null
-      }
-
-      return { url: anchor.href, ampPopover: upperContainer.nextElementSibling }
+      return null
     }
   })()
 
@@ -170,7 +181,7 @@ async function modifyAnchorIfRequired(
     return
   }
 
-  const { url: anchorURLString, ampPopover } = attributes
+  const { url: anchorURLString } = attributes
 
   let anchorURL: URL
 
@@ -184,6 +195,7 @@ async function modifyAnchorIfRequired(
   if (anchorURL.hostname === window.location.hostname) {
     // Do not override internal links, e.g. links to `"#"` used for anchors acting as buttons
     // `role="button"` could also be used but may exclude too many anchors
+    console.debug("Anchor URL is internal; not modifying")
     return
   }
 
@@ -225,7 +237,9 @@ async function modifyAnchorIfRequired(
     }
 
     return
-  } else if (modifiedAnchor) {
+  }
+
+  if (modifiedAnchor) {
     console.debug("Not modifying anchor; it has already been modified")
     return
   }
@@ -253,14 +267,9 @@ async function modifyAnchorIfRequired(
     originalHREF,
   }
 
-  if (ampIcon) {
+  if (ampIcon !== null) {
     modifiedAnchor.ampIconDisplay = ampIcon.style.display
     ampIcon.style.display = "none"
-  }
-
-  if (ampPopover) {
-    console.debug("Removing AMP popover", ampPopover)
-    ampPopover.remove()
   }
 
   anchorOnclickListeners[ved] = modifiedAnchor

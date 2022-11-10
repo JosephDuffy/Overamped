@@ -59,6 +59,7 @@ async function payloadHandler(
         if (typeof response === "object") {
           return response
         } else {
+          console.debug(response)
           throw "Invalid response from app"
         }
       }
