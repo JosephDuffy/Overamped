@@ -111,4 +111,14 @@ extension Persister {
             defaultValue: false
         )
     }
+
+    /// A `Persister` that stores whether the extension should only perform
+    /// redirections, disabling visual changes and link overriding.
+    public static var redirectOnly: Persister<Bool> {
+        Persister<Bool>(
+            key: "redirectOnly",
+            userDefaults: UserDefaults.groupSuite,
+            defaultValue: false
+        )
+    }
 }

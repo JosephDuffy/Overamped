@@ -22,6 +22,9 @@ struct SettingsView: View {
     @AppStorage("enabledAdvancedStatistics")
     private var enabledAdvancedStatistics = false
 
+    @PersistStorage(persister: .redirectOnly)
+    private var redirectOnly: Bool
+
     @SceneStorage("SettingsView.isShowingIgnoredHostnames")
     private var isShowingIgnoredHostnames = false
 
@@ -85,6 +88,13 @@ struct SettingsView: View {
 
                 ClearAdvancedStatisticsView()
                     .disabled(!hasCollectedAnyAdvancesStatistics)
+            }
+
+            Section(footer: Text("When Redirect Only is enabled Overamped will not perform any visual changes or override any search result links. This will increase the time required to redirect but can prevent issues caused by websites changing how they work.")) {
+                Toggle(
+                    isOn: $redirectOnly,
+                    label: { Text("Redirect Only") }
+                )
             }
 
             Section(footer: Text("Overamped will not redirect to the canonical version of websites it has been disabled on.")) {
