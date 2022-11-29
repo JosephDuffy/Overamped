@@ -1,24 +1,65 @@
-export default class NativeAppCommunicator {
-  ignoredHostnames(): Promise<string[]> {
-    return new Promise((resolve, reject) => {
-      browser.runtime
-        .sendMessage({
-          request: "ignoredHostnames",
-        })
-        .then((response) => {
-          console.debug("Loaded ignored hostnames list", response)
+import {
+  SettingsPayload,
+  objectIsSettingsPayload,
+  settingsPayloadHasIgnoredHostnamesSetting,
+  settingsPayloadHasRedirectOnlySetting,
+} from "./SettingsPayload"
 
-          if (response !== undefined && response["ignoredHostnames"] !== null) {
-            resolve(response["ignoredHostnames"])
-          } else {
-            resolve([])
-          }
-        })
-        .catch((error) => {
-          console.error("Failed to load ignoredHostnames setting", error)
-          reject(error)
-        })
+export default class NativeAppCommunicator {
+  async appSettings(): Promise<{
+    ignoredHostnames: string[]
+    redirectOnly: boolean
+  }> {
+    const response = await browser.runtime.sendMessage({
+      request: "settings",
+      payload: {
+        settings: ["redirectOnly", "ignoredHostnames"],
+      },
     })
+    console.debug("Loaded app settings", response)
+
+    if (!objectIsSettingsPayload(response)) {
+      throw "Malformed response to settings request"
+    }
+
+    if (!settingsPayloadHasRedirectOnlySetting(response)) {
+      throw "Invalid redirect only setting returned"
+    }
+
+    if (!settingsPayloadHasIgnoredHostnamesSetting(response)) {
+      throw "Invalid ignored hostnames setting returned"
+    }
+
+    return {
+      ignoredHostnames: response.settings.ignoredHostnames,
+      redirectOnly: response.settings.redirectOnly,
+    }
+  }
+
+  async ignoredHostnames(): Promise<string[]> {
+    const response = await browser.runtime.sendMessage({
+      request: "settings",
+      payload: {
+        settings: ["ignoredHostnames"],
+      },
+    })
+    console.debug("Loaded ignoredHostnames settings", response)
+
+    if (!objectIsSettingsPayload(response)) {
+      throw "Malformed response to settings request"
+    }
+
+    if (
+      !Object.prototype.hasOwnProperty.call(
+        response.settings,
+        "ignoredHostnames",
+      ) ||
+      !Array.isArray(response.settings.ignoredHostnames)
+    ) {
+      throw "Invalid ignored hostnames setting returned"
+    }
+
+    return response.settings.ignoredHostnames
   }
 
   /**
@@ -162,6 +203,13 @@ export default class NativeAppCommunicator {
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace browser.runtime {
+    function sendMessage(message: {
+      request: "settings"
+      payload: {
+        settings: ("redirectOnly" | "ignoredHostname")[]
+      }
+    }): Promise<SettingsPayload>
+
     function sendMessage(message: {
       request: "ignoredHostnames"
     }): Promise<{ ignoredHostnames: string[] }>

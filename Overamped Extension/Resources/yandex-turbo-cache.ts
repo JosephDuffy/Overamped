@@ -1,7 +1,8 @@
-import ExtensionApplicator from "./ExtensionApplicator"
 import openURL from "./openURL"
 
-function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
+export default function redirectYandexTurboCache(
+  ignoredHostnames: string[],
+): Promise<void> {
   const canonicalElement = document.head.querySelector(
     "link[rel~='canonical'][href]",
   ) as HTMLLinkElement | null
@@ -17,5 +18,3 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
 
   return Promise.resolve()
 }
-
-new ExtensionApplicator(document, redirectToCanonicalVersion, false)

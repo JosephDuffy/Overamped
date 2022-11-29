@@ -29,6 +29,9 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
     @Persisted(persister: .redirectedLinksCount)
     private var redirectedLinksCount: Int
 
+    @Persisted(persister: .redirectOnly)
+    private var redirectOnly: Bool
+
     @Persisted(persister: .postNotificationWhenRedirecting)
     private var postNotificationWhenRedirecting: Bool
 
@@ -67,6 +70,8 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         logger.debug("Received request: \(request, privacy: .public)")
 
         switch request {
+        case "settings":
+            response = responseToSettingsRequest(messageDictionary)
         case "ignoredHostnames":
             response = NSExtensionItem()
             response?.userInfo = [
@@ -183,6 +188,30 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
             logger.error("Unknown request \(request)")
             response = nil
         }
+    }
+
+    private func responseToSettingsRequest(_ request: [String: Any]) -> NSExtensionItem? {
+        guard let payload = request["payload"] as? [String: Any] else { return nil }
+        guard let requestedSettings = payload["settings"] as? [String] else { return nil }
+
+        let settings: [String: Any] = requestedSettings.reduce(into: [:]) { partialResult, key in
+            switch key {
+            case "redirectOnly":
+                partialResult[key] = redirectOnly
+            case "ignoredHostnames":
+                partialResult[key] = ignoredHostnames
+            default:
+                logger.error("Unknown setting requested: \(key)")
+            }
+        }
+
+        let response = NSExtensionItem()
+        response.userInfo = [
+            SFExtensionMessageKey: [
+                "settings": settings,
+            ]
+        ]
+        return response
     }
 
     private func postNotificationRequest(_ request: UNNotificationRequest) async {

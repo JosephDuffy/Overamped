@@ -1,8 +1,7 @@
 import deAMPURL from "./deAMPURL"
-import ExtensionApplicator from "./ExtensionApplicator"
 import openURL from "./openURL"
 
-async function redirectToCanonicalVersion(
+export default async function redirectGoogleAMPContent(
   ignoredHostnames: string[],
 ): Promise<void> {
   const canonicalAnchor: HTMLAnchorElement | null =
@@ -47,5 +46,3 @@ async function redirectToCanonicalVersion(
   }
   return Promise.resolve()
 }
-
-new ExtensionApplicator(document, redirectToCanonicalVersion, false)

@@ -15,21 +15,22 @@ export default class ExtensionApplicator {
 
   #ignoredHostnames?: string[]
 
-  #pendingPromise?: () => void
-
   #state: "idle" | { pending: () => Promise<unknown> } | "applying"
 
   constructor(
     document: Document,
     thunk: ExtensionApplierThunk,
     listedForDOMNodeInserted: boolean,
+    ignoredHostnames: string[],
   ) {
     this.#document = document
     this.#thunk = thunk
     this.#state = "idle"
     this.#nativeAppCommunicator = new NativeAppCommunicator()
 
-    this.loadIgnoredHostnames()
+    this.applyIgnoredHostnames(ignoredHostnames)
+    browser.storage.onChanged.addListener(this.localStorageChanged.bind(this))
+
     this.migrateIgnoredHostnames()
 
     if (listedForDOMNodeInserted) {
@@ -157,21 +158,6 @@ export default class ExtensionApplicator {
           this.checkState()
         })
     }
-  }
-
-  private loadIgnoredHostnames() {
-    this.#nativeAppCommunicator
-      .ignoredHostnames()
-      .then((ignoredHostnames) => {
-        console.debug("Loaded ignored hostnames list", ignoredHostnames)
-
-        this.applyIgnoredHostnames(ignoredHostnames)
-      })
-      .catch((error) => {
-        console.error("Failed to load ignoredHostnames setting", error)
-      })
-
-    browser.storage.onChanged.addListener(this.localStorageChanged.bind(this))
   }
 
   private localStorageChanged(

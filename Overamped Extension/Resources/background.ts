@@ -1,3 +1,4 @@
+// Add a listener for messages sent by the extension running in the context of the webpage (via content-script.ts).
 browser.runtime.onMessage.addListener(
   (
     // eslint-disable-next-line @typescript-eslint/ban-types
@@ -24,6 +25,9 @@ browser.runtime.onMessage.addListener(
   },
 )
 
+/**
+ * A function that handles payloads sent by the extension, which runs in the context of the webpage.
+ */
 async function payloadHandler(
   // eslint-disable-next-line @typescript-eslint/ban-types
   payload: object,

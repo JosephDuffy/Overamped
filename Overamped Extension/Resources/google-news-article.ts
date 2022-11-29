@@ -1,10 +1,9 @@
-import ExtensionApplicator from "./ExtensionApplicator"
 import "./Array+compactMap"
 import openURL from "./openURL"
 
-new ExtensionApplicator(document, overrideAMPArticles, true)
-
-function overrideAMPArticles(ignoredHostnames: string[]): Promise<void> {
+export default function overrideAMPArticles(
+  ignoredHostnames: string[],
+): Promise<void> {
   const ampArticles = Array.from(
     document.querySelectorAll("article"),
   ).compactMap((article): [HTMLElement, HTMLSpanElement | undefined] => {

@@ -1,10 +1,7 @@
 import deAMPURL from "./deAMPURL"
-import ExtensionApplicator from "./ExtensionApplicator"
 import NativeAppCommunicator from "./NativeAppCommunicator"
 import openURL from "./openURL"
 import "./Array+compactMap"
-
-new ExtensionApplicator(document, replaceAMPLinks, true)
 
 interface OverriddenAnchor {
   listener: (event: MouseEvent) => boolean
@@ -48,7 +45,9 @@ function findAMPLogoRelativeToAnchor(
   return null
 }
 
-async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
+export default async function replaceAMPLinks(
+  ignoredHostnames: string[],
+): Promise<void> {
   // Look for the AMP popover. This is a kind of catch-all for unknown or
   // hard-to-handle cases, e.g. tapping the website in Google Images.
 

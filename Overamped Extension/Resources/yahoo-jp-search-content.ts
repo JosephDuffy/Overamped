@@ -1,10 +1,7 @@
 import deAMPURL from "./deAMPURL"
-import ExtensionApplicator from "./ExtensionApplicator"
 import NativeAppCommunicator from "./NativeAppCommunicator"
 import openURL from "./openURL"
 import "./Array+compactMap"
-
-new ExtensionApplicator(document, replaceAMPLinks, true)
 
 interface OverriddenAnchor {
   listener: (event: MouseEvent) => boolean
@@ -29,7 +26,9 @@ function findAMPLogoRelativeToAnchor(
   return null
 }
 
-async function replaceAMPLinks(ignoredHostnames: string[]): Promise<void> {
+export default async function replaceYahooJPAMPLinks(
+  ignoredHostnames: string[],
+): Promise<void> {
   const ampAnchor = document.body.querySelectorAll("a[data-amp-cur]")
   console.debug(`Found ${ampAnchor.length} AMP links`)
 

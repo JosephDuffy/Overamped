@@ -1,24 +1,29 @@
-import ExtensionApplicator from "./ExtensionApplicator"
 import openURL from "./openURL"
 
-function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
-  const checkTokenElement = document.head.querySelector(
-    "meta[name='overamped-check-token'][content]",
-  ) as HTMLMetaElement | null
+export default function redirectInstallChecker(
+  ignoredHostnames: string[],
+): Promise<void> {
+  return new Promise((resolve) => {
+    const checkTokenElement = document.head.querySelector(
+      "meta[name='overamped-check-token'][content]",
+    ) as HTMLMetaElement | null
 
-  const checkToken = checkTokenElement?.content
+    const checkToken = checkTokenElement?.content
 
-  if (!checkToken) {
-    console.debug("Couldn't find overamped-check-token data attribute")
-    return Promise.resolve()
-  }
+    const pageURL = new URL(window.location.toString())
 
-  const redirectURL = new URL(window.location.toString())
-  redirectURL.searchParams.append("checkToken", checkToken)
+    if (!checkToken) {
+      // TODO: Read cookies, if `check-token` is not present but `checkToken` search parameter is redirect to url without search parameter
+      console.debug("Couldn't find overamped-check-token data attribute")
+      resolve()
+      return
+    }
 
-  openURL(redirectURL, ignoredHostnames, true, "Install Checker", "replace")
+    const redirectURL = pageURL
+    redirectURL.searchParams.append("checkToken", checkToken)
 
-  return Promise.resolve()
+    openURL(redirectURL, ignoredHostnames, true, "Install Checker", "replace")
+
+    resolve()
+  })
 }
-
-new ExtensionApplicator(document, redirectToCanonicalVersion, false)

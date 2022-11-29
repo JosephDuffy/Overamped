@@ -1,7 +1,8 @@
-import ExtensionApplicator from "./ExtensionApplicator"
 import openURL from "./openURL"
 
-function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
+export default function redirectToCanonicalVersion(
+  ignoredHostnames: string[],
+): Promise<void> {
   const documentAttributes = document.documentElement.attributes
 
   if (
@@ -36,5 +37,3 @@ function redirectToCanonicalVersion(ignoredHostnames: string[]): Promise<void> {
 
   return Promise.resolve()
 }
-
-new ExtensionApplicator(document, redirectToCanonicalVersion, false)

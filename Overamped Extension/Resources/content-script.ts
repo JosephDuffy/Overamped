@@ -9,41 +9,98 @@
  */
 
 import pageTypeForURL, { PageType } from "./pageTypeForURL"
+import ExtensionApplicator from "./ExtensionApplicator"
+import NativeAppCommunicator from "./NativeAppCommunicator"
+import redirectToCanonicalVersion from "./generic-amp-content"
+import overrideAMPArticles from "./google-news-article"
+import redirectGoogleAMPContent from "./google-amp-content"
+import replaceYahooJPAMPLinks from "./yahoo-jp-search-content"
+import redirectYandexTurboCache from "./yandex-turbo-cache"
+import redirectInstallChecker from "./install-checker"
+;(async () => {
+  const pageURL = new URL(location.toString())
 
-const pageURL = new URL(location.toString())
+  console.debug(`Webpage hostname: ${pageURL.hostname}`)
 
-console.debug(`Webpage hostname: ${pageURL.hostname}`)
+  const pageType = pageTypeForURL(pageURL)
 
-const pageType = pageTypeForURL(pageURL)
+  if (pageType == PageType.InstallChecker) {
+    new ExtensionApplicator(document, redirectInstallChecker, false, [])
+    return
+  }
 
-switch (pageType) {
-  case PageType.GoogleNews:
-    console.debug("Loading Google News Article handler")
-    import("./google-news-article")
-    break
-  case PageType.GoogleSearch:
-    console.debug("Loading Google Search handler")
-    import("./google-search-content")
-    break
-  case PageType.GoogleAMPCache:
-    console.debug("Loading Google AMP Content handler")
-    import("./google-amp-content")
-    break
-  case PageType.YahooJAPANSearch:
-    console.debug("Loading Yahoo JAPAN! Search handler")
-    import("./yahoo-jp-search-content")
-    break
-  case PageType.YandexTurboCache:
-    console.debug("Loading Yandex Turbo Cache handler")
-    import("./yandex-turbo-cache")
-    break
-  case PageType.InstallChecker:
-    console.debug("Loading Install Checker handler")
-    import("./install-checker")
-    break
-  case PageType.Unknown:
-    // Fallback to try redirecting this page is it's an AMP page
-    console.debug("Loading Generic AMP handler")
-    import("./generic-amp-content")
-    break
-}
+  const nativeAppCommunicator = new NativeAppCommunicator()
+  const appSettings = await nativeAppCommunicator.appSettings()
+
+  if (appSettings.redirectOnly) {
+    console.debug("User has requested to only use generic AMP handler")
+    new ExtensionApplicator(
+      document,
+      redirectToCanonicalVersion,
+      false,
+      appSettings.ignoredHostnames,
+    )
+    return
+  }
+
+  switch (pageType) {
+    case PageType.GoogleNews:
+      console.debug("Loading Google News Article handler")
+      new ExtensionApplicator(
+        document,
+        overrideAMPArticles,
+        true,
+        appSettings.ignoredHostnames,
+      )
+      break
+    case PageType.GoogleSearch:
+      console.debug(
+        "Not loading Google Search handler due to bug with handling Google Images; loading generic AMP hander",
+      )
+      // import("./google-search-content")
+      new ExtensionApplicator(
+        document,
+        redirectToCanonicalVersion,
+        false,
+        appSettings.ignoredHostnames,
+      )
+      break
+    case PageType.GoogleAMPCache:
+      console.debug("Loading Google AMP Content handler")
+      new ExtensionApplicator(
+        document,
+        redirectGoogleAMPContent,
+        false,
+        appSettings.ignoredHostnames,
+      )
+      break
+    case PageType.YahooJAPANSearch:
+      console.debug("Loading Yahoo JAPAN! Search handler")
+      new ExtensionApplicator(
+        document,
+        replaceYahooJPAMPLinks,
+        true,
+        appSettings.ignoredHostnames,
+      )
+      break
+    case PageType.YandexTurboCache:
+      console.debug("Loading Yandex Turbo Cache handler")
+      new ExtensionApplicator(
+        document,
+        redirectYandexTurboCache,
+        false,
+        appSettings.ignoredHostnames,
+      )
+      break
+    case PageType.Unknown:
+      // Fallback to try redirecting this page if it's an AMP page
+      console.debug("Falling back to generic AMP handler")
+      new ExtensionApplicator(
+        document,
+        redirectToCanonicalVersion,
+        false,
+        appSettings.ignoredHostnames,
+      )
+      break
+  }
+})()
