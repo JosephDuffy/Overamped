@@ -1,5 +1,5 @@
 import deAMPURL from "./deAMPURL"
-import NativeAppCommunicator from "./NativeAppCommunicator"
+import NativeAppCommunicator from "overamped-shared/NativeAppCommunicator"
 import openURL from "./openURL"
 import "./Array+compactMap"
 

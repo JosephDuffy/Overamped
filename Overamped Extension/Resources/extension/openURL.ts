@@ -1,4 +1,4 @@
-import NativeAppCommunicator from "./NativeAppCommunicator"
+import NativeAppCommunicator from "overamped-shared/NativeAppCommunicator"
 
 export default function openURL(
   url: URL,

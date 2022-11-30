@@ -1,6 +1,6 @@
 <script lang="ts">
   import Popup from "./Popup.svelte"
-  import NativeAppCommunicator from "../../NativeAppCommunicator"
+  import NativeAppCommunicator from "overamped-shared/NativeAppCommunicator"
   import { dataIsGoogleTabData } from "./TabData"
   import type { GoogleTabData, TabData } from "./TabData"
   import FeedbackButton from "./FeedbackButton.svelte"
@@ -10,6 +10,7 @@
   const tabData = loadTabData()
 
   async function loadTabData(): Promise<TabData | GoogleTabData> {
+    console.debug("Loading tab data")
     const ignoredHostnamesPromise =
       new NativeAppCommunicator().ignoredHostnames()
     const currentTabPromise = browser.tabs.getCurrent()

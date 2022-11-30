@@ -10,7 +10,7 @@
 
 import pageTypeForURL, { PageType } from "./pageTypeForURL"
 import ExtensionApplicator from "./ExtensionApplicator"
-import NativeAppCommunicator from "./NativeAppCommunicator"
+import NativeAppCommunicator from "overamped-shared/NativeAppCommunicator"
 import redirectToCanonicalVersion from "./generic-amp-content"
 import overrideAMPArticles from "./google-news-article"
 import redirectGoogleAMPContent from "./google-amp-content"

@@ -1,28 +1,28 @@
 <script lang="ts">
-  import type { TabData } from "./TabData"
-  import NativeAppCommunicator from "../../NativeAppCommunicator"
+  import type { TabData } from "./TabData";
+  import NativeAppCommunicator from "overamped-shared/NativeAppCommunicator";
 
   export let tabData: TabData & {
-    currentTab: { url: string }
-  }
-  export const currentTabURL = new URL(tabData.currentTab.url)
+    currentTab: { url: string };
+  };
+  export const currentTabURL = new URL(tabData.currentTab.url);
   $: isDisabledOnCurrentDomain = tabData.ignoredHostnames.includes(
-    currentTabURL.hostname,
-  )
+    currentTabURL.hostname
+  );
 
-  const nativeAppCommunicator = new NativeAppCommunicator()
+  const nativeAppCommunicator = new NativeAppCommunicator();
 
   export function disableOverampedOnCurrentDomain() {
     nativeAppCommunicator
       .ignoreHostname(currentTabURL.hostname)
       .then((ignoredHostnames) => {
-        console.info(`${currentTabURL.hostname} has been added to ignore list`)
+        console.info(`${currentTabURL.hostname} has been added to ignore list`);
 
-        tabData.ignoredHostnames = ignoredHostnames
+        tabData.ignoredHostnames = ignoredHostnames;
       })
       .catch((error) => {
-        console.error("Failed to save settings", error)
-      })
+        console.error("Failed to save settings", error);
+      });
   }
 
   export function enableOverampedOnCurrentDomain() {
@@ -30,14 +30,14 @@
       .removeIgnoredHostname(currentTabURL.hostname)
       .then((ignoredHostnames) => {
         console.info(
-          `${currentTabURL.hostname} has been removed from ignore list`,
-        )
+          `${currentTabURL.hostname} has been removed from ignore list`
+        );
 
-        tabData.ignoredHostnames = ignoredHostnames
+        tabData.ignoredHostnames = ignoredHostnames;
       })
       .catch((error) => {
-        console.error("Failed to save settings", error)
-      })
+        console.error("Failed to save settings", error);
+      });
   }
 </script>
 
@@ -67,8 +67,8 @@
         id="canonicalAnchor"
         href={tabData.canonicalURL}
         on:click={(event) => {
-          window.open(event.currentTarget.href)
-          return false
+          window.open(event.currentTarget.href);
+          return false;
         }}>open the canonical version of this website</a
       >.
     </p>

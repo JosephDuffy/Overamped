@@ -1,48 +1,53 @@
 {
   "manifest_version": 2,
   "default_locale": "en",
-
   "name": "__MSG_extension_name__",
   "description": "__MSG_extension_description__",
   "version": "1.0",
-
   "icons": {
-    "48": "images/App-Icon-Rounded-Inset-48.png",
-    "96": "images/App-Icon-Rounded-Inset-96.png",
-    "128": "images/App-Icon-Rounded-Inset-128.png",
-    "256": "images/App-Icon-Rounded-Inset-256.png",
-    "512": "images/App-Icon-Rounded-Inset-512.png"
+    "48": "static/images/App-Icon-Rounded-Inset-48.png",
+    "96": "static/images/App-Icon-Rounded-Inset-96.png",
+    "128": "static/images/App-Icon-Rounded-Inset-128.png",
+    "256": "static/images/App-Icon-Rounded-Inset-256.png",
+    "512": "static/images/App-Icon-Rounded-Inset-512.png"
   },
-
-  "permissions": ["nativeMessaging", "activeTab", "storage"],
-
+  "permissions": [
+    "nativeMessaging",
+    "activeTab",
+    "storage"
+  ],
+  "content_security_policy": "default-src 'self' 'unsafe-inline'",
   "browser_action": {
     "default_icon": {
-      "19": "images/toolbar-icon-19.png",
-      "24": "images/toolbar-icon-24.png",
-      "38": "images/toolbar-icon-38.png",
-      "48": "images/toolbar-icon-48.png",
-      "57": "images/toolbar-icon-57.png",
-      "72": "images/toolbar-icon-72.png"
+      "19": "static/images/toolbar-icon-19.png",
+      "24": "static/images/toolbar-icon-24.png",
+      "38": "static/images/toolbar-icon-38.png",
+      "48": "static/images/toolbar-icon-48.png",
+      "57": "static/images/toolbar-icon-57.png",
+      "72": "static/images/toolbar-icon-72.png"
     },
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/build/index.html"
   },
-
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "extension/build/background.js"
+    ],
     "persistent": false
   },
-
   "options_ui": {
-    "page": "options.html",
+    "page": "static/options.html",
     "open_in_tab": true
   },
-
   "content_scripts": [
     {
-      "js": ["content-script.js"],
+      "js": [
+        "extension/build/content-script.js"
+      ],
       "run_at": "document_start",
-      "matches": ["http://*/*", "https://*/*"]
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
     }
   ]
 }

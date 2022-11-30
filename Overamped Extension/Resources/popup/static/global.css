@@ -1,0 +1,42 @@
+:root {
+    color-scheme: light dark;
+    font: -apple-system-body;
+    font-family: system-ui;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 290px;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    padding: 1em 0.5em;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+button {
+    font: -apple-system-body;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#toggleAllowListButtonExplanation {
+    font: -apple-system-footnote;
+    margin-block-start: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+    /* Dark Mode styles go here. */
+}

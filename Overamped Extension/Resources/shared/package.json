@@ -1,0 +1,7 @@
+{
+    "name": "overamped-shared",
+    "version": "1.0.0",
+    "dependencies": {
+        "typescript": "^4.9.3"
+    }
+}
