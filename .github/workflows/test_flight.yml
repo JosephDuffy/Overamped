@@ -9,13 +9,13 @@ on:
 jobs:
   upload:
     name: Upload to App Store Connect
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Xcode 13.1
-        run: sudo xcode-select --switch /Applications/Xcode_13.1.app
+      - name: Use Xcode 14.1
+        run: sudo xcode-select --switch /Applications/Xcode_14.1.app
 
       - name: Install Ruby and fastlane
         uses: ruby/setup-ruby@v1
