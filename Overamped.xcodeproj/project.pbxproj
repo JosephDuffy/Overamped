@@ -138,7 +138,7 @@
 		D990D8102937CC1E005ADCE5 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = Resources/extension/build; sourceTree = "<group>"; };
 		D990D8112937CC1E005ADCE5 /* global.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = global.css; path = Resources/extension/global.css; sourceTree = "<group>"; };
 		D990D8122937CC1E005ADCE5 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = Resources/extension/manifest.json; sourceTree = "<group>"; };
-		D990D81929380773005ADCE5 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = Resources/build/_locales; sourceTree = "<group>"; };
+		D990D81929380773005ADCE5 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = Resources/extension/_locales; sourceTree = "<group>"; };
 		D994C63726A13682000649AA /* TipJarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarStore.swift; sourceTree = "<group>"; };
 		D994C63926A143F8000649AA /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		D994C63A26A1EF9A000649AA /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
