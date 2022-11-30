@@ -1,4 +1,5 @@
 import openURL from "./openURL"
+import Cookies from "universal-cookie"
 
 export default function redirectInstallChecker(
   ignoredHostnames: string[],
@@ -13,7 +14,25 @@ export default function redirectInstallChecker(
     const pageURL = new URL(window.location.toString())
 
     if (!checkToken) {
-      // TODO: Read cookies, if `check-token` is not present but `checkToken` search parameter is redirect to url without search parameter
+      const checkTokenSearchParam = pageURL.searchParams.get("checkToken")
+
+      if (checkTokenSearchParam !== null) {
+        const cookies = new Cookies()
+        const checkTokenCookie = cookies.get("check-token")
+        if (checkTokenCookie === undefined) {
+          // We're on the final page, which is usually redirected to below, but the user has refreshed
+          // the page so the cookie is no longer available. Redirecting back to the start page will trigger
+          // a fresh install check.
+          const redirectURL = pageURL
+          redirectURL.searchParams.delete("checkToken")
+
+          window.location.replace(redirectURL.toString())
+
+          resolve()
+          return
+        }
+      }
+
       console.debug("Couldn't find overamped-check-token data attribute")
       resolve()
       return
