@@ -1,2 +1,8 @@
-- Fixed an issue that can occur on newer versions of Safari on Google Images
-- Improved layout of popover on larger screens
+• Custom handling of Google Images has been removed to workaround an issues caused by a change in the website.
+  ◦ I am working on adding support for this back in the future.
+• A new option has been added called "Redirect Only". This can be enabled if Overamped ever causes issues with websites in the future.
+• Overamped will now re-check the installation when refreshing the results of the Install Checker.
+
+Thank you for using Overamped, it's great knowing that I'm able to help people avoid AMP!
+
+If you've found Overamped helped a rating in the App Store is greatly appreciated. A glowing review is even better!
