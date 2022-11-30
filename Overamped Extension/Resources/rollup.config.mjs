@@ -1,7 +1,7 @@
 import svelte from "rollup-plugin-svelte"
 import commonjs from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
-import { terser } from "rollup-plugin-terser"
+import terser from "@rollup/plugin-terser"
 import css from "rollup-plugin-css-only"
 import sveltePreprocess from "svelte-preprocess"
 import typescript from "@rollup/plugin-typescript"
@@ -41,7 +41,7 @@ export default {
     sourcemap: true,
     format: "iife",
     name: "app",
-    file: "popup/public/build/bundle.js",
+    file: "extension/build/popup/bundle.js",
   },
   plugins: [
     svelte({
@@ -53,7 +53,7 @@ export default {
     }),
     // we'll extract any component CSS out into
     // a separate file - better for performance
-    css({ output: "popup/public/build/bundle.css" }),
+    css({ output: "bundle.css" }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
@@ -66,6 +66,7 @@ export default {
     }),
     commonjs(),
     typescript({
+      tsconfig: "popup/tsconfig.json",
       sourceMap: !production,
       inlineSources: !production,
       module: "esnext",

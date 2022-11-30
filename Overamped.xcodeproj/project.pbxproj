@@ -10,7 +10,6 @@
 		D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C26E26A92C8700CE8AC6 /* SurveyView.swift */; };
 		D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */; };
 		D945BC1326F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D945BC1226F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift */; };
-		D94E168826B4D7A300294B9D /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = D94E168626B4D6B900294B9D /* options.html */; };
 		D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E168F26B5F66D00294B9D /* SettingsView.swift */; };
 		D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */; };
 		D95A92A4271C469400B8FA79 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95A92A3271C469400B8FA79 /* WidgetKit.framework */; };
@@ -22,14 +21,17 @@
 		D95A92B7271C46F100B8FA79 /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D95A92B6271C46F100B8FA79 /* Persist */; };
 		D95A92B9271C470100B8FA79 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D95A92B8271C470100B8FA79 /* OverampedCore */; };
 		D95A92BC271C5DC000B8FA79 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D95A92BA271C5DA500B8FA79 /* Localizable.stringsdict */; };
-		D963DAEE26BDBFC300AFCDC8 /* popup.html in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DACF26BDBDA000AFCDC8 /* popup.html */; };
-		D963DAEF26BDBFC300AFCDC8 /* global.css in Copy Popup Root */ = {isa = PBXBuildFile; fileRef = D963DAD026BDBDA000AFCDC8 /* global.css */; };
-		D963DAF126BDBFCE00AFCDC8 /* bundle.js in Copy Popup Build */ = {isa = PBXBuildFile; fileRef = D963DAD526BDBDA000AFCDC8 /* bundle.js */; };
 		D963DAF426BF5C3800AFCDC8 /* Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */; };
 		D96BF7DA26B3C6FE00E6EBE9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D96BF7DC26B3C6FE00E6EBE9 /* Localizable.stringsdict */; };
 		D96BF7DE26B3CA2900E6EBE9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */; };
 		D96BF7E026B3CD5E00E6EBE9 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */; };
 		D984BB9B26A8F54200500856 /* IgnoredHostnamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984BB9A26A8F54200500856 /* IgnoredHostnamesView.swift */; };
+		D990D8132937CC1E005ADCE5 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = D990D80D2937CC1E005ADCE5 /* popup.html */; };
+		D990D8142937CC1E005ADCE5 /* images in Resources */ = {isa = PBXBuildFile; fileRef = D990D80E2937CC1E005ADCE5 /* images */; };
+		D990D8152937CC1E005ADCE5 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = D990D80F2937CC1E005ADCE5 /* options.html */; };
+		D990D8162937CC1E005ADCE5 /* build in Resources */ = {isa = PBXBuildFile; fileRef = D990D8102937CC1E005ADCE5 /* build */; };
+		D990D8172937CC1E005ADCE5 /* global.css in Resources */ = {isa = PBXBuildFile; fileRef = D990D8112937CC1E005ADCE5 /* global.css */; };
+		D990D8182937CC1E005ADCE5 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = D990D8122937CC1E005ADCE5 /* manifest.json */; };
 		D994C63826A13682000649AA /* TipJarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C63726A13682000649AA /* TipJarStore.swift */; };
 		D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C63A26A1EF9A000649AA /* TipJarView.swift */; };
 		D994C64126A26C6E000649AA /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D994C64026A26C6E000649AA /* OverampedCore */; };
@@ -39,7 +41,6 @@
 		D9A2FA1626D99813007F9F9E /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A2FA1526D99813007F9F9E /* SnapshotHelper.swift */; };
 		D9A2FA1826D99A09007F9F9E /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D9A2FA1726D99A09007F9F9E /* Persist */; };
 		D9A2FA1A26D99A0C007F9F9E /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9A2FA1926D99A0C007F9F9E /* OverampedCore */; };
-		D9A86AA82754355E0053652F /* content-script.js in Resources */ = {isa = PBXBuildFile; fileRef = D9A86AA72754355E0053652F /* content-script.js */; };
 		D9A90D042708A5A400183C48 /* EventsLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A90D032708A5A400183C48 /* EventsLogView.swift */; };
 		D9A9141026C7809C00C34C30 /* TipOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9140F26C7809C00C34C30 /* TipOptionView.swift */; };
 		D9A9141826C8A59500C34C30 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9141726C8A59400C34C30 /* FAQView.swift */; };
@@ -48,7 +49,6 @@
 		D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C04269A62D800D225F8 /* OverampedApp.swift */; };
 		D9AB8C07269A7F7C00D225F8 /* InstallationInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C06269A7F7C00D225F8 /* InstallationInstructionsView.swift */; };
 		D9AB8C09269A895500D225F8 /* OverampedTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB8C08269A895500D225F8 /* OverampedTabs.swift */; };
-		D9B8EC0326A29F2800C1243E /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = D9B8EC0226A29F2800C1243E /* background.js */; };
 		D9B8EC0626A3E42E00C1243E /* Persist in Frameworks */ = {isa = PBXBuildFile; productRef = D9B8EC0526A3E42E00C1243E /* Persist */; };
 		D9B9D5912698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */; };
 		D9CAB14826ED23E4004A1CCD /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CAB14726ED23E4004A1CCD /* QuestionView.swift */; };
@@ -61,9 +61,6 @@
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
 		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
-		D9FF5B8F268142B90027BD81 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B8E268142B90027BD81 /* _locales */; };
-		D9FF5B91268142B90027BD81 /* images in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B90268142B90027BD81 /* images */; };
-		D9FF5B93268142B90027BD81 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B92268142B90027BD81 /* manifest.json */; };
 		D9FF5B9F268142B90027BD81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B80268142B90027BD81 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -101,29 +98,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D963DAE426BDBEB300AFCDC8 /* Copy Popup Root */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = popup;
-			dstSubfolderSpec = 1;
-			files = (
-				D963DAEE26BDBFC300AFCDC8 /* popup.html in Copy Popup Root */,
-				D963DAEF26BDBFC300AFCDC8 /* global.css in Copy Popup Root */,
-			);
-			name = "Copy Popup Root";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D963DAEA26BDBEF700AFCDC8 /* Copy Popup Build */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = popup/build;
-			dstSubfolderSpec = 1;
-			files = (
-				D963DAF126BDBFCE00AFCDC8 /* bundle.js in Copy Popup Build */,
-			);
-			name = "Copy Popup Build";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9FF5BA5268142B90027BD81 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,7 +115,6 @@
 		D939C26E26A92C8700CE8AC6 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPricesProvider.swift; sourceTree = "<group>"; };
 		D945BC1226F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBasicStatisticsView.swift; sourceTree = "<group>"; };
-		D94E168626B4D6B900294B9D /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
 		D94E168F26B5F66D00294B9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedStatisticsView.swift; sourceTree = "<group>"; };
 		D95A92A2271C469400B8FA79 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,20 +126,17 @@
 		D95A92AD271C469700B8FA79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D95A92BB271C5DA500B8FA79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D95A92BD271C62E800B8FA79 /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
-		D963DACC26BDBDA000AFCDC8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D963DACF26BDBDA000AFCDC8 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
-		D963DAD026BDBDA000AFCDC8 /* global.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = global.css; sourceTree = "<group>"; };
-		D963DAD526BDBDA000AFCDC8 /* bundle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bundle.js; sourceTree = "<group>"; };
-		D963DAD626BDBDA000AFCDC8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D963DAD926BDBDA000AFCDC8 /* tsconfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tsconfig.json; sourceTree = "<group>"; };
-		D963DADD26BDBDA000AFCDC8 /* main.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.ts; sourceTree = "<group>"; };
-		D963DADE26BDBDA000AFCDC8 /* App.svelte */ = {isa = PBXFileReference; lastKnownFileType = text; path = App.svelte; sourceTree = "<group>"; };
-		D963DADF26BDBDA000AFCDC8 /* global.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = global.d.ts; sourceTree = "<group>"; };
 		D963DAF326BF5C3800AFCDC8 /* Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgements.swift; sourceTree = "<group>"; };
 		D96BF7DB26B3C6FE00E6EBE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D96BF7DD26B3CA2800E6EBE9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		D96BF7DF26B3CD5E00E6EBE9 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		D984BB9A26A8F54200500856 /* IgnoredHostnamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredHostnamesView.swift; sourceTree = "<group>"; };
+		D990D80D2937CC1E005ADCE5 /* popup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = popup.html; path = Resources/extension/popup.html; sourceTree = "<group>"; };
+		D990D80E2937CC1E005ADCE5 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = Resources/extension/images; sourceTree = "<group>"; };
+		D990D80F2937CC1E005ADCE5 /* options.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = options.html; path = Resources/extension/options.html; sourceTree = "<group>"; };
+		D990D8102937CC1E005ADCE5 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = Resources/extension/build; sourceTree = "<group>"; };
+		D990D8112937CC1E005ADCE5 /* global.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = global.css; path = Resources/extension/global.css; sourceTree = "<group>"; };
+		D990D8122937CC1E005ADCE5 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = Resources/extension/manifest.json; sourceTree = "<group>"; };
 		D994C63726A13682000649AA /* TipJarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarStore.swift; sourceTree = "<group>"; };
 		D994C63926A143F8000649AA /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		D994C63A26A1EF9A000649AA /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
@@ -175,7 +145,6 @@
 		D9A2FA0826D997A5007F9F9E /* Overamped Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Screenshots.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A2FA0A26D997A5007F9F9E /* Overamped_Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Screenshots.swift; sourceTree = "<group>"; };
 		D9A2FA1526D99813007F9F9E /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		D9A86AA72754355E0053652F /* content-script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "content-script.js"; sourceTree = "<group>"; };
 		D9A90D032708A5A400183C48 /* EventsLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLogView.swift; sourceTree = "<group>"; };
 		D9A9140F26C7809C00C34C30 /* TipOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipOptionView.swift; sourceTree = "<group>"; };
 		D9A9141726C8A59400C34C30 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
@@ -186,7 +155,6 @@
 		D9AB8C08269A895500D225F8 /* OverampedTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverampedTabs.swift; sourceTree = "<group>"; };
 		D9AB8C0A269A8A7C00D225F8 /* Overamped.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Overamped.entitlements; sourceTree = "<group>"; };
 		D9B8EBFF26A29DB300C1243E /* Overamped Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Overamped Extension.entitlements"; sourceTree = "<group>"; };
-		D9B8EC0226A29F2800C1243E /* background.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
 		D9B9D58E2698B1F500F7D361 /* Overamped Extension UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overamped Extension UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B9D5902698B1F600F7D361 /* Overamped_Extension_UI_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overamped_Extension_UI_Tests.swift; sourceTree = "<group>"; };
 		D9CAB14726ED23E4004A1CCD /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
@@ -201,9 +169,6 @@
 		D9FF5B81268142B90027BD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9FF5B86268142B90027BD81 /* Overamped Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Overamped Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
-		D9FF5B8E268142B90027BD81 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
-		D9FF5B90268142B90027BD81 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
-		D9FF5B92268142B90027BD81 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		D9FF5B9E268142B90027BD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,44 +234,17 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
-		D963D38126BDBD9D00AFCDC8 /* popup */ = {
+		D990D8002937C2F3005ADCE5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D963DACC26BDBDA000AFCDC8 /* README.md */,
-				D963DACE26BDBDA000AFCDC8 /* public */,
-				D963DAD626BDBDA000AFCDC8 /* .gitignore */,
-				D963DAD926BDBDA000AFCDC8 /* tsconfig.json */,
-				D963DADC26BDBDA000AFCDC8 /* src */,
+				D990D8102937CC1E005ADCE5 /* build */,
+				D990D8112937CC1E005ADCE5 /* global.css */,
+				D990D80E2937CC1E005ADCE5 /* images */,
+				D990D8122937CC1E005ADCE5 /* manifest.json */,
+				D990D80F2937CC1E005ADCE5 /* options.html */,
+				D990D80D2937CC1E005ADCE5 /* popup.html */,
 			);
-			path = popup;
-			sourceTree = "<group>";
-		};
-		D963DACE26BDBDA000AFCDC8 /* public */ = {
-			isa = PBXGroup;
-			children = (
-				D963DACF26BDBDA000AFCDC8 /* popup.html */,
-				D963DAD026BDBDA000AFCDC8 /* global.css */,
-				D963DAD226BDBDA000AFCDC8 /* build */,
-			);
-			path = public;
-			sourceTree = "<group>";
-		};
-		D963DAD226BDBDA000AFCDC8 /* build */ = {
-			isa = PBXGroup;
-			children = (
-				D963DAD526BDBDA000AFCDC8 /* bundle.js */,
-			);
-			path = build;
-			sourceTree = "<group>";
-		};
-		D963DADC26BDBDA000AFCDC8 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				D963DADD26BDBDA000AFCDC8 /* main.ts */,
-				D963DADE26BDBDA000AFCDC8 /* App.svelte */,
-				D963DADF26BDBDA000AFCDC8 /* global.d.ts */,
-			);
-			path = src;
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		D994C63F26A26C6E000649AA /* Frameworks */ = {
@@ -451,26 +389,12 @@
 		D9FF5B8A268142B90027BD81 /* Overamped Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D9B8EBFF26A29DB300C1243E /* Overamped Extension.entitlements */,
 				D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */,
+				D990D8002937C2F3005ADCE5 /* Extension */,
+				D9B8EBFF26A29DB300C1243E /* Overamped Extension.entitlements */,
 				D9FF5B9E268142B90027BD81 /* Info.plist */,
-				D9FF5B8D268142B90027BD81 /* Resources */,
 			);
 			path = "Overamped Extension";
-			sourceTree = "<group>";
-		};
-		D9FF5B8D268142B90027BD81 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D9FF5B8E268142B90027BD81 /* _locales */,
-				D9FF5B90268142B90027BD81 /* images */,
-				D963D38126BDBD9D00AFCDC8 /* popup */,
-				D9FF5B92268142B90027BD81 /* manifest.json */,
-				D94E168626B4D6B900294B9D /* options.html */,
-				D9A86AA72754355E0053652F /* content-script.js */,
-				D9B8EC0226A29F2800C1243E /* background.js */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -565,12 +489,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9FF5BA2268142B90027BD81 /* Build configuration list for PBXNativeTarget "Overamped Extension" */;
 			buildPhases = (
+				D990D7FD2937C005005ADCE5 /* npm ci */,
 				D993C5612684AFDE002A84E6 /* Build JS */,
 				D9FF5B82268142B90027BD81 /* Sources */,
 				D9FF5B83268142B90027BD81 /* Frameworks */,
 				D9FF5B84268142B90027BD81 /* Resources */,
-				D963DAE426BDBEB300AFCDC8 /* Copy Popup Root */,
-				D963DAEA26BDBEF700AFCDC8 /* Copy Popup Build */,
 			);
 			buildRules = (
 			);
@@ -678,18 +601,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D94E168826B4D7A300294B9D /* options.html in Resources */,
-				D9B8EC0326A29F2800C1243E /* background.js in Resources */,
-				D9FF5B91268142B90027BD81 /* images in Resources */,
-				D9FF5B93268142B90027BD81 /* manifest.json in Resources */,
-				D9FF5B8F268142B90027BD81 /* _locales in Resources */,
-				D9A86AA82754355E0053652F /* content-script.js in Resources */,
+				D990D8142937CC1E005ADCE5 /* images in Resources */,
+				D990D8162937CC1E005ADCE5 /* build in Resources */,
+				D990D8172937CC1E005ADCE5 /* global.css in Resources */,
+				D990D8132937CC1E005ADCE5 /* popup.html in Resources */,
+				D990D8182937CC1E005ADCE5 /* manifest.json in Resources */,
+				D990D8152937CC1E005ADCE5 /* options.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		D990D7FD2937C005005ADCE5 /* npm ci */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Overamped Extension/Resources/package-lock.json",
+			);
+			name = "npm ci";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Overamped Extension/Resources/node_modules",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nif [ -f ~/.profile ]; then\n    source ~/.profile\nfi\n\nif [ \"${CI}\" != \"true\" ]; then\n  eval \"$(nodenv init -)\"\nfi\n\necho $(date)\ncd \"Overamped Extension/Resources\"\nnpm ci\n";
+		};
 		D993C5612684AFDE002A84E6 /* Build JS */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -699,15 +642,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Overamped Extension/Resources",
 			);
 			name = "Build JS";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(SRCROOT)/Overamped Extension/Resources/extension",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nif [ -f ~/.profile ]; then\n    source ~/.profile\nfi\n\nif [ \"${CI}\" != \"true\" ]; then\n  eval \"$(nodenv init -)\"\nfi\n\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nif [ -f ~/.profile ]; then\n    source ~/.profile\nfi\n\nif [ \"${CI}\" != \"true\" ]; then\n  eval \"$(nodenv init -)\"\nfi\n\necho $(date)\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

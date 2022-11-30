@@ -10,6 +10,8 @@
   const tabData = loadTabData()
 
   async function loadTabData(): Promise<TabData | GoogleTabData> {
+    console.debug("Loading tab data")
+
     const ignoredHostnamesPromise =
       new NativeAppCommunicator().ignoredHostnames()
     const currentTabPromise = browser.tabs.getCurrent()

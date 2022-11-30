@@ -1,5 +1,5 @@
 import {
-  SettingsPayload,
+  type SettingsPayload,
   objectIsSettingsPayload,
   settingsPayloadHasIgnoredHostnamesSetting,
   settingsPayloadHasRedirectOnlySetting,

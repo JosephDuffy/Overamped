@@ -1,6 +1,5 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
-
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../NativeAppCommunicator.ts"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
 }
