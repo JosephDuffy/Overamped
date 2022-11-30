@@ -23,15 +23,10 @@ jobs:
           # Version is read from .ruby-version
           bundler-cache: true
 
-      - name: Read .node-version
-        working-directory: ./Overamped Extension/Resources
-        run: echo "##[set-output name=node-version;]$(cat '.node-version')"
-        id: node-version
-
       - name: Install node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "${{ steps.node-version.outputs.node-version }}"
+          node-version-file: "./Overamped Extension/Resources/.node-version"
 
       - run: bundle exec fastlane submit_beta
         env:
