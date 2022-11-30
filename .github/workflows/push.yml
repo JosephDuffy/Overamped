@@ -32,9 +32,6 @@ jobs:
         with:
           node-version: "${{ steps.node-version.outputs.node-version }}"
 
-      - run: npm install
-        working-directory: ./Overamped Extension/Resources
-
       - name: Download certs
         run: bundle exec fastlane download_certs
         env:

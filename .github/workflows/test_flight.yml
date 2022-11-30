@@ -33,9 +33,6 @@ jobs:
         with:
           node-version: "${{ steps.node-version.outputs.node-version }}"
 
-      - run: npm install
-        working-directory: ./Overamped Extension/Resources
-
       - run: bundle exec fastlane submit_beta
         env:
           APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
