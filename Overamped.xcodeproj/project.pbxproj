@@ -32,6 +32,7 @@
 		D990D8162937CC1E005ADCE5 /* build in Resources */ = {isa = PBXBuildFile; fileRef = D990D8102937CC1E005ADCE5 /* build */; };
 		D990D8172937CC1E005ADCE5 /* global.css in Resources */ = {isa = PBXBuildFile; fileRef = D990D8112937CC1E005ADCE5 /* global.css */; };
 		D990D8182937CC1E005ADCE5 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = D990D8122937CC1E005ADCE5 /* manifest.json */; };
+		D990D81A29380773005ADCE5 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = D990D81929380773005ADCE5 /* _locales */; };
 		D994C63826A13682000649AA /* TipJarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C63726A13682000649AA /* TipJarStore.swift */; };
 		D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C63A26A1EF9A000649AA /* TipJarView.swift */; };
 		D994C64126A26C6E000649AA /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D994C64026A26C6E000649AA /* OverampedCore */; };
@@ -137,6 +138,7 @@
 		D990D8102937CC1E005ADCE5 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = Resources/extension/build; sourceTree = "<group>"; };
 		D990D8112937CC1E005ADCE5 /* global.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = global.css; path = Resources/extension/global.css; sourceTree = "<group>"; };
 		D990D8122937CC1E005ADCE5 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = Resources/extension/manifest.json; sourceTree = "<group>"; };
+		D990D81929380773005ADCE5 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = Resources/build/_locales; sourceTree = "<group>"; };
 		D994C63726A13682000649AA /* TipJarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarStore.swift; sourceTree = "<group>"; };
 		D994C63926A143F8000649AA /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		D994C63A26A1EF9A000649AA /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		D990D8002937C2F3005ADCE5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D990D81929380773005ADCE5 /* _locales */,
 				D990D8102937CC1E005ADCE5 /* build */,
 				D990D8112937CC1E005ADCE5 /* global.css */,
 				D990D80E2937CC1E005ADCE5 /* images */,
@@ -606,6 +609,7 @@
 				D990D8172937CC1E005ADCE5 /* global.css in Resources */,
 				D990D8132937CC1E005ADCE5 /* popup.html in Resources */,
 				D990D8182937CC1E005ADCE5 /* manifest.json in Resources */,
+				D990D81A29380773005ADCE5 /* _locales in Resources */,
 				D990D8152937CC1E005ADCE5 /* options.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
