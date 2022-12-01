@@ -1,5 +1,6 @@
 • Custom handling of Google Images has been removed to workaround an issues caused by a change in the structure of the website.
   ◦ I am working on adding support for this back in the future.
+  ◦ This means that the AMP "popover" will be shown at the bottom of image results, but tapping "Visit" will still redirect to the original website.
 • A new option has been added called "Redirect Only". This can be enabled in the unlikely event that Overamped ever causes issues with websites in the future.
 • Overamped will now re-check the installation when refreshing the results of the Install Checker, removing false-negative results.
 

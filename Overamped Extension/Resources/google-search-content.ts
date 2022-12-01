@@ -12,40 +12,7 @@ const anchorOnclickListeners: {
   [ved: string]: OverriddenAnchor
 } = {}
 
-function findAMPLogoRelativeToAnchor(
-  anchor: HTMLAnchorElement,
-): HTMLSpanElement | null {
-  const childLogo = anchor.querySelector("span[aria-label='AMP logo']")
-
-  if (childLogo) {
-    return childLogo as HTMLSpanElement
-  }
-
-  if (anchor.dataset.ampHlt) {
-    console.debug(
-      `Anchor is from a "Featured Snippet"; searching parent for container`,
-    )
-    // The "Featured Snippet" puts the logo outside of the anchor
-    let parent = anchor.parentElement
-
-    while (parent && !parent.classList.contains("card-section")) {
-      parent = parent.parentElement
-    }
-
-    if (parent) {
-      console.debug("Found card section parent", parent)
-      return parent.querySelector(
-        "span[aria-label='AMP logo']",
-      ) as HTMLSpanElement | null
-    }
-  }
-
-  console.debug("Failed to find corresponding AMP logo <span> for", anchor)
-
-  return null
-}
-
-export default async function replaceAMPLinks(
+export default async function replaceGoogleSearchAMPLinks(
   ignoredHostnames: string[],
 ): Promise<void> {
   // Look for the AMP popover. This is a kind of catch-all for unknown or
@@ -169,7 +136,7 @@ async function modifyAnchorIfRequired(
     return
   }
 
-  const { url: anchorURLString, ampPopover } = attributes
+  const { url: anchorURLString } = attributes
 
   let anchorURL: URL
 
@@ -257,10 +224,11 @@ async function modifyAnchorIfRequired(
     ampIcon.style.display = "none"
   }
 
-  if (ampPopover) {
-    console.debug("Removing AMP popover", ampPopover)
-    ampPopover.remove()
-  }
+  // Don't remove popover; method of finding it is not safe enough (all we know is that is contains a child that matches `div[aria-label*='AMP']`)
+  // if (ampPopover) {
+  //   console.debug("Removing AMP popover", ampPopover)
+  //   ampPopover.remove()
+  // }
 
   anchorOnclickListeners[ved] = modifiedAnchor
 
@@ -281,4 +249,37 @@ function unmodifyAnchor(
   }
 
   delete anchorOnclickListeners[anchor.dataset.ved]
+}
+
+function findAMPLogoRelativeToAnchor(
+  anchor: HTMLAnchorElement,
+): HTMLSpanElement | null {
+  const childLogo = anchor.querySelector("span[aria-label='AMP logo']")
+
+  if (childLogo) {
+    return childLogo as HTMLSpanElement
+  }
+
+  if (anchor.dataset.ampHlt) {
+    console.debug(
+      `Anchor is from a "Featured Snippet"; searching parent for container`,
+    )
+    // The "Featured Snippet" puts the logo outside of the anchor
+    let parent = anchor.parentElement
+
+    while (parent && !parent.classList.contains("card-section")) {
+      parent = parent.parentElement
+    }
+
+    if (parent) {
+      console.debug("Found card section parent", parent)
+      return parent.querySelector(
+        "span[aria-label='AMP logo']",
+      ) as HTMLSpanElement | null
+    }
+  }
+
+  console.debug("Failed to find corresponding AMP logo <span> for", anchor)
+
+  return null
 }

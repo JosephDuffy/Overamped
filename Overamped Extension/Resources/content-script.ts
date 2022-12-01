@@ -17,6 +17,7 @@ import redirectGoogleAMPContent from "./google-amp-content"
 import replaceYahooJPAMPLinks from "./yahoo-jp-search-content"
 import redirectYandexTurboCache from "./yandex-turbo-cache"
 import redirectInstallChecker from "./install-checker"
+import replaceGoogleSearchAMPLinks from "./google-search-content"
 ;(async () => {
   const pageURL = new URL(location.toString())
 
@@ -54,14 +55,11 @@ import redirectInstallChecker from "./install-checker"
       )
       break
     case PageType.GoogleSearch:
-      console.debug(
-        "Not loading Google Search handler due to bug with handling Google Images; loading generic AMP hander",
-      )
-      // import("./google-search-content")
+      console.debug("Loading Google Search content handler")
       new ExtensionApplicator(
         document,
-        redirectToCanonicalVersion,
-        false,
+        replaceGoogleSearchAMPLinks,
+        true,
         appSettings.ignoredHostnames,
       )
       break
