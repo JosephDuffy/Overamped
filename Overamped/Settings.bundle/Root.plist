@@ -20,6 +20,14 @@
 			<key>File</key>
 			<string>Acknowledgements/Persist</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>universal-cookie</string>
+			<key>File</key>
+			<string>Acknowledgements/universal-cookie</string>
+		</dict>
 	</array>
 </dict>
 </plist>
