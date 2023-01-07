@@ -155,8 +155,8 @@ private final class AppDelegate: NSObject, UIApplicationDelegate {
                     redirectsDomains = Array(repeating: "bbc.co.uk", count: 7) + Array(repeating: "reddit.com", count: 5) + Array(repeating: "theguardian.com", count: 2) + Array(repeating: "amp.dev", count: 1)
                     replacedLinks = Array(repeating: "reddit.com", count: 27) + Array(repeating: "theguardian.com", count: 14) + Array(repeating: "bbc.co.uk", count: 9) + Array(repeating: "amp.dev", count: 1)
                 case "RU":
-                    redirectsDomains = Array(repeating: "applinsider.ru", count: 7) + Array(repeating: "reddit.com", count: 5) + Array(repeating: "bbc.com", count: 2) + Array(repeating: "amp.dev", count: 1)
-                    replacedLinks = Array(repeating: "reddit.com", count: 27) + Array(repeating: "applinsider.ru", count: 14) + Array(repeating: "bbc.com", count: 9) + Array(repeating: "amp.dev", count: 1)
+                    redirectsDomains = Array(repeating: "appleinsider.ru", count: 7) + Array(repeating: "reddit.com", count: 5) + Array(repeating: "bbc.com", count: 2) + Array(repeating: "amp.dev", count: 1)
+                    replacedLinks = Array(repeating: "reddit.com", count: 27) + Array(repeating: "appleinsider.ru", count: 14) + Array(repeating: "bbc.com", count: 9) + Array(repeating: "amp.dev", count: 1)
                 default:
                     redirectsDomains = Array(repeating: "cnn.com", count: 7) + Array(repeating: "reddit.com", count: 5) + Array(repeating: "newegg.com", count: 2) + Array(repeating: "amp.dev", count: 1)
                     replacedLinks = Array(repeating: "reddit.com", count: 27) + Array(repeating: "newegg.com", count: 14) + Array(repeating: "cnn.com", count: 9) + Array(repeating: "amp.dev", count: 1)
