@@ -16,8 +16,12 @@ export default function pageTypeForURL(url: URL): PageType {
     }
   }
 
-  if (pageHostname === "search.yahoo.co.jp" && url.pathname === "/search") {
-    return PageType.YahooJAPANSearch
+  if (pageHostname === "search.yahoo.co.jp") {
+    if (url.pathname === "/search") {
+      return PageType.YahooJAPANSearch
+    } else if (url.pathname.startsWith("/amp/")) {
+      return PageType.YahooJAPANAMPCache
+    }
   }
 
   if (pageHostname.endsWith(".turbopages.org")) {
@@ -36,6 +40,7 @@ export enum PageType {
   GoogleSearch,
   GoogleAMPCache,
   YahooJAPANSearch,
+  YahooJAPANAMPCache,
   YandexTurboCache,
   InstallChecker,
   Unknown,

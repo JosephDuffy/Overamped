@@ -18,6 +18,7 @@ import replaceYahooJPAMPLinks from "./yahoo-jp-search-content"
 import redirectYandexTurboCache from "./yandex-turbo-cache"
 import redirectInstallChecker from "./install-checker"
 import replaceGoogleSearchAMPLinks from "./google-search-content"
+import redirectYahooJAPANAMPContent from "./yahoo-japan-amp-content"
 ;(async () => {
   const pageURL = new URL(location.toString())
 
@@ -77,6 +78,15 @@ import replaceGoogleSearchAMPLinks from "./google-search-content"
       new ExtensionApplicator(
         document,
         replaceYahooJPAMPLinks,
+        true,
+        appSettings.ignoredHostnames,
+      )
+      break
+    case PageType.YahooJAPANAMPCache:
+      console.debug("Loading Yahoo JAPAN! AMP content handler")
+      new ExtensionApplicator(
+        document,
+        redirectYahooJAPANAMPContent,
         true,
         appSettings.ignoredHostnames,
       )
