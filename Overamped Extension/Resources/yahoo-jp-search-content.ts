@@ -1,16 +1,5 @@
-import deAMPURL from "./deAMPURL"
 import NativeAppCommunicator from "./NativeAppCommunicator"
-import openURL from "./openURL"
 import "./Array+compactMap"
-
-interface OverriddenAnchor {
-  listener: (event: MouseEvent) => boolean
-  originalHREF: string
-  ampIconDisplay?: string
-}
-const anchorOnclickListeners: {
-  [ylk: string]: OverriddenAnchor
-} = {}
 
 function findAMPLogoRelativeToAnchor(
   anchor: HTMLAnchorElement,
@@ -26,139 +15,68 @@ function findAMPLogoRelativeToAnchor(
   return null
 }
 
+// eslint-disable-next-line require-await
 export default async function replaceYahooJPAMPLinks(
   ignoredHostnames: string[],
 ): Promise<void> {
   const ampAnchor = document.body.querySelectorAll("a[data-amp-cur]")
   console.debug(`Found ${ampAnchor.length} AMP links`)
 
-  const modifyAnchorPromises = Array.from(ampAnchor).map((element) => {
+  const modifiedURLs = Array.from(ampAnchor).map((element) => {
     const anchor = element as HTMLAnchorElement & {
       dataset: { ampCur: string }
     }
-    return modifyAnchorIfRequired(anchor, ignoredHostnames)
+    try {
+      return modifyAnchorIfRequired(anchor, ignoredHostnames)
+    } catch (error) {
+      // The URL of the anchor could be invalid. Rare but worth catching
+      console.error("Failed to modify anchor", error)
+      return undefined
+    }
   })
 
-  const modifiedURLs = await Promise.all(modifyAnchorPromises)
   const newlyReplacedURLs = modifiedURLs.compactMap((element) => {
     return element
   })
 
   new NativeAppCommunicator().logReplacedLinks(newlyReplacedURLs)
-
-  console.info(
-    `A total of ${
-      Object.keys(anchorOnclickListeners).length
-    } AMP links have been replaced`,
-  )
-
-  document.body.dataset.overampedReplacedLinksCount = `${
-    Object.keys(anchorOnclickListeners).length
-  }`
 }
 
-async function modifyAnchorIfRequired(
+function modifyAnchorIfRequired(
   anchor: HTMLAnchorElement & { dataset: { ampCur: string } },
   ignoredHostnames: string[],
-): Promise<URL | undefined> {
+): URL | undefined {
   console.debug("Checking anchor", anchor)
 
-  if (!anchor.dataset.ylk) {
-    console.debug("Missing ylk data on anchor", anchor)
+  const canonicalWebsiteAnchors =
+    anchor.nextElementSibling?.getElementsByTagName("a")
+
+  if (
+    canonicalWebsiteAnchors === undefined ||
+    canonicalWebsiteAnchors.length !== 1
+  ) {
+    console.debug("Couldn't find anchor containing canonical link")
     return
   }
 
-  const ylk = anchor.dataset.ylk
+  const canonicalWebsiteAnchor = canonicalWebsiteAnchors[0]
+  const canonicalWebsite = new URL(canonicalWebsiteAnchor.href)
 
-  const anchorURLString = anchor.dataset.ampCur
-
-  if (!anchorURLString) {
-    console.debug(`Failed to get final URL from anchor`, anchor)
-    return
-  }
-
-  let anchorURL = new URL(anchorURLString)
-
-  console.debug(`URL from attribute: ${anchorURL.toString()}`)
-
-  const ampIcon = findAMPLogoRelativeToAnchor(anchor)
-  let modifiedAnchor = anchorOnclickListeners[ylk]
-
-  const { canAccess: canAccessURL } = await browser.runtime.sendMessage({
-    request: "canAccessURL",
-    payload: {
-      url: anchorURL.toString(),
-    },
-  })
-
-  if (!canAccessURL) {
-    // Only de-AMP the URL if redirecting to the AMP URL
-    // wouldn't be redirected.
-    anchorURL = deAMPURL(anchorURL)
-    console.debug(`De-AMPed URL: ${anchorURL}`)
-  }
-
-  if (ignoredHostnames.includes(anchorURL.hostname)) {
+  if (ignoredHostnames.includes(canonicalWebsite.hostname)) {
     console.debug(
-      `Not modifying anchor; ${anchorURL.hostname} is in ignore list`,
-      anchorOnclickListeners,
+      `Not modifying anchor; ${canonicalWebsite.hostname} is in ignore list`,
     )
 
-    if (modifiedAnchor) {
-      unmodifyAnchor(anchor, modifiedAnchor, ampIcon)
-    }
-
-    return
-  } else if (modifiedAnchor) {
-    console.debug("Not modifying anchor; it has already been modified")
     return
   }
 
-  const originalHREF = anchor.href
+  anchor.href = canonicalWebsite.toString()
 
-  anchor.href = anchorURL.toString()
-
-  function interceptAMPLink(event: MouseEvent) {
-    if (openURL(anchorURL, ignoredHostnames, !canAccessURL, "AMP", "push")) {
-      event.preventDefault()
-      event.stopImmediatePropagation()
-      return false
-    } else {
-      return true
-    }
-  }
-
-  anchor.addEventListener("click", interceptAMPLink)
-
-  modifiedAnchor = {
-    listener: interceptAMPLink,
-    originalHREF,
-  }
+  const ampIcon = findAMPLogoRelativeToAnchor(anchor)
 
   if (ampIcon) {
-    modifiedAnchor.ampIconDisplay = ampIcon.style.display
     ampIcon.style.display = "none"
   }
 
-  anchorOnclickListeners[ylk] = modifiedAnchor
-
-  return new URL(anchor.href)
-}
-
-function unmodifyAnchor(
-  anchor: HTMLAnchorElement & { dataset: { ampCur: string } },
-  modifiedAnchor: OverriddenAnchor,
-  ampIcon: HTMLDivElement | null,
-) {
-  console.debug("Anchor has been modified; reverting to", modifiedAnchor)
-  anchor.href = modifiedAnchor.originalHREF
-  anchor.removeEventListener("click", modifiedAnchor.listener)
-
-  if (ampIcon && modifiedAnchor.ampIconDisplay !== undefined) {
-    ampIcon.style.display = modifiedAnchor.ampIconDisplay
-  }
-
-  if (anchor.dataset.ylk) {
-    delete anchorOnclickListeners[anchor.dataset.ylk]
-  }
+  return canonicalWebsite
 }
