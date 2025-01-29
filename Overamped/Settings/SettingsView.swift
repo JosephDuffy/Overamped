@@ -138,7 +138,12 @@ struct SettingsView: View {
                                 self.notificationsAuthorizationState = .requesting
                                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { hasPermissions, error in
                                     DispatchQueue.main.async {
-                                        self.notificationsAuthorizationState = .known(.authorized)
+                                        if hasPermissions {
+                                            self.notificationsAuthorizationState = .known(.authorized)
+                                        } else {
+                                            self.notificationsAuthorizationState = .known(.denied)
+                                            self.postNotificationWhenRedirecting = false
+                                        }
                                     }
 
                                     if let error = error {
