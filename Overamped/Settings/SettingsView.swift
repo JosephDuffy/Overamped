@@ -136,17 +136,17 @@ struct SettingsView: View {
                                 fallthrough
                             @unknown default:
                                 self.notificationsAuthorizationState = .requesting
-                                UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { hasPermissions, error in
-                                    DispatchQueue.main.async {
+                                Task {
+                                    do {
+                                        let hasPermissions = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
+
                                         if hasPermissions {
                                             self.notificationsAuthorizationState = .known(.authorized)
                                         } else {
                                             self.notificationsAuthorizationState = .known(.denied)
                                             self.postNotificationWhenRedirecting = false
                                         }
-                                    }
-
-                                    if let error = error {
+                                    } catch {
                                         print("Error requesting authorization", error)
                                     }
                                 }
@@ -178,23 +178,36 @@ struct SettingsView: View {
         switch notificationsAuthorizationState {
         case .unknown, .known:
             notificationsAuthorizationState = .checking
-            UNUserNotificationCenter.current().getNotificationSettings { settings in
-                DispatchQueue.main.async {
-                    withAnimation {
-                        switch settings.authorizationStatus {
-                        case .denied:
-                            postNotificationWhenRedirecting = false
-                        case .authorized, .provisional, .notDetermined, .ephemeral:
-                            break
-                        @unknown default:
-                            break
-                        }
-                        notificationsAuthorizationState = .known(settings.authorizationStatus)
+            Task {
+                let authorizationStatus = await getNotificationsAuthorizationStatus()
+
+                withAnimation {
+                    switch authorizationStatus {
+                    case .denied:
+                        postNotificationWhenRedirecting = false
+                    case .authorized, .provisional, .notDetermined, .ephemeral:
+                        break
+                    @unknown default:
+                        break
                     }
+                    notificationsAuthorizationState = .known(authorizationStatus)
                 }
             }
         case .checking, .requesting:
             break
+        }
+    }
+
+    /// A wrapper around `UNUserNotificationCenter.current().getNotificationSettings` that avoids a
+    /// crash at runtime caused by Swift 6. This is similar to the workarounds discussed in
+    /// https://developer.apple.com/forums/thread/764777.
+    ///
+    /// - returns: The current authorization status for user notifications.
+    private nonisolated func getNotificationsAuthorizationStatus() async -> UNAuthorizationStatus {
+        await withCheckedContinuation { continuation in
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                continuation.resume(returning: settings.authorizationStatus)
+            }
         }
     }
 }
