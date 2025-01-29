@@ -163,24 +163,6 @@ struct AboutView: View {
                     }
                 })
 
-                Link(destination: URL(string: "https://twitter.com/OverampedApp")!) {
-                    HStack {
-                        Label {
-                            Text("Follow @OverampedApp")
-                                .foregroundColor(Color.primary)
-                        } icon: {
-                            Image(.twitter)
-                                .font(.title3)
-                                .foregroundColor(.accentColor)
-                        }
-
-                        Spacer()
-                        Image(systemName: "arrow.up.forward.app.fill")
-                            .font(Font.system(size: 14).weight(.semibold))
-                            .foregroundColor(Color(.tertiaryLabel))
-                    }
-                }
-
                 NavigationLink(
                     destination: Acknowledgements(),
                     isActive: $showAcknowledgements
