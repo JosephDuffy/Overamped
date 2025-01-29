@@ -59,14 +59,13 @@ struct AboutView: View {
                     }
                 })
 
-                Link(destination: URL(string: "https://twitter.com/Joe_Duffy")!) {
+                Link(destination: URL(string: "https://mastodon.social/@JosephDuffy")!) {
                     HStack {
                         Label {
-                            Text("Follow @Joe_Duffy")
+                            Text("Follow me on Mastodon")
                                 .foregroundColor(Color.primary)
                         } icon: {
-                            Image(.twitter)
-                                .font(.title3)
+                            Image(.mastodonFill)
                                 .foregroundColor(.accentColor)
                         }
 
