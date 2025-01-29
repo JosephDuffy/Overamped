@@ -14,7 +14,7 @@ struct InstallationInstructionsView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Spacer()
-                    Image("LargeIcon")
+                    Image(.largeIcon)
                     Spacer()
                 }
 
@@ -24,7 +24,7 @@ struct InstallationInstructionsView: View {
                     Text("Start by opening Settings and scroll down to Safari:")
 
                     HStack {
-                        Image("SafariTableIcon")
+                        Image(.safariTableIcon)
                             .resizable()
                             .frame(width: 29, height: 29)
                             .cornerRadius(6)
@@ -70,7 +70,7 @@ struct InstallationInstructionsView: View {
                     Text("Tap “Overamped”:")
 
                     HStack {
-                        Image("LargeIcon")
+                        Image(.largeIcon)
                             .resizable()
                             .frame(width: 29, height: 29)
                         Text("Overamped")
@@ -94,7 +94,7 @@ struct InstallationInstructionsView: View {
                     Text("Turn “Overamped” on:")
 
                     HStack {
-                        Image("LargeIcon")
+                        Image(.largeIcon)
                             .resizable()
                             .frame(width: 29, height: 29)
                         Text("Overamped")

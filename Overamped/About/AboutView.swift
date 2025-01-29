@@ -27,7 +27,7 @@ struct AboutView: View {
             Section {
                 VStack(alignment: .leading) {
                     HStack {
-                        Image("LargeIcon")
+                        Image(.largeIcon)
                             .resizable()
                             .frame(width: 64, height: 64)
                         VStack(alignment: .leading) {
@@ -47,7 +47,7 @@ struct AboutView: View {
                             Text("View More Apps I've Made")
                                 .foregroundColor(Color.primary)
                         } icon: {
-                            Image("app.store.circle.fill")
+                            Image(.appStoreCircleFill)
                                 .font(.title2)
                                 .foregroundColor(.accentColor)
                         }
@@ -65,7 +65,7 @@ struct AboutView: View {
                             Text("Follow @Joe_Duffy")
                                 .foregroundColor(Color.primary)
                         } icon: {
-                            Image("twitter")
+                            Image(.twitter)
                                 .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
@@ -169,7 +169,7 @@ struct AboutView: View {
                             Text("Follow @OverampedApp")
                                 .foregroundColor(Color.primary)
                         } icon: {
-                            Image("twitter")
+                            Image(.twitter)
                                 .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
