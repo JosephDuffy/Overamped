@@ -48,7 +48,6 @@ struct AboutView: View {
                                 .foregroundColor(Color.primary)
                         } icon: {
                             Image(.appStoreCircleFill)
-                                .font(.title2)
                                 .foregroundColor(.accentColor)
                         }
 
@@ -86,7 +85,6 @@ struct AboutView: View {
                         Text("Installation Instructions")
                     } icon: {
                         Image(systemName: "puzzlepiece.fill")
-                            .font(.title3)
                             .foregroundColor(.accentColor)
                     }
                 }
@@ -99,7 +97,6 @@ struct AboutView: View {
                         Text("FAQ")
                     } icon: {
                         Image(systemName: "questionmark.circle")
-                            .font(.title3)
                             .foregroundColor(.accentColor)
                     }
                 }
@@ -111,7 +108,6 @@ struct AboutView: View {
                                 .foregroundColor(Color.primary)
                         } icon: {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
 
@@ -131,7 +127,6 @@ struct AboutView: View {
                                 .foregroundColor(Color.primary)
                         } icon: {
                             Image(systemName: "chevron.left.forwardslash.chevron.right")
-                                .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
 
@@ -151,7 +146,6 @@ struct AboutView: View {
                                 .foregroundColor(Color.primary)
                         } icon: {
                             Image(systemName: "eye.slash.fill")
-                                .font(.title3)
                                 .foregroundColor(.accentColor)
                         }
 
