@@ -634,8 +634,8 @@
 				"$(SRCROOT)/Overamped Extension/Resources/node_modules",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nif [ -f ~/.profile ]; then\n    source ~/.profile\nfi\n\nif [ \"${CI}\" != \"true\" ]; then\n  eval \"$(nodenv init -)\"\nfi\n\necho $(date)\ncd \"Overamped Extension/Resources\"\nnpm ci\n";
+			shellPath = /bin/bash;
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\n\ncd \"Overamped Extension/Resources\"\nnpm ci\n";
 		};
 		D993C5612684AFDE002A84E6 /* Build JS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -655,8 +655,8 @@
 				"$(SRCROOT)/Overamped Extension/Resources/extension",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nif [ -f ~/.profile ]; then\n    source ~/.profile\nfi\n\nif [ \"${CI}\" != \"true\" ]; then\n  eval \"$(nodenv init -)\"\nfi\n\necho $(date)\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
+			shellPath = /bin/bash;
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\n\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
