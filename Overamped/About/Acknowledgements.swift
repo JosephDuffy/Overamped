@@ -15,11 +15,6 @@ struct Acknowledgements: View {
                     }
                 }
             }
-            Section(header: Text("Icons")) {
-                Link(destination: URL(string: "https://icons8.com/l/sf/")!) {
-                    Text("Icons8")
-                }
-            }
         }
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Acknowledgements")
