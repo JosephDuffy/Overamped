@@ -7,7 +7,6 @@ import os.log
 enum FeedbackReason: Hashable, CaseIterable, Encodable {
     case websiteLoadedAMPVersion
     case other
-    case initial
 
     var title: String {
         switch self {
@@ -15,8 +14,6 @@ enum FeedbackReason: Hashable, CaseIterable, Encodable {
             return "Website loaded AMP version"
         case .other:
             return "Other"
-        case .initial:
-            return ""
         }
     }
 
@@ -96,15 +93,30 @@ struct FeedbackForm: View {
                     }
 
                     Section() {
-                        Picker(
-                            selection: $formAPI.formBuilder.formData.contactReason,
-                            label: Text("Contact Reason")
-                        ) {
-                            ForEach(FeedbackReason.allCases, id: \.hashValue) { reason in
-                                if reason != .initial {
-                                    Text(reason.title)
-                                        .tag(reason)
+                        HStack {
+                            Text("Contact Reason")
+                            Spacer()
+                            Menu {
+                                ForEach(FeedbackReason.allCases, id: \.hashValue) { reason in
+                                    if reason == formAPI.formBuilder.formData.contactReason {
+                                        Toggle(reason.title, isOn: .constant(true))
+                                    } else {
+                                        Button(reason.title) {
+                                            formAPI.formBuilder.formData.contactReason = reason
+                                        }
+                                    }
                                 }
+                            } label: {
+                                Label {
+                                    if let contactReason = formAPI.formBuilder.formData.contactReason {
+                                        Text(contactReason.title)
+                                    } else {
+                                        Text("Select Reason")
+                                    }
+                                } icon: {
+                                    Image(systemName: "chevron.up.chevron.down")
+                                }
+                                .labelStyle(MenuButtonLabelStyle())
                             }
                         }
                     }
@@ -135,7 +147,7 @@ struct FeedbackForm: View {
                                 .textContentType(.URL)
                                 .keyboardType(.URL)
                         }
-                    case .other, .initial:
+                    case .other, nil:
                         EmptyView()
                     }
 
@@ -315,7 +327,7 @@ private final class FormAPI: ObservableObject {
 private struct FormData: Encodable {
     var name: String = ""
     var email: String = ""
-    var contactReason: FeedbackReason = .initial
+    var contactReason: FeedbackReason?
     var message: String = ""
     var searchURL: String = ""
     var permittedOrigins: [String]?
@@ -393,7 +405,7 @@ private final class FormBuilder: ObservableObject {
             return !formData.websiteURL.isEmpty && !formData.searchURL.isEmpty
         case .other:
             return !formData.message.isEmpty
-        case .initial:
+        case nil:
             return false
         }
     }
@@ -417,4 +429,15 @@ private final class FormBuilder: ObservableObject {
 private struct FormResponse: Decodable {
     let status: Int
     let message: String?
+}
+
+private struct MenuButtonLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(alignment: .center, spacing: 4) {
+            configuration.title
+            configuration.icon
+        }
+        .foregroundStyle(Color(uiColor: .secondaryLabel))
+        .imageScale(.small)
+    }
 }
