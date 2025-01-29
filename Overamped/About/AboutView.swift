@@ -164,7 +164,6 @@ struct AboutView: View {
                         Text("Acknowledgements")
                     } icon: {
                         Image(systemName: "chevron.left.forwardslash.chevron.right")
-                            .font(.title3)
                             .foregroundColor(.accentColor)
                     }
                 }
