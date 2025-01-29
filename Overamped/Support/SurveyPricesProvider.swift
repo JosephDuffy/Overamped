@@ -1,5 +1,6 @@
 import StoreKit
 
+@MainActor
 public final class SurveyPricesProvider: ObservableObject {
     public enum State {
         case loadingProducts
@@ -22,7 +23,6 @@ public final class SurveyPricesProvider: ObservableObject {
         }
     }
 
-    @MainActor
     func requestProducts() async {
         state = .loadingProducts
 

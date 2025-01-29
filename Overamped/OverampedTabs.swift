@@ -2,6 +2,7 @@ import SwiftUI
 import os.log
 
 struct OverampedTabs: View {
+    @MainActor
     enum Tab: String, CaseIterable {
         case statistics
         case support

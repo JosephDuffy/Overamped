@@ -4,9 +4,9 @@ import os.log
 import Persist
 
 final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
-    private lazy var logger: Logger = {
-        Logger(subsystem: "net.yetii.Overamped.Extension", category: "Extension Request Handler")
-    }()
+    private let logger: Logger
+
+    private let notificationRequestPoster: NotificationRequestPoster
 
     @Persisted(persister: .ignoredHostnames)
     private var ignoredHostnames: [String]
@@ -34,6 +34,17 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
     @Persisted(persister: .postNotificationWhenRedirecting)
     private var postNotificationWhenRedirecting: Bool
+
+    override init() {
+        let logger = Logger(
+            subsystem: "net.yetii.Overamped.Extension",
+            category: "Extension Request Handler"
+        )
+        self.logger = logger
+        notificationRequestPoster = UNUserNotificationCenter.notificationRequestPoster(
+            logger: logger
+        )
+    }
 
     func beginRequest(with context: NSExtensionContext) {
         // Unpack the message from Safari Web Extension.
@@ -173,8 +184,8 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
                 notificationContent.title = "Redirected \(contentType) Page"
                 notificationContent.body = "Redirect from \(fromURLString) to \(toURLString)"
                 let notificationRequest = UNNotificationRequest(identifier: "Redirection", content: notificationContent, trigger: nil)
-                Task {
-                    await postNotificationRequest(notificationRequest)
+                Task { [notificationRequestPoster] in
+                    await notificationRequestPoster(notificationRequest)
                 }
             }
 
@@ -213,20 +224,28 @@ final class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         ]
         return response
     }
+}
 
-    private func postNotificationRequest(_ request: UNNotificationRequest) async {
-        let notificationSetting = await UNUserNotificationCenter.current().notificationSettings()
-        switch notificationSetting.authorizationStatus {
-        case .authorized, .ephemeral:
-            do {
-                try await UNUserNotificationCenter.current().add(request)
-            } catch {
-                logger.error("Failed to post notification: \(String(describing: error))")
+private typealias NotificationRequestPoster = @Sendable (
+    _ request: UNNotificationRequest
+) async -> Void
+
+extension UNUserNotificationCenter {
+    fileprivate static func notificationRequestPoster(logger: Logger) -> NotificationRequestPoster {
+        { request in
+            let notificationSetting = await UNUserNotificationCenter.current().notificationSettings()
+            switch notificationSetting.authorizationStatus {
+            case .authorized, .ephemeral:
+                do {
+                    try await UNUserNotificationCenter.current().add(request)
+                } catch {
+                    logger.error("Failed to post notification: \(String(describing: error))")
+                }
+            case .denied, .notDetermined, .provisional:
+                break
+            @unknown default:
+                break
             }
-        case .denied, .notDetermined, .provisional:
-            break
-        @unknown default:
-            break
         }
     }
 }

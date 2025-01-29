@@ -1,6 +1,7 @@
 import StoreKit
 import os.log
 
+@MainActor
 public final class TipJarStore: ObservableObject {
     public enum Error<T>: Swift.Error {
         case failedVerification(VerificationResult<T>.VerificationError)

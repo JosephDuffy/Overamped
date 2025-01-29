@@ -4,7 +4,7 @@ import SwiftUI
 import OverampedCore
 import os.log
 
-enum FeedbackReason: Hashable, CaseIterable {
+enum FeedbackReason: Hashable, CaseIterable, Encodable {
     case websiteLoadedAMPVersion
     case other
     case initial
@@ -18,6 +18,11 @@ enum FeedbackReason: Hashable, CaseIterable {
         case .initial:
             return ""
         }
+    }
+
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(title)
     }
 }
 
@@ -53,8 +58,8 @@ struct FeedbackForm: View {
                 }
 
                 if
-                    case .websiteLoadedAMPVersion = formAPI.formData.contactReason,
-                    let ignoredHostname = formAPI.formData.ignoredHostnames.first(where: { formAPI.formData.websiteURL.contains($0) })
+                    case .websiteLoadedAMPVersion = formAPI.formBuilder.formData.contactReason,
+                    let ignoredHostname = formAPI.formBuilder.ignoredHostnames.first(where: { formAPI.formBuilder.formData.websiteURL.contains($0) })
                 {
                     Divider()
 
@@ -82,17 +87,17 @@ struct FeedbackForm: View {
                         header: Text("Contact Details"),
                         footer: Text("Please provide contact details if you would like me to follow up with you, or if you're willing to provide help debug any issues you report.")
                     ) {
-                        TextField("Name (optional)", text: $formAPI.formData.name)
+                        TextField("Name (optional)", text: $formAPI.formBuilder.formData.name)
                             .textContentType(.name)
 
-                        TextField("Email (optional)", text: $formAPI.formData.email)
+                        TextField("Email (optional)", text: $formAPI.formBuilder.formData.email)
                             .textContentType(.emailAddress)
                             .keyboardType(.emailAddress)
                     }
 
                     Section() {
                         Picker(
-                            selection: $formAPI.formData.contactReason,
+                            selection: $formAPI.formBuilder.formData.contactReason,
                             label: Text("Contact Reason")
                         ) {
                             ForEach(FeedbackReason.allCases, id: \.hashValue) { reason in
@@ -104,7 +109,7 @@ struct FeedbackForm: View {
                         }
                     }
 
-                    switch formAPI.formData.contactReason {
+                    switch formAPI.formBuilder.formData.contactReason {
                     case .websiteLoadedAMPVersion:
                         Section (
                             footer: Text("If no AMP links are being redirected the Overamped Install Checker can help verify that the Safari Extension is enabled and configured correctly.")
@@ -123,10 +128,10 @@ struct FeedbackForm: View {
                         Section(
                             header: Text("Problem Links")
                         ) {
-                            TextField("Search URL", text: $formAPI.formData.searchURL)
+                            TextField("Search URL", text: $formAPI.formBuilder.formData.searchURL)
                                 .textContentType(.URL)
                                 .keyboardType(.URL)
-                            TextField("Website URL", text: $formAPI.formData.websiteURL)
+                            TextField("Website URL", text: $formAPI.formBuilder.formData.websiteURL)
                                 .textContentType(.URL)
                                 .keyboardType(.URL)
                         }
@@ -139,11 +144,11 @@ struct FeedbackForm: View {
                     Section(
                         header: Text("Debug Data")
                     ) {
-                        if !formAPI.formData.ignoredHostnames.isEmpty {
-                            Toggle("Send ignored websites", isOn: $formAPI.formData.includeIgnoredHostnames)
+                        if !formAPI.formBuilder.ignoredHostnames.isEmpty {
+                            Toggle("Send ignored websites", isOn: $formAPI.formBuilder.includeIgnoredHostnames)
                         }
 
-                        let debugDataString = (try? formAPI.formData.debugDataJSONString) ?? "Failed to encode"
+                        let debugDataString = (try? formAPI.formBuilder.debugDataJSONString) ?? "Failed to encode"
                         Text(debugDataString)
                     }
                 }
@@ -172,16 +177,16 @@ struct FeedbackForm: View {
             switch deepLink {
             case .websiteFeedback(let url, let permittedOrigins):
                 if let url = url {
-                    formAPI.formData.websiteURL = url.absoluteString
+                    formAPI.formBuilder.formData.websiteURL = url.absoluteString
                 }
 
-                formAPI.formData.permittedOrigins = permittedOrigins
+                formAPI.formBuilder.formData.permittedOrigins = permittedOrigins
             case .searchFeedback(let url, let permittedOrigins):
                 if let url = url {
-                    formAPI.formData.searchURL = url.absoluteString
+                    formAPI.formBuilder.formData.searchURL = url.absoluteString
                 }
 
-                formAPI.formData.permittedOrigins = permittedOrigins
+                formAPI.formBuilder.formData.permittedOrigins = permittedOrigins
             default:
                 break
             }
@@ -190,16 +195,16 @@ struct FeedbackForm: View {
 
     @ViewBuilder
     private var messageSection: some View {
-        let isOptional = formAPI.formData.contactReason == .websiteLoadedAMPVersion
+        let isOptional = formAPI.formBuilder.formData.contactReason == .websiteLoadedAMPVersion
 
         Section(header: Text("Message")) {
             ZStack(alignment: .topLeading) {
-                if formAPI.formData.message.isEmpty {
+                if formAPI.formBuilder.formData.message.isEmpty {
                     Text("Message\(isOptional ? " (optional)" : "")")
                         .foregroundColor(Color(.placeholderText))
                         .padding(.top, 8)
                 }
-                TextEditor(text: $formAPI.formData.message).padding(.leading, -3)
+                TextEditor(text: $formAPI.formBuilder.formData.message).padding(.leading, -3)
             }
         }
     }
@@ -210,7 +215,7 @@ struct FeedbackForm: View {
         case .idle, .error:
             Button("Submit") {
                 formAPI.submit()
-            }.disabled(!formAPI.formData.isValid)
+            }.disabled(!formAPI.formBuilder.isValid)
         case .submitting:
             ProgressView()
         case .success:
@@ -225,6 +230,7 @@ struct FeedbackForm_Previews: PreviewProvider {
     }
 }
 
+@MainActor
 private final class FormAPI: ObservableObject {
     enum FormState: Equatable {
         case idle
@@ -233,7 +239,7 @@ private final class FormAPI: ObservableObject {
         case success
     }
 
-    @ObservedObject var formData: FormData = FormData()
+    @ObservedObject var formBuilder: FormBuilder = FormBuilder()
 
     @Published private(set) var formState: FormState = .idle
 
@@ -242,7 +248,7 @@ private final class FormAPI: ObservableObject {
     private let logger = Logger(subsystem: "net.yetii.Overamped", category: "FormAPI")
 
     init() {
-        formData.objectWillChange.sink { self.objectWillChange.send() }.store(in: &cancellables)
+        formBuilder.objectWillChange.sink { self.objectWillChange.send() }.store(in: &cancellables)
     }
 
     func submit() {
@@ -252,63 +258,74 @@ private final class FormAPI: ObservableObject {
             let bodyEncoder = JSONEncoder()
             var request = URLRequest(url: URL(string: "https://contact.josephduffy.co.uk/overamped-feedback")!)
             request.httpMethod = "POST"
-            request.httpBody = try bodyEncoder.encode(formData)
+            request.httpBody = try bodyEncoder.encode(formBuilder.formData)
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.attribution = .user
 
-            logger.log("Submitting contact form \(String(describing: self.formData))")
+            logger.log("Submitting contact form \(String(describing: self.formBuilder.formData))")
 
-            URLSession
-                .shared
-                .dataTaskPublisher(for: request)
-                .map { data, response -> FormState in
-                    self.logger.log("Received response \(response)")
+            Task {
+                let formState: FormState
+
+                defer {
+                    self.formState = formState
+                }
+
+                do {
+                    let (data, response) = try await URLSession.shared.data(for: request)
 
                     do {
+                        logger.log("Received response \(response)")
+
                         let decoder = JSONDecoder()
                         let response = try decoder.decode(FormResponse.self, from: data)
 
-                        self.logger.log("Received form response \(String(describing: response))")
+                        logger.log("Received form response \(String(describing: response))")
 
                         if response.status == 200 {
-                            return .success
+                            formState = .success
                         } else {
-                            self.logger.error("Response status was not 200: \(response.status)")
+                            logger.error("Response status was not 200: \(response.status)")
 
-                            return .error(response.message ?? "Unknown response (\(response.status)). Please try again later")
+                            formState = .error(response.message ?? "Unknown response (\(response.status)). Please try again later")
                         }
                     } catch {
-                        self.logger.error("Failed to decode response: \(String(describing: error))\n\(String(data: data, encoding: .utf8) ?? "<not utf8>")")
+                        logger.error("Failed to decode response: \(String(describing: error))\n\(String(data: data, encoding: .utf8) ?? "<not utf8>")")
 
-                        return .error("Unknown response. Please try again later")
+                        formState = .error("Unknown response. Please try again later")
                     }
+                } catch {
+                    self.logger.error("Failed to submit form \(String(describing: error))")
+                    formState = .error(error.localizedDescription)
+                    return
                 }
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .failure(let error):
-                        self.logger.error("Failed to submit form \(String(describing: error))")
-                        self.formState = .error(error.localizedDescription)
-                    case .finished:
-                        break
-                    }
-                }, receiveValue: { formState in
-                    self.formState = formState
-                })
-                .store(in: &cancellables)
+            }
         } catch {
             formState = .error(error.localizedDescription)
         }
     }
 
     func reset() {
-        formData = FormData()
+        formBuilder = FormBuilder()
         formState = .idle
     }
 }
 
-private final class FormData: ObservableObject, Encodable, CustomReflectable {
+private struct FormData: Encodable {
+    var name: String = ""
+    var email: String = ""
+    var contactReason: FeedbackReason = .initial
+    var message: String = ""
+    var searchURL: String = ""
+    var permittedOrigins: [String]?
+    var websiteURL: String = ""
+    private let source = "app"
+}
+
+@MainActor
+//@dynamicMemberLookup
+private final class FormBuilder: ObservableObject {
     enum CodingKeys: CodingKey {
         case name
         case email
@@ -336,13 +353,29 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
         }
     }
 
-    @Published var name: String = ""
-    @Published var email: String = ""
-    @Published var contactReason: FeedbackReason = .initial
-    @Published var message: String = ""
-    @Published var searchURL: String = ""
-    @Published var permittedOrigins: [String]?
-    @Published var websiteURL: String = ""
+    @Published var formData = FormData()
+
+//    subscript<Value>(dynamicMember keyPath: KeyPath<FormData, Value>) -> Value {
+//        formData[keyPath: keyPath]
+//    }
+
+//    subscript<Value>(dynamicMember keyPath: ReferenceWritableKeyPath<FormData, Value>) -> Value {
+//        get {
+//            formData[keyPath: keyPath]
+//        }
+//        set {
+//            formData[keyPath: keyPath] = newValue
+//        }
+//    }
+//
+//    subscript<Value>(dynamicMember keyPath: WritableKeyPath<FormData, Published<Value>.Publisher>) -> Published<Value>.Publisher {
+//        get {
+//            formData[keyPath: keyPath]
+//        }
+//        set {
+//            formData[keyPath: keyPath] = newValue
+//        }
+//    }
 
     @Published
     var includeIgnoredHostnames: Bool = true
@@ -351,30 +384,15 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
     private(set) var ignoredHostnames: [String]
 
     var debugData: DebugData {
-        DebugData(ignoredHostnames: includeIgnoredHostnames ? ignoredHostnames : nil, permittedOrigins: permittedOrigins)
-    }
-
-    var customMirror: Mirror {
-        Mirror(
-            self,
-            children: [
-                "name": name,
-                "email": email,
-                "contactReason": contactReason,
-                "message": message,
-                "searchURL": searchURL,
-                "websiteURL": websiteURL,
-                "debugData": debugData,
-            ]
-        )
+        DebugData(ignoredHostnames: includeIgnoredHostnames ? ignoredHostnames : nil, permittedOrigins: formData.permittedOrigins)
     }
 
     var isValid: Bool {
-        switch contactReason {
+        switch formData.contactReason {
         case .websiteLoadedAMPVersion:
-            return !websiteURL.isEmpty && !searchURL.isEmpty
+            return !formData.websiteURL.isEmpty && !formData.searchURL.isEmpty
         case .other:
-            return !message.isEmpty
+            return !formData.message.isEmpty
         case .initial:
             return false
         }
@@ -393,25 +411,6 @@ private final class FormData: ObservableObject, Encodable, CustomReflectable {
 
     init() {
         _ignoredHostnames.persister.publisher.sink { _ in self.objectWillChange.send() }.store(in: &cancellables)
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode(name, forKey: .name)
-        try container.encode(email, forKey: .email)
-        try container.encode(contactReason.title, forKey: .contactReason)
-        try container.encode(message, forKey: .message)
-        try container.encode(debugData, forKey: .debugData)
-        try container.encode("app", forKey: .source)
-
-        switch contactReason {
-        case .websiteLoadedAMPVersion:
-            try container.encode(searchURL, forKey: .searchURL)
-            try container.encode(websiteURL, forKey: .websiteURL)
-        case .other, .initial:
-            break
-        }
     }
 }
 

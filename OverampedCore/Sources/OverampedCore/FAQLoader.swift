@@ -3,9 +3,9 @@ import Foundation
 import os.log
 import UIKit
 
+@MainActor
 public final class FAQLoader: ObservableObject {
     @Published
-    @MainActor
     public private(set) var questions: [Question] = []
 
     private let logger: Logger
@@ -14,32 +14,31 @@ public final class FAQLoader: ObservableObject {
         logger = Logger(subsystem: "net.yetii.Overamped", category: "FAQ Loader")
     }
 
-    @MainActor
     public func questionWithId(_ id: String) -> Question? {
         questions.first(where: { $0.id == id })
     }
 
-    public func loadQuestions() async {
+    public nonisolated func loadQuestions() async {
         await loadQuestionsInBundle(.main)
         await loadLatestQuestions(session: .shared)
     }
 
-    public func loadQuestions(bundle: Bundle, session: URLSession) async {
+    public nonisolated func loadQuestions(bundle: Bundle, session: URLSession) async {
         await loadQuestionsInBundle(bundle)
         await loadLatestQuestions(session: session)
     }
 
-    public func loadQuestions(bundle: Bundle = .main) async {
+    public nonisolated func loadQuestions(bundle: Bundle = .main) async {
         await loadQuestionsInBundle(bundle)
         await loadLatestQuestions(session: .shared)
     }
 
-    public func loadQuestions(session: URLSession = .shared) async {
+    public nonisolated func loadQuestions(session: URLSession = .shared) async {
         await loadQuestionsInBundle(.main)
         await loadLatestQuestions(session: session)
     }
 
-    public func loadQuestionsInBundle(_ bundle: Bundle) async {
+    public nonisolated func loadQuestionsInBundle(_ bundle: Bundle) async {
         do {
             guard let bundledDataAsset = NSDataAsset(name: "FAQ.json", bundle: bundle) else {
                 print("No FAQ json in bundle")
@@ -57,7 +56,7 @@ public final class FAQLoader: ObservableObject {
         }
     }
 
-    public func loadLatestQuestions(session: URLSession) async {
+    public nonisolated func loadLatestQuestions(session: URLSession) async {
         do {
             let url = URL(string: "https://overamped.app/api/faq")!
             let (jsonData, _) = try await session.data(from: url, delegate: nil)

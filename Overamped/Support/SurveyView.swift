@@ -138,6 +138,7 @@ struct SurveyView_Previews: PreviewProvider {
     }
 }
 
+@MainActor
 private final class SurveyAPI: ObservableObject {
     enum FormState: Equatable {
         case idle
