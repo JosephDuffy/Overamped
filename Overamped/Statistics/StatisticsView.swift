@@ -97,6 +97,7 @@ struct StatisticsView: View {
 
                             Text("Enable advanced statistics to collect the domains and timestamps of replaced and redirect links.")
                                 .font(.footnote)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
 
                         AdvancedStatisticsView(showEmptyMessage: $enabledAdvancedStatistics, showEventsLog: $showEventsLog)
