@@ -11,7 +11,7 @@ jobs:
     runs-on: macos-15
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Use Xcode 16.2
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
@@ -23,7 +23,7 @@ jobs:
           bundler-cache: true
 
       - name: Install node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: "./Overamped Extension/Resources/.node-version"
 
