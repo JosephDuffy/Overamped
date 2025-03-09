@@ -19,13 +19,13 @@ jobs:
       - name: Install Ruby and fastlane
         uses: ruby/setup-ruby@v1
         with:
-          # Version is read from .ruby-version
+          # Version is read from .tool-versions
           bundler-cache: true
 
       - name: Install node
         uses: actions/setup-node@v4
         with:
-          node-version-file: "./Overamped Extension/Resources/.node-version"
+          node-version-file: "./Overamped Extension/Resources/.tool-versions"
 
       - name: Download certs
         run: bundle exec fastlane download_certs

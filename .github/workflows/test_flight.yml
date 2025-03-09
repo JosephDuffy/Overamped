@@ -20,13 +20,13 @@ jobs:
       - name: Install Ruby and fastlane
         uses: ruby/setup-ruby@v1
         with:
-          # Version is read from .ruby-version
+          # Version is read from .tool-versions
           bundler-cache: true
 
       - name: Install node
         uses: actions/setup-node@v4
         with:
-          node-version-file: "./Overamped Extension/Resources/.node-version"
+          node-version-file: "./Overamped Extension/Resources/.tool-versions"
 
       - run: bundle exec fastlane submit_beta
         env:
