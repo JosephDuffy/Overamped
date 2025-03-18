@@ -5,6 +5,10 @@ setup_ci
 platform :ios do
   desc "Submit a new iOS build to TestFlight"
   lane :submit_beta do
+    if !is_ci
+      UI.user_error!("Builds should not be uploaded from a local machine. Please push a tag to trigger a build via CI.")
+    end
+
     setup_app_store_connect_api_key
 
     whats_new = ""
