@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="refresh" content="0;URL='overamped://settings'" />
+    <script src="build/options.js"></script>
     <style>
       :root {
         color-scheme: light dark;
@@ -29,12 +29,29 @@
       a:visited {
         color: var(--linkColour);
       }
+
+      #withJSMessage {
+        display: none;
+      }
+
+      @media (scripting: enabled) {
+        #withJSMessage {
+          display: reset;
+        }
+      }
     </style>
   </head>
   <body>
-    <p>
-      Overamped settings are managed in the Overamped app.
-      <a href="overamped://settings">Open the app to manage settings</a>.
+    <noscript>
+      <p>
+        Overamped settings are managed in the Overamped app. You can try
+        <a href="https://overamped.app/settings">opening the app</a>.
+      </p>
+    </noscript>
+    <p id="withJSMessage">
+      Overamped settings are managed in the Overamped app. If you are not
+      redirected automatically, you can try
+      <a href="https://overamped.app/settings">opening the app</a>.
     </p>
   </body>
 </html>

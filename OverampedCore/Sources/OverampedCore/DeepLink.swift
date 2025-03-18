@@ -94,6 +94,8 @@ public enum DeepLink: Hashable {
             self.init(feedbackComponents: components)
         case "/how-to-disable-amp-in-safari" where url.fragment == "setup-overamped":
             self = .installationInstructions
+        case "/settings":
+            self = .settings
         default:
             return nil
         }
