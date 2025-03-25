@@ -21,7 +21,11 @@ struct InstallationInstructionsView: View {
                 Text("The Overamped extension can be enabled from the Settings app.")
 
                 Group {
-                    Text("Start by opening Settings and scroll down to Safari:")
+                    if #available(iOS 18, *) {
+                        Text("Start by opening Settings → Apps → Safari:")
+                    } else {
+                        Text("Start by opening Settings → Safari:")
+                    }
 
                     HStack {
                         Image("SafariTableIcon")
