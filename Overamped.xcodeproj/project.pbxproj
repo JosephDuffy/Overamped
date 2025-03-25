@@ -60,6 +60,7 @@
 		D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */; };
 		D9DC7AEC26B61CB0005C8430 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9DC7AEB26B61CB0005C8430 /* OverampedCore */; };
 		D9DC7AEE26B6532D005C8430 /* ClearAdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */; };
+		D9E6E7A02D935BDA00052D26 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = D948D7D52D8A1C2F0083A5B4 /* ReceiptParser */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
 		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
@@ -208,9 +209,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E6E7A02D935BDA00052D26 /* ReceiptParser in Frameworks */,
 				D994C64126A26C6E000649AA /* OverampedCore in Frameworks */,
 				D9B8EC0626A3E42E00C1243E /* Persist in Frameworks */,
-				D948D7D62D8A1C2F0083A5B4 /* ReceiptParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
