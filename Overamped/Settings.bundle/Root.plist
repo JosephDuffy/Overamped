@@ -28,6 +28,14 @@
 			<key>File</key>
 			<string>Acknowledgements/universal-cookie</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>purchases-ios</string>
+			<key>File</key>
+			<string>Acknowledgements/purchases-ios</string>
+		</dict>
 	</array>
 </dict>
 </plist>
