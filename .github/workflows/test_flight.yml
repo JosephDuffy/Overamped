@@ -52,7 +52,7 @@ jobs:
           APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
           CERTIFICATE_PRIVATE_KEY: ${{ secrets.CERTIFICATE_PRIVATE_KEY }}
         run: |
-          pipenv run app-store-connect fetch-signing-files $(xcode-project detect-bundle-id) \
+          pipenv run app-store-connect fetch-signing-files $(bundle exec xcode-project detect-bundle-id) \
             --type IOS_APP_STORE \
             --create
 
