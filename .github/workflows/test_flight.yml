@@ -36,6 +36,9 @@ jobs:
           python-version-file: .tool-versions
           cache: "pipenv"
 
+      - name: Install pipenv
+        run: pip install pipenv
+
       - name: Install Codemagic CLI tools
         run: pipenv sync
 
