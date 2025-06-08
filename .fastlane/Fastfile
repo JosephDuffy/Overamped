@@ -19,6 +19,8 @@ platform :ios do
       whats_new = File.read("./metadata/default/release_notes.txt")
     end
 
+    description = File.read("./metadata/description.txt")
+
     increment_build_number({
       build_number: latest_testflight_build_number + 1
     })
@@ -45,7 +47,7 @@ platform :ios do
             feedback_email: "joseph@yetii.net",
             marketing_url: "https://overamped.app",
             privacy_policy_url: "https://overamped.app/privacy",
-            description: "",
+            description: description,
           },
         },
         localized_build_info: {
