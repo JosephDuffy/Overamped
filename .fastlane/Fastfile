@@ -1,7 +1,5 @@
 default_platform :ios
 
-setup_ci
-
 platform :ios do
   desc "Submit a new iOS build to TestFlight"
   lane :submit_beta do
