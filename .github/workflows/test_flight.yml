@@ -42,6 +42,11 @@ jobs:
       - name: Install Codemagic CLI tools
         run: pipenv sync
 
+      # It would be better to use this via bundle but `xcode-project use-profiles`
+      # requires the `xcodeproj` gem to be installed globally.
+      - name: Install xcodeproj
+        run: gem install xcodeproj
+
       - name: Set up keychain
         run: pipenv run keychain initialize
 
