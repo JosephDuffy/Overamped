@@ -1,7 +1,5 @@
 default_platform :ios
 
-setup_ci
-
 platform :ios do
   desc "Submit a new iOS build to TestFlight"
   lane :submit_beta do
@@ -24,12 +22,6 @@ platform :ios do
     increment_build_number({
       build_number: latest_testflight_build_number + 1
     })
-
-    sh "security find-identity -p codesigning ~/Library/Keychains/fastlane_tmp_keychain-db"
-
-    download_certs
-
-    sh "security find-identity -p codesigning ~/Library/Keychains/fastlane_tmp_keychain-db"
 
     gym
 

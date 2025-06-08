@@ -28,14 +28,34 @@ jobs:
         with:
           node-version-file: "./Overamped Extension/Resources/.tool-versions"
 
+      - name: Install Codemagic CLI tools
+        run: pip install codemagic-cli-tools
+
+      - name: Set up keychain
+        run: keychain initialize
+
+      - name: Fetch signing files
+        env:
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_IDENTIFIER: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
+        run: |
+          app-store-connect fetch-signing-files $(xcode-project detect-bundle-id) \
+            --type IOS_APP_STORE \
+            --create
+
+      - name: Set up signing certificate
+        run: keychain add-certificates
+
+      - name: Set up code signing settings on Xcode project
+        run: xcode-project use-profiles
+
       - run: bundle exec fastlane submit_beta
         env:
           APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
           APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
           APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
           APP_STORE_CONNECT_API_KEY_IS_KEY_CONTENT_BASE64: "true"
-          MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
       - run: bundle exec fastlane upload_metadata
         env:
