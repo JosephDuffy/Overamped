@@ -51,7 +51,7 @@ jobs:
         run: keychain add-certificates
 
       - name: Set up code signing settings on Xcode project
-        run: xcode-project use-profiles
+        run: bundle exec xcode-project use-profiles
 
       - run: bundle exec fastlane submit_beta
         env:
