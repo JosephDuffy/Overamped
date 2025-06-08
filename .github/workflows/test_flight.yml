@@ -30,8 +30,13 @@ jobs:
         with:
           node-version-file: "./Overamped Extension/Resources/.tool-versions"
 
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          cache: "pipenv"
+
       - name: Install Codemagic CLI tools
-        run: pip install codemagic-cli-tools
+        run: pipenv sync
 
       - name: Set up keychain
         run: keychain initialize
