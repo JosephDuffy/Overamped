@@ -21,11 +21,13 @@ platform :ios do
       whats_new = File.read("./metadata/default/release_notes.txt")
     end
 
-    download_certs
-
     increment_build_number({
       build_number: latest_testflight_build_number + 1
     })
+
+    sh "security find-identity -p codesigning ~/Library/Keychains/fastlane_tmp_keychain-db"
+
+    download_certs
 
     sh "security find-identity -p codesigning ~/Library/Keychains/fastlane_tmp_keychain-db"
 
