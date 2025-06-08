@@ -27,7 +27,7 @@ platform :ios do
       build_number: latest_testflight_build_number + 1
     })
 
-    sh "security find-identity -p codesigning"
+    sh "security find-identity -p codesigning ~/Library/Keychains/fastlane_tmp_keychain-db"
 
     gym
 
