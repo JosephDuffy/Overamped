@@ -1,15 +1,17 @@
 default_platform :ios
 
-setup_ci
-
 platform :ios do
   desc "Submit a new iOS build to TestFlight"
   lane :submit_beta do
+    if !is_ci
+      UI.important "Submitting a build to TestFlight should only be done via CI. Please push a tag to trigger a build via CI. This will build but not uploda to App Store Connect."
+    end
+
     setup_app_store_connect_api_key
 
     whats_new = ""
 
-    if File.exists?("./metadata/testflight_whats_new.txt")
+    if File.exist?("./metadata/testflight_whats_new.txt")
       whats_new = File.read("./metadata/testflight_whats_new.txt")
     end
 
@@ -17,7 +19,7 @@ platform :ios do
       whats_new = File.read("./metadata/default/release_notes.txt")
     end
 
-    download_certs
+    description = File.read("./metadata/description.txt")
 
     increment_build_number({
       build_number: latest_testflight_build_number + 1
@@ -25,34 +27,36 @@ platform :ios do
 
     gym
 
-    pilot(
-      distribute_external: false,
-      groups: [
-        "Priority",
-      ],
-      beta_app_review_info: {
-        contact_first_name: "Joseph",
-        contact_last_name: "Duffy",
-        demo_account_name: "",
-        demo_account_password: "",
-        notes: "A demo video of the extension: https://www.icloud.com/iclouddrive/0CrIK3GXyer7_XpcMC4vUq27A#App_Review_Demo
+    if is_ci
+      pilot(
+        distribute_external: false,
+        groups: [
+          "Priority",
+        ],
+        beta_app_review_info: {
+          contact_first_name: "Joseph",
+          contact_last_name: "Duffy",
+          demo_account_name: "",
+          demo_account_password: "",
+          notes: "A demo video of the extension: https://www.icloud.com/iclouddrive/0CrIK3GXyer7_XpcMC4vUq27A#App_Review_Demo
 
-Overamped is not enabled at the start of the video. Note how tapping the news result in Google opens the AMP version of the page (website is hosted by Google, shows actual website domain at top, the website is missing some features such as the navigation menu). Once the extension has been enabled and the page refresh tapping the same link instead loads the original page."
-      },
-      localized_app_info: {
-        "default": {
-          feedback_email: "joseph@yetii.net",
-          marketing_url: "https://overamped.app",
-          privacy_policy_url: "https://overamped.app/privacy",
-          description: "",
+  Overamped is not enabled at the start of the video. Note how tapping the news result in Google opens the AMP version of the page (website is hosted by Google, shows actual website domain at top, the website is missing some features such as the navigation menu). Once the extension has been enabled and the page refresh tapping the same link instead loads the original page."
         },
-      },
-      localized_build_info: {
-        "default": {
-          whats_new: whats_new,
+        localized_app_info: {
+          "default": {
+            feedback_email: "joseph@yetii.net",
+            marketing_url: "https://overamped.app",
+            privacy_policy_url: "https://overamped.app/privacy",
+            description: description,
+          },
+        },
+        localized_build_info: {
+          "default": {
+            whats_new: whats_new,
+          }
         }
-      }
-    )
+      )
+      end
   end
 
   desc "Upload metadata the App Store"

@@ -10,6 +10,7 @@
 		D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C26E26A92C8700CE8AC6 /* SurveyView.swift */; };
 		D939C27126A92F1B00CE8AC6 /* SurveyPricesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */; };
 		D945BC1326F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D945BC1226F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift */; };
+		D948D7D92D8A1DEE0083A5B4 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D948D7D82D8A1DEA0083A5B4 /* DebugView.swift */; };
 		D94E169026B5F66E00294B9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E168F26B5F66D00294B9D /* SettingsView.swift */; };
 		D94E169226B5F70A00294B9D /* AdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */; };
 		D95A92A4271C469400B8FA79 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95A92A3271C469400B8FA79 /* WidgetKit.framework */; };
@@ -59,6 +60,7 @@
 		D9CDF0AF26A10052006F6B99 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CDF0AE26A10052006F6B99 /* StatisticsView.swift */; };
 		D9DC7AEC26B61CB0005C8430 /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9DC7AEB26B61CB0005C8430 /* OverampedCore */; };
 		D9DC7AEE26B6532D005C8430 /* ClearAdvancedStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC7AED26B6532D005C8430 /* ClearAdvancedStatisticsView.swift */; };
+		D9E6E7A02D935BDA00052D26 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = D948D7D52D8A1C2F0083A5B4 /* ReceiptParser */; };
 		D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9FF5B7A268142B30027BD81 /* LaunchScreen.storyboard */; };
 		D9FF5B87268142B90027BD81 /* Overamped Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9FF5B86268142B90027BD81 /* Overamped Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9FF5B8C268142B90027BD81 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FF5B8B268142B90027BD81 /* SafariWebExtensionHandler.swift */; };
@@ -116,6 +118,7 @@
 		D939C26E26A92C8700CE8AC6 /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
 		D939C27026A92F1B00CE8AC6 /* SurveyPricesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPricesProvider.swift; sourceTree = "<group>"; };
 		D945BC1226F2B49C00F1FDF8 /* ClearBasicStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBasicStatisticsView.swift; sourceTree = "<group>"; };
+		D948D7D82D8A1DEA0083A5B4 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D94E168F26B5F66D00294B9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D94E169126B5F70A00294B9D /* AdvancedStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedStatisticsView.swift; sourceTree = "<group>"; };
 		D95A92A2271C469400B8FA79 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E6E7A02D935BDA00052D26 /* ReceiptParser in Frameworks */,
 				D994C64126A26C6E000649AA /* OverampedCore in Frameworks */,
 				D9B8EC0626A3E42E00C1243E /* Persist in Frameworks */,
 			);
@@ -223,6 +227,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D948D7D72D8A1DDE0083A5B4 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				D948D7D82D8A1DEA0083A5B4 /* DebugView.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		D95A92A7271C469400B8FA79 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +389,7 @@
 				D9A9141126C8910200C34C30 /* Feedback */,
 				D9A9141426C8915200C34C30 /* Settings */,
 				D9A9141626C8918000C34C30 /* About */,
+				D948D7D72D8A1DDE0083A5B4 /* Debug */,
 				D9A9141526C8917100C34C30 /* Shared */,
 				D96BF7DC26B3C6FE00E6EBE9 /* Localizable.stringsdict */,
 				D994C63926A143F8000649AA /* Products.storekit */,
@@ -483,6 +496,7 @@
 			packageProductDependencies = (
 				D994C64026A26C6E000649AA /* OverampedCore */,
 				D9B8EC0526A3E42E00C1243E /* Persist */,
+				D948D7D52D8A1C2F0083A5B4 /* ReceiptParser */,
 			);
 			productName = Overamped;
 			productReference = D9FF5B69268142B30027BD81 /* Overamped.app */;
@@ -519,7 +533,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					D95A92A1271C469400B8FA79 = {
 						CreatedOnToolsVersion = 13.0;
@@ -551,6 +565,7 @@
 			mainGroup = D9FF5B60268142B30027BD81;
 			packageReferences = (
 				D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */,
+				D948D7D42D8A1C2F0083A5B4 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = D9FF5B6A268142B30027BD81 /* Products */;
 			projectDirPath = "";
@@ -714,6 +729,7 @@
 				D9A9141026C7809C00C34C30 /* TipOptionView.swift in Sources */,
 				D939C26F26A92C8700CE8AC6 /* SurveyView.swift in Sources */,
 				D9CDF0AB26A0F67C006F6B99 /* SupportView.swift in Sources */,
+				D948D7D92D8A1DEE0083A5B4 /* DebugView.swift in Sources */,
 				D9AB8C05269A62D800D225F8 /* OverampedApp.swift in Sources */,
 				D994C63826A13682000649AA /* TipJarStore.swift in Sources */,
 				D9A9141826C8A59500C34C30 /* FAQView.swift in Sources */,
@@ -783,9 +799,6 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
@@ -811,8 +824,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Info.plist;
@@ -825,7 +838,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Overamped.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.yetii.Overamped.Widgets";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -838,7 +851,6 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -858,8 +870,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -868,6 +880,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.yetii.Overamped-Screenshots";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -878,8 +891,6 @@
 		D9B9D5952698B1F600F7D361 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -898,8 +909,8 @@
 		D9B9D5962698B1F600F7D361 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -908,6 +919,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.yetii.Overamped-Extension-UI-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -949,6 +961,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 43;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -972,7 +985,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleVersion = 7;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.3.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1016,6 +1029,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Distribution: Yetii Ltd. (HGVGKE57E6)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 43;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1033,7 +1048,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleVersion = 7;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.3.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1047,8 +1062,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Overamped Extension/Overamped Extension.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1077,8 +1090,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Overamped Extension/Overamped Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1095,7 +1108,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Overamped.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.yetii.Overamped.Extension";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -1110,9 +1123,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Overamped/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Overamped;
@@ -1148,8 +1158,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Overamped/Info.plist;
@@ -1172,7 +1182,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.yetii.Overamped;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.yetii.Overamped";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1239,6 +1249,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D948D7D42D8A1C2F0083A5B4 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
 		D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JosephDuffy/Persist.git";
@@ -1250,6 +1268,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D948D7D52D8A1C2F0083A5B4 /* ReceiptParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D948D7D42D8A1C2F0083A5B4 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = ReceiptParser;
+		};
 		D95A92B6271C46F100B8FA79 /* Persist */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9B8EC0426A3E42E00C1243E /* XCRemoteSwiftPackageReference "Persist" */;

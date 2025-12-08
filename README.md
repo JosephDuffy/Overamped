@@ -26,6 +26,12 @@ All commits and tags are signed with [my GPG key](https://josephduffy.co.uk/comm
 
 There is nothing stopping others from forking/downloading the repo and making changes, possibly even then uploading it to the App Store. Not only would this be illegal but you should not trust the fork; they could've easily added tracking and data exfiltration without your knowledge. Please [contact me](https://overamped.app/contact) if you find such an app or fork.
 
+## Building
+
+There is some setup required to build locally. It is recommended that [asdf](https://asdf-vm.com/) is used for managing tool versions, namely Ruby and Node.js.
+
+To support building from Xcode this will require `sh` be configured to use asdf. See “POSIX Shell” in https://asdf-vm.com/guide/getting-started.html.
+
 ## Contributing
 
 As this is a commercial app that costs money I **will not** be accepting contributions. If you have a feature request or have found a bug you are welcome to open an issue or fill out the feedback form on the app.
