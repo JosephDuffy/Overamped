@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Xcode 16.4
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+      - name: Use Xcode 26.2
+        run: sudo xcode-select --switch /Applications/Xcode_26.2.app
 
       - name: Install Ruby and fastlane
         uses: ruby/setup-ruby@v1
