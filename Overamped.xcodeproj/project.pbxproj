@@ -649,8 +649,8 @@
 				"$(SRCROOT)/Overamped Extension/Resources/node_modules",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\n\ncd \"Overamped Extension/Resources\"\nnpm ci\n";
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\nexport PATH=\"/opt/homebrew/bin:$PATH\"\n\ncd \"Overamped Extension/Resources\"\n\nnpm ci\n";
 		};
 		D993C5612684AFDE002A84E6 /* Build JS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -671,7 +671,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\n\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\nexport PATH=\"/opt/homebrew/bin:$PATH\"\n\ncd \"Overamped Extension/Resources\"\n\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
