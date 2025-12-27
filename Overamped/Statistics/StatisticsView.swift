@@ -107,6 +107,22 @@ struct StatisticsView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity)
+            .background(
+                ActivityView(
+                    isPresented: $showShareSheet,
+                    items: {
+                        [
+                            String.localizedStringWithFormat(
+                                String(localized: "statistics_share_content"),
+                                replacedLinksCount
+                            ),
+                            URLUIActivityItemSource(
+                                url: URL(string: "https://overamped.app")!
+                            ),
+                        ]
+                    }
+                )
+            )
         }
         .background(Color(.systemGroupedBackground))
         .environment(\.openURL, OpenURLAction { url in
@@ -118,33 +134,19 @@ struct StatisticsView: View {
                 self.displayedURL = nil
             }
         }
-        .navigationTitle("Statistics")
         .toolbar {
-            Button(
-                action: {
-                    showShareSheet = true
-                },
-                label: {
-                    Image(systemName: "square.and.arrow.up")
-                }
-            )
-                .background(
-                    ActivityView(
-                        isPresented: $showShareSheet,
-                        items: {
-                            [
-                                String.localizedStringWithFormat(
-                                    String(localized: "statistics_share_content"),
-                                    replacedLinksCount
-                                ),
-                                URLUIActivityItemSource(
-                                    url: URL(string: "https://overamped.app")!
-                                ),
-                            ]
-                        }
-                    )
+            ToolbarItem(placement: .primaryAction) {
+                Button(
+                    action: {
+                        showShareSheet = true
+                    },
+                    label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
                 )
+            }
         }
+        .navigationTitle("Statistics")
     }
 }
 
