@@ -1,1 +1,1 @@
-- Fix bug preventing Overamped Settings from being opened from Settings → Apps → Safari → Extensions → Overamped → Settings.
+• Support for the latest OSes

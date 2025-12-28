@@ -34,6 +34,7 @@
 		D990D8172937CC1E005ADCE5 /* global.css in Resources */ = {isa = PBXBuildFile; fileRef = D990D8112937CC1E005ADCE5 /* global.css */; };
 		D990D8182937CC1E005ADCE5 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = D990D8122937CC1E005ADCE5 /* manifest.json */; };
 		D990D81A29380773005ADCE5 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = D990D81929380773005ADCE5 /* _locales */; };
+		D9947A3D2F00AD390004D7E5 /* Overamped.icon in Resources */ = {isa = PBXBuildFile; fileRef = D9947A3C2F00AD390004D7E5 /* Overamped.icon */; };
 		D994C63826A13682000649AA /* TipJarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C63726A13682000649AA /* TipJarStore.swift */; };
 		D994C63B26A1EF9B000649AA /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994C63A26A1EF9A000649AA /* TipJarView.swift */; };
 		D994C64126A26C6E000649AA /* OverampedCore in Frameworks */ = {isa = PBXBuildFile; productRef = D994C64026A26C6E000649AA /* OverampedCore */; };
@@ -142,6 +143,7 @@
 		D990D8112937CC1E005ADCE5 /* global.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = global.css; path = Resources/extension/global.css; sourceTree = "<group>"; };
 		D990D8122937CC1E005ADCE5 /* manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = manifest.json; path = Resources/extension/manifest.json; sourceTree = "<group>"; };
 		D990D81929380773005ADCE5 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; name = _locales; path = Resources/extension/_locales; sourceTree = "<group>"; };
+		D9947A3C2F00AD390004D7E5 /* Overamped.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Overamped.icon; sourceTree = "<group>"; };
 		D994C63726A13682000649AA /* TipJarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarStore.swift; sourceTree = "<group>"; };
 		D994C63926A143F8000649AA /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		D994C63A26A1EF9A000649AA /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 		D9FF5B6B268142B30027BD81 /* Overamped */ = {
 			isa = PBXGroup;
 			children = (
+				D9947A3C2F00AD390004D7E5 /* Overamped.icon */,
 				D9AB8C04269A62D800D225F8 /* OverampedApp.swift */,
 				D9AB8C08269A895500D225F8 /* OverampedTabs.swift */,
 				D9A9141326C8913300C34C30 /* Statistics */,
@@ -608,6 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9947A3D2F00AD390004D7E5 /* Overamped.icon in Resources */,
 				D9AB29B427B0899C00173BB6 /* Settings.bundle in Resources */,
 				D9FF5B7C268142B30027BD81 /* LaunchScreen.storyboard in Resources */,
 				D9FF5B9F268142B90027BD81 /* Assets.xcassets in Resources */,
@@ -649,8 +653,8 @@
 				"$(SRCROOT)/Overamped Extension/Resources/node_modules",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\n\ncd \"Overamped Extension/Resources\"\nnpm ci\n";
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\nexport PATH=\"/opt/homebrew/bin:$PATH\"\n\ncd \"Overamped Extension/Resources\"\n\nnpm ci\n";
 		};
 		D993C5612684AFDE002A84E6 /* Build JS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -671,7 +675,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\n\ncd \"Overamped Extension/Resources\"\nnpm run build\n";
+			shellScript = "if [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  exit 0;\nfi\n\nsource ~/.bashrc\nexport PATH=\"/opt/homebrew/bin:$PATH\"\n\ncd \"Overamped Extension/Resources\"\n\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -963,7 +967,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -985,7 +989,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleVersion = 7;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1032,7 +1036,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: Yetii Ltd. (HGVGKE57E6)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = HGVGKE57E6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1048,7 +1052,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleVersion = 7;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1119,7 +1123,7 @@
 		D9FF5BA7268142B90027BD81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Overamped;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;
@@ -1154,7 +1158,7 @@
 		D9FF5BA8268142B90027BD81 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Overamped;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Overamped/Overamped.entitlements;

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "App-Icon-Rounded-Inset-128.png",
+      "filename" : "Overamped-iOS-Default-128x128@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "App-Icon-Rounded-Inset-256.png",
+      "filename" : "Overamped-iOS-Default-128x128@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "App-Icon-Rounded-Inset-384.png",
+      "filename" : "Overamped-iOS-Default-128x128@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
